@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <api>
 <name>j2se v1.4</name>
-<summarydescription>Java 2 Standard Edition version 1.4.  This is Sun's Latest version of Java, enhanced from its predecessor by a number of new APIs including new io (nio), logging, assertions, and much much more.  Check it out at java.sun.com>
+<summarydescription>Java 2 Standard Edition version 1.4.  This is Sun's Latest version of Java, enhanced from its predecessor by a number of new APIs including new io (nio), logging, assertions, and much much more.  Check it out at java.sun.com</summarydescription>
 <description>j2se v1.4</description>
 <publisher>sun</publisher>
 <download_url>http://java.sun.com/j2se</download_url>
