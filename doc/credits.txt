@@ -12,7 +12,7 @@ Credits:
   to step up to the plate and actively contribute
   to this project.
 
-  A thank you also goes to Bob Hayes (alephnaught.com)
+  A thank you also goes to Bob Hays (alephnaught.com)
   for actively ramping up on this project on his own 
   and already contributing a patch that reworks the
   packages page logic.
