@@ -151,7 +151,7 @@ Specific Tasks / Bugs, Small Features
   to a single API
 - member or class listing:  modifier columns:  establish min-width in style
    to improve look
-
+- Command-line tool:  can sourcepath include jar/zip files?
 
 Ashkelon Completed List
 -----------------------
