@@ -2,25 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
   Boolean needToDisplayResults = (Boolean) request.getAttribute("display_results");
   if (needToDisplayResults == null)
     needToDisplayResults = new Boolean(false);
  %>
 
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
 <head>
-	<title>Ashkelon Member Index</title>
+  <title>Ashkelon Member Index</title>
   <jsp:include page="includes.html" flush="true"/>
 </head>
 
