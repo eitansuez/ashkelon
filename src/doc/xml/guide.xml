@@ -150,10 +150,10 @@ Visit the project page on sourceforge at <ulink url="http://sourceforge.net/proj
 <listitem>A servlet &amp; JSP container (I use Jakarta tomcat 5.x at the moment, but have used or received reports from many users and/or vendors that ashkelon works with their servlet container)
 </listitem>
 <listitem>
-postgresql (http://www.postgresql.org/) or mysql (www.mysql.org)
+postgresql (<ulink url="http://www.postgresql.org/">http://www.postgresql.org/</ulink>) or mysql (<ulink url="http://www.mysql.org">http://www.mysql.org</ulink>)
 </listitem>
 <listitem>
-Jakarta Ant (v1.5 or higher) (ant.apache.org)
+Jakarta Ant (v1.5 or higher) (<ulink url="http://ant.apache.org">http://ant.apache.org</ulink>)
 </listitem>
 </orderedlist>
 
@@ -277,7 +277,7 @@ In <replaceable>${dbtype}</replaceable>, create database named ashkelon:
 </listitem>
 
 <listitem>
-Run script: db-scripts\init.sql
+Run script: <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/init.sql</filename>
 <example>
 <title>Using mysql</title>
 <screen>
@@ -290,7 +290,7 @@ Run script: db-scripts\init.sql
 <title>Using postgresql</title>
 <screen>
    ~/ashkelon&gt; psql -d ashkelon
-   ashkelon#= \i db/postgre/org/ashkelon/db/init.sql
+   ashkelon#= \i db/postgres/org/ashkelon/db/init.sql
    ashkelon#= \q
 </screen>
 </example>

@@ -5,17 +5,16 @@ README
 
 Project documentation is currently available in two flavors:
 
-  a. a single html file
-  b. multiple html files
+  a. a single html file ( located at:  doc/single/guide.html )
+  b. multiple html files ( located at: doc/chunked/index.html )
 
-The former is located at:  doc/single/guide.html
-The latter is located at:  doc/chunked/index.html
-
+---
 
 To send eitan feedback or questions, 
   mailto: eitan-keyword-tech.cede1b@u2d.com
 
-To send the entire team feedback, email ashkelon-devs@lists.sourceforge.net 
+To send the entire team feedback, 
+  mailto: ashkelon-devs@lists.sourceforge.net 
 
 
 Thank you,
