@@ -47,8 +47,7 @@ Date: March 2001
 
 <h3><span class="package"><%=pkg.getName()%></span> <span class="<%=classtype%>" style="text-transform: capitalize"><%=captions%></span></h3>
 
-<p><%=pkg.getSummaryDescription()%></p>
-
+<jsp:include page="pkg_info.jsp" flush="true"/>
 
 <jsp:include page="class_list.jsp" flush="true">
   <jsp:param name="caption" value="<%=captiondescr%>" />

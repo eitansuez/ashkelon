@@ -13,7 +13,7 @@
     cols.add(pkg.getErrorClasses());
 %>
 
-<p><%= pkg.getSummaryDescription() %></p>
+<jsp:include page="pkg_info.jsp" flush="true"/>
 
 <div align="center">
 <table class="columnar">

@@ -13,9 +13,7 @@
     cols.add(pkg.getErrorClasses());
 %>
 
-<p class="api" style="font-size: 8pt;">
-(<a href="api.main.do?id=<%=pkg.getAPI().getId()%>"><%=pkg.getAPI().getName()%></a> API)
-</p>
+<jsp:include page="pkg_info.jsp" flush="true" />
 
 <div style="float: right;">
   <button id="toggleBtn" onClick="toggleHeightMode('pkg-description', this, '300px');"><img src="images/expand.jpg" /></button>
