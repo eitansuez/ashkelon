@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<api>
+
+  <name>Ashkelon</name>
+  <summarydescription>Ashkelon is a multi-api java documentation system composed of [1] a tool to persist javadocs in a relational database, and [b] a modern dhtml web application for referencing javadocs</summarydescription>
+  <description>Ashkelon is a multi-api java documentation system composed of [1] a tool to persist javadocs in a relational database, and [b] a modern dhtml web application for referencing javadocs.  The latter is a serious attempt to redefine how javadocs should be referenced online.  It goes above and beyond the defactor ui for javadocs by color coding programming elements, allowing database searches, cross reference lookups, and providing various statistical information on javadocs (class count by api, class count by author, etc..)</description>
+
+  <publisher>Eitan Suez</publisher>
+  <download_url>http://ashkelon.sf.net/</download_url>
+  <release_date>2004-08-01T23:00:00.000</release_date>
+  <version>0.8.6</version>
+
+  <package>org.ashkelon</package>
+  <package>org.ashkelon.pages</package>
+  <package>org.ashkelon.db</package>
+  <package>org.ashkelon.util</package>
+  <package>org.ashkelon.ant</package>
+
+</api>
+
+
