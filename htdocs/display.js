@@ -41,6 +41,7 @@ function toggleVisibility(tagid, displaystyle, isargobject)
   try {
     var wasvis = isVisible(tagid, displaystyle, isargobject);
     setVisible(tagid, !wasvis, displaystyle, isargobject);
+    var target = (isargobject) ? tagid : getElementById(tagid);
     target.style.zIndex = (wasvis) ? 0 : 1;
     return wasvis;
   } catch (ex) {}
