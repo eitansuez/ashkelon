@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <api>
-<name>Servlet 2.3 &amp; JSP 1.2</name>
+<name>Servlet 2.4 &amp; JSP 2.0</name>
 <summarydescription>JavaTM Servlet technology provides web developers with a simple, consistent mechanism for extending the functionality of a web server and for accessing existing business systems.</summarydescription>
 <description>JavaTM Servlet technology provides web developers with a simple, consistent mechanism for extending the functionality of a web server and for accessing existing business systems. A servlet can almost be thought of as an applet that runs on the server side -- without a face. Java servlets have made many web applications possible.</description>
 <publisher>Sun MicroSystems</publisher>
 <download_url>http://java.sun.com/products/servlet/</download_url>
 <release_date>2001-08-13T08:00:00.000</release_date>
-<version>2.3</version>
+<version>2.4</version>
 <package>javax.servlet</package>
 <package>javax.servlet.http</package>
 <package>javax.servlet.jsp</package>
