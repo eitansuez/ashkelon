@@ -23,11 +23,10 @@ public class ConfigInfo
    
    public ConfigInfo load() throws Exception
    {
-      //ClassLoader loader = ClassLoader.getSystemClassLoader();
       ClassLoader loader = this.getClass().getClassLoader();
 
       URL resource = loader.getResource("org/ashkelon/pages/configmapping.xml");
-      Mapping mapping = new Mapping();
+      Mapping mapping = new Mapping(loader);
       mapping.loadMapping(resource);
 
       InputStream is = loader.getResourceAsStream("org/ashkelon/pages/configinfo.xml");
