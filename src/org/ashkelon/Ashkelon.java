@@ -629,7 +629,7 @@ public class Ashkelon extends Doclet
    // entry point into ashkelon
    public static void main(String[] args)
    {
-      String[] javadocargs;
+      //String[] javadocargs;
       
       Logger log = Logger.getInstance();
 

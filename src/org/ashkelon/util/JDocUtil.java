@@ -8,7 +8,6 @@ import java.util.*;
 import com.sun.javadoc.*;
 import java.io.*;
 import org.ashkelon.*;
-import org.ashkelon.util.*;
 
 /**
  * A class containing various utility methods for dealing with the javadoc object 

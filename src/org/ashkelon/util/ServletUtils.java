@@ -46,7 +46,7 @@ public class ServletUtils
    {
       Enumeration e = request.getParameterNames();
       Map pairs = new HashMap(6);
-      String name, value;
+      String name;
       while (e.hasMoreElements())
       {
          name = (String) e.nextElement();

@@ -293,7 +293,7 @@ public class ClassType implements Comparator, JDoc, Serializable
     */
    public static boolean delete(Connection conn, String className) throws SQLException
    {
-      Logger log = Logger.getInstance();
+      //Logger log = Logger.getInstance();
       String sql = DBMgr.getInstance().getStatement("getclsanddocid");
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -547,7 +547,7 @@ public class ClassType implements Comparator, JDoc, Serializable
    
    public void addAuthors(String[] names)
    {
-      Author author = null;
+      //Author author = null;
       for (int i=0; i<names.length; i++)
       {
          addAuthor(names[i]);
@@ -589,7 +589,7 @@ public class ClassType implements Comparator, JDoc, Serializable
    
    public void addFields(FieldDoc[] fielddocs)
    {
-      FieldMember fm = null;
+      //FieldMember fm = null;
       for (int i=0; i<fielddocs.length; i++)
       {
          addField(new FieldMember(fielddocs[i], this));
@@ -603,7 +603,7 @@ public class ClassType implements Comparator, JDoc, Serializable
    
    public void addConstructors(ConstructorDoc[] constructordocs)
    {
-      ConstructorMember cm = null;
+      //ConstructorMember cm = null;
       for (int i=0; i<constructordocs.length; i++)
       {
          addConstructor(new ConstructorMember(constructordocs[i], this));
@@ -617,7 +617,7 @@ public class ClassType implements Comparator, JDoc, Serializable
    
    public void addMethods(MethodDoc[] methoddocs)
    {
-      MethodMember mm = null;
+      //MethodMember mm = null;
       for (int i=0; i<methoddocs.length; i++)
       {
          addMethod(new MethodMember(methoddocs[i], this));

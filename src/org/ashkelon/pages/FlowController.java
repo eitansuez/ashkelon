@@ -28,7 +28,6 @@ public class FlowController extends HttpServlet
    private Logger log;
    
    private Map classPool;
-   private int count = 0;
    
    
    public String getServletInfo()
@@ -266,7 +265,7 @@ public class FlowController extends HttpServlet
       uriLabelPair[0] = uri;
       //CommandInfo cmdInfo = (CommandInfo) configInfo.getCommandMap().get(cmd);
       String caption = cmdInfo.getCaption();
-      String tableName = cmdInfo.getTableName();
+      //String tableName = cmdInfo.getTableName();
       String typename = "";
 
       String pattern = "m/(.*)\\$(\\w+)\\$(.*)/";
@@ -445,7 +444,7 @@ public class FlowController extends HttpServlet
 
    private List getPaths(String pathstring)
    {
-      String sourcepath = System.getProperty("source.path");
+      //String sourcepath = System.getProperty("source.path");
       log.debug("path string is: "+pathstring);
       String[] paths = StringUtils.split(pathstring, File.pathSeparator);
       return Arrays.asList(paths);

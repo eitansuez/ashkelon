@@ -1,13 +1,7 @@
 package org.ashkelon;
 
 import java.util.*;
-import java.io.*;
-import java.net.*;
 import java.sql.*;
-import org.ashkelon.util.*;
-import org.ashkelon.db.*;
-import org.exolab.castor.mapping.*;
-import org.exolab.castor.xml.*;
 
 public class Generic
 {

@@ -7,11 +7,11 @@ ashkelon documentation
 overview
 --------
 
-ashkelon is an open source project.  it is a java api documentation
-tool designed for java developers.  its goals are the same as the goals
+ashkelon is an open source project.  It is a java api documentation
+tool designed for java developers.  Its goals are the same as the goals
 of the well-known javadoc tool that comes with j2se, whose gui most
 java developers are quite familiar with (url for javadoc tool from
-sun microsystems is: http://java.sun.com/j2se/javadoc/ if you'd like
+Sun Microsystems is: http://java.sun.com/j2se/javadoc/ if you'd like
 to learn more about javadoc)
 
 ashkelon addresses the following issues that javadoc does not:

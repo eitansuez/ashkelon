@@ -140,7 +140,7 @@ public class ClassesPage extends Page
 
       List found = new ArrayList();
       ClassType c;
-      DocInfo doc;
+      //DocInfo doc;
       while (rset.next())
       {
         c = new ClassType(rset.getString(2));
@@ -203,7 +203,7 @@ public class ClassesPage extends Page
 
       List found = new ArrayList();
       ClassType c;
-      DocInfo doc;
+      //DocInfo doc;
       while (rset.next())
       {
         c = new ClassType(rset.getString(2));

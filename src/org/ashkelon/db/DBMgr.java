@@ -275,7 +275,11 @@ public class DBMgr
       while (itr.hasNext())
       {
          pc = (PooledConnection) itr.next();
-            int i =(pc.getState()==BUSY) ? (numUsed++) : (numFree++);
+         if (pc.getState() == BUSY) {
+             numUsed++; 
+         } else {
+             numFree++;
+         }
       }
       String statusmsg = "Used/Free/Max: " + numUsed + "/" + numFree + "/" + maxpoolsize;
       log.verbose(statusmsg);

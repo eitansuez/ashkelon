@@ -99,7 +99,7 @@ public class IndexPage extends Page
 
       List results = new ArrayList();
       JPackage pkg;
-      DocInfo doc;
+      //DocInfo doc;
       
       int rownum = 0;
       while (rset.next() && rownum < 21)
@@ -145,7 +145,7 @@ public class IndexPage extends Page
       
       List results = new ArrayList();
       ClassType c;
-      DocInfo doc;
+      //DocInfo doc;
       
       int rownum = 0;
       while (rset.next() && rownum < 21)

@@ -14,7 +14,7 @@ public class AuthorPage extends Page
    public String init() throws SQLException
    {
       String authorId = ServletUtils.getRequestParam(request, "id");
-      String cmd = ServletUtils.getRequestParam(request, "cmd");
+      //String cmd = ServletUtils.getRequestParam(request, "cmd");
       
       Author author = Author.fetchAuthor(conn, Integer.parseInt(authorId));
       request.setAttribute("author", author);

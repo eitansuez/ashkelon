@@ -1,7 +1,6 @@
 package org.ashkelon.pages;
 
 import org.ashkelon.*;
-import org.ashkelon.util.*;
 import org.ashkelon.db.*;
 
 import java.util.*;
