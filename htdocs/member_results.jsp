@@ -10,17 +10,6 @@ Date: March 2001
 <%
   List found = (List) request.getAttribute("member_list");
   String searchField = ServletUtils.getRequestParam(request, "searchField");
-%>
-
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
-
-<% if (found.size() > 30) { %>
-<p><%=found.size()%><%=found.size()==99 ? "+" : ""%> matching entries.  Try to narrow your search.</p>
-<% } %>
-
-
-<%
   request.setAttribute("members", found);
   String emptyMsg = "Found no members matching <I>"+ searchField +"</I>";
  %>

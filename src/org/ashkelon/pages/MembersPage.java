@@ -177,36 +177,38 @@ public class MembersPage extends Page
       sql += StringUtils.join(whereClause.toArray(), " and ") + 
              " order by m.qualifiedname ";
 
-      PreparedStatement p = conn.prepareStatement(sql);
-      p.setMaxRows(50);
+      PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_READ_ONLY);
+      pstmt.setFetchSize(FETCH_SIZE);
       
       int i=1;
 
       if (filters.get("searchField")!=null)
-         p.setString(i++, (String) filters.get("searchField"));
+         pstmt.setString(i++, (String) filters.get("searchField"));
       if (filters.get("member_type")!=null)
-         p.setInt(i++, ((Integer) filters.get("member_type")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("member_type")).intValue());
       if (filters.get("static")!=null)
-         p.setInt(i++, ((Integer) filters.get("static")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("static")).intValue());
       if (filters.get("final")!=null)
-         p.setInt(i++, ((Integer) filters.get("final")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("final")).intValue());
       if (filters.get("abstract")!=null)
-         p.setInt(i++, ((Integer) filters.get("abstract")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("abstract")).intValue());
       if (filters.get("synchronized")!=null)
-         p.setInt(i++, ((Integer) filters.get("synchronized")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("synchronized")).intValue());
       if (filters.get("native")!=null)
-         p.setInt(i++, ((Integer) filters.get("native")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("native")).intValue());
       if (filters.get("package_name")!=null)
-         p.setString(i++, (String) filters.get("package_name"));
+         pstmt.setString(i++, (String) filters.get("package_name"));
 
       Logger.getInstance().debug("sql query for advanced search:\n\t"+sql);
 
-      ResultSet rset = p.executeQuery();
+      ResultSet rset = pstmt.executeQuery();
+      int position = position(rset);
 
       List found = new ArrayList();
       Member m;
 
-      while (rset.next())
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
         m = new Member(rset.getString(2), rset.getInt(3));
         m.setId(rset.getInt(1));
@@ -246,6 +248,7 @@ public class MembersPage extends Page
 
       }  // end while
 
+      rset.close();
       return found;
    }
       
@@ -292,15 +295,18 @@ public class MembersPage extends Page
          " order by m.qualifiedname";
       }
       
-      PreparedStatement p = conn.prepareStatement(sql);
-      p.setMaxRows(50);
-      p.setString(1, searchField);
-      ResultSet rset = p.executeQuery();
+      PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_READ_ONLY);
+      pstmt.setFetchSize(FETCH_SIZE);
+      
+      pstmt.setString(1, searchField);
+      ResultSet rset = pstmt.executeQuery();
+      int position = position(rset);
 
       List found = new ArrayList();
       Member m;
       
-      while (rset.next())
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
         m = new Member(rset.getString(2), rset.getInt(3));
         m.setId(rset.getInt(1));
@@ -340,6 +346,7 @@ public class MembersPage extends Page
         
       }  // end while
       
+      rset.close();
       return found;
    }
    
