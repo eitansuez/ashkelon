@@ -1,5 +1,14 @@
 Release Notes
 
+What's new in v0.8.9 (September 10 2004):
+-----------------------------------------
+
+  This release enhances search and cross references with paging.  Searches that return a large number of results are no longer clipped to 50 entries.  Instead the first page is displayed, along with "next" and "previous" buttons to navigate the results.  The same feature has likewise been applied to listing cross references.  For example, you are now able to page through the thousands of methods that match the "returned-by" cross reference on java.lang.String.
+
+ The paging feaure was implemented using JDBC cursors and so perform adequately.
+ These enhancements were made only to the DHTML ui
+
+
 What's new in v0.8.8 (August 20 2004):
 -------------------------------------
 
