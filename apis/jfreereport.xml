@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<api>
+
+  <name>JFreeReport</name>
+  <summarydescription>Powerful Java-Based Reporting System</summarydescription>
+  <description>Powerful Java-Based Reporting System</description>
+
+  <publisher>jfree.org</publisher>
+  <download_url>http://jfree.org/jfreereport/</download_url>
+  <release_date>2004-04-27T08:00:00.000</release_date>
+  <version>0.8.4.10</version>
+
+<package>org.jfree.report</package>
+<package>org.jfree.report.content</package>
+<package>org.jfree.report.demo</package>
+<package>org.jfree.report.demo.cards</package>
+<package>org.jfree.report.demo.conditionalgroup</package>
+<package>org.jfree.report.demo.form</package>
+<package>org.jfree.report.demo.helper</package>
+<package>org.jfree.report.demo.invoice</package>
+<package>org.jfree.report.demo.resources</package>
+<package>org.jfree.report.elementfactory</package>
+<package>org.jfree.report.event</package>
+<package>org.jfree.report.filter</package>
+<package>org.jfree.report.filter.templates</package>
+<package>org.jfree.report.function</package>
+<package>org.jfree.report.layout</package>
+<package>org.jfree.report.modules</package>
+<package>org.jfree.report.modules.gui.base</package>
+<package>org.jfree.report.modules.gui.base.components</package>
+<package>org.jfree.report.modules.gui.base.resources</package>
+<package>org.jfree.report.modules.gui.config</package>
+<package>org.jfree.report.modules.gui.config.editor</package>
+<package>org.jfree.report.modules.gui.config.model</package>
+<package>org.jfree.report.modules.gui.config.resources</package>
+<package>org.jfree.report.modules.gui.config.xml</package>
+<package>org.jfree.report.modules.gui.converter</package>
+<package>org.jfree.report.modules.gui.converter.components</package>
+<package>org.jfree.report.modules.gui.converter.parser</package>
+<package>org.jfree.report.modules.gui.converter.resources</package>
+<package>org.jfree.report.modules.gui.csv</package>
+<package>org.jfree.report.modules.gui.csv.resources</package>
+<package>org.jfree.report.modules.gui.html</package>
+<package>org.jfree.report.modules.gui.html.resources</package>
+<package>org.jfree.report.modules.gui.pdf</package>
+<package>org.jfree.report.modules.gui.pdf.resources</package>
+<package>org.jfree.report.modules.gui.plaintext</package>
+<package>org.jfree.report.modules.gui.plaintext.resources</package>
+<package>org.jfree.report.modules.gui.print</package>
+<package>org.jfree.report.modules.gui.print.resources</package>
+<package>org.jfree.report.modules.gui.translation</package>
+<package>org.jfree.report.modules.gui.xls</package>
+<package>org.jfree.report.modules.gui.xls.resources</package>
+<package>org.jfree.report.modules.misc.beanshell</package>
+<package>org.jfree.report.modules.misc.configstore.base</package>
+<package>org.jfree.report.modules.misc.configstore.filesystem</package>
+<package>org.jfree.report.modules.misc.referencedoc</package>
+<package>org.jfree.report.modules.misc.tablemodel</package>
+<package>org.jfree.report.modules.output.csv</package>
+<package>org.jfree.report.modules.output.pageable.base</package>
+<package>org.jfree.report.modules.output.pageable.base.operations</package>
+<package>org.jfree.report.modules.output.pageable.base.output</package>
+<package>org.jfree.report.modules.output.pageable.base.pagelayout</package>
+<package>org.jfree.report.modules.output.pageable.base.physicals</package>
+<package>org.jfree.report.modules.output.pageable.graphics</package>
+<package>org.jfree.report.modules.output.pageable.pdf</package>
+<package>org.jfree.report.modules.output.pageable.plaintext</package>
+<package>org.jfree.report.modules.output.support.itext</package>
+<package>org.jfree.report.modules.output.support.pagelayout</package>
+<package>org.jfree.report.modules.output.table.base</package>
+<package>org.jfree.report.modules.output.table.csv</package>
+<package>org.jfree.report.modules.output.table.html</package>
+<package>org.jfree.report.modules.output.table.rtf</package>
+<package>org.jfree.report.modules.output.table.xls</package>
+<package>org.jfree.report.modules.output.xml</package>
+<package>org.jfree.report.modules.parser.base</package>
+<package>org.jfree.report.modules.parser.ext</package>
+<package>org.jfree.report.modules.parser.ext.factory.datasource</package>
+<package>org.jfree.report.modules.parser.ext.factory.elements</package>
+<package>org.jfree.report.modules.parser.ext.factory.objects</package>
+<package>org.jfree.report.modules.parser.ext.factory.stylekey</package>
+<package>org.jfree.report.modules.parser.ext.factory.templates</package>
+<package>org.jfree.report.modules.parser.extwriter</package>
+<package>org.jfree.report.modules.parser.simple</package>
+<package>org.jfree.report.states</package>
+<package>org.jfree.report.style</package>
+<package>org.jfree.report.util</package>
+<package>org.jfree.report.util.serializers</package>
+
+</api>

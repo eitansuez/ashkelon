@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<api>
+<name>NetBeans Open IDE</name>
+<summarydescription>NetBeans Open IDE API</summarydescription>
+<description>NetBeans Open IDE API</description>
+<publisher>netbeans.org</publisher>
+<download_url>http://www.netbeans.org/</download_url>
+<release_date>2003-08-01T08:00:00.000</release_date>
+<version>3.5.1</version>
+<package>org.netbeans.openide</package>
+<package>org.netbeans.openide.actions</package>
+<package>org.netbeans.openide.awt</package>
+<package>org.netbeans.openide.cookies</package>
+<package>org.netbeans.openide.explorer</package>
+<package>org.netbeans.openide.explorer.view</package>
+<package>org.netbeans.openide.explorer.propertysheet</package>
+<package>org.netbeans.openide.explorer.propertysheet.editors</package>
+<package>org.netbeans.openide.filesystems</package>
+<package>org.netbeans.openide.loaders</package>
+<package>org.netbeans.openide.modules</package>
+<package>org.netbeans.openide.nodes</package>
+<package>org.netbeans.openide.options</package>
+<package>org.netbeans.openide.resources</package>
+<package>org.netbeans.openide.resources.actions</package>
+<package>org.netbeans.openide.resources.html</package>
+<package>org.netbeans.openide.resources.propertysheet</package>
+<package>org.netbeans.openide.text</package>
+<package>org.netbeans.openide.util</package>
+<package>org.netbeans.openide.util.actions</package>
+<package>org.netbeans.openide.util.datatransfer</package>
+<package>org.netbeans.openide.util.enum</package>
+<package>org.netbeans.openide.util.io</package>
+<package>org.netbeans.openide.util.lookup</package>
+<package>org.netbeans.openide.windows</package>
+<package>org.netbeans.openide.xml</package>
+</api>
