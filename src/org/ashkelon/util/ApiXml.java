@@ -3,6 +3,8 @@ package org.ashkelon.util;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import org.ashkelon.API;
+import org.jibx.runtime.*;
 
 /**
  * A utility to write xml skeleton file from package-list file
@@ -13,31 +15,31 @@ import java.io.IOException;
  */
 public class ApiXml
 {
-  public static void main(String args[]) throws IOException
+  public static void main(String args[]) throws IOException, JiBXException
   {
     if (args.length == 0 || args[0] == null)
     {
       System.out.println("Usage: java org.ashkelon.util.ApiXml <plist_filename>");
       return;
     }
-    System.out.println("<?xml version=\"1.0\" ?>");
-    System.out.println("<api>");
-    System.out.println("<name></name>");
-    System.out.println("<summarydescription></summarydescription>");
-    System.out.println("<description></description>");
-    System.out.println("<publisher></publisher>");
-    System.out.println("<download_url></download_url>");
-    System.out.println("<release_date>2001-07-03T08:00:00.000</release_date>");
-    System.out.println("<version></version>");
-    
+
+    API api = new API();
     BufferedReader br = new BufferedReader(new FileReader(args[0]));
-    String line = null;
-    while ( (line=br.readLine()) != null )
+    String packagename = null;
+    while ( (packagename=br.readLine()) != null )
     {
-      System.out.println("<package>"+line+"</package>");
+       packagename = packagename.trim();
+       if ("".equals(packagename)) continue;  // skip any blank lines (precaution)
+       api.addPackagename(packagename);
     }
     br.close();
-    System.out.println("</api>");
+    
+    // marshal api:
+    IBindingFactory factory = BindingDirectory.getFactory(API.class);
+    IMarshallingContext ctxt = factory.createMarshallingContext();
+    ctxt.setIndent(3);
+    ctxt.marshalDocument(api, "UTF-8", null, System.out);
+    
   }
 }
 
