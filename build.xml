@@ -5,13 +5,15 @@
    
    <property name="version" value="0.9" />
 
-   <property name="db.type" value="mysql" />  <!-- current options are: mysql | oracle -->
-   <property name="db.dir" value="db/${db.type}" />
+   <!-- currently, valid options are: mysql | oracle -->
+   <property name="db.type" value="mysql" />
+   <property name="dbdir" location="db/${db.type}" />
 
-   <property name="webapps.dir" value="c:\java\tomcat 41\webapps" />
+   <property name="webappsdir" location="${user.home}/devel/tomcat/webapps" />
 
    <target name="init">
       <mkdir dir="build/classes" />
+      <available file="${webappsdir}" type="dir" property="webappsdir.present" />
    </target>
    
    <target name="clean">
@@ -21,7 +23,7 @@
    <path id="class.path">
       <pathelement location="${java.home}/lib/tools.jar" />
       <fileset dir="lib" includes="*.jar" />
-      <fileset dir="${db.dir}" includes="*.jar" />
+      <fileset dir="${dbdir}" includes="*.jar" />
       <pathelement location="build/classes" />
    </path>
 
@@ -35,7 +37,7 @@
       </copy>
       
       <copy todir="build/classes">
-        <fileset dir="${db.dir}">
+        <fileset dir="${dbdir}">
           <exclude name="**/*.jar" />
         </fileset>
       </copy>
@@ -45,21 +47,17 @@
       <jar destfile="build/ashkelon.jar" basedir="build/classes" />
    </target>
 
-   <target name="make_war" depends="jar" description="packages war file">
+   <target name="war" depends="jar" description="packages war file">
       <war destfile="build/ashkelon.war" webxml="etc/web.xml" basedir="htdocs">
          <lib dir="lib">
            <exclude name="servlet.jar" />
          </lib>
-         <lib dir="${db.dir}" includes="*.jar" />
+         <lib dir="${dbdir}" includes="*.jar" />
          <lib dir="build" includes="ashkelon.jar" />
       </war>
    </target>
    
-   <target name="deploy_war" depends="make_war" description="deploy war file to servlet container">
-     <copy file="build/ashkelon.war" todir="${webapps.dir}" overwrite="true" />
-   </target>
-
-   <target name="make_ear" depends="make_war" description="packages ear file">
+   <target name="ear" depends="war" description="packages ear file">
       <ear destfile="build/ashkelon.ear" appxml="etc/application.xml" basedir="build" includes="ashkelon.war" />
    </target>
    
