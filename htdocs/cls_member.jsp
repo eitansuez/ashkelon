@@ -31,6 +31,7 @@
   padding: 0.2em;
   margin: 0;
   border-bottom: 1px dotted #808080;
+  margin-right: 8px;
 }
 </style>
 
