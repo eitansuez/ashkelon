@@ -6,7 +6,7 @@ What's new in v0.8.3 (May 2004):
 
  1. Class Search Field on every page
  2. JSTL libs included with distro (simpler install)
-
+ 3. Switch to GPL
 
 What's new in v0.8.2: (2003)
 ---------------------
