@@ -85,8 +85,7 @@
       <jsp:include page="cls_xref.jsp" flush="true"/>
     </div>
     
-    <jsp:include page="doc_footer.jsp" flush="true">
-    </jsp:include>
+    <jsp:include page="doc_footer.jsp" flush="true" />
   </div> <!-- end page body -->
   
   <jsp:include page="footer.html" flush="true"/>
