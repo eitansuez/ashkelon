@@ -40,12 +40,12 @@ B. Configure database connection and build distribution
 C. Configure environment & prepare database
 -------------------------------------------
    
-1. set up DBDOC_HOME environment variable; examples:
-    windows: set DBDOC_HOME=c:\ashkelon
-    bash: export DBDOC_HOME=~/ashkelon
+1. set up ASHK_HOME environment variable; examples:
+    windows: set ASHK_HOME=c:\ashkelon
+    bash: export ASHK_HOME=~/ashkelon
 
-2. add %DBDOC_HOME%\bin ($DBDOC_HOME/bin)
-    to your path ( export PATH=$PATH:$DBDOC_HOME/bin )
+2. add %ASHK_HOME%\bin ($ASHK_HOME/bin)
+    to your path ( export PATH=$PATH:$ASHK_HOME/bin )
 
 3. prepare database:
   a. in mysql, create database named ashkelon:
@@ -54,7 +54,7 @@ C. Configure environment & prepare database
       mysql> exit
 
   b. run script: db-scripts\init.sql
-      c:\%DBDOC_HOME%> mysql -u username -p ashkelon < db\mysql\org\ashkelon\db\init.sql
+      c:\%ASHK_HOME%> mysql -u username -p ashkelon < db\mysql\org\ashkelon\db\init.sql
       
 4. verify that ashkelon repository mgr script works:
 
@@ -87,8 +87,8 @@ D. Populate Database
 
 2. run ashkelon repository manager to add servlet api to repository:
 
-   c:\%DBDOC_HOME%\> cd apis
-   c:\%DBDOC_HOME%\apis\> ashkelon add @servlet.xml
+   c:\%ASHK_HOME%\> cd apis
+   c:\%ASHK_HOME%\apis\> ashkelon add @servlet.xml
 
    note: DO NOT use the .plist files (they're deprecated) -- use the 
     .xml files instead.  ashkelon requires api information in 
@@ -112,7 +112,7 @@ E. Run Ashkelon webapp
 1. copy war file from build/ashkelon.war to your tomcat 
     (or other) webapps folder:
 
-  copy %DBDOC_HOME%\ashkelon.war %TOMCAT_HOME%\webapps
+  copy %ASHK_HOME%\ashkelon.war %TOMCAT_HOME%\webapps
 
 2. restart tomcat so it can pick up war file (& unpack it etc..)
 
