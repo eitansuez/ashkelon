@@ -20,3 +20,10 @@ To send the entire team feedback,
 Thank you,
  Eitan Suez
  Austin, Texas
+
+---
+
+Miscellaneous:
+  Recorded time to populate j2se1.4.2 on my Titanium Powerbook G4 (1 GHz): 419 seconds or ~ 7 minutes.
+
+

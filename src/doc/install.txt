@@ -76,7 +76,8 @@ C. Configure environment & prepare database
 
       ~> $postgreshome/bin/createdb ashkelon
 
-  b. run script: db-scripts\init.sql
+  b. run script: db/$dbtype/org/ashkelon/db/init.sql
+
    e.g. using mysql:
       c:\ashkelon> mysql -u username -p ashkelon < db\mysql\org\ashkelon\db\init.sql
 
