@@ -129,7 +129,10 @@ public class Ashkelon extends Doclet
       {
          try
          {
-            api = new API().load(new FileReader(apifilename));
+            String sourcepath = StringUtils.getStringCommandLineOption("-sourcepath", root.options());
+            api = new API().load(apifilename, sourcepath);
+            // was:
+            // api = new API().load(new FileReader(apifilename));
             log.debug("api unmarshalled; name is: "+api.getName());
          }
          catch (Exception ex)
@@ -489,7 +492,10 @@ public class Ashkelon extends Doclet
       log.debug("api file name: "+apifilename);
       try
       {
-         API api = new API().load(new FileReader(apifilename));
+         String sourcepath = extractSourcepath(args);
+         API api = new API().load(apifilename, sourcepath);
+         // was:
+         // API api = new API().load(new FileReader(apifilename));
          log.debug("api unmarshalled; name is: "+api.getName());
          LinkedList argslist = new LinkedList(Arrays.asList(args));
          argslist.removeLast();
@@ -530,6 +536,17 @@ public class Ashkelon extends Doclet
       }
    }
    
+   private static String extractSourcepath(String[] args)
+   {
+      for (int i=0; i<args.length; i++)
+      {
+         if ("-sourcepath".equals(args[i]))
+         {
+            return args[i+1];
+         }
+      }
+      return ".";
+   }
    
    private static void testCmd()
    {

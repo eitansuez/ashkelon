@@ -1,7 +1,6 @@
 package org.ashkelon;
 
-import java.io.Reader;
-import java.io.Serializable;
+import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -81,9 +80,29 @@ public class API implements JDoc, Serializable
        setName(name);
     }
     
+    public API load(String filename, String sourcepath) 
+      throws FileNotFoundException, MarshalException, ValidationException
+    {
+       try
+       {
+          return load(new FileReader(filename));
+       }
+       catch (MarshalException ex)
+       {
+          // see if xml file matches maven POM format..
+          System.out.println("let's see if file matches maven pom format..");
+          return MavenPOMAdapter.read(new File(filename), sourcepath);
+       }
+    }
+    
     public API load(Reader reader) throws MarshalException, ValidationException
     {
-      return (API) ums.unmarshal(reader);
+       return (API) ums.unmarshal(reader);
+    }
+    
+    private API readMavenPOM(Reader reader) throws MarshalException
+    {
+       return null;
     }
     
    public int getId(Connection conn) throws SQLException
@@ -218,10 +237,28 @@ public class API implements JDoc, Serializable
     {
        packages.add(pkg);
     }
+    public void addPackagename(String packagename)
+    {
+       packagenames.add(packagename);
+    }
     
     public String toString()
     {
        return getName() + " v" + getVersion();
+    }
+    
+    public String longToString()
+    {
+       StringBuffer text = new StringBuffer(toString());
+       text.append("; Packages: ");
+       Iterator itr = packagenames.iterator();
+       if (itr.hasNext())
+          text.append((String) itr.next());
+       while (itr.hasNext())
+       {
+          text.append(", ").append((String) itr.next());
+       }
+       return text.toString();
     }
     
    public static API makeAPIFor(Connection conn, int apiId) throws SQLException
