@@ -3,13 +3,28 @@ Release Notes
 What's new in v0.8.6 (July ? 2004):
 ----------------------------------
 
- - Made handling of @link references (inline tags) during population an extension point for other systems that derive from Ashkelon.  Ashkelon currently replaces these references to urls it needs for its web-based UIs (Now in AshkelonTagResolver)
+ - Made handling of @link references (inline tags) during population an 
+  extension point for other systems that derive from Ashkelon.  Ashkelon
+  currently replaces these references to urls it needs for its web-based
+  UIs (Now in AshkelonTagResolver)
+
+ - Merged in a fix that Matt Schmidt provided regarding the handling of inline tags 
+  in return descriptions
 
  - Noticed resin having an issue with certain c:import tags.  Replaced with jsp:include
 
  - Started updating mechanism for producing documentation to work with the latest
-    version of the ant docbook styler, to be able to produce pdf docs in addition
-    to html.  This is not yet complete.
+  version of the ant docbook styler, to be able to produce pdf docs in addition
+  to html.  This is not yet complete
+
+ - Re-implemented view source feature.  This version is much more performant
+  and pluggable.  Have two alternative implementations, using two independent
+  java2html libraries.  Algorithm will now cache the html file on disk in
+  the web app so that subsequent requests for view source do not require 
+  reprocessing the source file.
+
+ - Fix "ashkelon remove" on mysql.  Database table names are case-sensitive on
+  Unix
 
 What's new in v0.8.5 (July 7 2004):
 ----------------------------------
