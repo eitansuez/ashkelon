@@ -27,7 +27,7 @@ public class AncestorPopulator
        int numAffected = pstmt.executeUpdate();
        logger.debug("cleared ancestor table, "+numAffected+" records deleted");
        
-       sql = "INSERT INTO CLASS_ANCESTORS SELECT CLASSID, SUPERCLASSID, 1 FROM SUPERCLASS";
+       sql = "INSERT INTO CLASS_ANCESTORS SELECT CLASSID, SUPERCLASSID, 1 FROM SUPERCLASS WHERE SUPERCLASSID IS NOT NULL";
        pstmt = conn.prepareStatement(sql);
        numAffected = pstmt.executeUpdate();
        
@@ -41,7 +41,8 @@ public class AncestorPopulator
           pstmt.executeUpdate();
           
           sql = "INSERT INTO TEMP_DELTA SELECT A.CLASSID, C.SUPERCLASSID, "+nextLevel+
-           " FROM CLASS_ANCESTORS A, SUPERCLASS C WHERE A.SUPERCLASSID = C.CLASSID AND A.HIERARCHY = " + previousLevel;
+           " FROM CLASS_ANCESTORS A, SUPERCLASS C WHERE A.SUPERCLASSID = C.CLASSID AND A.HIERARCHY = " + previousLevel
+             + " AND C.SUPERCLASSID IS NOT NULL";
           logger.debug("sql: "+sql);
           pstmt = conn.prepareStatement(sql);
           numAffected = pstmt.executeUpdate();
