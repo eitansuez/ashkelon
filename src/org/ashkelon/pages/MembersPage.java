@@ -174,12 +174,12 @@ public class MembersPage extends Page
 
       sql += StringUtils.join(whereClause.toArray(), " and ");
 
-      if (!DBMgr.getInstance().getDbtype().equals("mysql"))  // for oracle
+      if (DBMgr.getInstance().getDbtype().equals("oracle"))
          sql += "  and rownum<50 ";
 
       sql += " order by m.qualifiedname ";
 
-      if (DBMgr.getInstance().getDbtype().equals("mysql"))
+      if (!DBMgr.getInstance().getDbtype().equals("oracle"))
          sql += " limit 50 ";
 
 
@@ -270,6 +270,19 @@ public class MembersPage extends Page
 
       
       String sql =
+            " select m.id, m.qualifiedname, m.type, " +
+            "  m.isstatic, m.isfinal, m.accessibility, m.modifier, " +
+            "  meth.isabstract, meth.returntypeid, meth.returntypename, meth.returntypedimension, " +
+            "  em.signature, " +
+            "  d.summarydescription, d.since, d.deprecated " +
+            " from METHOD meth right outer join MEMBER m on meth.id=m.id " +
+            "  left outer join EXECMEMBER em on em.id=m.id, DOC d " +
+            " where lower("+selectby+") like ? and m.docid=d.id  " +
+            " order by m.qualifiedname limit 50 ";
+      
+      if (DBMgr.getInstance().getDbtype().equals("oracle"))
+      {
+         sql =
          "select m.id, m.qualifiedname, m.type, " +
          "       m.isstatic, m.isfinal, m.accessibility, m.modifier, " +
          "       meth.isabstract, meth.returntypeid, meth.returntypename, meth.returntypedimension, " +
@@ -282,19 +295,6 @@ public class MembersPage extends Page
          "    and m.id = em.id (+) " +
          "  and rownum<50 " + 
          " order by m.qualifiedname";
-      
-      if (DBMgr.getInstance().getDbtype().equals("mysql"))
-      {
-         sql =
-            " select m.id, m.qualifiedname, m.type, " +
-            "  m.isstatic, m.isfinal, m.accessibility, m.modifier, " +
-            "  meth.isabstract, meth.returntypeid, meth.returntypename, meth.returntypedimension, " +
-            "  em.signature, " +
-            "  d.summarydescription, d.since, d.deprecated " +
-            " from METHOD meth right outer join MEMBER m on meth.id=m.id " +
-            "  left outer join EXECMEMBER em on em.id=m.id, DOC d " +
-            " where lower("+selectby+") like ? and m.docid=d.id  " +
-            " order by m.qualifiedname limit 50 ";
       }
       
       

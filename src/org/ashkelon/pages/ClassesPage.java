@@ -114,12 +114,12 @@ public class ClassesPage extends Page
       
       sql += StringUtils.join(whereClause.toArray(), " and ");
 
-      if (!DBMgr.getInstance().getDbtype().equals("mysql"))  // for oracle
+      if (DBMgr.getInstance().getDbtype().equals("oracle"))
          sql += "  and rownum<50 ";
       
       sql += " order by c.qualifiedname, c.type ";
       
-      if (DBMgr.getInstance().getDbtype().equals("mysql"))
+      if (!DBMgr.getInstance().getDbtype().equals("oracle"))
          sql += "limit 50";
 
       PreparedStatement p = conn.prepareStatement(sql);
@@ -175,20 +175,7 @@ public class ClassesPage extends Page
       searchField = util.substitute(pattern, searchField);
       //searchField = searchField.replaceAll("\\*", "%");
 
-      
       String sql =
-         " select c.id, c.qualifiedname, c.type, " + 
-         " c.isstatic, c.isfinal, c.isabstract, c.accessibility, c.modifier, " +
-         " d.summarydescription, d.since, d.deprecated " + 
-         " from CLASSTYPE c, DOC d " + 
-         " where lower("+selectby+") like ? " + 
-         "  and c.docid=d.id " +
-         "  and rownum<50 " + 
-         " order by c.qualifiedname, c.type";
-      
-      if (DBMgr.getInstance().getDbtype().equals("mysql"))
-      {
-         sql =
          " select c.id, c.qualifiedname, c.type, " + 
          " c.isstatic, c.isfinal, c.isabstract, c.accessibility, c.modifier, " +
          " d.summarydescription, d.since, d.deprecated " + 
@@ -197,6 +184,18 @@ public class ClassesPage extends Page
          "  and c.docid=d.id " +
          " order by c.qualifiedname, c.type " +
          " limit 50 ";
+      
+      if (DBMgr.getInstance().getDbtype().equals("oracle"))
+      {
+         sql =
+         " select c.id, c.qualifiedname, c.type, " + 
+         " c.isstatic, c.isfinal, c.isabstract, c.accessibility, c.modifier, " +
+         " d.summarydescription, d.since, d.deprecated " + 
+         " from CLASSTYPE c, DOC d " + 
+         " where lower("+selectby+") like ? " + 
+         "  and c.docid=d.id " +
+         "  and rownum<50 " + 
+         " order by c.qualifiedname, c.type";
       }
       
       PreparedStatement p = conn.prepareStatement(sql);
