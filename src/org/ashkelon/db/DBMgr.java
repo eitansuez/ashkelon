@@ -125,7 +125,7 @@ public class DBMgr
       catch (ClassNotFoundException ex)
       {
          log.error("ClassNotFoundException: "+ex.getMessage());
-         System.exit(1);
+         // System.exit(1);
       }
    }
    

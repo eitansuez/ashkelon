@@ -83,7 +83,7 @@ public class PKManager
          DBUtils.logSQLException(ex, SELECT_SEQS);
          if (conn != null)
             mgr.releaseConnection(conn);
-         System.exit(1);
+         // System.exit(1);
       }
    }
    

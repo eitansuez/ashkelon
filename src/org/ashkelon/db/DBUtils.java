@@ -235,7 +235,8 @@ public class DBUtils
       // if out of database resources - exit
       if (ex.getErrorCode() == -1311 || ex.getErrorCode() == -1310)
       {
-         System.exit(1);
+         // System.exit(1);
+         ex.printStackTrace();
       }
       
       while ((ex = ex.getNextException()) != null)

@@ -999,7 +999,7 @@ public class ClassType implements Comparator, JDoc, Serializable
                   log.debug("parentLevel: "+parentLevel);
                   log.debug(saved.getValue().toString());
                   log.debug(TreeNode.printTree(saved, 0));
-                  System.exit(0);
+                  // System.exit(0);
                }
             }
             
