@@ -86,7 +86,6 @@ public class IndexPage extends Page
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       p.setFetchSize(PAGE_SIZE);
       p.setFetchDirection(ResultSet.FETCH_FORWARD);
-      p.setMaxFieldSize(PAGE_SIZE);
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
 

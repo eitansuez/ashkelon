@@ -23,7 +23,7 @@
   <title>Ashkelon - Search</title>
 <% } %>
   <jsp:include page="includes.html" flush="true" />
-</HEAD>
+</head>
 
 <body>
 

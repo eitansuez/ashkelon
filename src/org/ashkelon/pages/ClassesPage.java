@@ -3,7 +3,6 @@ package org.ashkelon.pages;
 import org.ashkelon.*;
 import org.ashkelon.util.*;
 import org.ashkelon.db.*;
-
 import java.util.*;
 import java.sql.*;
 
@@ -45,7 +44,6 @@ public class ClassesPage extends Page
         return "cls.main";
       }
 
-      request.setAttribute("display_results", new Boolean(true));
       request.setAttribute("cls_list", found);
       return null;
 
@@ -117,29 +115,31 @@ public class ClassesPage extends Page
       sql += StringUtils.join(whereClause.toArray(), " and ") + 
               " order by c.qualifiedname, c.type ";
       
-      PreparedStatement p = conn.prepareStatement(sql);
-      p.setMaxRows(50);
+      PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_READ_ONLY);
+      pstmt.setFetchSize(FETCH_SIZE);
       
       int i=1;
       if (filters.get("searchField")!=null)
-         p.setString(i++, (String) filters.get("searchField"));
+         pstmt.setString(i++, (String) filters.get("searchField"));
       if (filters.get("class_type")!=null)
-         p.setInt(i++, ((Integer) filters.get("class_type")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("class_type")).intValue());
       if (filters.get("abstract")!=null)
-         p.setInt(i++, ((Integer) filters.get("abstract")).intValue());
+         pstmt.setInt(i++, ((Integer) filters.get("abstract")).intValue());
       if (filters.get("author")!=null)
-         p.setString(i++, (String) filters.get("author"));
+         pstmt.setString(i++, (String) filters.get("author"));
       if (filters.get("package_name")!=null)
-         p.setString(i++, (String) filters.get("package_name"));
+         pstmt.setString(i++, (String) filters.get("package_name"));
       
-      Logger.getInstance().debug("sql query for advanced search:\n\t"+sql);
+      Logger.getInstance().debug("advanced search sql query:\n\t"+sql);
       
-      ResultSet rset = p.executeQuery();
+      ResultSet rset = pstmt.executeQuery();
+      int position = position(rset);
 
       List found = new ArrayList();
       ClassType c;
       
-      while (rset.next())
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
         c = new ClassType(rset.getString(2));
         c.setId(rset.getInt(1));
@@ -153,8 +153,8 @@ public class ClassesPage extends Page
         found.add(c);
       }
       
+      rset.close();
       return found;
-      
    }
    
    
@@ -193,15 +193,18 @@ public class ClassesPage extends Page
          " order by c.qualifiedname, c.type";
       }
       
-      PreparedStatement p = conn.prepareStatement(sql);
-      p.setMaxRows(50);
-      p.setString(1, searchField);
-      ResultSet rset = p.executeQuery();
+      PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_READ_ONLY);
+      pstmt.setFetchSize(FETCH_SIZE);
+      
+      pstmt.setString(1, searchField);
+      ResultSet rset = pstmt.executeQuery();
+      int position = position(rset);
 
       List found = new ArrayList();
       ClassType c;
       
-      while (rset.next())
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
         c = new ClassType(rset.getString(2));
         c.setId(rset.getInt(1));
@@ -215,6 +218,7 @@ public class ClassesPage extends Page
         found.add(c);
       }
       
+      rset.close();
       return found;
    }
    

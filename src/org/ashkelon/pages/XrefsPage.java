@@ -53,8 +53,6 @@ public class XrefsPage extends Page
       return null;
    }
    
-   private static int FETCH_SIZE = 60;
-   
    public void doFields(int clsId) throws SQLException
    {
       ResultSet rset = executeQuery("xref_fields", clsId);
@@ -62,7 +60,7 @@ public class XrefsPage extends Page
 
       List fields = new ArrayList();
       FieldMember field;
-      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          field = new FieldMember(rset.getString(1), rset.getString(3));
          field.setId(rset.getInt(2));
@@ -93,27 +91,6 @@ public class XrefsPage extends Page
       return pstmt.executeQuery();
    }
    
-   private int position(ResultSet rset)
-      throws SQLException
-   {
-      rset.last();
-      int totalResults = rset.getRow();
-      request.setAttribute("total-results", new Integer(totalResults));
-      
-      int position = ServletUtils.getIntParam(request, "cursor-position");
-      if (position == 0)
-         rset.beforeFirst();
-      else
-         rset.absolute(position);
-      
-      if (position + FETCH_SIZE < totalResults)
-         request.setAttribute("next-cursor-position", new Integer(position + FETCH_SIZE));
-      if (position - FETCH_SIZE >= 0)
-         request.setAttribute("prev-cursor-position", new Integer(position - FETCH_SIZE));
-      
-      return position;
-   }
-   
    public void doReturnedBy(int clsId) throws SQLException
    {
       ResultSet rset = executeQuery("xref_returnedby", clsId);
@@ -121,7 +98,7 @@ public class XrefsPage extends Page
 
       List methods = new ArrayList();
       MethodMember method;
-      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          method = new MethodMember(rset.getString(1), rset.getString(7));
          method.setId(rset.getInt(2));
@@ -152,7 +129,7 @@ public class XrefsPage extends Page
       List execs = new ArrayList();
       ExecMember exec;
       int memberType;
-      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          memberType = rset.getInt(3);
          if (memberType == Member.METHOD_MEMBER)
@@ -188,7 +165,7 @@ public class XrefsPage extends Page
       List execs = new ArrayList();
       ExecMember exec;
       int memberType;
-      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          memberType = rset.getInt(3);
          if (memberType == Member.METHOD_MEMBER)
@@ -229,7 +206,7 @@ public class XrefsPage extends Page
       
       List classes = new ArrayList();
       ClassType c;
-      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          c = new ClassType(rset.getString(1));
          c.setId(rset.getInt(2));
@@ -261,7 +238,7 @@ public class XrefsPage extends Page
 
       List classes = new ArrayList();
       ClassType c;
-      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          c = new ClassType(rset.getString(1));
          c.setId(rset.getInt(2));

@@ -104,8 +104,8 @@ Power Search
 
 <div id="directSearch" style="padding: 10px; padding-right: 30px;">
 
-<form NAME="search_form" METHOD="POST" ACTION="search.do">
-<INPUT TYPE="HIDDEN" NAME="simple" VALUE="true" />
+<form name="search_form" method="POST" action="search.do">
+<input type="hidden" name="simple" value="true" />
 
 <div style="padding: 5px;">
   <label FOR="srch_type">Search: </label>
@@ -146,10 +146,10 @@ Power Search
  </div>
 
 <div id="cls_type_display">
-<form NAME="advanced_class_search_form" METHOD="POST" ACTION="search.do" style="display: inline;">
-<INPUT TYPE="HIDDEN" NAME="simple" VALUE="false" />
-<INPUT TYPE="HIDDEN" NAME="srch_type" VALUE="class" />
-  <table cellspacing="0" cellpadding="3" rules="rows">
+<form name="advanced_class_search_form" method="POST" action="search.do" style="display: inline;">
+<input type="hidden" name="simple" value="false" />
+<input type="hidden" name="srch_type" value="class" />
+<table cellspacing="0" cellpadding="3" rules="rows">
 <tr>
   <TD><INPUT TYPE="CHECKBOX" NAME="selector" value="class_type" CHECKED onClick="update(this)"></TD>
   <TD>
@@ -207,9 +207,9 @@ Power Search
 </div>
 <div ID="member_type_display" STYLE="display: none;">
 
-<form NAME="advanced_member_search_form" METHOD="POST" ACTION="search.do" style="display: inline;">
-<INPUT TYPE="HIDDEN" NAME="simple" VALUE="false" />
-<INPUT TYPE="HIDDEN" NAME="srch_type" VALUE="member" />
+<form name="advanced_member_search_form" method="POST" action="search.do" style="display: inline;">
+<input type="hidden" name="simple" value="false" />
+<input type="hidden" name="srch_type" value="member" />
 <table cellspacing="0" cellpadding="3" rules="rows">
 <tr>
   <TD><INPUT TYPE="CHECKBOX" NAME="selector" value="member_type" CHECKED onClick="update(this)"></TD>

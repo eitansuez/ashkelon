@@ -21,6 +21,8 @@ public abstract class Page
    ServletContext app;
    HttpSession session;
    
+   public static int FETCH_SIZE = 60;
+   
    public Page()
    {
       log = Logger.getInstance();
@@ -138,6 +140,30 @@ public abstract class Page
       output += indent + "</UL>\n";
       return output;
    }
+
+   protected int position(ResultSet rset) throws SQLException
+   {
+      rset.last();
+      int totalResults = rset.getRow();
+      request.setAttribute("total-results", new Integer(totalResults));
+
+      int position = ServletUtils.getIntParam(request, "cursor-position");
+      if (position == 0)
+         rset.beforeFirst();
+      else
+         rset.absolute(position);
+
+      if (position + FETCH_SIZE < totalResults)
+            request.setAttribute("next-cursor-position", new Integer(position
+                  + FETCH_SIZE));
+      if (position - FETCH_SIZE >= 0)
+            request.setAttribute("prev-cursor-position", new Integer(position
+                  - FETCH_SIZE));
+
+      return position;
+   }
+
+   
    
 }
 

@@ -17,10 +17,6 @@ Date: March 2001
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<% if (found.size() > 30 ) { %>
-<P><%=found.size()%><%=found.size()==99 ? "+" : ""%> matching entries.  Try to narrow your search specification.</P>
-<% } %>
-
 <div id="search_results">
   <jsp:include page="class_list.jsp" flush="true">
     <jsp:param name="caption" value="Class Search Results" />
