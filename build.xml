@@ -34,7 +34,7 @@
       <tstamp />
    </target>
    
-   <target name="clean">
+   <target name="clean" description="delete build artifacts">
       <delete dir="${builddir}" />
       <delete dir="${distdir}" />
    </target>
