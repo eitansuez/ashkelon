@@ -36,7 +36,6 @@ public class DBMgr
    private String user;
    private String password;
    
-   private String resourceName;
    private boolean targetSet = false;
    private String defaultTarget = "org.ashkelon.db.conn-info";
 
@@ -59,24 +58,31 @@ public class DBMgr
    public void setTarget(String resourceName)
    {
       if (targetSet) { return; } // don't allow switching of targets (for now)
-      this.resourceName = resourceName;
       
       log.verbose("loading connection settings from "+resourceName);
       
-      loadConnectionInfo();
-      statements = PropertyResourceBundle.getBundle("org.ashkelon.db.statements");
-      
-      log.verbose("Connection url is: "+connectionURL);
-      log.verbose("User is: "+user);
-      //log.verbose("password is: "+password);
-      
-      loadDriver();
-      
-      log.verbose("jdbc driver: " + jdbcDriverName + " loaded");
-      
-      pool = new HashMap(maxpoolsize);
-      targetSet = true;
+      ResourceBundle bundle = PropertyResourceBundle.getBundle(resourceName);
+      setTarget(bundle);
    }
+   
+   public void setTarget(ResourceBundle connectionBundle) 
+      {
+         if (targetSet) { return; } // don't allow switching of targets (for now)
+         
+         loadConnectionInfo(connectionBundle);
+         statements = PropertyResourceBundle.getBundle("org.ashkelon.db.statements");
+      
+         log.verbose("Connection url is: "+connectionURL);
+         log.verbose("User is: "+user);
+         //log.verbose("password is: "+password);
+      
+         loadDriver();
+      
+         log.verbose("jdbc driver: " + jdbcDriverName + " loaded");
+      
+         pool = new HashMap(maxpoolsize);
+         targetSet = true;
+      }
    
    public static DBMgr getInstance()
    {
@@ -87,9 +93,8 @@ public class DBMgr
       return _instance;
    }
    
-   private void loadConnectionInfo() throws MissingResourceException
+   private void loadConnectionInfo(ResourceBundle bundle) throws MissingResourceException
    {
-      ResourceBundle bundle = PropertyResourceBundle.getBundle(resourceName);
       
       dbtype = bundle.getString("dbtype");
       jdbcDriverName = bundle.getString("jdbcDriverName");
