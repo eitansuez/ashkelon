@@ -144,7 +144,7 @@ public class JDocUtil
     */
    public static String resolveDescription(DocInfo sourcedoc, Tag tags[])
    {
-      return ConfigInfo.getResolver().resolveDescription(sourcedoc, tags);
+      return ConfigInfo.getInstance().getResolver().resolveDescription(sourcedoc, tags);
    }
    
    /**

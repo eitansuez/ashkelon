@@ -2,10 +2,7 @@ package org.ashkelon.pages;
 
 import java.util.*;
 import java.io.*;
-import java.net.*;
-
-import org.exolab.castor.mapping.*;
-import org.exolab.castor.xml.*;
+import org.jibx.runtime.*;
 import org.ashkelon.*;
 
 /**
@@ -13,142 +10,84 @@ import org.ashkelon.*;
  */
 public class ConfigInfo
 {
-   private Collection commandList;
-   private String defaultCmd;
-   private String defaultPkg;
-   private Map commandMap;
-   private int maxTrailLength;
-   private int traceLevel;
-   private String traceFile;
-   private String inlineTagResolver;
-   private int pageSize;
+   ArrayList commandList;
+   String defaultCmd;
+   String defaultPkg;
+   int maxTrailLength;
+   int traceLevel;
+   String traceFile;
+   int pageSize;
+   String inlineTagResolver;
    
-   public ConfigInfo() {}
-   
-   public ConfigInfo load() throws Exception
+   private static ConfigInfo instance = null;
+   public static ConfigInfo getInstance()
    {
-      ClassLoader loader = this.getClass().getClassLoader();
-
-      URL resource = loader.getResource("org/ashkelon/pages/configmapping.xml");
-      Mapping mapping = new Mapping(loader);
-      mapping.loadMapping(resource);
-
+      if (instance == null)
+      {
+         try
+         {
+            instance = load();
+         }
+         catch (JiBXException ex)
+         {
+            ex.printStackTrace();
+            throw new RuntimeException("Failed to load ashkelon viewer " + 
+                  "configuration information: "+ex.getMessage());
+         }
+      }
+      return instance;
+   }
+   
+   
+   private static ConfigInfo load() throws JiBXException
+   {
+      ClassLoader loader = ConfigInfo.class.getClassLoader();
       InputStream is = loader.getResourceAsStream("org/ashkelon/pages/configinfo.xml");
       Reader reader = new InputStreamReader(is);
-      Unmarshaller ums = new Unmarshaller(ConfigInfo.class);
-      ums.setMapping(mapping);
-      ConfigInfo info = (ConfigInfo) ums.unmarshal(reader);
       
-      Map commandMap = new HashMap();
-      Iterator itr = info.getCommandList().iterator();
+      IBindingFactory fact = BindingDirectory.getFactory(ConfigInfo.class);
+      IUnmarshallingContext uctxt = fact.createUnmarshallingContext();
+      ConfigInfo info = (ConfigInfo) uctxt.unmarshalDocument(reader);
+      
+      info.loadCmdMap();
+      info.resolveInlineTagResolverClass();
+      
+      return info;
+   }
+   
+   Map commandMap;
+
+   private void loadCmdMap()
+   {
+      commandMap = new HashMap();
+      Iterator itr = commandList.iterator();
       CommandInfo cmdinfo;
       while (itr.hasNext())
       {
          cmdinfo = (CommandInfo) itr.next();
          commandMap.put(cmdinfo.getCommand(), cmdinfo);
       }
-      info.setCommandMap(commandMap);
-      return info;
    }
    
-   public String getDefaultCmd()
-   {
-      return defaultCmd;
-   }
-   public void setDefaultCmd(String defaultCmd)
-   {
-      this.defaultCmd = defaultCmd;
-   }
+   InlineTagResolver resolver = null;
+   public InlineTagResolver getResolver() { return resolver; }
    
-   public String getDefaultPkg()
+   private void resolveInlineTagResolverClass()
    {
-      return defaultPkg;
-   }
-   public void setDefaultPkg(String defaultPkg)
-   {
-      this.defaultPkg = defaultPkg;
-   }
-   
-   public Collection getCommandList()
-   {
-      return commandList;
-   }
-   public void setCommandList(Collection commandList)
-   {
-      this.commandList = commandList;
-   }
-   
-   public Map getCommandMap()
-   {
-      return commandMap;
-   }
-   public void setCommandMap(Map commandMap)
-   {
-      this.commandMap = commandMap;
-   }
-   
-   public int getMaxTrailLength() { return maxTrailLength; }
-   public void setMaxTrailLength(int length) { this.maxTrailLength = length; }
-   
-   public int getTraceLevel() { return traceLevel; }
-   public void setTraceLevel(int traceLevel) { this.traceLevel = traceLevel; }
-
-   public String getTraceFile() { return traceFile; }
-   public void setTraceFile(String traceFile) { this.traceFile = traceFile; }
-
-   public String getInlineTagResolver() { return inlineTagResolver; }
-   public void setInlineTagResolver(String resolver) { inlineTagResolver = resolver; }
-   
-   public int getPageSize() { return pageSize; }
-   public void setPageSize(int size) { pageSize = size; }
-
-   private static InlineTagResolver _resolver = null;
-   private static ConfigInfo _cInfo = null;
-   public static InlineTagResolver getResolver()
-   {
-      if (_resolver == null)
+      try
       {
-         try
-         {
-            _cInfo = new ConfigInfo().load();
-         }
-         catch (Exception ex)
-         {
-            System.err.println("Failed to load config info");
-            System.err.println(ex.getMessage());
-            System.exit(0);
-         }
-         
-         try
-         {
-            Class resolverClass = Class.forName(_cInfo.getInlineTagResolver());
-            _resolver = (InlineTagResolver) resolverClass.newInstance(); 
-         }
-         catch (ClassNotFoundException ex)
-         {
-            System.err.println("Failed to instantiate inline tag resolver class");
-            System.err.println("ClassNotFoundException: " + ex.getMessage());
-            System.exit(0);
-         }
-         catch (IllegalAccessException ex)
-         {
-            System.err.println("Failed to instantiate inline tag resolver class");
-            System.err.println("IllegalAccessException: " + ex.getMessage());
-            System.exit(0);
-         }
-         catch (InstantiationException ex)
-         {
-            System.err.println("Failed to instantiate inline tag resolver class");
-            System.err.println("InstantiationException: " + ex.getMessage());
-            System.exit(0);
-         }
+         Class resolverClass = Class.forName(inlineTagResolver);
+         resolver = (InlineTagResolver) resolverClass.newInstance(); 
       }
-      return _resolver;
+      catch (Exception ex)
+      {
+         System.err.println("Failed to create/instantiate inline tag resolver class");
+         System.err.println("Exception: " + ex.getMessage());
+         ex.printStackTrace();
+         throw new RuntimeException(ex.getMessage());
+      }
+      
    }
-
-   public static void main(String args[]) throws Exception
-   {
-      (new ConfigInfo()).load();
-   }
+   
 }
 

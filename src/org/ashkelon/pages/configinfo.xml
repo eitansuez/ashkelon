@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<configinfo>
+<ashkelon-viewer-config>
   <defaultpkg>org.ashkelon.pages</defaultpkg>
   <defaultcmd>apis</defaultcmd>
   <maxtraillength>10</maxtraillength>
@@ -9,6 +9,7 @@
   <inline-tag-resolver>org.ashkelon.AshkelonTagResolver</inline-tag-resolver>
   <pagesize>20</pagesize>
 
+  <command-list>
   <cmdinfo>
    <cmd>apis</cmd>
    <page>apis.jsp</page>
@@ -375,7 +376,10 @@
    <page>help.jsp</page>
    <class>NoopPage</class>
    <caption>Help</caption>
+   <tablename></tablename>
    <intrail>false</intrail>
   </cmdinfo>
+  </command-list>
   
-</configinfo>
+</ashkelon-viewer-config>
+

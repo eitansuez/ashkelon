@@ -10,13 +10,15 @@
   <release_date>2004-08-01T23:00:00.000</release_date>
   <version>0.8.6</version>
 
-<packages>
-  <package>org.ashkelon</package>
-  <package>org.ashkelon.pages</package>
-  <package>org.ashkelon.db</package>
-  <package>org.ashkelon.util</package>
-  <package>org.ashkelon.ant</package>
-</packages>
+  <packages>
+    <package>org.ashkelon</package>
+    <package>org.ashkelon.pages</package>
+    <package>org.ashkelon.db</package>
+    <package>org.ashkelon.util</package>
+    <package>org.ashkelon.ant</package>
+  </packages>
+
+  <srcpath>src</srcpath>
 
 </api>
 

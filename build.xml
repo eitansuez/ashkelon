@@ -95,7 +95,6 @@
      <bind binding="${etcdir}/binding.xml">
        <classpathset dir="${buildclassesdir}" />
        <classpathset dir="${libdir}/jibx-run.jar" />
-       <classpathset dir="${libdir}/castor.jar" />
      </bind>
    </target>
 

@@ -13,6 +13,26 @@
       <value name="package" />
     </collection>
   </mapping>
-
+  
+  <mapping name="ashkelon-viewer-config" class="org.ashkelon.pages.ConfigInfo">
+    <value name="defaultpkg" field="defaultPkg" />
+    <value name="defaultcmd" field="defaultCmd" />
+    <value name="maxtraillength" field="maxTrailLength" />
+    <value name="tracelevel" field="traceLevel" />
+    <value name="tracefile" field="traceFile" />
+    <value name="inline-tag-resolver" field="inlineTagResolver" />
+    <value name="pagesize" field="pageSize" />
+    <collection name="command-list" field="commandList" />
+  </mapping>
+  
+  <mapping name="cmdinfo" class="org.ashkelon.pages.CommandInfo">
+    <value name="cmd" field="command" />
+    <value name="page" field="pageName" />
+    <value name="class" field="className" />
+    <value name="caption" field="caption" />
+    <value name="tablename" field="tableName" />
+    <value name="intrail" field="inTrail" />
+  </mapping>
+                
 </binding>
 

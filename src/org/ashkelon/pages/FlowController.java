@@ -23,7 +23,7 @@ public class FlowController extends HttpServlet
 {
    private String errorPage;
    private String cmdNotFoundPage;
-   private ConfigInfo configInfo;
+   private ConfigInfo cfg;
    
    private DBMgr dbmgr;
    
@@ -42,8 +42,8 @@ public class FlowController extends HttpServlet
       
       try
       {
-         configInfo = (new ConfigInfo()).load();
-         Page.PAGE_SIZE = configInfo.getPageSize();
+         cfg = ConfigInfo.getInstance();
+         Page.PAGE_SIZE = cfg.pageSize;
       }
       catch (Exception ex)
       {
@@ -53,9 +53,9 @@ public class FlowController extends HttpServlet
       dbmgr = DBMgr.getInstance();
       dbmgr.setWebApp(getServletContext());
          
-      log.setTraceLevel(configInfo.getTraceLevel());
+      log.setTraceLevel(cfg.traceLevel);
       String traceFile = "trace.log";
-      String configTraceFile = configInfo.getTraceFile();
+      String configTraceFile = cfg.traceFile;
       if(!StringUtils.isBlank(configTraceFile))
       {
          try
@@ -96,7 +96,7 @@ public class FlowController extends HttpServlet
    {
       log.setPrefix("FlowController");
 
-      String cmd = ServletUtils.getCommand(request, configInfo.getDefaultCmd());
+      String cmd = ServletUtils.getCommand(request, cfg.defaultCmd);
       request.setAttribute("cmd", cmd);
 
       Connection conn = null;
@@ -120,7 +120,7 @@ public class FlowController extends HttpServlet
       int numRedirects = 0;
       while (!StringUtils.isBlank(cmd) && numRedirects < 3)
       {
-         cmdInfo = (CommandInfo) configInfo.getCommandMap().get(cmd);
+         cmdInfo = (CommandInfo) cfg.commandMap.get(cmd);
          
          if (cmdInfo == null) // not found
          {
@@ -133,7 +133,7 @@ public class FlowController extends HttpServlet
          String jspPathPrefix = getJspPathPrefix(request);
          pageName = "/" + jspPathPrefix + cmdInfo.getPageName();
          log.debug("page name: "+pageName);
-         className = configInfo.getDefaultPkg() + "." + cmdInfo.getClassName();
+         className = cfg.defaultPkg + "." + cmdInfo.getClassName();
          
          try
          {
@@ -285,7 +285,7 @@ public class FlowController extends HttpServlet
             log.verbose("Added "+uriLabelPair[0]+" to trail");
          }
 
-         if (trail.size() > configInfo.getMaxTrailLength())
+         if (trail.size() > cfg.maxTrailLength)
             trail.removeFirst();
       }
 
