@@ -455,6 +455,27 @@ If all succeeds, you should end up with your mysql ashkelon database
 </listitem>
 </orderedlist>
 
+<sect2>
+<title>Using Maven POM Files As Input</title>
+
+<para>
+As of version 0.8.7, ashkelon now supports the use of maven project.xml files in lieu of ashkelon's own api xml format.  That is, you can now populate an api for a maven-enabled project with ease, as the following example demonstrates.
+</para>
+
+<example>
+<title>Populating dom4j, using its maven project.xml file as input.</title>
+<screen>
+~ $ cd dom4j
+~/dom4j $ ashkelon add @project.xml
+</screen>
+</example>
+
+<note>
+You still need to set up your sourcepath as described at the beginning of this section.
+</note>
+
+</sect2>
+
 </sect1>
 
 <sect1>
