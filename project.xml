@@ -1,11 +1,16 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <project>
+
+  <!-- important comments:  although ashkelon now can use maven
+    pom files directly as input for population (in lieu of ashkelon
+    api xml files), ashkelon itself is still built with ant.  this
+    project.xml file is a work in progress as of august 2004). -->
 
   <pomVersion>3</pomVersion>
   <id>ashkelon</id>
   <name>Ashkelon</name>
   <groupId>org.ashkelon</groupId>
-  <currentVersion>0.8.2</currentVersion>
+  <currentVersion>0.8.7</currentVersion>
   <organization>
     <name>UptoData, Inc.</name>
     <url>http://www.uptodata.com/</url>
@@ -21,7 +26,7 @@
   
   <shortDescription>Ashkelon is web-based Java API Documentation Management System</shortDescription>
   
-  <url>ashkelon.sourceforge.net</url>
+  <url>http://ashkelon.sourceforge.net/</url>
   
   <issueTrackingUrl>http://sourceforge.net/tracker/?group_id=54364</issueTrackingUrl>
   
@@ -88,8 +93,8 @@
   
   <licenses>
     <license>
-      <name>The Apache Software License</name>
-      <url>http://www.apache.org/LICENSE</url>
+      <name>GNU General Public License</name>
+      <url>http://www.gnu.org/licenses/gpl.html</url>
       <distribution>repo</distribution> <!-- ? -->
     </license>
   </licenses>
@@ -98,7 +103,7 @@
 
     <dependency>
       <id>ant</id>
-      <version>1.5.2</version>
+      <version>1.6.2</version>
       <url>http://ant.apache.org/</url>
     </dependency>
 
@@ -108,12 +113,14 @@
       <url>http://castor.exolab.org/</url>
     </dependency>
 
+    <!-- not in repository:
     <dependency>
-      <id>java2html</id>
+      <id>j2h</id>
       <artifactId>j2h</artifactId>
-      <version>1.2</version>
-      <url>http://www.java2html.com/</url>
+      <version>4.1</version>
+      <url>http://www.java2html.de/</url>
     </dependency>
+    -->
 
     <dependency>
       <id>jstl</id>
@@ -142,15 +149,15 @@
     <!-- either mysql or postgresql:  how to express this? -->
     <dependency>
       <id>mysql</id>
-      <version>2.0.14</version>
-      <jar>mysql-connector-java-2.0.14-bin.jar</jar>
+      <version>3.0.14</version>
+      <jar>mysql-connector-java-3.0.14-production-bin.jar</jar>
       <url>http://www.mysql.com/</url>
     </dependency>
     
     <dependency>
       <id>postgresql</id>
-      <version>7.3</version>
-      <jar>postgresql-7.3-jdbc3.jar</jar>
+      <version>7.4</version>
+      <jar>pg74jdbc3.jar</jar>
       <url>http://www.postgresql.org/</url>
     </dependency>
     
