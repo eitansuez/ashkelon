@@ -63,6 +63,11 @@ public class JDocUtil
     */
    public static String unqualify(String qualifiedName)
    {
+      return unqualify(qualifiedName, false);
+   }
+   
+   public static String unqualify(String qualifiedName, boolean isNestedClass)
+   {
       if (qualifiedName == null) { return ""; }
       
       int idx = qualifiedName.indexOf("(");
@@ -79,10 +84,18 @@ public class JDocUtil
       {
          int index = qualifiedName.lastIndexOf(".");
          if (index < 0) { return qualifiedName; }
+
+         if (isNestedClass)
+         {
+            String firstPart = qualifiedName.substring(0, index);
+            index = firstPart.lastIndexOf(".");
+            if (index < 0) { return qualifiedName; }
+         }
+         
          return qualifiedName.substring(index+1);
       }
    }
-   
+
    /**
     * potential problems with this method: e.g. pkgName = java.awt
     * and name = java.awt.event.MouseMotionListener
