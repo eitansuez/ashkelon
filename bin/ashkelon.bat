@@ -15,7 +15,7 @@ for %%i in (%ASHK_HOME%\lib\*.jar) do call cp.bat %%i
 if %CMD%==add set SRCPATHINFO=-sourcepath %SOURCEPATH%
 if %CMD%==add set CLSPATHINFO=-classpath %CP%
 
-java -Xmx150m -cp %CP% org.ashkelon.Ashkelon %CMD% %SRCPATHINFO% %CLSPATHINFO% %2 %3 %4 %5 %6 %7 %8 %9
+java -Xmx150m -cp %CP% org.ashkelon.AshkelonCmd %CMD% %SRCPATHINFO% %CLSPATHINFO% %2 %3 %4 %5 %6 %7 %8 %9
 
 goto end
 

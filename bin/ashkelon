@@ -53,5 +53,5 @@ then
 fi
 
 # got memory to burn on this box..
-${JAVA_HOME}/bin/java -Xmx250m -cp $CP org.ashkelon.Ashkelon $CMD $SRCPATHINFO $CLSPATHINFO $*
+${JAVA_HOME}/bin/java -Xmx250m -cp $CP org.ashkelon.AshkelonCmd $CMD $SRCPATHINFO $CLSPATHINFO $*
 

@@ -22,7 +22,7 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.taskdefs.Javadoc;
 import org.apache.tools.ant.types.PatternSet;
 import org.ashkelon.API;
-import org.ashkelon.Ashkelon;
+import org.ashkelon.AshkelonCmd;
 import org.ashkelon.util.Logger;
 
 /**
@@ -63,12 +63,12 @@ public class AshkelonTask extends Javadoc
 			_parameterCheck();
 			if (_operation.compareTo(_RESET_OPERATION) == 0)
 			{
-				Ashkelon.resetCmd();
+				AshkelonCmd.resetCmd();
 			}
 			else if (_operation.compareTo(_LIST_OPERATION) == 0)
 			{
 				// TODO: This isn't working right now
-				Ashkelon.listCmd();
+				AshkelonCmd.listCmd();
 			}
 			else if (_operation.compareTo(_REMOVE_OPERATION) == 0)
 			{
@@ -76,11 +76,11 @@ public class AshkelonTask extends Javadoc
 					_includePatterns.getIncludePatterns(getProject());
 				includes =
 					_appendStringPrefixToArray(new String("remove"), includes);
-				Ashkelon.removeCmd(includes);
+				AshkelonCmd.removeCmd(includes);
 			}
 			else if (_operation.compareTo(_UPDATEREFS_OPERATION) == 0)
 			{
-				Ashkelon.updateRefsCmd();
+				AshkelonCmd.updateRefsCmd();
 			}
 			else if (_operation.compareTo(_ADD_OPERATION) == 0)
 			{
