@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<api>
+<name>JTidy</name>
+<summarydescription>Java Version of HTML Tidy to check validity of HTML Documents</summarydescription>
+<description>Java Version of HTML Tidy to check validity of HTML Documents</description>
+<publisher>W3C</publisher>
+<download_url>http://jtidy.sourceforge.net/</download_url>
+<release_date>2001-07-03T08:00:00.000</release_date>
+<version>r7</version>
+<package>org.w3c.dom</package>
+<package>org.w3c.tidy</package>
+</api>
