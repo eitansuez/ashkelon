@@ -1,15 +1,5 @@
 <%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-  Copyright UptoData Inc 2001
-  Author: Eitan Suez
-  Date: March 2001
-  
-  outstanding tasks:
-    parametrize: colors, their links (associated commands)
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
   Map tabs = new HashMap();
   tabs.put("apis", "APIs");
@@ -17,25 +7,25 @@
   tabs.put("search", "Search");
   tabs.put("idx", "Index");
   tabs.put("stats.general", "Stats");
+  tabs.put("authors", "Authors");
   
-  String[] cmds = {"apis", "pkg", "search", "idx", "stats.general"};
+  String[] cmds = {"apis", "pkg", "search", "idx", "stats.general", "authors"};
 
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
   String area = "";
   if (cmd != null)
     area = StringUtils.split(cmd,".")[0];
 %>
 
-<%-- SECTION: PAGE STYLES --%>
 <STYLE TYPE="text/css">
 .menuitem
 {
   padding: 0 10 0 10;
   font-weight: bold;
+  color: black;
 }
 </STYLE>
 
-<%-- SECTION: BEHAVIOR (JAVASCRIPT) --%>
 <SCRIPT>
 // sole purpose of this is to enable 'esc' key hiding of legend if visible (convenience)
 // should really be in an htc but i don't believe mozilla supports that
@@ -51,26 +41,25 @@ document.onkeypress = esc;
 </SCRIPT>
 
 
-<%-- SECTION: TEMPLATE --%> 
-<DIV STYLE="float: left;">
-
+<table width="100%" cellpadding="3" cellspacing="0">
+<tr style="background-color: #cdcdcd;">
+<td align="left">
 <% for (int i=0; i<cmds.length; i++)
   { %>
-      <A CLASS="menuitem" HREF="<%=request.getContextPath()%>/index.html?cmd=<%=cmds[i]%>"><%=tabs.get(cmds[i])%></A>
+      <A CLASS="menuitem" HREF="<%=request.getContextPath()%>/<%=cmds[i]%>.do"><%=tabs.get(cmds[i])%></A>
 <%}%>
+</td>
+<td align="right">
 
-</DIV>
+<A CLASS="menuitem" HREF="contact.do">Contact</A>
+<A CLASS="menuitem" HREF="config.do">Settings</A>
+<A CLASS="menuitem" HREF="help.do">Help</A>
 
-<DIV STYLE="float: right;">
+</td>
+</tr>
+</table>
 
-<A CLASS="menuitem" HREF="index.html?cmd=contact">Contact</A>
-<A CLASS="menuitem" HREF="index.html?cmd=config">Settings</A>
-<A CLASS="menuitem" HREF="index.html?cmd=help">Help</A>
-
-</DIV>
-<BR>
 <DIV STYLE="border-bottom: 1px solid black;"></DIV>
-
 
 
 <%-- SECTION:  NAVIGATION TRAIL --%>
@@ -94,17 +83,16 @@ document.onkeypress = esc;
     itemtype = uriLabelPair[2];
   %>
   <% if (StringUtils.isBlank(itemtype)) { %>
-    <A HREF="<%=uri%>"><%=caption%></A>
+    <a href="<%=uri%>"><%=caption%></a>
   <% } else { %>
-    <A HREF="<%=uri%>"><SPAN CLASS="<%=itemtype%>"><%=caption%></SPAN></A>
+    <a href="<%=uri%>"><span class="<%=itemtype%>"><%=caption%></span></a>
   <% } // end if %>
   
     <% if (i < trail.size() - 2) out.println("<IMG SRC=\""+request.getContextPath()+"/images/arrow_rt.gif\">"); %>
   <% } %>
 
   <%-- 
-    <FORM METHOD="GET" ACTION="<%=request.getContextPath()%>/index.html">
-      <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="trail.reset">
+    <FORM METHOD="GET" ACTION="<%=request.getContextPath()%>/trail.reset.do">
   <TD ALIGN="RIGHT">
     <% if (trail.size() > 3) { %>
       <BUTTON TYPE="SUBMIT" CLASS="footer" TITLE="Reset navigation trail" STYLE="background-color: #dddddd;">Reset Trail</BUTTON>

@@ -192,7 +192,7 @@ as follows:
   <% if (member instanceof MethodMember) { %>
       <TD ALIGN="RIGHT">
       <% if (method.getReturnType()!=null && method.getReturnType().getId()>0) { %>
-        <A HREF="index.html?cmd=cls.main&cls_id=<%=method.getReturnType().getId()%>"><%=returnstuff%></A>
+        <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=returnstuff%></A>
       <% } else { %>
         <%=returnstuff%>
       <% } // end if linkable %>
@@ -205,14 +205,14 @@ as follows:
   <% if (member instanceof FieldMember && !"all".equals(memberstype)) { %>
       <TD ALIGN="RIGHT">
       <% if (field.getType()!=null && field.getType().getId()>0) { %>
-        <A HREF="index.html?cmd=cls.main&cls_id=<%=field.getType().getId()%>"><%=field.getTypeName()%></A> 
+        <A HREF="cls.main.do?cls_id=<%=field.getType().getId()%>"><%=field.getTypeName()%></A> 
       <% } else { %>
         <%=field.getTypeName()%> 
       <% } // end if linkable %>
       </TD>
   <% } %>
 
-  <TD><A HREF="index.html?cmd=member.main&member_id=<%=member.getId()%>"><SPAN CLASS="<%=membertype%>" TITLE="<%=HtmlUtils.cleanAttributeText(memberDescr)%>"><%=(qualify) ? member.getQualifiedName() : member.getName()%></SPAN></A></TD>
+  <TD><A HREF="member.main.do?member_id=<%=member.getId()%>"><SPAN CLASS="<%=membertype%>" TITLE="<%=HtmlUtils.cleanAttributeText(memberDescr)%>"><%=(qualify) ? member.getQualifiedName() : member.getName()%></SPAN></A></TD>
   <TD><%=memberDescr%></TD>
 </TR>
 <% } // end for %>

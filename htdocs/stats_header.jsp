@@ -1,17 +1,5 @@
 <%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
-
-outstanding tasks:
-  parametrize: colors, their links (associated commands)
-  colors: plain, meat, special, cool, warning, badwarning
-          green, blue, yellow, purple, orange, red
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
   String unselectedColor = "#CDCDCD";
   String selectedColor = "#92A6F5";
@@ -29,13 +17,12 @@ outstanding tasks:
   cmds.add("stats.classes");
   cmds.add("stats.authors");
   
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
 
   request.setAttribute("tabs", tabs);
   request.setAttribute("cmds", cmds);
 %>
 
-<%-- SECTION: COMPONENT TEMPLATE --%> 
 <jsp:include page="l2_hdr_svr.jsp" flush="true" />
 
 <BR>

@@ -1,25 +1,16 @@
 <%@ page info="command not found page" import="java.io.*,org.ashkelon.util.*"%>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
  %>
 
-<%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE>Ashkelon - Command Not Found</TITLE>
+  <TITLE>Ashkelon - Command Not Found</TITLE>
   <jsp:include page="includes.html" flush="true"/>
 
-  <!-- SECTION: PAGE STYLES -->
   <STYLE TYPE="text/css">
     #errorDetail
     {
@@ -27,7 +18,6 @@ Date: March 2001
     }
   </STYLE>
 
-  <!-- SECTION: BEHAVIOR (JAVASCRIPT) -->
   <SCRIPT>
   function notFoundToggleDetail()
   {

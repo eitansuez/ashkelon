@@ -93,21 +93,22 @@ public class FlowController extends HttpServlet
    {
       log.setPrefix("FlowController");
 
-      String cmd = request.getParameter("cmd");
+      String cmd = ServletUtils.getCommand(request);
+
       // safeguard:
       if (StringUtils.isBlank(cmd))
       {
          cmd = configInfo.getDefaultCmd();
          log.traceln("defaulting to cmd: "+cmd);
-         //request.removeAttribute("cmd"); // in case next line adds instead of replacing
-         request.setAttribute("cmd", cmd);
       }
+      request.setAttribute("cmd", cmd);
 
       Connection conn = null;
       try
       {
          conn = dbmgr.getConnection();
-      } catch (SQLException ex)
+      }
+      catch (SQLException ex)
       {
          if (conn != null) dbmgr.releaseConnection(conn);
          DBUtils.logSQLException(ex);
@@ -163,9 +164,6 @@ public class FlowController extends HttpServlet
          
          try
          {
-            // to do: should be able to improve performance with a page cache
-            //  instead of re-instantiating Page each time
-            
             Page page = (Page) classPool.get(className);
             if (page == null)
             {
@@ -177,7 +175,7 @@ public class FlowController extends HttpServlet
             page.setRequest(request);
             page.setApplication(getServletContext());
             
-            log.verbose("Received command: "+ServletUtils.getRequestParam(request,"cmd"));
+            log.verbose("Received command: "+cmd);
             cmd = page.init();
             if (StringUtils.isBlank(cmd))
             {
@@ -244,7 +242,6 @@ public class FlowController extends HttpServlet
       if (queryString != null)
          uri += "?" + queryString;
 
-      //String cmd = ServletUtils.getRequestParam(request, "cmd");
       String cmd = cmdInfo.getCommand();
       String[] cmdparts = StringUtils.split(cmd, ".");
       

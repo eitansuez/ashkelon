@@ -1,16 +1,7 @@
 <%@ page info="page" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*,java.text.*,java.util.*"%>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
-
- Add Number of Classes by package? java.* , javax.*, org.*, com.*
- --%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
   Integer api_count = (Integer) application.getAttribute("api_count");
   Integer package_count = (Integer) application.getAttribute("package_count");
   Integer class_count = (Integer) application.getAttribute("class_count");
@@ -22,40 +13,29 @@ Date: March 2001
   String class_count_f = nf.format(class_count);
   String member_count_f = nf.format(member_count);
 
-  
   List apipkgcounts = (List) request.getAttribute("apipkgcounts");
   List apiclscounts = (List) request.getAttribute("apiclscounts");
   List apimmbcounts = (List) request.getAttribute("apimmbcounts");
-
  %>
 
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Stats</TITLE>
+<html>
+<head>
+  <title>Stats</title>
   <jsp:include page="includes.html" flush="true"/>
+</head>
 
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY onLoad="loadCookies();" onUnload="saveCookies();">
+<body onLoad="loadCookies();" onUnload="saveCookies();">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 <jsp:include page="stats_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
-<BR><BR>
+<br/><br/>
 
-<DIV ALIGN="CENTER">
+<div ALIGN="CENTER">
 <TABLE RULES="rows" CELLPADDING="3" CELLSPACING="0">
 <CAPTION>Entity Counts</CAPTION>
 <TR>
@@ -75,7 +55,7 @@ Date: March 2001
   <TD ALIGN="RIGHT"><%=member_count_f%></TD>
 </TR>
 </TABLE>
-</DIV>
+</div>
 
 
 <P ALIGN="CENTER">
@@ -167,10 +147,11 @@ Date: March 2001
 </P>
 
 
-</DIV>
+</div>
 
 <jsp:include page="footer.html" flush="true"/>
 
 
-</BODY>
-</HTML>
+</body>
+</html>
+

@@ -43,8 +43,7 @@ Date: March 2001
 <P>Pool Status: <%=dbmgr.getPoolStatus()%></P>
 <P CLASS="message"><%=message%></P>
 
-<FORM METHOD="POST" ACTION="index.html">
-  <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="admin.db">
+<FORM METHOD="POST" ACTION="admin.db.do">
   <INPUT TYPE="HIDDEN" NAME="command" VALUE="resetconns">
   <BUTTON TYPE="SUBMIT">Reset Connections</BUTTON>
 </FORM>
@@ -76,8 +75,7 @@ Date: March 2001
  %>
 </UL>
 
-<FORM METHOD="POST" ACTION="index.html">
-  <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="admin.db">
+<FORM METHOD="POST" ACTION="admin.db.do">
   <INPUT TYPE="HIDDEN" NAME="command" VALUE="resetcache">
   <BUTTON TYPE="SUBMIT">Reset Cache</BUTTON>
 </FORM>

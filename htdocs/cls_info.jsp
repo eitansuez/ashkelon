@@ -1,18 +1,11 @@
 <%@ page info="component" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
   JPackage pkg = cls.getPackage();
   String cls_type = cls.getClassTypeName();
   
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
   String descr_type = request.getParameter("descr_type");
 
   ClassType impl_interface;
@@ -27,16 +20,6 @@ Date: March 2001
   String deprecated = cls.isDeprecated() ? "deprecated" : "";
 %>
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
-
 <TABLE WIDTH="90%" STYLE="border-bottom: thin solid #808080;"><TR><TD ALIGN="LEFT">
 <% if (authors != null && !authors.isEmpty()) { %>
 Author<%=(authors.size()==1)?"":"s"%>: 
@@ -44,7 +27,7 @@ Author<%=(authors.size()==1)?"":"s"%>:
      {
        author = (Author) authors.get(i);
   %>
-    <A HREF="index.html?cmd=author&id=<%=author.getId()%>"><%=author.getName()%></A> <%=(i<authors.size()-1) ? "," : ""%>
+    <A HREF="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></A> <%=(i<authors.size()-1) ? "," : ""%>
   <% } %>
 <% } %>
 </TD><TD ALIGN="RIGHT">
@@ -57,17 +40,17 @@ Version: <%=version%>
 
 <TABLE BORDER="0">
 	<TR VALIGN="BOTTOM">
-     <TD COLSPAN="3"><A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"><%=pkg.getName()%></SPAN></A>
+     <TD COLSPAN="3"><A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"><%=pkg.getName()%></SPAN></A>
 <% if (pkg.getAPI() != null) { %>
 &nbsp;&nbsp;&nbsp;
 <SPAN CLASS="api" STYLE="font-size: 8 pt;">
-(<a href="index.html?cmd=api.main&id=<%=cls.getAPI().getId()%>"><%=cls.getAPI().getName()%></a> API)
+(<a href="api.main.do?id=<%=cls.getAPI().getId()%>"><%=cls.getAPI().getName()%></a> API)
 </SPAN>
 <% } %>
      </TD>
       <TD WIDTH="20"></TD>
      <TD ALIGN="RIGHT">
-       <A HREF="index.html?cmd=cls.source&cls_name=<%=cls.getQualifiedName()%>" STYLE="font-size: 8 pt;">View Source</A>
+       <A HREF="cls.source.do?cls_name=<%=cls.getQualifiedName()%>" STYLE="font-size: 8 pt;">View Source</A>
      </TD>
   </TR>
 	<TR VALIGN="BOTTOM">
@@ -75,7 +58,7 @@ Version: <%=version%>
       <TD WIDTH="20"></TD>
       <% if (cls.getClassType() != ClassType.INTERFACE) { %>
         <% if (cls.getSuperClass() != null && cls.getSuperClass().getId()>0) { %>
-	       <TD>Extends <A HREF="index.html?cmd=cls.main&cls_id=<%=cls.getSuperClass().getId()%>"><SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></A></TD>
+	       <TD>Extends <A HREF="cls.main.do?cls_id=<%=cls.getSuperClass().getId()%>"><SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></A></TD>
         <% } else { %>
 	       <TD>Extends <SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></TD>
         <% } %>
@@ -91,7 +74,7 @@ Version: <%=version%>
              impl_interface = (ClassType) cls.getInterfaces().get(i);
         %>
           <% if (impl_interface.getId()>0) { %>
-	         <A HREF="index.html?cmd=cls.main&cls_id=<%=impl_interface.getId()%>"><SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN></A>
+	         <A HREF="cls.main.do?cls_id=<%=impl_interface.getId()%>"><SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN></A>
           <% } else { %>
 	         <SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN>
           <% } %>

@@ -28,7 +28,6 @@ outstanding tasks:
   cmds.add("idx.class");
   cmds.add("idx.member");
   cmds.add("idx.author");
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
 
   request.setAttribute("tabs", tabs);
   request.setAttribute("cmds", cmds);

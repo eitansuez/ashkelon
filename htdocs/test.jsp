@@ -1,16 +1,10 @@
 <%@ page info="eitan's test page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE>Legend</TITLE>
+  <TITLE>Legend</TITLE>
   <LINK REL="stylesheet" TYPE="text/css" HREF="../global.css"></LINK>
   <STYLE TYPE="text/css">
   .hover

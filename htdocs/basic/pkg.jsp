@@ -1,11 +1,5 @@
 <%@ page info="top page: package list" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
 <%
   List cols = new ArrayList(4);
   List javaPkgs = (List) application.getAttribute("javaPkgs");
@@ -22,21 +16,12 @@ Date: March 2001
     cols.add(comPkgs);
  %>
 
-<%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc - Packages</TITLE>
+  <TITLE>dbdoc - Packages</TITLE>
   <jsp:include page="../includes.html" flush="true"/>
-
-  <!-- SECTION: PAGE STYLES -->
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <!-- SECTION: BEHAVIOR (JAVASCRIPT) -->
-  <SCRIPT>
-  </SCRIPT>
 </HEAD>
 
 <BODY BGCOLOR="white">
@@ -77,7 +62,7 @@ Packages by Type
         if (StringUtils.isBlank(title))
           title = pkg.getName(); 
         %>
-        <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>" TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></A>
+        <A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>" TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></A>
         <BR>
   <% }  // end inner for loop %>
     </TD>

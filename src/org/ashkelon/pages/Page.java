@@ -71,7 +71,7 @@ public abstract class Page
       String name = "";
       String indent = "";
       int level = 0;
-      String cmd = "cls.main&cls_id=";
+      String cmd = "cls.main.do?cls_id=";
       String parent = "";
       String typename = "package";
       String modifiers = "";
@@ -82,7 +82,7 @@ public abstract class Page
          JPackage pkg = (JPackage) o;
          name = pkg.getName();
          descr = pkg.getSummaryDescription();
-         cmd = "pkg.main&pkg_id="+pkg.getId();
+         cmd = "pkg.main.do?pkg_id="+pkg.getId();
       }
       else
       {
@@ -114,7 +114,7 @@ public abstract class Page
       }
       else
       {
-         output += indent + "    <A HREF=\"index.html?cmd="+cmd+"\"><SPAN CLASS=\""+typename+" "+modifiers+"\" TITLE=\""+descr+"\">" + name + "</SPAN></A>\n";
+         output += indent + "    <A HREF=\""+cmd+"\"><SPAN CLASS=\""+typename+" "+modifiers+"\" TITLE=\""+descr+"\">" + name + "</SPAN></A>\n";
          output += indent + "  </LI>\n";
       }
       

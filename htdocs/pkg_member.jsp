@@ -1,12 +1,5 @@
 <%@ page info="main package view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   JPackage pkg = (JPackage) request.getAttribute("pkg");
   List cols = new ArrayList(4);
@@ -19,17 +12,6 @@ Date: March 2001
   if (!pkg.getErrorClasses().isEmpty())
     cols.add(pkg.getErrorClasses());
 %>
-
-
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <P><%= pkg.getSummaryDescription() %></P>
 
@@ -70,7 +52,7 @@ Date: March 2001
           %>
         <TR>
         	<TD>
-            <A HREF="index.html?cmd=cls.main&cls_id=<%=c.getId()%>"><SPAN CLASS="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>" TITLE="<%=title%>"><%=c.getName()%></SPAN></A>
+            <A HREF="cls.main.do?cls_id=<%=c.getId()%>"><SPAN CLASS="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>" TITLE="<%=title%>"><%=c.getName()%></SPAN></A>
           </TD>
         </TR>
     <%
@@ -85,3 +67,4 @@ Date: March 2001
 </TBODY>
 </TABLE>
 </DIV>
+

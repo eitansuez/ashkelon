@@ -22,6 +22,10 @@ public class ConfigPage extends Page
       {
          new_ui = "";
       }
+      else if ("xul".equals(ui_config))
+      {
+         new_ui = "xul/";
+      }
       else
       {
          return null;

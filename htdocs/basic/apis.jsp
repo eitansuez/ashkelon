@@ -44,7 +44,7 @@ dbdoc is an online reference to Java API documentation (see the help documentati
       title = api.getSummaryDescription();
   %>
  <TR BGCOLOR="white" CLASS="TableRowColor">
-  <TD WIDTH="20%"><B><A HREF="index.html?cmd=api.main&id=<%=api.getId()%>"><%=api.getName()%></A></B></TD>
+  <TD WIDTH="20%"><B><A HREF="api.main.do?id=<%=api.getId()%>"><%=api.getName()%></A></B></TD>
   <TD><%=api.getSummaryDescription()%></TD>
  </TR>
 <% } // end for %>

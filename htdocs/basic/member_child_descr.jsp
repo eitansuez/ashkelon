@@ -1,20 +1,11 @@
 <%@ page info="member child descriptions" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
 ExecMember execmember = (ExecMember) request.getAttribute("execmember");
 ClassType containingClass = execmember.getContainingClass();
 String pkgName = containingClass.getPackage().getName();
 %>
 
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <% if (execmember.getDoc().isDeprecated()) { %>
   <P><B>Deprecated:</B> <%=execmember.getDoc().getDeprecated()%></P>
@@ -39,7 +30,7 @@ String pkgName = containingClass.getPackage().getName();
      {
 %>
   <P>
-  <B>Returns</B> <A HREF="index.html?cmd=cls.main&cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>: <%=descr%>
+  <B>Returns</B> <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>: <%=descr%>
   </P>
 <%
      } else {
@@ -119,7 +110,7 @@ String pkgName = containingClass.getPackage().getName();
     if (ex.getException()!=null && ex.getException().getId()>9)
     {
     %>
-    <CODE><A HREF="index.html?cmd=cls.main&cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A></CODE> - <%=ex.getDescription()%>
+    <CODE><A HREF="cls.main.do?cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A></CODE> - <%=ex.getDescription()%>
     <%
     } else
     {

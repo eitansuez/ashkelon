@@ -1,57 +1,64 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
   Author author = (Author) request.getAttribute("author");
   List classes = author.getClasses();
   ClassType cls = null;
  %>
 
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Author: <%=author.getName()%></TITLE>
+<html>
+<head>
+  <title>Author: <%=author.getName()%></title>
   <jsp:include page="includes.html" flush="true"/>
+</head>
 
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY>
+<body>
 
 <jsp:include page="main_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
-<H2><%=author.getName()%></H2>
+<h2 class="author"><%=author.getName()%></h2>
 
-<P>
+<p>
 <%=author.getName()%> has authored the following classes and/or interfaces:
-</P>
+</p>
 
-<OL>
+<style>
+td.listing
+{
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  vertical-align: top;
+  width: 33%;
+}
+</style>
+
+<table width="100%" style="border: thin solid black;" cellpadding="3" cellspacing="0">
+<tbody>
+<tr>
+<td class="listing">
 <% for (int i=0; i<classes.size(); i++)
    {
      cls = (ClassType) classes.get(i);
 %>
-<LI><A HREF="index.html?cmd=cls.main&cls_id=<%=cls.getId()%>" CLASS="<%=cls.getClassTypeName()%> %>"><%=cls.getQualifiedName()%></A></LI>
+<%=i+1%>. 
+<a href="cls.main.do?cls_id=<%=cls.getId()%>" CLASS="<%=cls.getClassTypeName()%> %>"><%=cls.getQualifiedName()%></a> <br/>
+  <% if (i==(int) classes.size()/2 + 1) { %>
+   </td><td class="listing">
+  <% } %>
 <% } %>
-</OL>
+</td>
+</tr>
+</tbody>
+</table>
 
 
-</DIV>
+</div>
 
 <jsp:include page="footer.html" flush="true"/>
 
-</BODY>
-</HTML>
+</body>
+</html>

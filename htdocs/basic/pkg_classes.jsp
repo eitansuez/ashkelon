@@ -1,12 +1,5 @@
 <%@ page info="package classes view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   JPackage pkg = (JPackage) request.getAttribute("pkg");
     
@@ -54,9 +47,9 @@ Date: March 2001
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD WIDTH="15%">
 <% if (isinterface) { %>
-<B><I><A HREF="index.html?cmd=cls.main&cls_id=<%=cls.getId()%>"><%=cls.getName()%></A></I></B>
+<B><I><A HREF="cls.main.do?cls_id=<%=cls.getId()%>"><%=cls.getName()%></A></I></B>
 <% } else { %>
-<B><A HREF="index.html?cmd=cls.main&cls_id=<%=cls.getId()%>"><%=cls.getName()%></A></B>
+<B><A HREF="cls.main.do?cls_id=<%=cls.getId()%>"><%=cls.getName()%></A></B>
 <% } %>
 </TD>
 <TD><%=cls.getSummaryDescription() %></TD>

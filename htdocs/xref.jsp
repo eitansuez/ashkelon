@@ -1,30 +1,14 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: PAGE CODE --%>
-<%
-  ClassType cls = (ClassType) request.getAttribute("cls");
-%>
-
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE><%=cls.getName()%> Cross References</TITLE>
-  <jsp:include page="includes.html" flush="true"/>
+<html>
+<head>
+  <title><c:out value="${cls.name}" /> Cross References</TITLE>
+  <c:import url="includes.html" />
 
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
+  <script>
   function init()
   {
     if (IE)
@@ -32,20 +16,21 @@ Date: March 2001
     else
       document.addEventListener("click", expandCollapse, false);
   }
-  </SCRIPT>
-</HEAD>
+  </script>
+</head>
 
-<BODY onLoad="init();loadCookies();cleanTitles();" onUnload="saveCookies();">
+<body onLoad="init();loadCookies();cleanTitles();" onUnload="saveCookies();">
 
-  <jsp:include page="main_header.jsp" flush="true"/>
-  <jsp:include page="cls_header_svr.jsp" flush="true"/>
+ <c:import url="main_header.jsp" />
+ <c:import url="cls_header_svr.jsp" />
   
-  <DIV CLASS="PAGEBODY">
-    <jsp:include page="cls_info.jsp" flush="true"/>
-    <jsp:include page="cls_xref.jsp" flush="true"/>
-  </DIV>
+  <div class="pagebody">
+    <c:import url="cls_info.jsp" />
+    <c:import url="cls_xref.jsp" />
+  </div>
   
-  <jsp:include page="footer.html" flush="true"/>
+  <c:import url="footer.html" />
 
-</BODY>
-</HTML>
+</body>
+</html>
+

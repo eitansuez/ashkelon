@@ -38,7 +38,7 @@ Date: December 2001
 <LI>If there's an open source API that you'd like to see in the dbdoc repository; or </LI>
 <LI>If you'd like to license dbdoc for publishing your own docs on your company intranet; or </LI>
 <LI>For any comments or feedback on this site or on dbdoc; or</LI>
-<LI>For any questions not already answered in the <A HREF="index.html?cmd=issues">FAQ</A></LI>
+<LI>For any questions not already answered in the <A HREF="issues.do">FAQ</A></LI>
 </UL>
 
 ..please contact:

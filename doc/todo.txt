@@ -1,65 +1,112 @@
 5/7/2002
-By: Eitan Suez
+By: Eitan Suez (with input from Bob Hays)
+Last revision: March 2003
+
+What are the things driving the To-Do list right now
+----------------------------------------------------
+There are plenty of important tasks to work on that would greatly 
+increase the adoption of ashkelon.  Simpler installation, configuration,
+tools, adding features, documenting the schema, support for other databases,
+integration into tools like eclipse and gforge, more metrics, realizing
+the vision of ashkelon serving as a way to measure [and have insight into]
+your code in various ways.
 
 Ashkelon To-Do List
 -------------------
 
-1. Build Ant Scripts to build and deploy ashkelon on multiple platforms
- [done! - thanks andreas!]
+XP
+ 1. Write Unit Tests for Application and begin developing using
+  test-first method
 
-1.5 Set up open source project at sourceforge.net so can leverage
-  development & hosting tools such as mailing lists and cvs.
-  [done!]
+Refactoring
+ 1. Oracle version uses separate connect-by statements to generate
+     inheritance trees.  Action: revise/refactor to use same solution
+     other databases use
 
-2. Build a GUI for the ashkelon manager (populator).  Swing, web-based,
-  other?
+ 2. Code that supports multiple GUIs forces data duplication.
+   Refactor.  Proposed solution:  One set of JSPs generate the
+   content to go on all versions of a page in XML format.
+   Use separate XSLT transform to produce the different look
+   and feel's.
+    
+ 3. Modularize the build.xml file
 
-3. Integration with Gump project (see jakarta.apache.org)
+ 4. Review how application is configured and try to consolidate
+    config files into a single file
 
-4. Replace current caching with a solid caching architecture
+ 5. Review command line interface for ashkelon manager (populator) for
+    possible improvements
 
-5. Profile application
+ 6. Refactor Model to use EJBs
 
-6. Plug security holes and invalid requests so they don't crash
-   the app; examples:
+Enhancements
+ 1. Build an ant task to run the ashkelon manager (populator).
+ 2. Support more databases (wider audience): hypersonicsql
+ 3. Support for multiple versions of APIs in a single repository. [hays]
 
-     a. disallow building inheritance tree for class java.lang.Object ?
-     b. check if programming element referenced in request is valid before
-       attempting to fetch it from db and construct it
-
-7. Postgresql support (basically, add lines to config\statements.properties)
-  [80%]
-
-8. Remote-enable the ashkelon manager so it can be run from remote machines.
-   Analogous to how cvs clients can do checkins from other machines.
-
-9. Remove all references to PK's (primary keys) from URL's.  Reference 
-  programming elements only by fully qualified names.
-
-10. Replace existing makeshift database connection pooling code with 
+Improvements
+ 1. Replace existing makeshift database connection pooling code with 
     a quality implementation that also handles refreshing stale connections.
+    Use Jakarta's dbcp.
 
-11. Streamline configuration of app so that all config files use xml
-  (no more properties files) using Castor
+UI
+ 1. Improve usability of GUI and continue refactoring JSPs
+ 2. Port solution to use Struts (Under consideration)
+   Current solution is MVC but author's own implementation.
+ 3. GUI Customeization:  Make packages page configurable so it
+  can list packages of relevance to a specific business 
+  environment [hays]
+ 4. Use JSTL in JSPs
+ 5. A third, XUL-based GUI
+ 6. Make DHTML look & feel work in Safari
 
-12. Review command line interface for ashkelon manager (populator) for
-   possible improvements
+Performance
+ 1. Replace current caching with a solid caching architecture
+ 2. Profile application
 
-13. Possibly pool Page classes
+Major
+ 1. GUI for Ashkelon Manager (populator)
+  a. Swing
+  b. Web front-end
+  c. Remote proxy (like cvs pserver et al)
 
-14. Possibly port solution to use Struts
+ 2. Integration with various IDEs
+  a. Eclipse [hays]
+  b. NetBeans
+  c. JBuilder
 
-15. Build a ashkelon plugin for eclipse or forte
+ 3. Integration with GForge
+ (Add GForge support to automatically run ashkelon against a project
+   and display the documentation as a link under the documentation item) [hays]
 
-16. Build JUnit Unit Tests
+ 4. Integration with Maven.  That is, make ashkelon a maven-enabled project
+   so that code can be built using maven.  Also at some point might want to
+   consider writing a maven plugin to the populator.
+ 
+Add Value
+ 1. Integrate with open source measurement tools [hays]
+ 2. Add a referenced-by and references list [hays]
 
-17. Review entire GUI and come up with improvements to the UI,
-    its design, and usability.  Add more GUI widgets: toolbars,
-    context menus, HTC's.
+Ashkelon Completed List
+-----------------------
+1. Build Ant Scripts to build and deploy ashkelon on multiple platforms
+2. Set up open source project at sourceforge.net so can leverage
+   development & hosting tools such as mailing lists and cvs.
+3. Build Mozilla-optimized set of JSPs (GUI)
+4. Code repackaging away from com.u2d.dbdoc and to org.ashkelon
+5. Pool Page classes
+6. Postgresql support
+7. Document the database structure (see doc/ERD.pdf)
 
-18. Build a Netscape 6 - optimized set of JSPs (GUI) [done!]
+Abandoned Ideas
+---------------
+1. Remove all references to PK's (primary keys) from URL's.  Reference 
+   programming elements only by fully qualified names.
+   
+  reason abandoned:
+   - url would get much longer
+   - somewhat conflicts with multi-versioning feature (fully qualified
+     name would not uniquely identify a programming element)
 
-19. Inheritance Trees Logic is different for mysql than for Oracle.
-   Oracle version uses separate connect-by statements; unify solution 
-   to use single method that is currently used by mysql
-
+2. Gump Integration
+  reason:  will focus on maven first.  will revisit gump later.

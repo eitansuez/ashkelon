@@ -1,15 +1,5 @@
 <%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
-
-outstanding tasks:
-  parametrize: colors, their links (associated commands)
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
   JPackage pkg = (JPackage) request.getAttribute("pkg");
 
@@ -51,10 +41,8 @@ outstanding tasks:
   
 %>
 
-<%-- SECTION: COMPONENT TEMPLATE --%>
 <jsp:include page="l2_hdr.jsp" flush="true">
   <jsp:param name="title_prefix" value="<%=pkg.getName()%>"/>
 </jsp:include>
-
 
 

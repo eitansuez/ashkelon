@@ -1,15 +1,6 @@
 <%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
-
-outstanding tasks:
-  parametrize: colors, their links (associated commands)
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   String unselectedColor = "#CDCDCD";
   String selectedColor = "#92A6F5";
@@ -77,4 +68,5 @@ outstanding tasks:
 <jsp:include page="l2_hdr_svr.jsp" flush="true">
   <jsp:param name="args" value="<%=\"cls_id=\"+cls_id%>"/>
 </jsp:include>
-<BR>
+<br/>
+

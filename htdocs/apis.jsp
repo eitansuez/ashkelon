@@ -1,71 +1,47 @@
 <%@ page info="top page: api list" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: November 2001
---%>
-
-<%
-  List apiList = (List) application.getAttribute("apilist");
- %>
-
-<%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Ashkelon - API Listing</TITLE>
-  <jsp:include page="includes.html" flush="true"/>
+<html>
+<head>
+  <title>Ashkelon - API Listing</title>
+  <c:import url="includes.html" />
+</head>
 
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
+<body onLoad="cleanTitles();">
 
-  <%-- SECTION: BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
+<c:import url="main_header.jsp" />
 
-<BODY onLoad="cleanTitles();">
-<jsp:include page="main_header.jsp" flush="true"/>
+<div class="pagebody">
 
-<DIV CLASS="PAGEBODY">
+<h3>Welcome to Ashkelon</h3>
 
-<H3>Welcome to Ashkelon</H3>
+<p>
+Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <b>open source</b> and available for download off sourceforge.net as project <a target="_new" href="http://sourceforge.net/projects/ashkelon/">ashkelon</a>.
+</p>
 
-<P>
-Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <B>open source</B> and available for download off sourceforge.net as project <A TARGET="_new" HREF="http://sourceforge.net/projects/ashkelon/">ashkelon</A>.
-</P>
+<table BORDER="1" CELLPADDING="5" CELLSPACING="0" RULES="rows" ALIGN="CENTER" bordercolor="black">
+<caption>API Listing</caption>
+<tbody>
+ <c:forEach items="${apilist}" var="api">
+    <tr>
+      <td VALIGN="TOP">
+        <a href="api.main.do?id=<c:out value="${api.id}" />"><span class="api" title="<c:out value="${api.summaryDescription}" />"><c:out value="${api.name}" /></span></a>
+      </td>
+      <td VALIGN="TOP">
+        <c:out value="${api.summaryDescription}" />
+      </td>
+    </tr>
+  </c:forEach>
+</tr>
+</tbody>
+</table>
 
-<TABLE BORDER="1" CELLPADDING="5" CELLSPACING="0" RULES="rows" ALIGN="CENTER" bordercolor="black">
-<CAPTION>API Listing</CAPTION>
-<TBODY>
-  <%
-  API api;
-  String title;
-   for (int i=0; i<apiList.size(); i++)
-   {
-      api = (API) apiList.get(i);
-      title = api.getSummaryDescription();
-  %>
-    <TR <% if (i%2==1) { %>BGCOLOR="beige"<% } %>>
-      <TD VALIGN="TOP">
-        <A HREF="index.html?cmd=api.main&id=<%=api.getId()%>"><SPAN CLASS="api" TITLE="<%=title%>"><%=api.getName()%></SPAN></A>
-      </TD>
-      <TD VALIGN="TOP">
-        <%=api.getSummaryDescription()%>
-      </TD>
-    </TR>
-<% } // end for %>
-</TR>
-</TBODY>
-</TABLE>
+</div>
 
-</DIV>
-
-<jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
 
-</BODY>
-</HTML>
+</div>
+</html>

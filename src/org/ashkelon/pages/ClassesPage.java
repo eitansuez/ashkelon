@@ -39,7 +39,6 @@ public class ClassesPage extends Page
       {
         int id = ((ClassType)found.get(0)).getId(null);
         request.setAttribute("cls_id", ""+id); // must pass parms as strings!!
-        request.setAttribute("cmd", "cls.main");
         return "cls.main";
       }
 

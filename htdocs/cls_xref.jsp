@@ -16,7 +16,7 @@ Date: March 2001
   
   List xrefs = null;
   int i=0;
-  String keys[] = {"field", "returned by", "passed to", "thrown by", "implemented by", "subclasses", "extended by"};
+  String keys[] = {"field", "returnedby", "passedto", "thrownby", "implementedby", "subclasses", "extendedby"};
   while (xrefs==null && i<keys.length)
   {
       xrefs = (List) request.getAttribute(keys[i++]);
@@ -38,18 +38,18 @@ Date: March 2001
 <P STYLE="font-size: larger;"><B>Which cross references might you be interested in?</B></P>
 
 <UL>
-  <LI><A HREF="index.html?cmd=cls.xref.field&cls_id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.returned+by&cls_id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.passed+to&cls_id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
+  <LI><A HREF="cls.xref.field.do?cls_id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
+  <LI><A HREF="cls.xref.returnedby.do?cls_id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
+  <LI><A HREF="cls.xref.passedto.do?cls_id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
   <%if (cls.getClassType()==ClassType.EXCEPTION_CLASS) { %>
-  <LI><A HREF="index.html?cmd=cls.xref.thrown+by&cls_id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
+  <LI><A HREF="cls.xref.thrownby.do?cls_id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
   <%} %>
   <%if (cls.getClassType()!=ClassType.INTERFACE) { %>
-  <LI><A HREF="index.html?cmd=cls.xref.subclasses&cls_id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.descendents&cls_id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
+  <LI><A HREF="cls.xref.subclasses.do?cls_id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
+  <LI><A HREF="cls.xref.descendents.do?cls_id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
   <%} else {%>
-  <LI><A HREF="index.html?cmd=cls.xref.implemented+by&cls_id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.extended+by&cls_id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
+  <LI><A HREF="cls.xref.implementedby.do?cls_id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
+  <LI><A HREF="cls.xref.extendedby.do?cls_id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
   <%} %>
 </UL>
 
@@ -64,7 +64,7 @@ if (i<=4) // displaying member info
   String mmb_type = "all";
   if (keys[i-1].equals("field"))
     mmb_type = "field";
-  if (keys[i-1].equals("returned by"))
+  if (keys[i-1].equals("returnedby"))
     mmb_type = "method";
 %>
   <DIV ID="xref_member">

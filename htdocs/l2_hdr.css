@@ -1,49 +1,37 @@
-  TABLE.tab
+  .tab_selected_tab
   {
-    background-color: #92A6F5;
-    border: 1px solid black;
-    border-collapse: collapse;
-    border-top: 0px none white;
-    border-right: 0px none white;
-    border-left: 0px none white;
-  }
-  
-    
-  TD.tab_buffer
-  {
-    background-color: white;
-    width: 5 px;
-    border: 1px solid black;
-    border-top: 0px none white;
-    padding: 0px;
-  }
-  
-  TD.tab_selected_tab
-  {
-    padding: 3 10 3 10;
-    background-color: #92A6F5;
-    border: 1px solid black;
-    border-bottom: 1px solid #92A6F5;
-    cursor: default;
     font-weight: bold;
+    padding: 3 10 3 10;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: #92A6F5;
+    cursor: default;
   }
   
-  TD.tab_tab
+  .tab_tab
   {
     padding: 3 10 3 10;
-    background-color: #CDCDCD;
     border: 1px solid black;
+    background-color: #CDCDCD;
     cursor: pointer;
   }
   
-  TD.tab_pad
+  .tab_buffer
   {
-    width: 20 px;
     background-color: white;
     border-bottom: 1px solid black;
-    padding: 0px;
-    border-top: 0px none white;
-    border-right: 0px none white;
-    border-left: 0px none white;
+  }
+  
+  .tab_pad
+  {
+    border-bottom: 1px solid black;
+    background-color: white;
   }
 
+  .bottomrule
+  {
+    background-color: #92A6F5;
+    border-bottom: 1px solid black;
+  }
+  

@@ -1,15 +1,8 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
 
-<%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
-  
   Boolean needToDisplayResults = (Boolean) request.getAttribute("display_results");
   if (needToDisplayResults == null)
   {
@@ -17,21 +10,12 @@ Date: March 2001
   }
  %>
 
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE>Ashkelon Package Index</TITLE>
+  <title>Ashkelon Package Index</title>
   <jsp:include page="includes.html" flush="true"/>
-
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
 </HEAD>
 
 <BODY onLoad="loadCookies();" onUnload="saveCookies();">
@@ -54,15 +38,14 @@ Date: March 2001
  <%  pkg = (JPackage) results.get(i); %>
     <TR>
       <TD>
-        <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></A>
+        <A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></A>
       </TD>
     </TR>
  <% } %>
 </TABLE>
 
 <% if (!StringUtils.isBlank((String) request.getAttribute("next"))) { %>
-<FORM METHOD="GET" ACTION="index.html">
-  <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="idx.package">
+<FORM METHOD="GET" ACTION="idx.package.do">
   <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
   <BUTTON TYPE="SUBMIT"
           STYLE="background-color: #dddddd; font-size: 8 pt;"

@@ -1,69 +1,57 @@
 <%@ page info="error page" isErrorPage="true" import="java.io.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
 
-<%-- SECTION: PAGE CODE --%>
-<%
- %>
-
-<%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Ashkelon - Error: <%=exception%></TITLE>
+<html>
+<head>
+  <title>Ashkelon - Error: <%=exception%></title>
   <jsp:include page="includes.html" flush="true"/>
 
-  <!-- SECTION: PAGE STYLES -->
-  <STYLE TYPE="text/css">
+  <style type="text/css">
     #errorDetail
     {
       display: '';
       font-family: monospace;
     }
-  </STYLE>
+  </style>
 
-  <!-- SECTION: BEHAVIOR (JAVASCRIPT) -->
-  <SCRIPT>
+  <script>
   function errorToggleDetail()
   {
     var isvisible = toggleDisplay("errorDetail");
     document.forms[0].elements[0].value = (isvisible == "hidden") ? "Hide Detail" : "Show Detail";
   }
+  </script>
+</head>
 
-  </SCRIPT>
-</HEAD>
-
-<BODY>
+<body>
 
 <jsp:include page="main_header.jsp" flush="true">
   <jsp:param name="style" value="simple"/>
 </jsp:include>
 
-<DIV CLASS="PAGEBODY">
+<div class="PAGEBODY">
 
-  <P CLASS="message">An error has occurred.</P>
+  <p class="message">An error has occurred.</p>
 
   Error: <%=exception%>
   
-  <FORM NAME="frm">
-  <BUTTON ACCESSKEY="e" onClick="errorToggleDetail();">Hide Detail</BUTTON>
-  </FORM>
+  <form name="frm">
+   <button accesskey="e" onClick="errorToggleDetail();">Hide Detail</button>
+  </form>
     
-  <PRE ID="errorDetail">
+  <pre id="errorDetail">
     <% 
     	exception.printStackTrace(new PrintWriter(out));
     %>
-  </PRE>
+  </pre>
 
-</DIV>
+</div>
 
-<jsp:include page="footer.html" flush="true"/>
+<jsp:include page="footer.html" flush="true" />
 
+</body>
+</html>
 
-</BODY>
-</HTML>

@@ -1,12 +1,5 @@
 <%@ page info="exec member view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   List execs = (List) request.getAttribute("members");
   Object maxExMethod = Collections.max(execs,
@@ -33,8 +26,6 @@ Date: March 2001
   String pkgName = cls.getPackage().getName();
 %>
 
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <% if (execs.size()>1)  { %>
   <P><%=caption%> has <%=execs.size()%> variants:</P>
@@ -69,7 +60,7 @@ Date: March 2001
 
    <% if (method.getReturnType() != null && method.getReturnType().getId() > 0)
       { %>
-     <A HREF="index.html?cmd=cls.main&cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
+     <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
    <% } else 
       { %>
      <%=name%><%=dim%>
@@ -90,7 +81,7 @@ Date: March 2001
 
    <% if (param.getType()!=null && param.getType().getId()>0)
       { %>
-     <A HREF="index.html?cmd=cls.main&cls_id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
+     <A HREF="cls.main.do?cls_id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
    <% } else 
       { %>
      <%=typeName%><%=dimStr%> <%=param.getName()%>
@@ -119,7 +110,7 @@ Date: March 2001
           if (ex.getException()!=null && ex.getException().getId()>0)
           {
           %>
-           <A HREF="index.html?cmd=cls.main&cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A>
+           <A HREF="cls.main.do?cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A>
           <%
           } else
           {

@@ -61,7 +61,7 @@ Date: March 2001
         %>
     <TR>
     	<TD>
-        <A HREF="index.html?cmd=member.main&member_id=<%=field.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%> <%=field.getModifiers()%> <%=field.isDeprecated() ? "deprecated" : ""%>"><%=field.getName()%></SPAN></A>
+        <A HREF="member.main.do?member_id=<%=field.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%> <%=field.getModifiers()%> <%=field.isDeprecated() ? "deprecated" : ""%>"><%=field.getName()%></SPAN></A>
       </TD>
     </TR>
   <% } %>
@@ -89,7 +89,7 @@ Date: March 2001
         %>
     <TR>
     	<TD>
-        <A HREF="index.html?cmd=member.main&member_id=<%=constructor.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%>"><%=constructor.getName()%><%=constructor.getSignature()%></SPAN></A>
+        <A HREF="member.main.do?member_id=<%=constructor.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%>"><%=constructor.getName()%><%=constructor.getSignature()%></SPAN></A>
       </TD>
     </TR>
   <% } %>
@@ -128,11 +128,11 @@ Date: March 2001
     <TR>
     	<TD>
         <% if (!returnClass.equals("")) { // return type info %>
-          <A HREF="index.html?cmd=cls.main&cls_id=<%=method.getReturnType().getId()%>"><SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN></A>
+          <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN></A>
         <% } else { %>
           <SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN>
         <% } // end if %>
-        <A HREF="index.html?cmd=member.main&member_id=<%=method.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%> <%=method.getModifiers()%> <%=(method.isDeprecated()) ? "deprecated" : ""%>"><%=method.getName()%><%=method.getSignature()%></SPAN></A>
+        <A HREF="member.main.do?member_id=<%=method.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%> <%=method.getModifiers()%> <%=(method.isDeprecated()) ? "deprecated" : ""%>"><%=method.getName()%><%=method.getSignature()%></SPAN></A>
       </TD>
     </TR>
   <% } %>

@@ -61,7 +61,7 @@ Date: November 2001
           pkg = (JPackage) pkgs.get(i);
           %>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD WIDTH="15%"><B><A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></A></B></TD>
+<TD WIDTH="15%"><B><A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></A></B></TD>
 <TD><%= pkg.getSummaryDescription() %></TD>
         </TR>
   <%

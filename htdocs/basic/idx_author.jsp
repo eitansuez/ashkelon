@@ -1,12 +1,5 @@
 <%@ page info="page" import="java.util.*, org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
   Boolean needToDisplayResults = (Boolean) request.getAttribute("display_results");
   if (needToDisplayResults == null)
@@ -16,21 +9,12 @@ Date: March 2001
  %>
 
  
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc Author Index</TITLE>
+  <TITLE>dbdoc Author Index</TITLE>
   <jsp:include page="../includes.html" flush="true"/>
-
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
 </HEAD>
 
 <BODY>
@@ -64,15 +48,14 @@ Date: March 2001
    {
      author = (Author) authors.get(i);
    %>
-  <LI><A HREF="index.html?cmd=author&id=<%=author.getId()%>"><%=author.getName()%></A></LI>
+  <LI><A HREF="author.do?id=<%=author.getId()%>"><%=author.getName()%></A></LI>
 <% } %>
 </OL>
 
 </DIV>
 
 <% if (!StringUtils.isBlank((String) request.getAttribute("next"))) { %>
-<FORM METHOD="GET" ACTION="index.html">
-  <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="idx.author">
+<FORM METHOD="GET" ACTION="idx.author.do">
   <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
   <INPUT TYPE="SUBMIT"
           STYLE="background-color: #dddddd; font-size: 8 pt;"

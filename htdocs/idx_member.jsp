@@ -58,8 +58,7 @@ Date: March 2001
 </DIV>
 
 <% if (!StringUtils.isBlank((String) request.getAttribute("next"))) { %>
-<FORM METHOD="GET" ACTION="index.html">
-  <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="idx.member">
+<FORM METHOD="GET" ACTION="idx.member.do">
   <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
   <BUTTON TYPE="SUBMIT"
           STYLE="background-color: #dddddd; font-size: 8 pt;"

@@ -64,15 +64,14 @@ Date: March 2001
    {
      author = (Author) authors.get(i);
    %>
-  <LI><A HREF="index.html?cmd=author&id=<%=author.getId()%>"><%=author.getName()%></A></LI>
+  <LI><A HREF="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></A></LI>
 <% } %>
 </OL>
 
 </DIV>
 
 <% if (!StringUtils.isBlank((String) request.getAttribute("next"))) { %>
-<FORM METHOD="GET" ACTION="index.html">
-  <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="idx.author">
+<FORM METHOD="GET" ACTION="idx.author.do">
   <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
   <BUTTON TYPE="SUBMIT"
           STYLE="background-color: #dddddd; font-size: 8 pt;"

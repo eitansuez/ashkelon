@@ -22,7 +22,7 @@ function cleanTitles(tag)
       attribute = href.getAttribute("TITLE");
       tag = document.createElement("SPAN");
       tag.innerHTML=attribute;
-      cleanedtext = tag.innerText;
+      cleanedtext = tag.innerHTML;
       hrefs[i].setAttribute("TITLE", cleanedtext, false);
     }
 }

@@ -116,7 +116,7 @@ HR.docFooter
        {
          refdoctypename = DocInfo.DOCTYPES[refdoctype-1];
      %>
-      <A HREF="index.html?cmd=<%=refdoctypename%>.main&<%=refdoctypename%>_id=<%=refDoc.getId()%>"><%=label%></A>
+      <A HREF="<%=refdoctypename%>.main.do?<%=refdoctypename%>_id=<%=refDoc.getId()%>"><%=label%></A>
     <% } else { %>
       <%=label%>
     <% } %>

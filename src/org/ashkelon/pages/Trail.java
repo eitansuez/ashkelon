@@ -14,7 +14,7 @@ public class Trail extends Page
    
    public String init()
    {
-      String cmd = ServletUtils.getRequestParam(request, "cmd");
+      String cmd = (String) request.getAttribute("cmd");
       if (cmd.equals("trail.reset"))
       {
          return resetTrail(request);

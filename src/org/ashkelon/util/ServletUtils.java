@@ -6,6 +6,7 @@ package org.ashkelon.util;
 
 import java.util.*;
 import javax.servlet.*;
+import javax.servlet.http.*;
 
 /**
  * Contains various utility methods for dealing with http stuff
@@ -72,5 +73,14 @@ public class ServletUtils
          strpairs[i++] = (String) entry.getKey() + "=" + entry.getValue();
       }
       return StringUtils.join(strpairs, "&");
+   }
+
+   public static String getCommand(HttpServletRequest request)
+   {
+       String path = request.getServletPath();
+       int len = path.length();
+       String cmd = path.substring(1,len-3); // trim prefixed / and suffixed .do
+       System.err.println("cmd is " +cmd);
+       return cmd;
    }
 }

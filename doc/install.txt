@@ -11,35 +11,53 @@ A. Preliminary Setup:
 ---------------------
 
 1. Get & install a copy of Jakarta Tomcat (or some other servlet/jsp container) (jakarta.apache.org)
-2. Get & install a copy of mysql (www.mysql.org)
+2. Get & install a copy of mysql (www.mysql.org) or postgresql (http://www.postgresql.org/)
 3. Get & install a copy of Jakarta Ant (v1.5 or higher) (jakarta.apache.org)
 
-NOTE:  ashkelon works with either mysql or oracle.  if you perform an oracle 
- installation, just substitute the word "oracle" for "mysql" below
 
+Note: below, substitute the database type you're using for ${dbtype}
 
 B. Configure database connection and build distribution
 -------------------------------------------------------
 
 1. download & unpack the ashkelon tarball
 
-2. edit the db/mysql/org/ashkelon/db/conn-info.properties to 
+2. edit the db/${dbtype}/org/ashkelon/db/conn-info.properties to 
    specify the proper database connection information: 
   
       #
       dbtype=mysql
       jdbcDriverName=com.mysql.jdbc.Driver
       connectionURL=jdbc:mysql://localhost/ashkelon
-      user=
+      user=ashkelon
+      password=ashkelon
+
+      or
+      #
+      dbtype=postgres
+      jdbcDriverName=org.postgresql.Driver
+      connectionURL=jdbc:postgresql://localhost/ashkelon
+      user=postgre
       password=
+
+   (note:  i am omitting work you need to do to set up a user in mysql or
+     postgres for database access;  refer to db documentation for how to do this)
       
 3. build the code & create jar & make war file:
-   $ ant
+
+  example for mysql:
+   $ ant -Ddbtype=mysql
+
+  example for postgres:
+   $ ant -Ddbtype=postgres
 
    
 C. Configure environment & prepare database
 -------------------------------------------
    
+0. make sure you have a JAVA_HOME environment variable configured with
+   its value set to the base directory for J2SE (e.g. c:\j2sdk1.4.1)
+    
 1. set up ASHK_HOME environment variable; examples:
     windows: set ASHK_HOME=c:\ashkelon
     bash: export ASHK_HOME=~/ashkelon
@@ -48,13 +66,24 @@ C. Configure environment & prepare database
     to your path ( export PATH=$PATH:$ASHK_HOME/bin )
 
 3. prepare database:
-  a. in mysql, create database named ashkelon:
+  a. in ${dbtype}, create database named ashkelon:
+
       c:\> mysql -u username -p
       mysql> create database ashkelon;
       mysql> exit
 
+     example for postgres:
+
+      ~> $postgreshome/bin/createdb ashkelon
+
   b. run script: db-scripts\init.sql
-      c:\%ASHK_HOME%> mysql -u username -p ashkelon < db\mysql\org\ashkelon\db\init.sql
+   e.g. using mysql:
+      c:\ashkelon> mysql -u username -p ashkelon < db\mysql\org\ashkelon\db\init.sql
+
+   e.g. using postgres
+      ~/ashkelon> psql -d ashkelon
+      ashkelon#= \i db/postgre/org/ashkelon/db/init.sql
+      ashkelon#= \q
       
 4. verify that ashkelon repository mgr script works:
 
@@ -62,7 +91,7 @@ C. Configure environment & prepare database
    
    should produce a help/usage screen
    
-5. setup database schema:
+5. finish setting up database schema:
 
    $ ashkelon reset
 
@@ -97,7 +126,8 @@ D. Populate Database
 
 3. if all succeeds, you should end up with your mysql ashkelon database
    populated with the java api documentation for the servlet api.
-   you may repeat step 2 for additional api's as long as they're in your
+
+   >> you may repeat step 2 for additional api's as long as they're in your
    sourcepath (follows same convention as classpath: semicolon separator
    for windows or colon for unix)
 
@@ -105,9 +135,14 @@ D. Populate Database
 E. Run Ashkelon webapp
 ----------------------
 
-0. sourcepath info also needs to be set in web.xml
+NOTE:  some jsp's have started utilising JSTL (standard taglibs).
+since JSTL is becoming pervasive, i am not including the lib's
+with ashkelon.  for the pages to work, you must have the JSTL
+jar files included in $TOMCAT_HOME/common/lib
+
+0. sourcepath info also needs to be set in etc/web.xml
    so revise the param-value for the param-name "sourcepath" and
-   rebuild war file:  $ ant war
+   rebuild war file:  $ ant
 
 1. copy war file from build/ashkelon.war to your tomcat 
     (or other) webapps folder:
@@ -116,7 +151,7 @@ E. Run Ashkelon webapp
 
 2. restart tomcat so it can pick up war file (& unpack it etc..)
 
-3. open a web browser (preferably IE or Mozilla) and hit the 
+3. open a web browser (preferably Mozilla but it will work in IE) and hit the 
    URL: http://localhost:8080/ashkelon/  (adjust if you've configured
    tomcat (or other) to run on another port
 

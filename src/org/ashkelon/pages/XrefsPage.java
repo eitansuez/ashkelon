@@ -18,7 +18,7 @@ public class XrefsPage extends Page
    public String init() throws SQLException
    {
       int clsId = Integer.parseInt(ServletUtils.getRequestParam(request, "cls_id"));
-      String cmd = ServletUtils.getRequestParam(request, "cmd");
+      String cmd = (String) request.getAttribute("cmd");
       
       ClassType cls = ClassType.makeClassFor(conn, clsId, true);
       request.setAttribute("cls", cls);
@@ -34,30 +34,30 @@ public class XrefsPage extends Page
          List fields = getFields(clsId);
          request.setAttribute("field", fields);
       }
-      else if (xrefType.equals("returned by"))
+      else if (xrefType.equals("returnedby"))
       {
          List returnedBy = getReturnedBy(clsId);
-         request.setAttribute("returned by", returnedBy);
+         request.setAttribute("returnedby", returnedBy);
       }
-      else if (xrefType.equals("passed to"))
+      else if (xrefType.equals("passedto"))
       {
          List passedTo = getPassedTo(clsId);
-         request.setAttribute("passed to", passedTo);
+         request.setAttribute("passedto", passedTo);
       }
-      else if (xrefType.equals("thrown by"))
+      else if (xrefType.equals("thrownby"))
       {
          List thrownBy = getThrownBy(clsId);
-         request.setAttribute("thrown by", thrownBy);
+         request.setAttribute("thrownby", thrownBy);
       }
-      else if (xrefType.equals("implemented by"))
+      else if (xrefType.equals("implementedby"))
       {
          List implementedBy = getImplementedBy(clsId);
-         request.setAttribute("implemented by", implementedBy);
+         request.setAttribute("implementedby", implementedBy);
       }
-      else if (xrefType.equals("extended by"))
+      else if (xrefType.equals("extendedby"))
       {
          List extendedBy = getExtendedBy(clsId);
-         request.setAttribute("extended by", extendedBy);
+         request.setAttribute("extendedby", extendedBy);
       }
       else if (xrefType.equals("subclasses"))
       {

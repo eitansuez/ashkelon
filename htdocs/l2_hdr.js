@@ -17,9 +17,9 @@ function togglePage(tagid, title)
     if (cmds[i] == tagid)
     {
       setVisible(cmds[i], true)
+      tag.className = "tab_selected_tab";
       setCookie("pagecontext",location.search);
       setCookie("tabid",tagid);
-      tag.className = "tab_selected_tab";
     }
     else
     {
@@ -30,3 +30,4 @@ function togglePage(tagid, title)
 
   document.title = title;
 }
+

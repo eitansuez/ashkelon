@@ -1,12 +1,5 @@
 <%@ page info="field view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   FieldMember field = (FieldMember) request.getAttribute("member");
   ClassType containingClass = field.getContainingClass();
@@ -19,9 +12,6 @@ Date: March 2001
   String membertype = "field";
 %>
 
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
-
 <!-- <A NAME="<%=field.getName()%>"> -->
 <A NAME="<%=field.getId()%>">
 <H3><%=field.getName()%></H3>
@@ -30,7 +20,7 @@ Date: March 2001
 <% if (field.getType()!=null && field.getType().getId()>0)
   {
   %>
-   <%=field.getModifiers()%> <A HREF="index.html?cmd=cls.main&cls_id=<%=field.getType().getId()%>"><%=typeName%></A><%=typeDim%> <%=field.getName()%>
+   <%=field.getModifiers()%> <A HREF="cls.main.do?cls_id=<%=field.getType().getId()%>"><%=typeName%></A><%=typeDim%> <%=field.getName()%>
 <%}
   else
   { %>

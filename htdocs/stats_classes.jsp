@@ -1,32 +1,16 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
   List numByPackage = (List) request.getAttribute("classCounts");
  %>
 
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE>Class Stats</TITLE>
+  <TITLE>Class Stats</TITLE>
   <jsp:include page="includes.html" flush="true"/>
-
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
 </HEAD>
 
 <BODY onLoad="loadCookies();" onUnload="saveCookies();">
@@ -71,13 +55,13 @@ Date: March 2001
     <% if (Integer.parseInt(numPkgClasses)>50)
     { %>
   <TR CLASS="highlight">
-    <TD><B><a href="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></B></TD>
+    <TD><B><a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></B></TD>
     <TD ALIGN="RIGHT"><B><%=numPkgClasses%></B></TD>
   </TR>
     <% } else
        { %>
   <TR>
-    <TD><a href="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></TD>
+    <TD><a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></TD>
     <TD ALIGN="RIGHT"><%=numPkgClasses%></TD>
   </TR>
     <% } %>

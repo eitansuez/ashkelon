@@ -38,7 +38,7 @@ Date: November 2001
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE><%=modifier%></CODE></FONT></TD>
-<TD><CODE><B><A HREF="index.html?cmd=cls.main&cls_id=<%=inner.getId()%>"><%=inner.getName()%></A></B></CODE>
+<TD><CODE><B><A HREF="cls.main.do?cls_id=<%=inner.getId()%>"><%=inner.getName()%></A></B></CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=inner.getSummaryDescription()%></TD>

@@ -87,7 +87,7 @@ if (request.getAttribute("execmember") != null)
        {
          refdoctypename = DocInfo.DOCTYPES[refdoctype-1];
      %>
-      <A HREF="index.html?cmd=<%=refdoctypename%>.main&<%=refdoctypename%>_id=<%=refDoc.getId()%>"><CODE><%=label%></CODE></A>
+      <A HREF="<%=refdoctypename%>.main.do?<%=refdoctypename%>_id=<%=refDoc.getId()%>"><CODE><%=label%></CODE></A>
     <% } else { %>
       <CODE><%=label%></CODE>
     <% } %>

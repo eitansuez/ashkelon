@@ -1,14 +1,7 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
     
   Boolean needToDisplayResults = (Boolean) request.getAttribute("display_results");
   if (needToDisplayResults == null)
@@ -18,32 +11,23 @@ Date: March 2001
   String srch_type = "";
  %>
 
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
+<html>
+<head>
 <% if (needToDisplayResults.booleanValue()) { %>
-	<TITLE>Ashkelon - Search Results</TITLE>
+  <title>Ashkelon - Search Results</title>
 <% } else { %>
-	<TITLE>Ashkelon - Search</TITLE>
+  <title>Ashkelon - Search</title>
 <% } %>
-  <jsp:include page="includes.html" flush="true"/>
-
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
+  <jsp:include page="includes.html" flush="true" />
 </HEAD>
 
-<BODY>
+<body>
 
 <jsp:include page="main_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
 <%-- the following if clause is useless; when search form submits, it reroutes to a different page --%>
 <% if (needToDisplayResults.booleanValue()) { %>
@@ -57,9 +41,10 @@ Date: March 2001
   <jsp:include page="search_form.jsp" flush="true"/>
 <% } %>
 
-</DIV>
+</div>
 
 <jsp:include page="footer.html" flush="true"/>
 
-</BODY>
-</HTML>
+</body>
+</html>
+

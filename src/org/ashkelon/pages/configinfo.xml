@@ -5,7 +5,7 @@
   <defaultcmd>apis</defaultcmd>
   <maxtraillength>10</maxtraillength>
   <tracelevel>100</tracelevel>
-  <tracefile>trace.log</tracefile>
+  <tracefile>/Users/eitansuez/devel/ashkelon/trace.log</tracefile>
 
   <cmdinfo>
    <cmd>apis</cmd>
@@ -143,7 +143,7 @@
   </cmdinfo>
   
   <cmdinfo>
-   <cmd>cls.xref.returned by</cmd>
+   <cmd>cls.xref.returnedby</cmd>
    <page>xref.jsp</page>
    <class>XrefsPage</class>
    <caption>$NAME$ Xref: returned by</caption>
@@ -152,7 +152,7 @@
   </cmdinfo>
 
   <cmdinfo>
-   <cmd>cls.xref.passed to</cmd>
+   <cmd>cls.xref.passedto</cmd>
    <page>xref.jsp</page>
    <class>XrefsPage</class>
    <caption>$NAME$ Xref: passed to</caption>
@@ -161,7 +161,7 @@
   </cmdinfo>
 
   <cmdinfo>
-   <cmd>cls.xref.thrown by</cmd>
+   <cmd>cls.xref.thrownby</cmd>
    <page>xref.jsp</page>
    <class>XrefsPage</class>
    <caption>$NAME$ Xref: thrown by</caption>
@@ -170,7 +170,7 @@
   </cmdinfo>
 
   <cmdinfo>
-   <cmd>cls.xref.implemented by</cmd>
+   <cmd>cls.xref.implementedby</cmd>
    <page>xref.jsp</page>
    <class>XrefsPage</class>
    <caption>$NAME$ Xref: implemented by</caption>
@@ -197,7 +197,7 @@
   </cmdinfo>
 
   <cmdinfo>
-   <cmd>cls.xref.extended by</cmd>
+   <cmd>cls.xref.extendedby</cmd>
    <page>xref.jsp</page>
    <class>XrefsPage</class>
    <caption>$NAME$ Xref: extended by</caption>
@@ -277,6 +277,15 @@
    <intrail>true</intrail>
   </cmdinfo>
   
+  <cmdinfo>
+   <cmd>authors</cmd>
+   <page>authors.jsp</page>
+   <class>AuthorsPage</class>
+   <caption>$NAME$</caption>
+   <tablename>AUTHOR</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
   <cmdinfo>
    <cmd>author</cmd>
    <page>author.jsp</page>

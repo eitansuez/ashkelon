@@ -17,7 +17,7 @@ public class IndexPage extends Page
    public String init() throws SQLException
    {
       String startFrom = ServletUtils.getRequestParam(request, "start");
-      String cmd = ServletUtils.getRequestParam(request, "cmd");
+      String cmd = (String) request.getAttribute("cmd");
       
       if (StringUtils.isBlank(startFrom))
          return null;

@@ -1,32 +1,21 @@
 <%@ page info="component" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*,java.util.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
 <%
  String searchtype = (String) request.getParameter("searchtype");
  String srch_type = (String) request.getParameter("srch_type");
  %>
 
 <% if (StringUtils.isBlank(searchtype) || "direct".equals(searchtype)) { %>
-  <B>Direct Search</B> | <A HREF="index.html?cmd=search&searchtype=advanced">Power Search</A>
+  <B>Direct Search</B> | <A HREF="search.do?searchtype=advanced">Power Search</A>
 <% } else { %>
-  <A HREF="index.html?cmd=search&searchtype=direct">Direct Search</A> | <B>Power Search</B>
+  <A HREF="search.do?searchtype=direct">Direct Search</A> | <B>Power Search</B>
 <% } %>
 
-<BR>
-
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
-
+<br/>
 
 <% if (StringUtils.isBlank(searchtype) || "direct".equals(searchtype)) { %>
 
-<FORM NAME="search_form" METHOD="POST" ACTION="index.html">
-<INPUT TYPE="HIDDEN" NAME="cmd" VALUE="search">
+<FORM NAME="search_form" METHOD="POST" ACTION="search.do">
 <INPUT TYPE="HIDDEN" NAME="simple" VALUE="true">
 <TABLE>
 <TR>
@@ -65,9 +54,9 @@ Search:
 <% if (StringUtils.isBlank(srch_type) || "class".equals(srch_type)) { %>
   <B>Classes</B>
   or
-  <A HREF="index.html?cmd=search&searchtype=advanced&srch_type=member">Members</A>
+  <A HREF="search.do?searchtype=advanced&srch_type=member">Members</A>
 <% } else { %>
-  <A HREF="index.html?cmd=search&searchtype=advanced&srch_type=class">Classes</A>
+  <A HREF="search.do?searchtype=advanced&srch_type=class">Classes</A>
   or
   <B>Members</B>
 <% } %>
@@ -87,8 +76,7 @@ Search:
 
 <TR><TD>
 
-<FORM NAME="advanced_class_search_form" METHOD="POST" ACTION="index.html">
-<INPUT TYPE="HIDDEN" NAME="cmd" VALUE="search">
+<FORM NAME="advanced_class_search_form" METHOD="POST" ACTION="search.do">
 <INPUT TYPE="HIDDEN" NAME="simple" VALUE="false" />
 
 <% if (StringUtils.isBlank(srch_type) || "class".equals(srch_type)) { %>

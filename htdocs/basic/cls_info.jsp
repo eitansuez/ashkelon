@@ -12,7 +12,7 @@ Date: March 2001
   JPackage pkg = cls.getPackage();
   String cls_type = cls.getClassTypeName();
   
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
   String descr_type = request.getParameter("descr_type");
 
   ClassType impl_interface;
@@ -33,7 +33,7 @@ Date: March 2001
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <H2>
-<FONT SIZE="-1"><A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></A></FONT>
+<FONT SIZE="-1"><A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></A></FONT>
 <BR>
 <%=nice_typename%> <%=cls.getName()%>
 </H2>
@@ -68,7 +68,7 @@ Date: March 2001
         if (isself)
           tree += "<B>";
         if (linkable)
-          tree += "<A HREF=\"index.html?cmd=cls.main&cls_id="+clsnode.getId()+"\">";
+          tree += "<A HREF=\"cls.main.do?cls_id="+clsnode.getId()+"\">";
         tree += clsnode.getQualifiedName();
         if (linkable)
           tree += "</A>";
@@ -87,7 +87,7 @@ Date: March 2001
 
 
 <P>
-  <A HREF="index.html?cmd=cls.source&cls_name=<%=cls.getQualifiedName()%>">View Source</A>
+  <A HREF="cls.source.do?cls_name=<%=cls.getQualifiedName()%>">View Source</A>
 </P>
 
 
@@ -103,7 +103,7 @@ Date: March 2001
      {
        impl_interface = (ClassType) cls.getInterfaces().get(i); %>
     <% if (impl_interface.getId()>0) { %>
-    <A HREF="index.html?cmd=cls.main&cls_id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
+    <A HREF="cls.main.do?cls_id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
     <% } else { %>
     <%=impl_interface.getName()%>
     <% } %>
@@ -120,7 +120,7 @@ Date: March 2001
 -->
 
 <% if (cls.isInnerClass()) { %>
-<DT><B>Enclosing class:</B> <DD><A HREF="index.html?cmd=cls.main&cls_id=<%=cls.getContainingClass().getId()%>"><%=JDocUtil.unqualify(cls.getContainingClassName())%></A></DD>
+<DT><B>Enclosing class:</B> <DD><A HREF="cls.main.do?cls_id=<%=cls.getContainingClass().getId()%>"><%=JDocUtil.unqualify(cls.getContainingClassName())%></A></DD>
 </DL>
 <% } %>
 
@@ -135,7 +135,7 @@ Date: March 2001
       
       <% if (cls.getClassType() != ClassType.INTERFACE) { %>
         <% if (cls.getSuperClass() != null && cls.getSuperClass().getId()>0) { %>
-	       extends <A HREF="index.html?cmd=cls.main&cls_id=<%=cls.getSuperClass().getId()%>"><%=cls.getSuperClassName()%></A>
+	       extends <A HREF="cls.main.do?cls_id=<%=cls.getSuperClass().getId()%>"><%=cls.getSuperClassName()%></A>
         <% } else { %>
 	       extends <%=cls.getSuperClassName()%>
         <% } %>
@@ -147,7 +147,7 @@ Date: March 2001
          {
            impl_interface = (ClassType) cls.getInterfaces().get(i); %>
         <% if (impl_interface.getId()>0) { %>
-        <A HREF="index.html?cmd=cls.main&cls_id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
+        <A HREF="cls.main.do?cls_id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
         <% } else { %>
         <%=impl_interface.getName()%>
         <% } %>

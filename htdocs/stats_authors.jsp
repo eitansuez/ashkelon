@@ -1,33 +1,17 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: PAGE COMMENTS & DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
 
   List numByAuthor = (List) request.getAttribute("classCounts");
  %>
 
-<%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE>Class Stats</TITLE>
+  <TITLE>Class Stats</TITLE>
   <jsp:include page="includes.html" flush="true"/>
-
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
 </HEAD>
 
 <BODY onLoad="loadCookies();" onUnload="saveCookies();">
@@ -70,7 +54,7 @@ Date: March 2001
       numAuthorClasses = (String) ((List) numByAuthor.get(i)).get(1);
    %>
   <TR>
-    <TD><a href="index.html?cmd=author&id=<%=author.getId()%>"><%=author.getName()%></a></TD>
+    <TD><a href="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></a></TD>
     <TD ALIGN="RIGHT"><%=numAuthorClasses%></TD>
   </TR>
 

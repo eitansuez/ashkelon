@@ -147,7 +147,7 @@ as follows:
     <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
     <% } else { out.println("&nbsp;"); } %>
   </TD>
-  <TD><A HREF="index.html?cmd=cls.main&cls_id=<%=cls.getId()%>" TITLE="<%=HtmlUtils.cleanAttributeText(clsDescr)%>"><SPAN CLASS="<%=classtype%>"><%=(qualify) ? cls.getQualifiedName() : cls.getName()%></SPAN></A></TD>
+  <TD><A HREF="cls.main.do?cls_id=<%=cls.getId()%>" TITLE="<%=HtmlUtils.cleanAttributeText(clsDescr)%>"><SPAN CLASS="<%=classtype%>"><%=(qualify) ? cls.getQualifiedName() : cls.getName()%></SPAN></A></TD>
   <TD><%=clsDescr%></TD>
 </TR>
 <% } // end for %>

@@ -1,17 +1,5 @@
 <%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-  Copyright UptoData Inc 2001
-  Author: Eitan Suez
-  Date: March 2001
-  
-  outstanding tasks:
-    parametrize: colors, their links (associated commands)
---%>
-
-<%-- SECTION: PAGE CODE --%>
-
-<%-- SECTION: PAGE CODE --%>
 <%
   Map tabs = new HashMap();
   tabs.put("apis", "APIs");
@@ -22,14 +10,12 @@
   
   String[] cmds = {"apis", "pkg", "search", "idx", "stats.general"};
 
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = (String) request.getAttribute("cmd");
   String area = "";
   if (cmd != null)
     area = StringUtils.split(cmd,".")[0];
 %>
 
-
-<%-- SECTION: TEMPLATE --%> 
 
 <TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
 <TR>
@@ -40,23 +26,23 @@
       <TR ALIGN="center" VALIGN="top">
 
       <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" ALIGN="LEFT">
-           <A HREF="index.html">DBDOC&#8482;</A>
+           <A HREF="index.html">Ashkelon</A>
 
 <% for (int i=0; i<cmds.length; i++)
   { %>
   &nbsp;&nbsp;&nbsp;
-        <A HREF="<%=request.getContextPath()%>/index.html?cmd=<%=cmds[i]%>"><FONT CLASS="NavBarFont1"><B><%=tabs.get(cmds[i])%></B></FONT></A>
+        <A HREF="<%=request.getContextPath()%>/<%=cmds[i]%>.do"><FONT CLASS="NavBarFont1"><B><%=tabs.get(cmds[i])%></B></FONT></A>
 
 <%}%>
       </TD>
 
         
         <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" ALIGN="RIGHT">
-          <A HREF="<%=request.getContextPath()%>/index.html?cmd=contact"><FONT CLASS="NavBarFont1"><B>Contact</B></FONT></A>
+          <A HREF="<%=request.getContextPath()%>/contact.do"><FONT CLASS="NavBarFont1"><B>Contact</B></FONT></A>
           &nbsp;&nbsp;&nbsp;
-          <A HREF="<%=request.getContextPath()%>/index.html?cmd=config"><FONT CLASS="NavBarFont1"><B>Settings</B></FONT></A>
+          <A HREF="<%=request.getContextPath()%>/config.do"><FONT CLASS="NavBarFont1"><B>Settings</B></FONT></A>
           &nbsp;&nbsp;&nbsp;
-          <A HREF="<%=request.getContextPath()%>/index.html?cmd=help"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>
+          <A HREF="<%=request.getContextPath()%>/help.do"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>
         </TD>
       </TR>
     </TABLE>
@@ -96,8 +82,7 @@
   <% } %>
   </TD>
   <%-- 
-    <FORM METHOD="GET" ACTION="<%=request.getContextPath()%>/index.html">
-      <INPUT TYPE="HIDDEN" NAME="cmd" VALUE="trail.reset">
+    <FORM METHOD="GET" ACTION="<%=request.getContextPath()%>/trail.reset.do">
   <TD CLASS="NavBarCell1" ALIGN="RIGHT">
     <% if (trail.size() > 3) { %>
       <INPUT TYPE="SUBMIT" TITLE="Reset navigation trail" VALUE="Reset Trail">

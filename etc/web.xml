@@ -10,7 +10,7 @@
 
     <context-param>
       <param-name>sourcepath</param-name>
-      <param-value>/Users/eitansuez/devel/j2se-src/j2se/src/share/classes</param-value>
+      <param-value>/Users/eitansuez/devel/j2se-src/j2se/src/share/classes:/Users/eitansuez/devel/sources</param-value>
     </context-param>
 
     <servlet>
@@ -20,13 +20,16 @@
         <servlet-class>
             org.ashkelon.pages.FlowController
         </servlet-class>
+        <load-on-startup>2</load-on-startup>
     </servlet>
+
+
     <servlet-mapping>
         <servlet-name>
             flowcontroller
         </servlet-name>
         <url-pattern>
-            /index.html
+            *.do
         </url-pattern>
     </servlet-mapping>
 

@@ -1,22 +1,8 @@
 <%@ page info="component" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
+<link rel="stylesheet" type="text/css" href="l2_hdr.css" />
 
-<%-- SECTION: COMPONENT CODE --%>
-<%
-%>
-
-<%-- SECTION: COMPONENT STYLES --%>
-<LINK REL="stylesheet" TYPE="text/css" HREF="l2_hdr.css"></LINK>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
+<script>
   function init()
   {
     document.search_form.searchField.focus();
@@ -79,33 +65,31 @@ Date: March 2001
   {
     ref.parentNode.nextSibling.disabled=((ref.checked) ? false : true)
   }
-</SCRIPT>
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
+</script>
 
 
-<table class="tab" border="1" cellpadding="0" cellspacing="0" width="600">
+<table cellpadding="1" cellspacing="0" width="600" style="empty-cells: show;">
 
 <thead>
 <tr>
+<td class="tab_pad" width="20px;">&nbsp;</td>
 <td id="tab" class="tab_selected_tab" onClick="doTab(this);" FOR="directSearch">
 Direct Search
 </td>
-<td class="tab_buffer"></td>
+<td class="tab_buffer" width="5px;">&nbsp;</td>
 <td id="tab" class="tab_tab" onClick="doTab(this);" FOR="powerSearch">
 Power Search
 </td>
-<td class="tab_pad"></td>
+<td class="tab_pad" width="20px;">&nbsp;</td>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td colspan="4" style="border-right: 1 solid black; border-left: 1 solid black; padding: 10 px;">
+<td colspan="5" style="background-color: #92A6F5; border: 1px solid black; border-top: 0px none black; padding: 10 px;">
 
-<DIV ID="directSearch">
+<div id="directSearch">
 
-<FORM NAME="search_form" METHOD="POST" ACTION="index.html">
-<INPUT TYPE="HIDDEN" NAME="cmd" VALUE="search" />
+<FORM NAME="search_form" METHOD="POST" ACTION="search.do">
 <INPUT TYPE="HIDDEN" NAME="simple" VALUE="true" />
 <TABLE>
 <TR>
@@ -136,10 +120,10 @@ Power Search
 </P>
 </FORM>
 
-</DIV>
+</div>
 
 
-<DIV ID="powerSearch" STYLE="display: none;">
+<div ID="powerSearch" STYLE="display: none;">
 
 <TABLE>
 <THEAD>
@@ -164,9 +148,8 @@ Power Search
 
 <TBODY><TR><TD>
 
-<DIV ID="cls_type_display">
-<FORM NAME="advanced_class_search_form" METHOD="POST" ACTION="index.html">
-<INPUT TYPE="HIDDEN" NAME="cmd" VALUE="search" />
+<div ID="cls_type_display">
+<FORM NAME="advanced_class_search_form" METHOD="POST" ACTION="search.do">
 <INPUT TYPE="HIDDEN" NAME="simple" VALUE="false" />
 <INPUT TYPE="HIDDEN" NAME="srch_type" VALUE="class" />
   <TABLE border="1" cellspacing="0" cellpadding="3">
@@ -224,11 +207,10 @@ Power Search
 
  </FORM>
 
-</DIV>
-<DIV ID="member_type_display" STYLE="display: none;">
+</div>
+<div ID="member_type_display" STYLE="display: none;">
 
-<FORM NAME="advanced_member_search_form" METHOD="POST" ACTION="index.html">
-<INPUT TYPE="HIDDEN" NAME="cmd" VALUE="search" />
+<FORM NAME="advanced_member_search_form" METHOD="POST" ACTION="search.do">
 <INPUT TYPE="HIDDEN" NAME="simple" VALUE="false" />
 <INPUT TYPE="HIDDEN" NAME="srch_type" VALUE="member" />
   <TABLE border="1" cellspacing="0" cellpadding="3">
@@ -311,7 +293,7 @@ Power Search
  </FORM>
 
 
-</DIV>
+</div>
 
 </TD></TR></TBODY>
 
@@ -329,7 +311,7 @@ Power Search
 <P STYLE="font-size: 8 pt;">[1]: Names may be entered either in fully-qualified or non-qualified form.  Usage of asterisks are supported, as in "String*" or "getIndex*"
 </P>
 
-</DIV>
+</div>
 
 
 </td>
@@ -338,7 +320,8 @@ Power Search
 </table>
 
 
-<SCRIPT>
+<script>
   init();
-</SCRIPT>
+</script>
+
 

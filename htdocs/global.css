@@ -1,16 +1,21 @@
-<!-- global stylesheet -->
-BODY
+
+body
 {
-  margin: 0;
+  margin: 0px;
 }
 
-BODY, TD, P
+body, td, p
 {
   font-family: Arial,sans-serif;
   font-size: 10pt;
 }
 
-.PAGEBODY
+:link, :visited
+{
+  text-decoration: none;
+}
+
+.pagebody
 {
   margin: 20px;
 }
@@ -23,11 +28,11 @@ BODY, TD, P
   border-collapse: collapse;
 }
 
-TABLE CAPTION
+table caption
 {
 }
 
-THEAD.table_header
+thead.table_header
 {
   background-color: beige;
   font-size: small;
@@ -36,7 +41,7 @@ THEAD.table_header
   vertical-align: bottom;
 }
 
-TR.highlight
+tr.highlight
 {
   /* background-color: #F5B48B; */
   background-color: yellow;
@@ -56,7 +61,7 @@ TR.highlight
  /* i can't recall why i did this?:  content: <B>&gt;</B>; */
 }
 
-FIELDSET
+fieldset
 {
   padding: 10;
 }
@@ -82,7 +87,7 @@ FIELDSET
 {
   color: #0000FF;
 }
-HR.ordinaryClass
+hr.ordinaryClass
 {
   background-color: #0000ff;
 }
@@ -91,7 +96,7 @@ HR.ordinaryClass
   color: #008000;
   font-style: italic;
 }
-HR.interface
+hr.interface
 {
   background-color: #008000;
 }
@@ -99,7 +104,7 @@ HR.interface
 {
   color: #FF0000;
 }
-HR.exception
+hr.exception
 {
   background-color: #ff0000;
 }
@@ -108,7 +113,7 @@ HR.exception
   color: #BC2540;
   font-weight: bold;
 }
-HR.errorClass
+hr.errorClass
 {
   background-color: #BC2540;
 }
@@ -116,7 +121,7 @@ HR.errorClass
 {
   color: #004040;
 }
-HR.method
+hr.method
 {
   background-color: #004040;
 }
@@ -124,7 +129,7 @@ HR.method
 {
   color: #800080;
 }
-HR.constructor
+hr.constructor
 {
   background-color: #800080;
 }
@@ -132,7 +137,7 @@ HR.constructor
 {
   color: #804040;
 }
-HR.field
+hr.field
 {
   background-color: #804040;
 }
@@ -141,7 +146,7 @@ HR.field
   color: #004080;
   font-weight: bold;
 }
-HR.package
+hr.package
 {
   background-color: #004080;
 }
@@ -155,9 +160,18 @@ HR.package
   color: #000000;
   font-weight: bold;
 }
-HR.api
+hr.api
 {
   background-color: black;
+}
+.author
+{
+  color: #9a3a47;
+  font-style: italic;
+}
+hr.author
+{
+  background-color: #9a3a47;
 }
 
 .scroll_column

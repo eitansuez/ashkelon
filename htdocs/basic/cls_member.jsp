@@ -1,12 +1,5 @@
 <%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
   JPackage pkg = cls.getPackage();
@@ -15,7 +8,6 @@ Date: March 2001
   String descr;
 %>
 
-<%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <A NAME="field_summary"><!-- --></A>
   <%
@@ -44,7 +36,7 @@ Date: March 2001
         </TD>
         <TD>
           <CODE><B>
-            <A HREF="index.html?cmd=member.main&member_id=<%=field.getId()%>"><%=field.getName()%></A>
+            <A HREF="member.main.do?member_id=<%=field.getId()%>"><%=field.getName()%></A>
           </B></CODE>
           <BR>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=descr%>
@@ -79,7 +71,7 @@ Date: March 2001
         %>
 <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD>
-        <CODE><B><A HREF="index.html?cmd=member.main&member_id=<%=constructor.getId()%>#<%=constructor.getId()%>"><%=constructor.getName()%><%=constructor.getSignature()%></A></B></CODE>
+        <CODE><B><A HREF="member.main.do?member_id=<%=constructor.getId()%>#<%=constructor.getId()%>"><%=constructor.getName()%><%=constructor.getSignature()%></A></B></CODE>
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=descr%>
       </TD>
@@ -125,7 +117,7 @@ Date: March 2001
         <FONT SIZE="-1">
           <CODE>
         <% if (!returnClass.equals("")) { // return type info %>
-          <A HREF="index.html?cmd=cls.main&cls_id=<%=method.getReturnType().getId()%>"><%=returninfo%></A>
+          <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=returninfo%></A>
         <% } else { %>
           <%=returninfo%>
         <% } // end if %>
@@ -135,7 +127,7 @@ Date: March 2001
       <TD>
 
 <CODE><B>
-<A HREF="index.html?cmd=member.main&member_id=<%=method.getId()%>#<%=method.getId()%>"><%=method.getName()%><%=method.getSignature()%></A>
+<A HREF="member.main.do?member_id=<%=method.getId()%>#<%=method.getId()%>"><%=method.getName()%><%=method.getSignature()%></A>
 </B></CODE>
 
 <BR>

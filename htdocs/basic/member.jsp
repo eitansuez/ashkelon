@@ -1,22 +1,15 @@
 <%@ page info="main member view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
 <%
   Member member = (Member) request.getAttribute("member");
   String membertypename = member.getMemberTypeName();
  %>
 
-<%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <HTML>
 <HEAD>
-	<TITLE><%=member.getName()%></TITLE>
+  <TITLE><%=member.getName()%></TITLE>
   <SCRIPT>
   function dohref(url)
   {
@@ -28,9 +21,9 @@ Date: March 2001
 <BODY BGCOLOR="white">
 <jsp:include page="main_header.jsp" flush="true"/>
 
-Package: <A HREF="index.html?cmd=pkg.main&pkg_id=<%=member.getPackage().getId()%>"><%=member.getPackage().getName()%></A>
+Package: <A HREF="pkg.main.do?pkg_id=<%=member.getPackage().getId()%>"><%=member.getPackage().getName()%></A>
 |
-Class: <A HREF="index.html?cmd=cls.main&cls_id=<%=member.getContainingClass().getId()%>"><%=member.getContainingClass().getName()%></A>
+Class: <A HREF="cls.main.do?cls_id=<%=member.getContainingClass().getId()%>"><%=member.getContainingClass().getName()%></A>
   
      <% if ("field".equals(membertypename)) { %>
       <jsp:include page="member_field.jsp" flush="true"/>

@@ -1,36 +1,21 @@
 <%@ page info="top page: package list" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
 <%
   HashMap cols = (HashMap) application.getAttribute("javaPkgs");
  %>
 
-<%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Ashkelon - Packages</TITLE>
+<html>
+<head>
+  <title>Ashkelon - Packages</title>
   <jsp:include page="includes.html" flush="true"/>
+</head>
 
-  <!-- SECTION: PAGE STYLES -->
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <!-- SECTION: BEHAVIOR (JAVASCRIPT) -->
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY onLoad="cleanTitles();">
+<body onLoad="cleanTitles();">
 <jsp:include page="main_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<DIV CLASS="pagebody">
 
 <% if (cols.isEmpty()) { %>
  <P>No packages exist in the Ashkelon repository at this time.</P>
@@ -79,7 +64,7 @@ Date: March 2001
    %>
    <TR>
      <TD>
-        <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package" TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></SPAN></A>
+        <A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package" TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></SPAN></A>
      </TD>
    </TR>
    <%   }  // end inner for loop %>

@@ -1,20 +1,5 @@
 <%@ page info="component" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
-<%
-%>
-
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
 <SCRIPT>
 function toggleLegend()
 {
@@ -41,10 +26,9 @@ function showLegend()
 }
 </SCRIPT>
 
-<%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<DIV STYLE="position:relative; visibility: hidden">
-  <DIV ID="legend" STYLE="position:absolute; left: -100; visibility: hidden;">
+<div style="position:relative; visibility: hidden">
+  <div id="legend" style="position:absolute; left: -100; visibility: hidden;">
 
 <FIELDSET STYLE="padding: 5px; border-color: #000000;" WIDTH="200" CLASS="legend">
 <LEGEND>Element Legend</LEGEND>
@@ -134,6 +118,6 @@ Error
 
 </FIELDSET>
 
-  </DIV>
-</DIV>
+  </div>
+</div>
 

@@ -1,0 +1,44 @@
+3/21/2003
+Release Notes
+
+What's new in v0.8.1:
+---------------------
+
+ Note: don't let the subversion increment fool you.  0.8.1 represents a major
+  upgrade from 0.8.0.  I am now conserving on version numbers because of 
+  the number of features I want the product to include by the time ashkelon
+  reaches v1.0
+
+ Back-end
+ - Ashkelon now supports PostgresQL
+
+ Refactoring
+ - Directory Structure for codebase reworked
+ - All references to dbdoc replaced with 'ashkelon', the open-source name of the product
+ - packaging of java codebase now org.ashkelon instead of com.u2d.dbdoc
+ - url mapping improved, now uses suffix like struts does (.do) instead of passing
+    action name in query string
+
+ UI
+ - Authors section added as top-level menu
+ - Authors are now styled, like other entities are
+ - API page improved with tabbed pane, to conform to look and feel of package and class pages
+ - rendering in Mozilla improved
+
+ Documentation
+ - ERD diagram (pdf) added, now documents schema 
+
+--
+
+ Goals for v1.0:  (see todo list for a more complete listing)
+  - simpler installation
+  - ant support (ashkelon ant task)
+  - maven support (step 1: make ashkelon buildable using maven (add pom file)
+  - multi-version support
+  - gui for populator / manager
+  - plugins for eclipse and netbeans
+  - xul ui
+  - support for hypersonic sql for embedding db with distro
+  - jsp's utilising jstl more fully
+
+
