@@ -92,7 +92,7 @@
 
    <!-- Run JiBX binding compiler -->
    <target name="bind" depends="compile" description="run JiBX binding compiler">
-     <bind verbose="true" load="true" binding="${etcdir}/binding.xml">
+     <bind binding="${etcdir}/binding.xml">
        <classpathset dir="${buildclassesdir}" />
        <classpathset dir="${libdir}/jibx-run.jar" />
        <classpathset dir="${libdir}/castor.jar" />
