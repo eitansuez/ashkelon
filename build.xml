@@ -115,14 +115,14 @@
   <property name="doc.srcdir" location="${srcdir}/doc" />
   <property name="docdir" location="doc" />
   <property name="ant.docbook.styler.dir" 
-     location="/Users/eitan/devel/docbook/ant-docbook-styler" />
+     location="/Users/eitan/devel/ant-docbook-styler" />
   <property name="ant.docbook.styler"
      location="${ant.docbook.styler.dir}/ant-build-docbook.xml" />
 
   <target name="builddocs">
     <mkdir dir="${builddir}/doc/${kind}" />
     <mkdir dir="${docdir}/${kind}" />
-    <ant antfile="${ant.docbook.styler}" inheritall="false" target="html.${kind}">
+    <ant antfile="${ant.docbook.styler}" inheritall="false" target="${kind}">
        <property name="docbook.xml.dir" location="${doc.srcdir}/xml" />
        <property name="docbook.resources.dir" location="${doc.srcdir}/resources" />
        <property name="distribution.dir" location="${docdir}/${kind}" />
@@ -133,18 +133,25 @@
   
   <target name="makedocs-single" description="produce html documentation (single file)">
     <antcall target="builddocs" inheritall="false">
-      <param name="kind" value="single" />
+      <param name="kind" value="html.single" />
     </antcall>
   </target>
   
   <target name="makedocs-chunked" description="produce html documentation (chunked)">
     <antcall target="builddocs" inheritall="false">
-      <param name="kind" value="chunked" />
+      <param name="kind" value="html.chunked" />
     </antcall>
   </target>
+
+  <target name="makedocs-fo" description="transform documentation to fo">
+    <antcall target="builddocs" inheritall="false">
+      <param name="kind" value="pdf.fop" />
+    </antcall>
+  </target>
+
   
   <target name="makedocs" description="produce documentation" 
-    depends="makedocs-single, makedocs-chunked">
+    depends="makedocs-single, makedocs-chunked, makedocs-fo">
       <copy todir="${docdir}">
         <fileset dir="${doc.srcdir}" includes="*.txt,*.rtf" />
       </copy>
