@@ -12,7 +12,7 @@ public class StatsPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       if (app.getAttribute("api_count")==null)
       {

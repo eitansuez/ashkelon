@@ -33,11 +33,11 @@ public abstract class Page
    }
    
    /**
-    * init method can optionally return the name of a valid page
+    * handleRequest method can optionally return the name of a valid page
     * which the flowcontroller will use to forward the request to
     * instead of the default associated page name.
     */
-   public abstract String init() throws Exception;
+   public abstract String handleRequest() throws Exception;
    
    public void setConnection(Connection conn)
    {

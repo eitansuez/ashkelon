@@ -10,7 +10,7 @@ public class ConfigPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       String ui_config = ServletUtils.getRequestParam(request, "ui_config");
       String new_ui = "";

@@ -11,7 +11,7 @@ public class SearchPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       String simple = ServletUtils.getRequestParam(request, "simple");
       if (StringUtils.isBlank(simple))  // to distinguish from initial page visit and actual search form submissions

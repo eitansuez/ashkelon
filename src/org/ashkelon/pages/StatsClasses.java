@@ -14,7 +14,7 @@ public class StatsClasses extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       List stats = getClassStats();
       request.setAttribute("classCounts", stats);

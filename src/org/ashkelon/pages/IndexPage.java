@@ -14,7 +14,7 @@ public class IndexPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       String startFrom = ServletUtils.getRequestParam(request, "start");
       String cmd = ServletUtils.getCommand(request);

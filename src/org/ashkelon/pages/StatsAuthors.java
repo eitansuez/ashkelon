@@ -13,7 +13,7 @@ public class StatsAuthors extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       request.setAttribute("classCounts", getAuthorStats());
       return null;

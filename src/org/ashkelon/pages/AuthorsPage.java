@@ -13,7 +13,7 @@ public class AuthorsPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       List authors = getAuthors();
       request.setAttribute("authors", authors);

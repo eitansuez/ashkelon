@@ -12,7 +12,7 @@ public class NoopPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
        return null;
    }

@@ -11,7 +11,7 @@ public class AuthorPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       String authorId = ServletUtils.getRequestParam(request, "id");
       //String cmd = ServletUtils.getRequestParam(request, "cmd");

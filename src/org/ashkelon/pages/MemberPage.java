@@ -16,7 +16,7 @@ public class MemberPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       //int memberId = Integer.parseInt(ServletUtils.getRequestParam(request, "member_id"));
       int memberId = 0;

@@ -12,7 +12,7 @@ public class PackagesPage extends Page
         super();
     }
 
-    public String init() throws SQLException
+    public String handleRequest() throws SQLException
     {
 		// Poor man's cache - how do we do live updates to the database then?
         if (app.getAttribute("javaPkgs") != null)

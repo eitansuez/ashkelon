@@ -17,7 +17,7 @@ public class AdminPage extends Page
       dbmgr = DBMgr.getInstance();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       String command = ServletUtils.getRequestParam(request, "command");
       if ("resetconns".equals(command))

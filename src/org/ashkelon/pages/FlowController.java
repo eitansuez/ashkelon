@@ -143,7 +143,7 @@ public class FlowController extends HttpServlet
             page.setApplication(getServletContext());
             
             log.verbose("Received command: "+cmd);
-            cmd = page.init();
+            cmd = page.handleRequest();
             if (StringUtils.isBlank(cmd))
             {
                updateTrail(request, cmdInfo);

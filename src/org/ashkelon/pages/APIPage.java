@@ -14,7 +14,7 @@ public class APIPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       int apiId = Integer.parseInt(ServletUtils.getRequestParam(request, "id"));
       Integer apiId_obj = new Integer(apiId);

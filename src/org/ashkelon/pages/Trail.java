@@ -12,7 +12,7 @@ public class Trail extends Page
       log.setPrefix("trail");
    }
    
-   public String init()
+   public String handleRequest()
    {
       String cmd = ServletUtils.getCommand(request);
       if (cmd.equals("trail.reset"))

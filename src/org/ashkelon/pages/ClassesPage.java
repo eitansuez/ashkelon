@@ -16,7 +16,7 @@ public class ClassesPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       boolean simpleSearch = (Boolean.valueOf((String) ServletUtils.getRequestParam(request, "simple"))).booleanValue();
       

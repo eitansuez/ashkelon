@@ -14,7 +14,7 @@ public class PackagePage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       int pkgId = 0;
 

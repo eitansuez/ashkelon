@@ -14,9 +14,8 @@ public class ClassPage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
-      
       int clsId = 0;
       try
       {

@@ -12,7 +12,7 @@ public class ClassSourcePage extends Page
       super();
    }
    
-   public String init() throws SQLException
+   public String handleRequest() throws SQLException
    {
       String qualifiedName = ServletUtils.getRequestParam(request, "cls_name");
       String fileName = qualifiedName.replace('.', File.separatorChar) + ".java";
