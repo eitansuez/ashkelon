@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<document>
+<properties>
+  <author email="eitan@uptodata.com">Eitan Suez</author>
+  <title>Task List</title> 
+</properties>
+
+<body>
+
+<section name="What are the things driving the To-Do list right now">
+
+<p>
+There are plenty of important tasks to work on that would greatly 
+increase the adoption of ashkelon.  Simpler installation, configuration,
+tools, adding features, support for more databases,
+integration with tools such as eclipse and gforge, more metrics, realizing
+the vision of ashkelon serving as a way to measure [and have insight into]
+your code in various ways.
+</p>
+
+</section>
+
+<section name="Ashkelon To-Do List">
+
+<subsection name="XP">
+
+<ol>
+<li>
+  Write Unit Tests for Application and begin developing using test-first method.
+</li>
+</ol>
+
+</subsection>
+
+<subsection name="Refactoring">
+
+<ol>
+
+<li>
+ Oracle version uses separate connect-by statements to generate
+     inheritance trees.  Action: revise/refactor to use same solution
+     other databases use
+</li>
+
+<li>
+ Code that supports multiple GUIs forces data duplication.
+   Refactor.  Proposed solution:  One set of JSPs generate the
+   content to go on all versions of a page in XML format.
+   Use separate XSLT transform to produce the different look
+   and feel's.
+</li>
+    
+<li>
+  Modularize the build.xml file
+</li>
+
+<li>
+ Review how application is configured and try to consolidate
+    config files into a single file
+</li>
+
+<li>
+ Review command line interface for ashkelon manager (populator) for
+    possible improvements
+</li>
+
+<li>
+ Refactor Model to use EJBs
+</li>
+
+</ol>
+
+</subsection>
+
+<subsection name="Enhancements">
+
+<ol>
+<li>
+ Build an ant task to run the ashkelon manager (populator). [done; by hays]
+</li>
+<li>
+ Support more databases (wider audience): hypersonicsql
+</li>
+<li>
+ Support for multiple versions of APIs in a single repository. [hays]
+</li>
+</ol>
+</subsection>
+
+<subsection name="Improvements">
+<ol>
+<li>
+ Replace existing database connection pooling code with 
+    a quality implementation that also handles refreshing stale connections.
+    Use Jakarta's dbcp. -- update:  apparently dbcp has its own host of
+    issues.  not necessarily a win to switch.  existing dbcp code has been
+    improved.  pool reset on error.
+</li>
+<li>
+ Smarter parsing of @author tags to extract email address as a separate
+     field (revise schema for author table to include email field) [done, though
+     might want to revisit method]
+</li>
+<li>
+ A GUI tool for creating api.xml files [note: maven plug-in also assists
+     with this, though i haven't tried it firsthand].
+</li>
+</ol>
+
+</subsection>
+
+<subsection name="UI">
+<ol>
+<li>
+ Improve usability of GUI and continue refactoring JSPs
+ <ul>
+ <li>
+  - make ui javabeans aware.  separate accessor/mutator pairs
+    as listed properties in the ui.  ones that are read-only
+    should display as such (no mutator).  this would really
+    clean up the method listing for classes with many methods.
+    on the other hand, how does one distinguish between a class
+    that coincidentally has getter/setter methods but was never
+    intended to be a javabean (example: java.awt.Color)??
+    maybe do this only for classes with associated beaninfo classes.
+  </li>
+  <li>
+    - scrollable div's in ui should not have hard-coded height.
+    is it possible with html to do something layout-manager-like?
+    that is, specify that that div should take up whatever
+    vertical space remains on the page? : note: consider doing
+    this for the xul-based ui.
+  </li>
+  </ul>
+</li>
+
+<li>
+ Port solution to use Struts (Under consideration)
+   Current solution is MVC but author's own implementation.
+   update:  i don't see a real value to doing this. if
+   anything, try tapestry.
+</li>
+<li>
+  GUI Customization:  Make packages page configurable so it
+  can list packages of relevance to a specific business 
+  environment [hays]
+</li>
+<li>
+ Use JSTL in JSPs [begun]
+</li>
+<li>
+ A third, XUL-based GUI
+</li>
+<li>
+ Make DHTML look &amp; feel work in Safari
+</li>
+</ol>
+</subsection>
+
+<subsection name="Performance">
+<ol>
+<li>
+  Improve caching implementation
+</li>
+<li>
+  Profile application
+</li>
+</ol>
+</subsection>
+
+<subsection name="Major Features">
+<ol>
+<li>
+ GUI for Ashkelon Manager (populator)
+ <ol type="a">
+ <li>
+  a. Swing
+  </li>
+  <li>
+  b. Web front-end
+  </li>
+  <li>
+  c. Remote proxy (like cvs pserver et al)
+  </li>
+  </ol>
+ </li>
+
+<li>
+ Integration with various IDEs
+ <ol type="a">
+  <li>
+  a. Eclipse [hays]
+  </li>
+  <li>
+  b. NetBeans
+  </li>
+  <li>
+  c. JBuilder
+  </li>
+  <li>
+  d. IDEA
+  </li>
+  </ol>
+</li>
+
+<li>
+ Integration with GForge
+ (Add GForge support to automatically run ashkelon against a project
+   and display the documentation as a link under the documentation item) [hays]
+</li>
+<li>
+
+ Integration with Maven.  That is, make ashkelon a maven-enabled project
+   so that code can be built using maven.  Also at some point might want to
+   consider writing a maven plugin to the populator (ben walding intends to work
+   on an ashkelon plugin for maven)..
+</li>
+</ol>
+</subsection>
+ 
+<subsection name="Add Value">
+
+<ol>
+<li>
+ Integrate with open source measurement tools [hays]
+   - jdepend
+   </li>
+   <li>
+ Add a referenced-by and references list [hays]
+ </li>
+ </ol>
+</subsection>
+
+<subsection name="XML">
+<ol>
+<li>
+
+ add a third dimension (xml) to ashkelon.
+
+   currently model can exist at runtime (org.ashkelon model objects) or in 
+   database (have a database schema and code to support transfer of doc 
+   info from model to db and back).
+
+   vision:
+     cvs export apiname
+      exports api information as an xml document
+
+     cvs import apiinfo.xml
+      imports an entire api into the db from corresponding info save
+       into apiinfo.xml (not to confuse with existing api.xml file
+       which contains only info about the api entity; this new xml
+       is deep and contains package and class and member info and more)
+
+      new doclet:  ashkelon xml @api.xml
+        functions similar to ashkelon add but instead of dumping
+        data into db, it would dump it to a target xml file
+        
+</li>
+<li>
+
+ 2. build on top of this xml infrastructure web services to allow
+   the transfer of api info to a remote repository
+</li>
+</ol>
+
+</subsection>
+
+<subsection name="Specific Tasks / Bugs, Small Features">
+<ol>
+<li>
+ Stats page:  add class count by api in addition to class count
+ by package
+</li>
+<li>
+ API Page:  add listing of classes in a single api, flattening
+  the various packages an api contains.  sort of like a 
+  single package page, but for multiple packages (all
+  belonging to a certain api).
+</li>
+<li>
+ Tab selection initialization:  appears to be broken (at least
+  on mozilla), fix it
+</li>
+<li>
+ Search:  ability to restrict a search (both 'direct' and 'power')
+  to a single API
+</li>
+<li>
+ member or class listing:  modifier columns:  establish min-width in style
+   to improve look
+</li>
+</ol>
+</subsection>
+
+</section>
+
+<section name="Ashkelon Completed List">
+
+<ol>
+<li>
+ Build Ant Scripts to build and deploy ashkelon on multiple platforms
+</li>
+<li>
+ Set up open source project at sourceforge.net so can leverage
+   development &amp; hosting tools such as mailing lists and cvs.
+</li>
+<li>
+ Build Mozilla-optimized set of JSPs (GUI)
+</li>
+<li>
+ Code repackaging away from com.u2d.dbdoc and to org.ashkelon
+</li>
+<li>
+ Pool Page classes
+</li>
+<li>
+ Postgresql support
+</li>
+<li>
+ Document the database structure (see doc/ERD.pdf)
+</li>
+</ol>
+</section>
+
+<section name="Abandoned Ideas">
+
+<ol>
+<li>
+ Remove all references to PK's (primary keys) from URL's.  Reference 
+   programming elements only by fully qualified names.
+   
+  reason abandoned:
+   - url would get much longer
+   - somewhat conflicts with multi-versioning feature (fully qualified
+       name would not uniquely identify a programming element)
+</li>
+
+<li>
+ Gump Integration
+  reason:  will focus on maven first.  will revisit gump later.
+</li>
+
+</ol>
+
+</section>
+
+</body>
+
+</document>
+
