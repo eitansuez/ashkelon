@@ -28,7 +28,7 @@ then
     exit 2
 fi
 
-CP=${JAVA_HOME}/lib/tools.jar:${ASHK_HOME}/build/ashkelon.jar:${ASHK_HOME}/db/mysql/mysql-connector-java-2.0.14-bin.jar:${ASHK_HOME}/db/postgres/pg74jdbc3.jar
+CP=${JAVA_HOME}/lib/tools.jar:${ASHK_HOME}/build/ashkelon.jar:${ASHK_HOME}/db/mysql/mysql-connector-java-3.0.14-production-bin.jar:${ASHK_HOME}/db/postgres/pg74jdbc3.jar
 for i in ${ASHK_HOME}/lib/*.jar
 do
    CP=${CP}:$i 
