@@ -207,6 +207,7 @@ public class Ashkelon extends Doclet
          try
          {
             api.store(conn);
+            conn.commit();
          }
          catch (SQLException ex)
          {
