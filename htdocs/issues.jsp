@@ -15,7 +15,7 @@ Date: December 2001
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc - Known Issues</TITLE>
+	<TITLE>Ashkelon - Known Issues</TITLE>
   <jsp:include page="includes.html" flush="true"/>
 
   <!-- SECTION: PAGE STYLES -->
@@ -42,14 +42,14 @@ Known Issues
 
 <OL>
 <LI>
-dbdoc is a beta quality product.  You may encounter bugs and inconsitencies in its behavior (in which case you are encouraged to <A HREF="mailto:eitan@uptodata.com">contact</A> the author so that the bug or inconsistency may be fixed)
+Ashkelon is a beta quality product.  You may encounter bugs and inconsitencies in its behavior (in which case you are encouraged to <A HREF="mailto:eitan@uptodata.com">contact</A> the author so that the bug or inconsistency may be fixed)
 </LI>
 <LI>
   inheritance trees currently show only class inheritance.  interface
   inheritance structures are not shown
 </LI>
 <LI>
-  dbdoc does not currently provide class serialization information (javadoc does this)
+  Ashkelon does not currently provide class serialization information (javadoc does this)
 </LI>
 </OL>
 
@@ -64,7 +64,7 @@ dbdoc is a beta quality product.  You may encounter bugs and inconsitencies in i
 </STYLE>
 
 <P>
-Given that dbdoc has only recently been released, I have not yet received enough feedback to develop even a semi-complete FAQ.  I will post new entries to this FAQ for any questions that are submitted.  You may <A HREF="mailto:eitan@uptodata.com">submit questions</A> directly to the author.
+I will post new entries to this FAQ for any questions that are submitted.  You may <A HREF="mailto:eitan@uptodata.com">submit questions</A> directly to the author.
 </P>
 
 <H3>
@@ -73,11 +73,11 @@ FAQ
 
 <OL>
   <LI>
-   <SPAN CLASS="question">Why are docs for Sun's J2SE (or other Sun APIs) not available in dbdoc's repository?</SPAN>
+   <SPAN CLASS="question">Why are docs for Sun's J2SE (or other Sun APIs) not available in Ashkelon's repository?</SPAN>
    <P><B>Answer</B></P>
    <P>
 
-While publishing of Sun javadocs on intranets is permitted, publishing javadocs on the internet requires explicit permission and is a more complicated thing to do from a legal perspective. UptoData has thus far not gone through the trouble to obtain permission to publish Sun's Java APIs (but nothing is stopping you from running dbdoc on your intranet fully populated with Java 2 APIs). 
+While publishing of Sun javadocs on intranets is permitted, publishing javadocs on the internet requires explicit permission and is a more complicated thing to do from a legal perspective. UptoData has thus far not gone through the trouble to obtain permission to publish Sun's Java APIs (but nothing is stopping you from running Ashkelon on your intranet fully populated with Java 2 APIs). 
 
 <!--
    While publishing of Sun javadocs on intranets is permitted, publishing javadocs on the internet requires explicit permission.  UptoData has thus far been unable to obtain permission from Sun to publish their APIs.  To quote a message from Sun's JavaDoc team:<BR><BR>

@@ -15,7 +15,7 @@ Date: November 2001
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc - API Listing</TITLE>
+	<TITLE>Ashkelon - API Listing</TITLE>
   <jsp:include page="includes.html" flush="true"/>
 
   <%-- SECTION: PAGE STYLES --%>
@@ -32,10 +32,10 @@ Date: November 2001
 
 <DIV CLASS="PAGEBODY">
 
-<H3>Welcome to dbdoc</H3>
+<H3>Welcome to Ashkelon</H3>
 
 <P>
-dbdoc is an online reference to Java API documentation (see the help documentation for more information).  dbdoc is <B>open source</B> and available for download off sourceforge.net as project <A TARGET="_new" HREF="http://sourceforge.net/projects/ashkelon/">ashkelon</A>.
+Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <B>open source</B> and available for download off sourceforge.net as project <A TARGET="_new" HREF="http://sourceforge.net/projects/ashkelon/">ashkelon</A>.
 </P>
 
 <TABLE BORDER="1" CELLPADDING="5" CELLSPACING="0" RULES="rows" ALIGN="CENTER" bordercolor="black">
@@ -51,7 +51,7 @@ dbdoc is an online reference to Java API documentation (see the help documentati
   %>
     <TR <% if (i%2==1) { %>BGCOLOR="beige"<% } %>>
       <TD VALIGN="TOP">
-        <A HREF="index.html?cmd=api.main&id=<%=api.getId()%>" TITLE="<%=title%>"><SPAN CLASS="api"><%=api.getName()%></SPAN></A>
+        <A HREF="index.html?cmd=api.main&id=<%=api.getId()%>"><SPAN CLASS="api" TITLE="<%=title%>"><%=api.getName()%></SPAN></A>
       </TD>
       <TD VALIGN="TOP">
         <%=api.getSummaryDescription()%>

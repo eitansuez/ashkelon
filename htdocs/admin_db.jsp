@@ -36,7 +36,7 @@ Date: March 2001
 <jsp:include page="main_header.jsp" flush="true"/>
 <%-- <jsp:include page="sub_header.jsp" flush="true"/> --%>
 
-<P>Welcome to dbdoc...eitan.</P>
+<P>Welcome to Ashkelon...eitan.</P>
 
 <FIELDSET>
 <LEGEND><B>Database Connection Pooling</B></LEGEND>

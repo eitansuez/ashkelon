@@ -23,9 +23,9 @@ Date: March 2001
 <HTML>
 <HEAD>
 <% if (needToDisplayResults.booleanValue()) { %>
-	<TITLE>dbdoc - Class Search Results</TITLE>
+	<TITLE>Ashkelon - Class Search Results</TITLE>
 <% } else { %>
-	<TITLE>dbdoc - Lookup Classes</TITLE>
+	<TITLE>Ashkelon - Lookup Classes</TITLE>
 <% } %>
   <jsp:include page="includes.html" flush="true"/>
 

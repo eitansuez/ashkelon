@@ -23,9 +23,9 @@ Date: March 2001
 <HTML>
 <HEAD>
 <% if (needToDisplayResults.booleanValue()) { %>
-	<TITLE>dbdoc - Member Search Results</TITLE>
+	<TITLE>Ashkelon - Member Search Results</TITLE>
 <% } else { %>
-	<TITLE>dbdoc - Lookup Members</TITLE>
+	<TITLE>Ashkelon - Lookup Members</TITLE>
 <% } %>
   <jsp:include page="includes.html" flush="true"/>
 

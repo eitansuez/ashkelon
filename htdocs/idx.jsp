@@ -16,7 +16,7 @@ Date: March 2001
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc Index</TITLE>
+	<TITLE>Ashkelon Index</TITLE>
   <jsp:include page="includes.html" flush="true"/>
 
   <%-- SECTION: PAGE STYLES --%>
