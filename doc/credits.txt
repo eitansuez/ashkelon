@@ -7,10 +7,13 @@ Credits:
   Austin, Texas (www.uptodata.com).
   
   Sincere thanks goes to Andreas Schaefer for his
-  energy, for writing the ant build files for
+  energy, for writing the ant build file for
   this project, and for being the first individual
   to step up to the plate and actively contribute
   to this project.
 
-
+  A thank you also goes to Bob Hayes (alephnaught.com)
+  for actively ramping up on this project on his own 
+  and already contributing a patch that reworks the
+  packages page logic.
 
