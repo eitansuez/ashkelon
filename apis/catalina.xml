@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<api>
+<name>Tomcat 4</name>
+<summarydescription>Tomcat 4 implements the Servlet 2.3 and JavaServer Pages 1.2 specifications from Java Software.</summarydescription>
+<description>Tomcat 4 implements the Servlet 2.3 and JavaServer Pages 1.2 specifications from Java Software, and includes many additional features that make it a useful platform for developing and deploying web applications and web services.</description>
+<publisher>Apache</publisher>
+<download_url>http://jakarta.apache.org/tomcat/tomcat-4.0-doc/index.html</download_url>
+<release_date>2002-01-01T11:59:00.000</release_date>
+<version>4.1</version>
+<package>org.apache.catalina</package>
+<package>org.apache.catalina.ant</package>
+<package>org.apache.catalina.authenticator</package>
+<package>org.apache.catalina.cluster</package>
+<package>org.apache.catalina.connector</package>
+<package>org.apache.catalina.connector.http</package>
+<package>org.apache.catalina.connector.http10</package>
+<package>org.apache.catalina.connector.warp</package>
+<package>org.apache.catalina.core</package>
+<package>org.apache.catalina.deploy</package>
+<package>org.apache.catalina.loader</package>
+<package>org.apache.catalina.logger</package>
+<package>org.apache.catalina.mbeans</package>
+<package>org.apache.catalina.net</package>
+<package>org.apache.catalina.realm</package>
+<package>org.apache.catalina.servlets</package>
+<package>org.apache.catalina.session</package>
+<package>org.apache.catalina.ssi</package>
+<package>org.apache.catalina.startup</package>
+<package>org.apache.catalina.users</package>
+<package>org.apache.catalina.util</package>
+<package>org.apache.catalina.valves</package>
+<package>org.apache.naming</package>
+<package>org.apache.naming.factory</package>
+<package>org.apache.naming.java</package>
+<package>org.apache.naming.resources</package>
+<package>org.apache.naming.resources.jndi</package>
+</api>

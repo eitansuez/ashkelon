@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<api>
+<name>JavaMail</name>
+<summarydescription>The JavaMail API provides a set of abstract classes that model a mail system.</summarydescription>
+<description>The JavaMail API provides a set of abstract classes that model a mail system. The API provides a platform independent and protocol independent framework to build Java technology-based mail and messaging applications. The JavaMailTM API is implemented as a Java platform optional package and is also available as part of the Java 2 platform, Enterprise Edition. Sun provides a royalty-free reference implementation, in binary form, that developers will be able to use and ship.</description>
+<publisher>Sun MicroSystems</publisher>
+<download_url>http://java.sun.com/products/javamail/</download_url>
+<release_date>2002-06-26T08:00:00.000</release_date>
+<version>1.3</version>
+<package>com.sun.mail.imap</package>
+<package>com.sun.mail.pop3</package>
+<package>com.sun.mail.smtp</package>
+<package>javax.mail</package>
+<package>javax.mail.event</package>
+<package>javax.mail.internet</package>
+<package>javax.mail.search</package>
+</api>
