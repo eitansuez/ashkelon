@@ -1,10 +1,12 @@
 
-body
+/* generic styles */
+
+html, body
 {
-  margin: 0px;
+  margin: 0;
 }
 
-body, td, p
+body, table
 {
   font-family: Arial,sans-serif;
   font-size: 10pt;
@@ -17,69 +19,10 @@ body, td, p
 
 .pagebody
 {
-  margin: 20px;
+  margin: 1em;
 }
 
-.columnar
-{
-  border: thin solid #937353;
-  border-collapse: collapse;
-}
-
-table caption
-{
-}
-
-thead.table_header
-{
-  background-color: beige;
-  font-size: small;
-  font-weight: bold;
-  text-align: left;
-  vertical-align: bottom;
-}
-
-tr.highlight
-{
-  background-color: yellow;
-  font-weight: bold;
-}
-
-.sampleCode
-{
-  font-family: "Courier New", monospace;
-}
-
-.message
-{
-  font-style: italic;
-}
-.message:before
-{
- /* i can't recall why i did this?:  content: <B>&gt;</B>; */
-}
-
-fieldset
-{
-  padding: 10;
-}
-
-.observable
-{
-  cursor: default;
-}
-
-.collapsible
-{
-  display: '';
-  list-style-image: url("images/minus.gif");
-}
-
-.leafnode
-{
-  display: inline;
-}
-
+/* semantic styles */
 
 .ordinaryClass
 {
@@ -92,11 +35,11 @@ fieldset
 }
 .exception
 {
-  color: #FF0000;
+  color: #ff0000;
 }
 .errorClass
 {
-  color: #BC2540;
+  color: #bc2540;
   font-weight: bold;
 }
 .method
@@ -131,36 +74,85 @@ fieldset
   color: #9a3a47;
   font-style: italic;
 }
+.static
+{
+  font-weight: bold;
+}
+.abstract
+{
+  font-style: italic;
+}
+.deprecated
+{
+  text-decoration: line-through;
+}
+
+
+/* other styles */
+
+.columnar
+{
+  border: 1px solid #937353;
+  border-collapse: collapse;
+}
+
+thead.table_header
+{
+  background-color: beige;
+  font-size: small;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+tr.highlight
+{
+  background-color: yellow;
+  font-weight: bold;
+}
+
+.message
+{
+  font-style: italic;
+}
+.message:before
+{
+ /* i can't recall why i did this?:  content: <B>&gt;</B>; */
+}
+
+fieldset
+{
+  padding: 10px;
+}
+
+.observable
+{
+  cursor: default;
+}
+
+.collapsible
+{
+  display: '';
+  list-style-image: url("images/minus.gif");
+}
+
+.leafnode
+{
+  display: inline;
+}
 
 .scroll_column
 {
-  position: relative;
-  height: 330;
+  height: 330px;
   overflow: auto;
 }
 
 .scroll_table
 {
-  position: relative;
-  height: 350;
+  height: 350px;
   overflow: auto;
 }
 
-
-.static
-{
-  font-weight: bold;
-}
-
-.abstract
-{
-  font-style: italic;
-}
-
-.deprecated
-{
-  text-decoration: line-through;
-}
 
 #search-callout
 {
@@ -196,14 +188,33 @@ fieldset
 
 #footer
 {
-  border-top: thin solid black;
-  border-bottom: thin solid black;
-  padding-top: 5px;
-  padding-bottom: 5px;
   font-size: 8pt;
-  text-align: right;
   line-height: 1.2em;
-  padding-right: 5px;
+  text-align: right;
+  padding: 0.5em;
+  border: 1px solid black;
+  border-width: 1px 0px;
   background-color: lightgray;
+  margin-top: 3em;
 }
+
+.scroll-description
+{
+  height: 300px;
+  overflow: auto;
+  border: thin solid #bbbbbb;
+  padding: 0.5em;
+}
+
+.publisher
+{
+  font-style: italic;
+}
+#toggleBtn
+{
+  margin: 0;
+  padding: 0;
+  background-color: #ccc;
+}
+
 

@@ -20,74 +20,67 @@
   String deprecated = cls.isDeprecated() ? "deprecated" : "";
 %>
 
-<TABLE WIDTH="90%" STYLE="border-bottom: thin solid #808080;"><TR><TD ALIGN="LEFT">
-<% if (authors != null && !authors.isEmpty()) { %>
-Author<%=(authors.size()==1)?"":"s"%>: 
-  <% for (int i=0; i<authors.size(); i++)
-     {
-       author = (Author) authors.get(i);
-  %>
-    <A HREF="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></A> <%=(i<authors.size()-1) ? "," : ""%>
-  <% } %>
-<% } %>
-</TD><TD ALIGN="RIGHT">
-<% if (version != null) { %>
-Version: <%=version%>
-<% } %>
-</TD></TR></TABLE>
+<div>
 
-<BR>
+<a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><span class="package"><%=pkg.getName()%></span></a>
 
-<TABLE BORDER="0">
-	<TR VALIGN="BOTTOM">
-     <TD COLSPAN="3"><A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"><%=pkg.getName()%></SPAN></A>
-<% if (pkg.getAPI() != null) { %>
-&nbsp;&nbsp;&nbsp;
-<SPAN CLASS="api" STYLE="font-size: 8pt;">
+<span class="api" style="font-size: 8pt; padding-left: 1em;">
 (<a href="api.main.do?id=<%=cls.getAPI().getId()%>"><%=cls.getAPI().getName()%></a> API)
-</SPAN>
-<% } %>
-     </TD>
-      <TD WIDTH="20"></TD>
-     <TD ALIGN="RIGHT">
-       <A HREF="cls.source.do?cls_name=<%=cls.getQualifiedName()%>" STYLE="font-size: 8pt;">View Source</A>
-     </TD>
-  </TR>
-	<TR VALIGN="BOTTOM">
-      <TD><%=modifier%> <SPAN CLASS="<%=cls_type%> <%=modifier%> <%=deprecated%>" STYLE="font-size: large; font-weight: bold;"><%=classname%></SPAN></TD>
-      <TD WIDTH="20"></TD>
+</span>
+
+<span style="padding-left: 5em;"><a href="cls.source.do?cls_name=<%=cls.getQualifiedName()%>" style="font-size: 8pt;">Source Code</a></span>
+
+</div>
+
+
+<div style="border-bottom: 1px solid #808080; padding: 0.5em 0.5em 0 0; margin: 0.5em 0">
+
+<%=modifier%> <span class="<%=cls_type%> <%=modifier%> <%=deprecated%>" style="font-size: large; font-weight: bold;"><%=classname%></span>
+
       <% if (cls.getClassType() != ClassType.INTERFACE) { %>
         <% if (cls.getSuperClass() != null && cls.getSuperClass().getId()>0) { %>
-	       <TD>Extends <A HREF="cls.main.do?cls_id=<%=cls.getSuperClass().getId()%>"><SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></A></TD>
+	       <span style="padding-left: 5em;">Extends <a href="cls.main.do?cls_id=<%=cls.getSuperClass().getId()%>"><span class="superclass"><%=cls.getSuperClassName()%></span></a></span>
         <% } else { %>
-	       <TD>Extends <SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></TD>
+	       <span style="padding-left: 5em;">Extends <span class="superclass"><%=cls.getSuperClassName()%></span></span>
         <% } %>
-      <% } else { %>
-	    <TD></TD>
       <% } %>
 
       <%if (cls.getInterfaces()!=null && cls.getInterfaces().size() > 0) { %>
-        <TD WIDTH="20"></TD>
-        <TD>Implements 
+        <span style="padding-left: 5em;">Implements 
         <% for (int i=0; i<cls.getInterfaces().size(); i++)
            {
              impl_interface = (ClassType) cls.getInterfaces().get(i);
         %>
           <% if (impl_interface.getId()>0) { %>
-	         <A HREF="cls.main.do?cls_id=<%=impl_interface.getId()%>"><SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN></A>
+	         <a href="cls.main.do?cls_id=<%=impl_interface.getId()%>"><span class="interface"><%=impl_interface.getName()%></span></a>
           <% } else { %>
-	         <SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN>
+	         <span class="interface"><%=impl_interface.getName()%></span>
           <% } %>
           <%=(i<cls.getInterfaces().size()-1) ? "," : ""%>
           
         <% } %>
-        </TD>
-      <% } else { %>
-	    <TD></TD>
+        </span>
       <% } %>
 
-	</TR>
-</TABLE>
+</div>
 
-<BR>
+<div style="margin-bottom: 3em; clear: both;">
+
+<% if (authors != null && !authors.isEmpty()) { %>
+  <span style="float: left;">
+  <% for (int i=0; i<authors.size(); i++)
+     {
+       author = (Author) authors.get(i);
+  %>
+    <a href="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></a> <%=(i<authors.size()-1) ? "," : ""%>
+  <% } %>
+  </span>
+<% } %>
+
+<% if (version != null) { %>
+<span style="float: right;">Version: <%=version%></span>
+<% } %>
+
+</div>
+
 

@@ -1,4 +1,6 @@
 <%@ page info="page" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*,java.text.*,java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 
 <%
   String cmd = ServletUtils.getRequestParam(request, "cmd");
@@ -35,39 +37,39 @@
 
 <br/><br/>
 
-<div ALIGN="CENTER">
-<TABLE RULES="rows" CELLPADDING="3" CELLSPACING="0">
-<CAPTION>Entity Counts</CAPTION>
-<TR>
-  <TD>APIs</TD>
-  <TD ALIGN="RIGHT"><%=api_count_f%></TD>
-</TR>
-<TR>
-  <TD>Packages</TD>
-  <TD ALIGN="RIGHT"><%=package_count_f%></TD>
-</TR>
-<TR>
-  <TD>Classes & Interfaces</TD>
-  <TD ALIGN="RIGHT"><%=class_count_f%></TD>
-</TR>
-<TR>
-  <TD>Members</TD>
-  <TD ALIGN="RIGHT"><%=member_count_f%></TD>
-</TR>
-</TABLE>
+<div align="center">
+<table rules="rows" cellpadding="3" cellspacing="0">
+<caption>Entity Counts</caption>
+<tr>
+  <td>APIs</td>
+  <td align="right"><%=api_count_f%></td>
+</tr>
+<tr>
+  <td>Packages</td>
+  <td align="right"><%=package_count_f%></td>
+</tr>
+<tr>
+  <td>Classes & Interfaces</td>
+  <td align="right"><%=class_count_f%></td>
+</tr>
+<tr>
+  <td>Members</td>
+  <td align="right"><%=member_count_f%></td>
+</tr>
+</table>
 </div>
 
 
-<P ALIGN="CENTER">
-<APPLET CODE="bar8.class" CODEBASE="classes" 
- WIDTH="500" HEIGHT="300" NAME="barchart_pkg"
+<p align="center">
+<applet code="bar8.class" codebase="classes" 
+ WIDTH="500" HEIGHT="300" name="barchart_pkg"
  STYLE="border: thin solid 1;">
-<PARAM NAME="title" VALUE="Package Counts by API">
-<PARAM NAME="x_title" VALUE="API">
-<PARAM NAME="y_title" VALUE="Package Count">
-<PARAM NAME="num_series" VALUE="1">
-<PARAM NAME="num_values" VALUE="<%=apipkgcounts.size()%>">
-<PARAM NAME="series1name"   VALUE="Series 1">
+<param name="title" value="Package Counts by API">
+<param name="x_title" value="API">
+<param name="y_title" value="Package Count">
+<param name="num_series" value="1">
+<param name="num_values" value="<%=apipkgcounts.size()%>">
+<param name="series1name"   value="Series 1">
 <%
  Iterator itr = apipkgcounts.iterator();
  List pair;
@@ -82,23 +84,23 @@
    count = ((Integer) pair.get(0)).intValue();
    apiname = ((String) pair.get(1));
  %>
-<PARAM NAME="series1value<%=i%>" VALUE="<%=count%>">
-<PARAM NAME="value_caption<%=i%>" VALUE="<%=apiname%>">
+<param name="series1value<%=i%>" value="<%=count%>">
+<param name="value_caption<%=i%>" value="<%=apiname%>">
 <%
  }
  %>
 </APPLET>
-</P>
+</p>
 
 <P ALIGN="CENTER">
-<APPLET CODE="bar8.class" CODEBASE="classes" 
+<applet code="bar8.class" codebase="classes" 
  WIDTH="500" HEIGHT="300" NAME="barchart_cls"
  STYLE="border: thin solid 1;">
-<PARAM NAME="title" VALUE="Class Counts by API">
-<PARAM NAME="x_title" VALUE="API">
-<PARAM NAME="y_title" VALUE="Class Count">
-<PARAM NAME="num_series" VALUE="1">
-<PARAM NAME="num_values" VALUE="<%=apiclscounts.size()%>">
+<param name="title" value="Class Counts by API">
+<param name="x_title" value="API">
+<param name="y_title" value="Class Count">
+<param name="num_series" value="1">
+<param name="num_values" value="<%=apiclscounts.size()%>">
 <%
  itr = apiclscounts.iterator();
 
@@ -110,8 +112,8 @@
    count = ((Integer) pair.get(0)).intValue();
    apiname = ((String) pair.get(1));
  %>
-<PARAM NAME="series1value<%=i%>" VALUE="<%=count%>">
-<PARAM NAME="value_caption<%=i%>" VALUE="<%=apiname%>">
+<param name="series1value<%=i%>" value="<%=count%>">
+<param name="value_caption<%=i%>" value="<%=apiname%>">
 <%
  }
  %>
@@ -119,14 +121,14 @@
 </P>
 
 <P ALIGN="CENTER">
-<APPLET CODE="bar8.class" CODEBASE="classes" 
+<applet code="bar8.class" codebase="classes" 
  WIDTH="500" HEIGHT="300" NAME="barchart_mmb"
  STYLE="border: thin solid 1;">
-<PARAM NAME="title" VALUE="Member Counts by API">
-<PARAM NAME="x_title" VALUE="API">
-<PARAM NAME="y_title" VALUE="Member Count">
-<PARAM NAME="num_series" VALUE="1">
-<PARAM NAME="num_values" VALUE="<%=apimmbcounts.size()%>">
+<param name="title" value="Member Counts by API">
+<param name="x_title" value="API">
+<param name="y_title" value="Member Count">
+<param name="num_series" value="1">
+<param name="num_values" value="<%=apimmbcounts.size()%>">
 <%
  itr = apimmbcounts.iterator();
 
@@ -138,19 +140,18 @@
    count = ((Integer) pair.get(0)).intValue();
    apiname = ((String) pair.get(1));
  %>
-<PARAM NAME="series1value<%=i%>" VALUE="<%=count%>">
-<PARAM NAME="value_caption<%=i%>" VALUE="<%=apiname%>">
+<param name="series1value<%=i%>" value="<%=count%>">
+<param name="value_caption<%=i%>" value="<%=apiname%>">
 <%
  }
  %>
-</APPLET>
-</P>
+</applet>
+</p>
 
 
 </div>
 
-<jsp:include page="footer.html" flush="true"/>
-
+<c:import url="footer.html" />
 
 </body>
 </html>

@@ -75,9 +75,7 @@
 
 </div>
 
-
-<jsp:include page="footer.html" flush="true"/>
-
+<c:import url="footer.html" />
 
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page info="command not found page" import="java.io.*,org.ashkelon.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%
   String cmd = ServletUtils.getRequestParam(request, "cmd");
@@ -54,7 +55,7 @@
 
 </div>
 
-<jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
 </body>
 </html>

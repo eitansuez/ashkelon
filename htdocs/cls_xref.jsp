@@ -27,23 +27,23 @@ Date: March 2001
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<P STYLE="font-size: larger;"><B>Which cross references might you be interested in?</B></P>
+<p style="font-size: larger; font-weight: bold;">Which cross references might you be interested in?</P>
 
-<UL>
-  <LI><A HREF="cls.xref.field.do?cls_id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
-  <LI><A HREF="cls.xref.returnedby.do?cls_id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
-  <LI><A HREF="cls.xref.passedto.do?cls_id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
+<ul>
+  <li><a href="cls.xref.field.do?cls_id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
+  <LI><a href="cls.xref.returnedby.do?cls_id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
+  <LI><a href="cls.xref.passedto.do?cls_id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
   <%if (cls.getClassType()==ClassType.EXCEPTION_CLASS) { %>
-  <LI><A HREF="cls.xref.thrownby.do?cls_id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
+  <LI><a href="cls.xref.thrownby.do?cls_id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
   <%} %>
   <%if (cls.getClassType()!=ClassType.INTERFACE) { %>
-  <LI><A HREF="cls.xref.subclasses.do?cls_id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
-  <LI><A HREF="cls.xref.descendents.do?cls_id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
+  <LI><a href="cls.xref.subclasses.do?cls_id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
+  <LI><a href="cls.xref.descendents.do?cls_id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
   <%} else {%>
-  <LI><A HREF="cls.xref.implementedby.do?cls_id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
-  <LI><A HREF="cls.xref.extendedby.do?cls_id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
+  <LI><a href="cls.xref.implementedby.do?cls_id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
+  <LI><a href="cls.xref.extendedby.do?cls_id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
   <%} %>
-</UL>
+</ul>
 
 
 <% if (xrefs != null) { %>
@@ -59,7 +59,7 @@ if (i<=4) // displaying member info
   if (keys[i-1].equals("returnedby"))
     mmb_type = "method";
 %>
-  <DIV ID="xref_member">
+  <div id="xref_member">
       <jsp:include page="member_list.jsp" flush="true">
         <jsp:param name="caption" value="<%=keys[i-1]%>" />
         <jsp:param name="empty_msg" value="<%=emptyMsg%>" />
@@ -67,14 +67,14 @@ if (i<=4) // displaying member info
         <jsp:param name="members_type" value="<%=mmb_type%>" />
         <jsp:param name="div_id" value="xref_member" />
       </jsp:include>
-  </DIV>
+  </div>
 <%
 }
 else
 {
   request.setAttribute("classes", xrefs);
 %>
-  <DIV ID="xref_class">
+  <div id="xref_class">
       <jsp:include page="class_list.jsp" flush="true">
         <jsp:param name="caption" value="<%=keys[i-1]%>" />
         <jsp:param name="empty_msg" value="<%=emptyMsg%>" />
@@ -82,7 +82,7 @@ else
         <jsp:param name="classes_type" value="all" />
         <jsp:param name="div_id" value="xref_class" />
       </jsp:include>
-  </DIV>
+  </div>
 <% } %>
 
 <% } // end if xrefs ! null %>
@@ -95,19 +95,19 @@ else
 %>
 
   <% if (desc.isEmpty()) { %>
-   <P CLASS="message"><%=name%> has no descendents.</P>
+   <p class="message"><%=name%> has no descendents.</p>
   <% } else {   // has descendents%>
-   <TABLE CLASS="columnar" WIDTH="80%">
-   <CAPTION>Descendents</CAPTION>
-   <TBODY>
-   <TR><TD>
-   <DIV CLASS="scroll_table">
+   <table class="columnar" width="80%">
+   <caption>Descendents</caption>
+   <tbody>
+   <tr><td>
+   <div class="scroll_table">
      <%=org.ashkelon.pages.Page.printTree(desc, pkg.getName())%>
   <% } %>
-   </DIV>
-   </TD></TR>
-   </TBODY>
-   </TABLE>
+   </div>
+   </td></tr>
+   </tbody>
+   </table>
 
 <% } // end if desc ! null %>
 

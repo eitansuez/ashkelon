@@ -1,4 +1,5 @@
 <%@ page info="page" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
@@ -18,7 +19,7 @@
   <p>Click on one of the index tabs to proceed.</p>
 </div>
 
-<jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
 </body>
 </html>

@@ -15,21 +15,13 @@ Date: March 2001
 %>
 
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <% if (found.size() > 30 ) { %>
 <P><%=found.size()%><%=found.size()==99 ? "+" : ""%> matching entries.  Try to narrow your search specification.</P>
 <% } %>
 
-<DIV ID="search_results">
+<div id="search_results">
   <jsp:include page="class_list.jsp" flush="true">
     <jsp:param name="caption" value="Class Search Results" />
     <jsp:param name="empty_msg" value="<%=emptyMsg%>" />
@@ -37,5 +29,5 @@ Date: March 2001
     <jsp:param name="classes_type" value="all" />
     <jsp:param name="div_id" value="search_results" />
   </jsp:include>
-</DIV>
+</div>
 

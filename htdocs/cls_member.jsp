@@ -1,55 +1,71 @@
 <%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
-Author: Eitan Suez
-Date: March 2001
---%>
-
-<%-- SECTION: COMPONENT CODE --%>
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
   JPackage pkg = cls.getPackage();
   String cls_type = cls.getClassTypeName();
 %>
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
+<style>
+#cls-members-table th
+{
+  font-weight: normal;
+  font-style: italic;
+  padding: 0.3em;
+  border: 1px solid #937353;
+}
+#cls-members-table td
+{
+  border: 1px solid #937353;
+  padding: 0;
+  vertical-align: top;
+}
+#cls-members-table ol
+{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+#cls-members-table li
+{
+  padding: 0.2em;
+  margin: 0;
+  border-bottom: 1px dotted #808080;
+}
+</style>
 
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
-
-<P><%= cls.getDoc().getSummaryDescription() %></P>
+<p>
+  <%= cls.getDoc().getSummaryDescription() %>
+</p>
 
 <%! List members; %>
 
-<DIV ALIGN="CENTER">
-<TABLE CLASS="columnar" CELLPADDING="5" BORDER="1">
-<CAPTION><%=cls.getName()%> Members</CAPTION>
-<!-- 
-<THEAD CLASS="table_header">
-<TR>
-  <TH WIDTH="150">Fields</TH>
-  <TH WIDTH="200">Constructors</TH>
-  <TH WIDTH="250">Methods</TH>
-</TR>
-</THEAD>
- -->
-<TBODY>
-<TR>
+<div align="center">
+<table id="cls-members-table" cellspacing="0" class="columnar">
+<caption><%=cls.getName()%> Members</caption>
+<thead class="table_header">
+<tr>
+  <% if (!cls.getFields().isEmpty()) { %>
+  <th width="150">Fields</th>
+  <% } %>
+  <% if (!cls.getConstructors().isEmpty()) { %>
+  <th width="200">Constructors</th>
+  <% } %>
+  <% if (!cls.getMethods().isEmpty()) { %>
+  <th width="250">Methods</th>
+  <% } %>
+</tr>
+</thead>
+<tbody>
+<tr>
   <%
      members = cls.getFields();
      String descr, mtype;
      if (!members.isEmpty())
      {
   %>
-  <TD VALIGN="TOP">
-   <DIV CLASS="scroll_column">
-    <TABLE>
+  <td>
+    <ol class="scroll_column">
     <%
      FieldMember field;
      for (int i=0; i<members.size(); i++)
@@ -59,15 +75,12 @@ Date: March 2001
         descr = HtmlUtils.cleanAttributeText(descr);
         mtype = field.getMemberTypeName();
         %>
-    <TR>
-    	<TD>
-        <A HREF="member.main.do?member_id=<%=field.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%> <%=field.getModifiers()%> <%=field.isDeprecated() ? "deprecated" : ""%>"><%=field.getName()%></SPAN></A>
-      </TD>
-    </TR>
+    	<li>
+        <a href="member.main.do?member_id=<%=field.getId()%>" title="<%=descr%>"><span class="<%=mtype%> <%=field.getModifiers()%> <%=field.isDeprecated() ? "deprecated" : ""%>"><%=field.getName()%></span></a>
+      </li>
   <% } %>
-    </TABLE>
-   </DIV>
-  </TD>
+    </ol>
+  </td>
    <% }  // end if emtpy  %>
    
    <%
@@ -75,9 +88,8 @@ Date: March 2001
      if (!members.isEmpty())
      {
    %>
-  <TD VALIGN="TOP">
-   <DIV CLASS="scroll_column">
-    <TABLE>
+  <td>
+    <ol class="scroll_column">
     <%
      ConstructorMember constructor;
      for (int i=0; i<members.size(); i++)
@@ -87,16 +99,13 @@ Date: March 2001
         descr = constructor.getDoc().getSummaryDescription();
         descr = HtmlUtils.cleanAttributeText(descr);
         %>
-    <TR>
-    	<TD>
-        <A HREF="member.main.do?member_id=<%=constructor.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%>"><%=constructor.getName()%><%=constructor.getSignature()%></SPAN></A>
-      </TD>
-    </TR>
+    	<li>
+        <a href="member.main.do?member_id=<%=constructor.getId()%>" title="<%=descr%>"><span class="<%=mtype%>"><%=constructor.getName()%><%=constructor.getSignature()%></span></a>
+      </li>
   <% } %>
-    </TABLE>
-   </DIV>
+    </ol>
    
-  </TD>
+  </td>
 
    <% }  // end if emtpy  %>
 
@@ -105,15 +114,14 @@ Date: March 2001
      if (!members.isEmpty())
      {
    %>
-  <TD VALIGN="TOP">
-   <DIV CLASS="scroll_column">
-    <TABLE>
+  <td>
+    <ol class="scroll_column">
     <%
      MethodMember method;
      String returninfo;
      String returnClass;
      if (members.isEmpty())
-       out.println("<TR><TD>none</TD></TR>");
+       out.println("<tr><td>none</td></tr>");
      for (int i=0; i<members.size(); i++)
      {
         method = (MethodMember) members.get(i);
@@ -125,24 +133,22 @@ Date: March 2001
         returnClass = (method.getReturnType()!=null && method.getReturnType().getId()>0) ? "ordinaryClass" : "";
           // note, could also be an interface.  so need to handle this (later)
         %>
-    <TR>
-    	<TD>
+    	<li>
         <% if (!returnClass.equals("")) { // return type info %>
-          <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN></A>
+          <a href="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><span class="<%=returnClass%>"><%=returninfo%></span></a>
         <% } else { %>
-          <SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN>
+          <span class="<%=returnClass%>"><%=returninfo%></span>
         <% } // end if %>
-        <A HREF="member.main.do?member_id=<%=method.getId()%>" TITLE="<%=descr%>"><SPAN CLASS="<%=mtype%> <%=method.getModifiers()%> <%=(method.isDeprecated()) ? "deprecated" : ""%>"><%=method.getName()%><%=method.getSignature()%></SPAN></A>
-      </TD>
-    </TR>
+        <a href="member.main.do?member_id=<%=method.getId()%>" title="<%=descr%>"><span class="<%=mtype%> <%=method.getModifiers()%> <%=(method.isDeprecated()) ? "deprecated" : ""%>"><%=method.getName()%><%=method.getSignature()%></span></a>
+      </li>
   <% } %>
-    </TABLE>
-   </DIV>
-  </TD>
+    </ol>
+  </td>
    <% }  // end if emtpy  %>
 
-</TR>
-</TBODY>
-</TABLE>
-</DIV>
+</tr>
+</tbody>
+</table>
+</div>
+
 

@@ -61,3 +61,20 @@
     document.title = title;
   }
 
+
+function toggleHeightMode(tagid, btn, height)
+{
+  var tag = document.getElementById(tagid);
+  if (tag.style.height != "auto")
+  {
+    tag.style.height = "auto";
+    btn.innerHTML = "<img src='images/collapse.jpg' />";
+  }
+  else
+  {
+    tag.style.height = height;
+    btn.innerHTML = "<img src='images/expand.jpg' />";
+  }
+}
+
+

@@ -1,7 +1,6 @@
 <%@ page info="error page" isErrorPage="true" import="java.io.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
@@ -61,7 +60,7 @@
 
 </div>
 
-<jsp:include page="footer.html" flush="true" />
+<c:import url="footer.html" />
 
 </body>
 </html>

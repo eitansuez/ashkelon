@@ -25,17 +25,9 @@ Date: March 2001
 %>
 
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<P><%= cls.getSummaryDescription() %></P>
+<p><%= cls.getSummaryDescription() %></p>
 
 
 <%

@@ -1,4 +1,5 @@
 <%@ page info="configuration/settings page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -100,7 +101,7 @@ include=gateway&includeT=onSunSearch
 
 </div>
 
-<jsp:include page="footer.html" flush="true" />
+<c:import url="footer.html" />
 
 
 </body>

@@ -20,30 +20,23 @@ Date: March 2001
 %>
 
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
-<P>
+<p>
 <% if (field.getType()!=null && field.getType().getId()>0)
   {
   %>
 
-   <A HREF="cls.main.do?cls_id=<%=field.getType().getId()%>"><%=typeName%></A><%=typeDim%> <SPAN CLASS="<%=membertype%>"><%=field.getName()%></SPAN>
+   <a href="cls.main.do?cls_id=<%=field.getType().getId()%>"><%=typeName%></a><%=typeDim%> <span class="<%=membertype%>"><%=field.getName()%></span>
 <%}
   else
   { %>
-   <%=typeName%><%=typeDim%> <SPAN CLASS="<%=membertype%>"><%=field.getName()%></SPAN>
+   <%=typeName%><%=typeDim%> <span class="<%=membertype%>"><%=field.getName()%></span>
 <%
   }
 %>
-</P>
+</p>
 
-<P>
+<p>
 <%=field.getDescription()%>
-</P>
+</p>
+

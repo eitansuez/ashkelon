@@ -1,4 +1,5 @@
 <%@ page info="help documentation" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -23,7 +24,7 @@ Date: May 2001
     <iframe src="help/main.html" width="100%" height="70%"></iframe>
   </div>
 
-  <jsp:include page="footer.html" flush="true"/>
+  <c:import url="footer.html" />
 
 </body>
 </html>

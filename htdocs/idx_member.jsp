@@ -1,4 +1,6 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 
 <%-- SECTION: PAGE COMMENTS & DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -73,7 +75,7 @@ Date: March 2001
 </div>
 
 
-<jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
 </body>
 </html>

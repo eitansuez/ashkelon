@@ -14,18 +14,9 @@ Date: November 2001
   request.setAttribute("classes", cls.getInnerClasses());
 %>
 
-
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<P><%= cls.getSummaryDescription() %></P>
+<p><%= cls.getSummaryDescription() %></p>
 
 
 <jsp:include page="class_list.jsp" flush="true">

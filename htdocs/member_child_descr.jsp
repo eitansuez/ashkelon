@@ -13,15 +13,6 @@ ClassType containingClass = execmember.getContainingClass();
 String pkgName = containingClass.getPackage().getName();
 %>
 
-
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <% if (execmember.getDoc().isDeprecated()) { %>
@@ -42,15 +33,15 @@ String pkgName = containingClass.getPackage().getName();
    if (method.getReturnType() != null && method.getReturnType().getId() > 9)
    {
 %>
-  <P>
-  <B>Returns</B> <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>: <%=descr%>
-  </P>
+  <p>
+  <b>Returns</b> <a href="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></a><%=dim%>: <%=descr%>
+  </p>
 <%
    } else {
  %>   
-  <P>
-    <B>Returns</B> <%=name%><%=dim%>:  <%=descr%>
-  </P>
+  <p>
+    <b>Returns</b> <%=name%><%=dim%>:  <%=descr%>
+  </p>
 <%
    }
    
@@ -63,8 +54,8 @@ String pkgName = containingClass.getPackage().getName();
 <%
    if (!execmember.getParameters().isEmpty())
    { %>
-    <B>Parameters:</B>
-    <UL>
+    <b>Parameters:</b>
+    <ul>
     
     <%
        ParameterInfo param;
@@ -82,17 +73,17 @@ String pkgName = containingClass.getPackage().getName();
             if (param.getType()!=null && param.getType().getId()>9)
             {
          %>
-                <LI><A HREF="cls.main.do?cls_id=<%=param.getType().getId()%>"><B><%=typeName%></B></A><%=dimStr%> <%=param.getName()%>: <%=param.getDescription()%></LI>
+                <li><a href="cls.main.do?cls_id=<%=param.getType().getId()%>"><B><%=typeName%></B></A><%=dimStr%> <%=param.getName()%>: <%=param.getDescription()%></li>
          <%
             } else 
             {
          %>
-                <LI><B><%=typeName%><%=dimStr%> <%=param.getName()%></B>: <%=param.getDescription()%></LI>
+                <li><b><%=typeName%><%=dimStr%> <%=param.getName()%></b>: <%=param.getDescription()%></li>
           <% } %>
           
     <% }  // end for loop %>
     
-    </UL>
+    </ul>
 <%
    }  // end main if statement
  %>
@@ -102,8 +93,8 @@ String pkgName = containingClass.getPackage().getName();
 <%
  if (!execmember.getThrownExceptions().isEmpty())
  { %>
-<B>Throws:</B>
-<UL>
+<b>Throws:</b>
+<ul>
 <%
  ThrownException ex;
  for (int i=0; i<execmember.getThrownExceptions().size(); i++)
@@ -115,18 +106,18 @@ String pkgName = containingClass.getPackage().getName();
     if (ex.getException()!=null && ex.getException().getId()>9)
     {
     %>
-    <LI><A HREF="cls.main.do?cls_id=<%=ex.getException().getId()%>"><B><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></B></A>: <%=ex.getDescription()%></LI>
+    <li><a href="cls.main.do?cls_id=<%=ex.getException().getId()%>"><b><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></b></a>: <%=ex.getDescription()%></li>
     <%
     } else
     {
     %>
-    <LI><B><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></B>: <%=ex.getDescription()%></LI>
+    <li><b><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></b>: <%=ex.getDescription()%></li>
     <%
     }
     %>
 
 <% } %>
-</UL>
+</ul>
 <%
  } %>
  

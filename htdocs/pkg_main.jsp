@@ -13,12 +13,15 @@
     cols.add(pkg.getErrorClasses());
 %>
 
-<% if (pkg.getAPI() != null) { %>
-<P CLASS="api" STYLE="font-size: 8pt;">
+<p class="api" style="font-size: 8pt;">
 (<a href="api.main.do?id=<%=pkg.getAPI().getId()%>"><%=pkg.getAPI().getName()%></a> API)
-</P>
-<% } %>
-  
-<DIV STYLE="height: 360; overflow: auto; border: thin solid #bbbbbb; padding: 5px;">
-    <P><%= pkg.getDescription() %></P>
-</DIV>
+</p>
+
+<div style="float: right;">
+  <button id="toggleBtn" onClick="toggleHeightMode('pkg-description', this, '300px');"><img src="images/expand.jpg" /></button>
+</div>
+
+<div id="pkg-description" class="scroll-description" style="clear: right;">
+  <%= pkg.getDescription() %>
+</div>
+

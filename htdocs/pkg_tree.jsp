@@ -14,28 +14,20 @@ Date: March 2001
   TreeNode tree = (TreeNode) request.getAttribute("tree");
 %>  
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
-<P><%=pkg.getSummaryDescription()%></P>
+<p><%=pkg.getSummaryDescription()%></p>
 
-<DIV STYLE="margin: 0px;">
+<div style="margin: 0px;">
    
-   <TABLE CLASS="columnar" WIDTH="80%" ALIGN="CENTER">
+   <table class="columnar" width="80%" align="CENTER">
    
-   <TR><TD>
+   <tr><td>
 
-    <DIV CLASS="scroll_table">
+    <div class="scroll_table">
       <%=org.ashkelon.pages.Page.printTree(tree, name)%>
-    </DIV>
+    </div>
     
-   </TD></TR>
+   </td></tr>
    
-   </TABLE>
-</DIV>
+   </table>
+</div>

@@ -17,20 +17,11 @@ Date: March 2001
   TreeNode supers = (TreeNode) request.getAttribute("tree");
 %>
 
-
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<P><%= cls.getDoc().getSummaryDescription() %></P>
+<p><%= cls.getDoc().getSummaryDescription() %></p>
 
-<DIV STYLE="margin: 20px;">
+<div style="margin: 20px;">
 
 <% if (supers != null)
    {
@@ -38,16 +29,16 @@ Date: March 2001
 
    <% if (supers.isEmpty()) { %>
    
-   <P CLASS="message"><%=name%> has no superclasses.</P>
+   <p class="message"><%=name%> has no superclasses.</p>
    
    <% } else {   // supers is not empty %>
 
-   <H3>Inheritance Tree</H3>
-   <TABLE CLASS="columnar" WIDTH="80%">
-     <TR><TD>
+   <h3>Inheritance Tree</h3>
+   <table class="columnar" width="80%">
+     <tr><td>
       <%=org.ashkelon.pages.Page.printTree(supers, pkg.getName())%>
-     </TD></TR>
-   </TABLE>
+     </td></tr>
+   </table>
 
    <% } // end if supers.isEmpty() %>
    
@@ -55,5 +46,5 @@ Date: March 2001
    }
 %>
 
-</DIV>
+</div>
 

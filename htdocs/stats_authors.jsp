@@ -1,4 +1,5 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%
   String cmd = ServletUtils.getRequestParam(request, "cmd");
@@ -7,22 +8,22 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-  <TITLE>Class Stats</TITLE>
+<html>
+<head>
+  <title>Class Stats</title>
   <jsp:include page="includes.html" flush="true"/>
-</HEAD>
+</head>
 
-<BODY onLoad="loadCookies();" onUnload="saveCookies();">
+<body onLoad="loadCookies();" onUnload="saveCookies();">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 <jsp:include page="stats_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY" ALIGN="CENTER">
+<div class="pagebody" align="center">
 
-<TABLE CLASS="columnar">
-<CAPTION>Class count by Author</CAPTION>
-<TR>
+<table class="columnar">
+<caption>Class count by Author</caption>
+<tr>
 <%  
   int n = numByAuthor.size();
   int numCols = 3;
@@ -43,8 +44,8 @@
   %>
   
   <!-- COLUMN <%=col%> -->
-  <TD VALIGN="TOP">
-   <TABLE RULES="rows" CELLSPACING="0" CELLPADDING="3" BORDERCOLOR="white">
+  <td valign="top">
+   <table rules="rows" cellspacing="0" cellpadding="3" bordercolor="white">
   
     <%  
     for (int i=start; i<end; i++)
@@ -52,34 +53,32 @@
       author = (Author) ((List) numByAuthor.get(i)).get(0);
       numAuthorClasses = (String) ((List) numByAuthor.get(i)).get(1);
    %>
-  <TR>
-    <TD><a href="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></a></TD>
-    <TD ALIGN="RIGHT"><%=numAuthorClasses%></TD>
-  </TR>
+  <tr>
+    <td><a href="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></a></td>
+    <td align="right"><%=numAuthorClasses%></td>
+  </tr>
 
   <% } %>
  
-    </TABLE>
-   </TD>
+    </table>
+   </td>
   
     <%
      if (col < numCols - 1)
      { %>  
       <!-- padding -->
-      <TD WIDTH="20"></TD>
+      <td width="20"></td>
   <% } %>
  
 <% } %>
   
-</TR>
-</TABLE>
+</tr>
+</table>
 
-</DIV>
+</div>
 
+<c:import url="footer.html" />
 
-<jsp:include page="footer.html" flush="true"/>
-
-
-</BODY>
-</HTML>
+</body>
+</html>
 

@@ -1,4 +1,6 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 
 <%
   String cmd = ServletUtils.getRequestParam(request, "cmd");
@@ -12,21 +14,21 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
+<html>
+<head>
 <% if (needToDisplayResults.booleanValue()) { %>
-  <TITLE>Ashkelon - Class Search Results</TITLE>
+  <title>Ashkelon - Class Search Results</title>
 <% } else { %>
-  <TITLE>Ashkelon - Lookup Classes</TITLE>
+  <title>Ashkelon - Lookup Classes</title>
 <% } %>
   <jsp:include page="includes.html" flush="true"/>
-</HEAD>
+</head>
 
-<BODY onLoad="cleanTitles();">
+<body onLoad="cleanTitles();">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
 <% if (needToDisplayResults.booleanValue()) { %>
   <jsp:include page="cls_results.jsp" flush="true"/>
@@ -35,9 +37,10 @@
   <jsp:include page="class_form_1.jsp" flush="true"/>
 <% } %>
 
-</DIV>
+</div>
 
-<jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
-</BODY>
-</HTML>
+</body>
+</html>
+

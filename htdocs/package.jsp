@@ -1,4 +1,6 @@
 <%@ page info="main package view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 
 <%
   JPackage pkg = (JPackage) request.getAttribute("pkg");
@@ -48,7 +50,7 @@
     <jsp:include page="doc_footer.jsp" flush="true"/>
   </div> <!-- end page body -->
   
-  <jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
 </body>
 </html>

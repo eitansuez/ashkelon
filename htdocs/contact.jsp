@@ -1,4 +1,5 @@
 <%@ page info="configuration/settings page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -13,40 +14,37 @@ Date: December 2001
 <%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Ashkelon - Contact Information</TITLE>
+<html>
+<head>
+	<title>Ashkelon - Contact Information</title>
   <jsp:include page="includes.html" flush="true"/>
 
   <!-- SECTION: PAGE STYLES -->
-  <STYLE TYPE="text/css">
-  LI
+  <style type="text/css">
+  li
   {
     margin: 0 0 10 0;
   }
-  </STYLE>
+  </style>
 
-  <!-- SECTION: BEHAVIOR (JAVASCRIPT) -->
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
+</head>
 
-<BODY onLoad="cleanTitles();">
+<body onLoad="cleanTitles();">
 <jsp:include page="main_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
-<P>
+<p>
 
-<UL>
-<LI>If there's an open source API that you'd like to see in the Ashkelon repository; or </LI>
-<LI>If you'd like to license Ashkelon for publishing your own docs on your company intranet; or </LI>
-<LI>For any comments or feedback on this site or on Ashkelon; or</LI>
-<LI>For any questions not already answered in the <A HREF="issues.do">FAQ</A></LI>
-</UL>
+<ul>
+<li>If there's an open source API that you'd like to see in the Ashkelon repository; or </li>
+<li>If you'd like to license Ashkelon for publishing your own docs on your company intranet; or </li>
+<li>For any comments or feedback on this site or on Ashkelon; or</li>
+<li>For any questions not already answered in the <a href="issues.do">FAQ</a></li>
+</ul>
 
 ..please contact:
-</P>
+</p>
 
 <blockquote>
 <a href="mailto:eitan-keywork-tech.cede1b@u2d.com">Eitan Suez</a> <br/>
@@ -54,10 +52,9 @@ UptoData, Inc. <br/>
 Austin, Texas
 </blockquote>
 
-</DIV>
+</div>
 
-<jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
-
-</BODY>
-</HTML>
+</body>
+</html>

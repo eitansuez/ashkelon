@@ -14,7 +14,7 @@
   }
 %>
 
-<STYLE>
+<style>
   TABLE.tab2
   {
     background-color: <%=selectedColor%>;
@@ -62,4 +62,4 @@
     border-right: 0 none white;
     border-left: 0 none white;
   }
-</STYLE>
+</style>

@@ -1,29 +1,19 @@
 <%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
+<%-- 
 Author: Eitan Suez
 Date: March 2001
 --%>
 
-<%-- SECTION: COMPONENT CODE --%>
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
-  JPackage pkg = cls.getPackage();
-  String cls_type = cls.getClassTypeName();
 %>
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
-<%-- SECTION: COMPONENT TEMPLATE --%> 
-
-<DIV STYLE="height: 260px; overflow: auto; border: thin solid #bbbbbb; padding: 5px;">
-    <P><%= cls.getDescription() %></P>
-</DIV>
+<div style="float: right;">
+  <button id="toggleBtn" onClick="toggleHeightMode('class-description', this, '300px');"><img src="images/expand.jpg" /></button>
+</div>
+    
+<div id="class-description" class="scroll-description" style="clear: right;">
+ <%= cls.getDescription() %>
+</div>
 

@@ -43,19 +43,11 @@ Date: March 2001
   String captiondescr = "Brief " + caption + " descriptions";
  %>
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<H3><SPAN CLASS="package"><%=pkg.getName()%></SPAN> <SPAN CLASS="<%=classtype%>" STYLE="text-transform: capitalize"><%=captions%></SPAN></H3>
+<h3><span class="package"><%=pkg.getName()%></span> <span class="<%=classtype%>" style="text-transform: capitalize"><%=captions%></span></h3>
 
-<P><%=pkg.getSummaryDescription()%></P>
+<p><%=pkg.getSummaryDescription()%></p>
 
 
 <jsp:include page="class_list.jsp" flush="true">

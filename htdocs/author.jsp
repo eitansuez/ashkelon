@@ -1,4 +1,6 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 
 <%
   Author author = (Author) request.getAttribute("author");
@@ -26,34 +28,14 @@
 <%=author.getName()%> has authored the following classes and/or interfaces:
 </p>
 
-<style>
-td.listing
-{
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  vertical-align: top;
-  width: 33%;
-}
-</style>
-
-<table width="100%" style="border: thin solid black;" cellpadding="3" cellspacing="0">
-<tbody>
-<tr>
-<td class="listing">
+<div style="margin: 1em 3em;">
 <% for (int i=0; i<classes.size(); i++)
    {
      cls = (ClassType) classes.get(i);
 %>
-<%=i+1%>. 
-<a href="cls.main.do?cls_id=<%=cls.getId()%>" CLASS="<%=cls.getClassTypeName()%> %>"><%=cls.getQualifiedName()%></a> <br/>
-  <% if (i==(int) classes.size()/2 + 1) { %>
-   </td><td class="listing">
-  <% } %>
+<a href="cls.main.do?cls_id=<%=cls.getId()%>" class="<%=cls.getClassTypeName()%> %>"><%=cls.getQualifiedName()%></a><% if (i + 1 < classes.size()) { %>, <% } %>
 <% } %>
-</td>
-</tr>
-</tbody>
-</table>
+</div>
 
 <% if (!StringUtils.isBlank(author.getEmail())) { %>
 <p>
@@ -64,7 +46,7 @@ Email Author at <a href="mailto:<%=author.getEmail()%>"><%=author.getEmail()%></
 
 </div>
 
-<jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
 </body>
 </html>

@@ -1,4 +1,6 @@
 <%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
@@ -23,7 +25,7 @@
   
     <div id="cls_main" style="display: none;">
       <jsp:include page="cls_main.jsp" flush="true"/>
-    </div>    
+    </div>
     
     <div id="cls_inner" style="display:none;">
       <jsp:include page="cls_inner.jsp" flush="true"/>
@@ -55,7 +57,7 @@
     <jsp:include page="doc_footer.jsp" flush="true" />
   </div> <!-- end page body -->
   
-  <jsp:include page="footer.html" flush="true"/>
+<c:import url="footer.html" />
 
 </body>
 </html>

@@ -1,15 +1,13 @@
 <%@ page info="component" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
-Copyright UptoData Inc 2001
+<%--
 Author: Eitan Suez
 Date: March 2001
-
-footer containing since, see also, and deprecated information for various
+Description:
+ footer containing since, see also, and deprecated information for various
  doc types.  present at bottom of class, member, and package pages.
 --%>
 
-<%-- SECTION: COMPONENT CODE --%>
 <%
 String name = null;
 String pkgname = null;
@@ -45,48 +43,33 @@ if (request.getAttribute("execmember") != null)
 }
 %>
 
-<%-- if (doc.hasAnythingToShow()) { --%>
-
-<%-- SECTION: COMPONENT STYLES --%>
-<style type="text/css">
-.doc_footer
+<style>
+.doc-footer
 {
   font-size: 8pt;
   margin-top: 3em;
-}
-hr.docFooter
-{
-  color: #808080;
+  border-top: 1px solid #aaa;
+  padding-top: 0.3em;
 }
 </style>
 
-<%-- SECTION: COMPONENT TEMPLATE --%> 
+<div class="doc-footer">
 
-  <div class="doc_footer">
-
-  <% 
-  boolean hrin = false;
-  if (!StringUtils.isBlank(doc.getSince())) {
-    hrin = true;
-  %>
-  <hr class="docFooter" />
+  <% if (!StringUtils.isBlank(doc.getSince())) { %>
+  <div>
   Since: <%=doc.getSince()%>
-  <br/>
+  </div>
   <% } %>
 
   <% if (!StringUtils.isBlank(doc.getDeprecated())) { %>
-  <% if (!hrin) { %>
-  <hr class="docFooter" />
-  <% } %>
+  <div>
   Deprecated: <%=doc.getDeprecated()%>
-  <br/>
+  </div>
   <% } %>
 
   <% List refs = doc.getReferences();
      if (refs != null && !refs.isEmpty()) { %>
-  <% if (!hrin) { %>
-  <hr class="docFooter" />
-  <% } %>
+  <div>
   See Also:
   <% Reference ref;
      String label;
@@ -116,9 +99,9 @@ hr.docFooter
     <% } %>
   <% }  // end for refs %>
 
+  </div>
   <% }  // end if refs not is empty %>
 
-  </div>
+</div>
   
-<%-- }  // end if has anything to show --%>
 

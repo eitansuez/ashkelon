@@ -13,12 +13,12 @@
     cols.add(pkg.getErrorClasses());
 %>
 
-<P><%= pkg.getSummaryDescription() %></P>
+<p><%= pkg.getSummaryDescription() %></p>
 
-<DIV ALIGN="CENTER">
-<TABLE CLASS="columnar">
-<CAPTION CLASS="package"><%=pkg.getName()%></CAPTION>
-<COLGROUP SPAN="4" ALIGN="LEFT"></COLGROUP>
+<div align="center">
+<table class="columnar">
+<caption class="package"><%=pkg.getName()%></caption>
+<colgroup span="4" align="left"></colgroup>
 <!--
 <THEAD CLASS="table_header">
 <TR>
@@ -29,8 +29,8 @@
 </TR>
 </THEAD>
 -->
-<TBODY>
-<TR>
+<tbody>
+<tr>
     <%
      ClassType c;
      String cls_type = "";
@@ -39,9 +39,9 @@
      
      for (int i=0; i<cols.size(); i++)
      { %>
-       <TD VALIGN="TOP">
-<DIV CLASS="scroll_column">
-         <TABLE>
+       <td valign="top">
+<div class="scroll_column">
+         <table>
     <%
        col = (List) cols.get(i);
        for (int j=0; j<col.size(); j++)
@@ -50,21 +50,21 @@
           cls_type = c.getClassTypeName();
           title = HtmlUtils.cleanAttributeText(c.getDoc().getSummaryDescription());
           %>
-        <TR>
-        	<TD>
-            <A HREF="cls.main.do?cls_id=<%=c.getId()%>"><SPAN CLASS="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>" TITLE="<%=title%>"><%=c.getName()%></SPAN></A>
-          </TD>
-        </TR>
+        <tr>
+        	<td>
+            <a href="cls.main.do?cls_id=<%=c.getId()%>"><span class="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>" title="<%=title%>"><%=c.getName()%></span></a>
+          </td>
+        </tr>
     <%
        } %>
-        </TABLE>
-</DIV>
-      </TD>
+        </table>
+</div>
+      </td>
   <%
      }
    %>
-</TR>
-</TBODY>
-</TABLE>
-</DIV>
+</tr>
+</tbody>
+</table>
+</div>
 

@@ -10,23 +10,23 @@
  */
  
  var bareDocTemplate = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n" + 
-    "<HTML>\n" + 
-    "<HEAD>\n" + 
-    " <TITLE></TITLE>\n" +
-    " <LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"global.css\"></LINK>\n" +
-    " <SCRIPT>\n" +
+    "<html>\n" + 
+    "<head>\n" + 
+    " <title></title>\n" +
+    " <link rel=\"stylesheet\" type=\"text/css\" href=\"global.css\"></link>\n" +
+    " <script>\n" +
     "   self.childName = \"\";\n" + 
-    " </SCRIPT>\n" +
-    "</HEAD>\n" +
+    " </script>\n" +
+    "</head>\n" +
     "\n" +
-    "<BODY onBeforeUnload=\"window.opener.onChildUnload(self);\">\n" +
+    "<body onBeforeUnload=\"window.opener.onChildUnload(self);\">\n" +
     "\n" +
-    "<DIV ID=\"winbody\" STYLE=\"position:absolute; left:0; top:0;\">\n" + 
-    "</DIV>\n" +
+    "<div id=\"winbody\" style=\"position:absolute; left:0; top:0;\">\n" + 
+    "</div>\n" +
     "\n" +
-    "</BODY>\n" +
+    "</body>\n" +
     "\n" +
-    "</HTML>\n";
+    "</html>\n";
 
 var childWins = new Object();
 
