@@ -99,13 +99,13 @@
     <dependency>
       <id>ant</id>
       <version>1.5.2</version>
-      <url>http://ant.apache.org</url>
+      <url>http://ant.apache.org/</url>
     </dependency>
 
     <dependency>
       <id>castor</id>
       <version>0.9.5</version>
-      <url>http://castor.exolab.org</url>
+      <url>http://castor.exolab.org/</url>
     </dependency>
 
     <dependency>
@@ -144,7 +144,7 @@
       <id>mysql</id>
       <version>2.0.14</version>
       <jar>mysql-connector-java-2.0.14-bin.jar</jar>
-      <url>http://www.mysql.org/</url>
+      <url>http://www.mysql.com/</url>
     </dependency>
     
     <dependency>
@@ -159,7 +159,7 @@
   
   <build>
     <sourceDirectory>src</sourceDirectory>
-    <unitTestSourceDirectory>test</unitTestSourceDirectory>
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
 
     <unitTest>
       <includes>
