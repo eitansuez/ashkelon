@@ -1,5 +1,11 @@
 Release Notes
 
+What's new in v0.8.8 ():
+------------------------
+
+1. Internal refactoring of statements.properties files for various databases:  eliminated duplication in common sql statements
+
+
 What's new in v0.8.7 (August 17 2004):
 --------------------------------------
 
