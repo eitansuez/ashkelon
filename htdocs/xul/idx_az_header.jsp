@@ -14,7 +14,7 @@ outstanding tasks:
   String unselectedColor = "#CDCDCD";
   String selectedColor = "#F9D362";
 
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = ServletUtils.getCommand(request);
   String[] parts = StringUtils.split(cmd,".");
   String element_type = parts[1];
   String selectedTab = (String) ServletUtils.getRequestParam(request, "start");

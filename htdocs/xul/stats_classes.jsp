@@ -8,7 +8,7 @@ Date: March 2001
 
 <%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = ServletUtils.getCommand(request);
   List numByPackage = (List) request.getAttribute("classCounts");
  %>
 

@@ -8,7 +8,7 @@ Date: March 2001
 
 <%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = ServletUtils.getCommand(request);
     
   Boolean needToDisplayResults = (Boolean) request.getAttribute("display_results");
   if (needToDisplayResults == null)

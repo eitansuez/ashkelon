@@ -10,7 +10,7 @@ Template page for Class or Interface types.
 
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = ServletUtils.getCommand(request);
   String[] parts = StringUtils.split(cmd, ".");
   String inittab = "cls_"+parts[1];
  %>

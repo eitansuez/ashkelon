@@ -10,7 +10,7 @@ Date: March 2001
 
 <%-- SECTION: PAGE CODE --%>
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = ServletUtils.getCommand(request);
   Integer api_count = (Integer) application.getAttribute("api_count");
   Integer package_count = (Integer) application.getAttribute("package_count");
   Integer class_count = (Integer) application.getAttribute("class_count");
