@@ -60,7 +60,10 @@ public class FlowController extends HttpServlet
          try {
             if (new File(configTraceFile).canWrite())
                traceFile = configTraceFile;
-         } catch (Exception ex) {}
+         } catch (Exception ex)
+         {
+           log.error("benign exception: "+ex.getMessage());
+         }
       }
       
       try
@@ -116,8 +119,10 @@ public class FlowController extends HttpServlet
       }
       
       
+/*
       java.util.Date now = new java.util.Date();
       response.setDateHeader("Date", now.getTime());
+*/
 
       /* this logic is incorrect -- on every page there exist dynamic elements
        * for example, the navigation trail would be incorrect if cached page
@@ -146,7 +151,6 @@ public class FlowController extends HttpServlet
          }
          
          String jspPathPrefix = getJspPathPrefix(request);
-      
          pageName = "/" + jspPathPrefix + cmdInfo.getPageName();
          log.debug("page name: "+pageName);
          className = configInfo.getDefaultPkg() + "." + cmdInfo.getClassName();
@@ -403,7 +407,7 @@ public class FlowController extends HttpServlet
    }
 
    /**
-    * @return either "basic" if browser is not ie5.5 or 6.0.  returns "" otherwise.
+    * @return either "basic" if browser does not support modern.  returns "" otherwise.
     *  value is used as path prefix for jsp to fetch
     *
     * the calculation of browser type happens only when session is first created.
@@ -413,18 +417,23 @@ public class FlowController extends HttpServlet
    {
       HttpSession session = request.getSession();
       Object uiObj = (String) session.getAttribute("ui");
-      String ui = "basic/";
+      String ui = "";
       log.debug("session ui value is "+uiObj);
       if (uiObj == null)
       {
          String ua = request.getHeader("User-Agent");
          if (ua == null) ua = "";
-         boolean foundie6 = ua.indexOf("MSIE 6.") > -1;
-         boolean foundie5 = ua.indexOf("MSIE 5.") > -1;
-         boolean foundmozilla = ua.indexOf("Gecko") > -1;
-         if (foundie6 || foundie5 || foundmozilla)
+         boolean new_explorer = ua.indexOf("MSIE 6.") > -1 || ua.indexOf("MSIE 5.") > -1;
+         boolean new_mozilla = ua.indexOf("Gecko") > -1;
+         if (new_explorer || new_mozilla)  // don't yet serve xul for mozilla as it's
+             // far from being in a working state -- allow config page for manual
+             // switch to xul.
          {
             ui = "";
+         }
+         else
+         {
+            ui = "basic/";
          }
          session.setAttribute("ui", ui);
       }
