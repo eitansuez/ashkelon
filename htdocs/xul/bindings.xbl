@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<xbl:bindings
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:xbl="http://www.mozilla.org/xbl">
+
+  <xbl:binding id="footer-binding">
+   <xbl:content>
+ <hbox id="footer" align="center" flex="1">
+  <button label="Legend" accesskey="l" type="menu">
+    <menupopup>
+     <menuitem>
+      <html:div class="square_icon api" />
+      <description>API</description>
+     </menuitem>
+     <menuitem>
+      <html:div class="square_icon package" />
+      <description>Package</description>
+     </menuitem>
+     <menuitem>
+      <html:div class="square_icon class" />
+      <description>Class</description>
+     </menuitem>
+     <menuitem>
+      <html:div class="square_icon interface" />
+      <description>Interface</description>
+     </menuitem>
+     <menuitem>
+      <html:div class="square_icon exception" />
+      <description>Exception</description>
+     </menuitem>
+     <menuitem>
+      <html:div class="square_icon error" />
+      <description>Error</description>
+     </menuitem>
+     <menuitem>
+      <html:div class="square_icon method" />
+      <description>Method</description>
+     </menuitem>
+     <menuitem >
+      <html:div class="square_icon constructor" />
+      <description>Constructor</description>
+     </menuitem>
+     <menuitem>
+      <html:div class="square_icon field" />
+      <description>Field</description>
+     </menuitem>
+     <menuitem label="abstract" class="abstract" />
+     <menuitem label="static" class="static" />
+     <menuitem label="deprecated" class="deprecated" />
+    </menupopup>
+  </button>
+  <spacer flex="1" />
+  <description tooltiptext="Check us out at http://www.uptodata.com/" style="font-style: italic;">UptoData, Inc.</description>
+ </hbox>
+ </xbl:content>
+ </xbl:binding>
+ 
+ <xbl:binding id="header-binding">
+  <xbl:content>
+ <hbox id="header" flex="1">
+  <toolbox flex="1">
+   <toolbar>
+    <toolbarbutton label="APIs" accesskey="a" oncommand="navto('apis');" />
+    <toolbarbutton label="Packages" accesskey="p" oncommand="navto('packages');" />
+    <toolbarbutton label="Search" accesskey="s" oncommand="navto('search');" />
+    <toolbarbutton label="Index" accesskey="i" oncommand="navto('index');" />
+    <toolbarbutton label="Stats" accesskey="t" oncommand="navto('stats');" />
+    <spacer flex="1" />
+    <toolbarbutton label="Contact" accesskey="c" oncommand="navto('contact');" />
+    <toolbarbutton label="Settings" accesskey="g" oncommand="navto('settings');" />
+    <toolbarbutton label="Help" accesskey="h" oncommand="navto('help');" />
+   </toolbar>
+  </toolbox>
+ </hbox>
+  </xbl:content>
+ </xbl:binding>
+
+</xbl:bindings> 

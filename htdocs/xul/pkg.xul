@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="global.css" type="text/css"?>
+
+<window
+  title="Ashkelon: All Packages"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+
+ <script type="application/x-javascript" src="global.js" />
+ 
+ <vbox flex="1">
+
+  <header style="-moz-binding: url('bindings.xbl#header-binding');" />
+
+  <vbox id="body" flex="1">
+
+    <hbox pack="center">
+     <description class="subtitle">Packages by Type</description>
+    </hbox>
+    
+    <vbox flex="1">
+     <hbox flex="1">
+        <listbox flex="1" style="margin: 0px;">
+         <listhead>
+           <listheader label="java.*" />
+         </listhead>
+         <listitem label="java.applet" onclick="parent.navto('package')" />
+         <listitem label="java.awt" />
+         <listitem label="java.awt.color" />
+         <listitem label="java.awt.datatransfer" />
+         <listitem label="java.awt.dnd" />
+         <listitem label="java.awt.event" />
+        </listbox>
+        <listbox flex="1" style="margin: 0px;">
+         <listhead>
+           <listheader label="javax.*" />
+         </listhead>
+         <listitem label="java.applet" />
+         <listitem label="java.awt" />
+         <listitem label="java.awt.event" />
+        </listbox>
+        <listbox flex="1" style="margin: 0px;">
+         <listhead>
+           <listheader label="org.*" />
+         </listhead>
+         <listitem label="java.applet" />
+         <listitem label="java.awt" />
+         <listitem label="java.awt.event" />
+        </listbox>
+        <listbox flex="1" style="margin: 0px;">
+         <listhead>
+           <listheader label="com.*" />
+         </listhead>
+        </listbox>
+      </hbox>
+    </vbox>
+     
+  </vbox>
+
+  <footer style="-moz-binding: url('bindings.xbl#footer-binding');" />
+
+ </vbox>
+
+</window>
+

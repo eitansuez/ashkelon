@@ -1,0 +1,103 @@
+box, hbox, vbox
+{
+  //border: 1px solid black;
+  //padding: 1px;
+}
+grid
+{
+  border: thin solid black;
+}
+row
+{
+   border-bottom: thin solid black;
+}
+
+hbox#footer
+{
+  border-top-style: double;
+}
+
+#body
+{
+   padding: 10px;
+}
+
+.title
+{
+   font-size: 14pt;
+}
+.subtitle
+{
+   font-size: 12pt;
+   font-weight: bold;
+}
+
+.para
+{
+}
+
+.blank_line
+{
+   height: 12pt;
+}
+
+.api
+{
+   background-color: black;
+}
+.package
+{
+   background-color: #004080;
+}
+.class
+{
+   background-color: blue;
+}
+.interface
+{
+   background-color: green;
+}
+.exception
+{
+   background-color: red;
+}
+.error
+{
+   background-color: #bc2540;
+   font-weight: bold;
+}
+.method
+{
+   background-color: #004040;
+}
+.constructor
+{
+   background-color: #800080;
+}
+.field
+{
+   background-color: #804040;
+}
+.abstract
+{
+   font-style: italic;
+}
+.static
+{
+   font-weight: bold;
+}
+.deprecated
+{
+   text-decoration: line-through;
+}
+
+.square_icon
+{
+   width: 10px;
+   height: 10px;
+}
+
+hbox#footer menupopup
+{
+  // -moz-opacity: 60%;
+}

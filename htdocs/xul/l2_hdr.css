@@ -1,0 +1,49 @@
+  TABLE.tab
+  {
+    background-color: #92A6F5;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-top: 0px none white;
+    border-right: 0px none white;
+    border-left: 0px none white;
+  }
+  
+    
+  TD.tab_buffer
+  {
+    background-color: white;
+    width: 5 px;
+    border: 1px solid black;
+    border-top: 0px none white;
+    padding: 0px;
+  }
+  
+  TD.tab_selected_tab
+  {
+    padding: 3 10 3 10;
+    background-color: #92A6F5;
+    border: 1px solid black;
+    border-bottom: 1px solid #92A6F5;
+    cursor: default;
+    font-weight: bold;
+  }
+  
+  TD.tab_tab
+  {
+    padding: 3 10 3 10;
+    background-color: #CDCDCD;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+  
+  TD.tab_pad
+  {
+    width: 20 px;
+    background-color: white;
+    border-bottom: 1px solid black;
+    padding: 0px;
+    border-top: 0px none white;
+    border-right: 0px none white;
+    border-left: 0px none white;
+  }
+
