@@ -479,7 +479,7 @@ public class Ashkelon extends Doclet
       String[] javadocargs = new String[args.length - 1];
       for (int i=1; i<args.length; i++)
          javadocargs[i-1] = args[i];
-      com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.Ashkelon", args);
+      com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.Ashkelon", javadocargs);
    }
    
    public static void addapiCmd(String[] args)
