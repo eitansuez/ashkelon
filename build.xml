@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 
 <project name="ashkelon" default="war">
-   <description>project ashkelon: open source java documentation management system</description>
+   <description>open source java documentation management system</description>
    
-   <property name="version" value="0.8.5" />
+   <property name="version" value="0.8.7" />
    <property environment="env" />
 
-   <!-- currently, valid options are: mysql,oracle,postgres -->
+   <!-- currently, valid options are: mysql, postgres -->
    <property name="dbtype" value="postgres" />
    <property name="dbdir" location="db/${dbtype}" />
 
@@ -39,6 +39,9 @@
       <delete dir="${distdir}" />
    </target>
 
+   <taskdef name="build-statements" classname="org.ashkelon.db.StatementsBuilder"
+     classpath="lib/ashkelon-ant.jar" />
+
    <target name="compile" depends="init" description="compile">
       <javac debug="on" srcdir="${srcdir}" destdir="${buildclassesdir}" classpathref="class.path" />
 
@@ -53,6 +56,9 @@
           <exclude name="**/*.jar" />
         </fileset>
       </copy>
+
+      <build-statements dbtype="${dbtype}" 
+         tofile="${buildclassesdir}/org/ashkelon/db/statements.properties" />
 
       <copy file="${etcdir}/web.xml" tofile="${builddir}/web.xml" filtering="true">
         <filterset>
