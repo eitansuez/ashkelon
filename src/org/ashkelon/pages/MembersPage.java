@@ -113,7 +113,7 @@ public class MembersPage extends Page
             "  d.summarydescription, d.since, d.deprecated " +
             " from METHOD meth, MEMBER m, EXECMEMBER em, DOC d ";
       
-      if (DBMgr.getInstance().getDbtype().equals("mysql"))
+      if (!DBMgr.getInstance().getDbtype().equals("oracle"))
       {
          sql = 
             " select m.id, m.qualifiedname, m.type, " +
@@ -164,7 +164,7 @@ public class MembersPage extends Page
          whereClause.add("m.classid=c.id and p.id=c.packageid and lower(p.name) like ?");
       whereClause.add("m.docid=d.id");
 
-      if (!DBMgr.getInstance().getDbtype().equals("mysql"))  // for oracle outer join
+      if (DBMgr.getInstance().getDbtype().equals("oracle"))  // for oracle outer join
       {
          whereClause.add(" m.id=em.id (+) ");
          whereClause.add(" m.id=meth.id (+) ");
