@@ -7,7 +7,7 @@
    <property environment="env" />
 
    <!-- currently, valid options are: mysql, postgres, mckoidb -->
-   <property name="dbtype" value="mckoidb" />
+   <property name="dbtype" value="postgres" />
    <property name="dbdir" location="db/${dbtype}" />
 
    <property name="srcdir" location="src" />
@@ -81,6 +81,7 @@
       </war>
    </target>
 
+
   <!-- ======================== -->
   <!-- SECTION:  Tomcat Related
 
@@ -116,18 +117,25 @@
    <target name="ear" depends="war" description="packages ear file">
       <ear destfile="${distdir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${distdir}" includes="ashkelon.war" />
    </target>
+
   
   <!-- ================================== -->
   <!-- SECTION:  Documentation Production -->
 
   <property name="doc.srcdir" location="${srcdir}/doc" />
   <property name="docdir" location="doc" />
-  <property name="ant.docbook.styler.dir" 
-     location="/Users/eitan/devel/ant-docbook-styler" />
-  <property name="ant.docbook.styler"
-     location="${ant.docbook.styler.dir}/ant-build-docbook.xml" />
 
-  <target name="builddocs">
+  <property name="ant.docbook.styler.dir" 
+            location="/Users/eitan/devel/ant-docbook-styler" />
+  <property name="ant.docbook.styler"
+            location="${ant.docbook.styler.dir}/ant-build-docbook.xml" />
+
+  <target name="cleandocs">
+    <delete dir="${builddir}/doc/${kind}" />
+    <delete dir="${docdir}/${kind}" />
+  </target>
+
+  <target name="builddocs" depends="cleandocs">
     <mkdir dir="${builddir}/doc/${kind}" />
     <mkdir dir="${docdir}/${kind}" />
     <ant antfile="${ant.docbook.styler}" inheritall="false" target="${kind}">
