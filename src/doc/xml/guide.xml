@@ -781,32 +781,32 @@ When populating, you might get a ton of junk warnings from the javadoc engine.  
 </para>
 
 <para>
-    I assume you've already created a j2se.xml file (actually there already is one in apis/)
+    Assume we're starting out with <filename>apis/j2se.xml</filename>.
+    Break up the xml file into multiple parts, say: java.xml , javax.xml, and org.xml.  Each file should be a copy of j2se.xml but should list only a fraction of the packages that comprise the J2SE api.  Together, they should list all package in J2SE.
 </para>
 
 <para>
-    let's say we want to break up J2SE into three sets of packages:  java.*, javax.*, and org.*
-</para>
-
-<para>
-    You can create java.plist, javax.plist, and org.omg.plist files (the names are immaterial).
-    These files are just a list of package names that you want to populate.
-</para>
-
-<para>
-  You can now do this:
+  You can now start populating j2se in parts, like so:
 </para>
 
 <screen>
-    $ ashkelon add @java.plist
-    $ ashkelon add @javax.plist
-    $ ashkelon add @org.omg.plist
-    $ ashkelon add @j2se.xml
+    $ ashkelon add -source 1.4 @java.xml
+    $ ashkelon add -source 1.4 @javax.xml
+    $ ashkelon add -source 1.4 @org.xml
 </screen>
 
 <para>
-Packages already added so won't be repopulated, only API info (descr, version, etc..) will be added)
+The API information will be recorded in the ashkelon repository upon adding the first set of packages that belong to that API.  Subsequent additions will proceed by adding packages without duplicating the API information.  You'll actually notice the following in the output:
+
+<screen>
+   ..
+   Ashkelon: Storing api
+   API: Skipping API J2SE (already in repository)
+   ..
+</screen>
 </para>
+
+<note><para>Although I have just demonstrated how a large API can be added in parts, the issue of javadoc's memory requirements is no longer much of a concern as most machines todoay come with a minimum of 0.5 GB or memory.</para></note>
 </sect1>
 
 </chapter>
