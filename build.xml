@@ -3,7 +3,7 @@
 <project name="ashkelon" default="war">
    <description>project ashkelon: open source java documentation management system</description>
    
-   <property name="version" value="0.8.1" />
+   <property name="version" value="0.8.2" />
    <property environment="env" />
 
    <!-- currently, valid options are: mysql,oracle,postgres -->
@@ -60,16 +60,43 @@
    </target>
 
    <target name="war" depends="jar" description="war">
-      <war destfile="${builddir}/ashkelon.war" webxml="${etcdir}/web.xml" basedir="htdocs">
+      <war destfile="${distdir}/ashkelon.war" webxml="${etcdir}/web.xml" basedir="htdocs">
          <lib dir="${libdir}" excludes="servlet.jar" />
          <lib dir="${dbdir}" includes="*.jar" />
          <lib dir="${builddir}" includes="ashkelon.jar" />
          <webinf dir="${etcdir}" includes="*.tld" />
       </war>
    </target>
+
+  <taskdef name="tomcat-reload" classname="org.apache.catalina.ant.ReloadTask" />
+  <taskdef name="tomcat-install" classname="org.apache.catalina.ant.InstallTask" />
+  <taskdef name="tomcat-remove" classname="org.apache.catalina.ant.RemoveTask" />
+  <taskdef name="tomcat-start" classname="org.apache.catalina.ant.StartTask" />
+  <taskdef name="tomcat-stop" classname="org.apache.catalina.ant.StopTask" />
+  <taskdef name="tomcat-list" classname="org.apache.catalina.ant.ListTask" />
+
+  <property name="tomcaturl" value="http://localhost:8080/manager" />
+  <property name="tomcatusr" value="admin" />
+  <property name="tomcatpwd" value="admin" />
+  <property name="contextpath" value="/ashkelon" />
+
+  <target name="install-war" depends="war" description="install war file to catalina">
+    <tomcat-install url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" path="${contextpath}" 
+       war="file://${distdir}/ashkelon.war" />
+  </target>
+
+  <target name="reinstall-war" depends="war" description="reinstall war file to catalina">
+    <tomcat-remove url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" path="${contextpath}" />
+    <tomcat-install url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" path="${contextpath}" 
+       war="file://${distdir}/ashkelon.war" />
+  </target>
    
    <target name="ear" depends="war" description="packages ear file">
-      <ear destfile="${builddir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${builddir}" includes="ashkelon.war" />
+      <ear destfile="${distdir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${distdir}" includes="ashkelon.war" />
    </target>
+
+  <target name="listwebapps" description="list webapps deployed to tomcat">
+    <tomcat-list url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" />
+  </target>
 
 </project>
