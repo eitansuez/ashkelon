@@ -104,4 +104,8 @@ document.onkeypress = esc;
 
 <% } %>
 
-<BR>
+<br />
+
+<jsp:include page="search_form_plug.jsp" flush="true" />
+
+<br />
