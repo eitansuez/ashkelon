@@ -196,6 +196,8 @@ public class FlowController extends HttpServlet
             if (ex instanceof SQLException)
             {
                DBUtils.logSQLException((SQLException) ex);
+               // in this case, want to tell dbmgr to reset connection pool
+               dbmgr.resetConnections();
             }
             else
             {
