@@ -5,8 +5,8 @@ README
 
 Project documentation is currently available in two flavors:
 
-  a. a single html file ( located at:  doc/single/guide.html )
-  b. multiple html files ( located at: doc/chunked/index.html )
+  a. a single html file ( located at:  doc/html.single/guide.html )
+  b. multiple html files ( located at: doc/html.chunked/guide.html )
 
 ---
 

@@ -1475,13 +1475,6 @@ Improve usability of GUI and continue refactoring JSPs
     intended to be a javabean (example: java.awt.Color)??
     maybe do this only for classes with associated beaninfo classes.
 </listitem>
-<listitem>
-  Scrollable div's in ui should not have hard-coded height.
-    is it possible with html to do something layout-manager-like?
-    that is, specify that that div should take up whatever
-    vertical space remains on the page? : note: consider doing
-    this for the xul-based ui.
-</listitem>
 </orderedlist>
 
 </listitem>
