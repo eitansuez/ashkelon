@@ -1,6 +1,16 @@
 Release Notes
 
-What's new in v0.8.6 (July ? 2004):
+What's new in v0.8.7 (August 17 2004):
+--------------------------------------
+
+ 1. Minor but important revision of the ant build file:  optional tasks that depended on catalina-ant.jar existing in $ANT_HOME/lib have been commented out.  Build file now works out of the box (Thanks Henri Yandell for suggesting this)
+
+ 2. Downgraded JSTL from v1.1 to v1.0 for wider servlet container compatibility.  Ashkelon should now work out of the box with either tomcat 4.x or tomcat 5.x (as well as many other servlet containers, such as resin) (Thanks Henri Yandell for suggesting this)
+
+ 3. Major:  Ashkelon repository population now works with _either_ ashkelon api xml files or Maven project POM files (project.xml).  That is, you can now do:  ashkelon add @project.xml from, say, your dom4j project directory and you're ready to go (you still need the sources to exist in your SOURCEPATH environment variable)
+
+
+What's new in v0.8.6 (July 31 2004):
 ----------------------------------
 
  - Made handling of @link references (inline tags) during population an 
