@@ -17,7 +17,7 @@
 <FORM METHOD="POST" ACTION="config.do">
 <B>User Interface</B><BR>
 <INPUT TYPE="RADIO" NAME="ui_config" <%=(("basic/".equals(ui)) ? "CHECKED" : "" )%> VALUE="classic">Classic (javadoc-style)<BR>
-<INPUT TYPE="RADIO" NAME="ui_config" <%=(("".equals(ui)) ? "CHECKED" : "" )%> VALUE="modern">Modern/DHTML (only for Mozilla 1.0+ or IE5.0+)
+<INPUT TYPE="RADIO" NAME="ui_config" <%=(("".equals(ui)) ? "CHECKED" : "" )%> VALUE="modern">Modern/dhtml
 <br/>
 <input type="radio" name="ui_config" <%=(("xul/".equals(ui)) ? "CHECKED" : "")%> value="xul"/>XUL (a work in progress; requires mozilla)
 <BR><BR>

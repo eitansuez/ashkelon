@@ -20,10 +20,10 @@
 
 <form method="POST" action="config.do">
 <b>User Interface</b><br/>
-<input type="radio" NAME="ui_config" <%=(("basic/".equals(ui)) ? "CHECKED" : "" )%> VALUE="classic">Classic ("javadoc" look & feel)<br/>
-<input type="radio" NAME="ui_config" <%=(("".equals(ui)) ? "CHECKED" : "" )%> VALUE="modern">Modern/DHTML (only Mozilla and IE for now)
+<input type="radio" name="ui_config" <%=(("basic/".equals(ui)) ? "checked" : "" )%> value="classic">Classic ("javadoc" look & feel)<br/>
+<input type="radio" name="ui_config" <%=(("".equals(ui)) ? "checked" : "" )%> value="modern">Modern/dhtml
 <br/>
-<input type="radio" name="ui_config" <%=(("xul/".equals(ui)) ? "CHECKED" : "")%> VALUE="xul" />XUL (requires Mozilla) (experimental pre-alpha)
+<input type="radio" name="ui_config" <%=(("xul/".equals(ui)) ? "checked" : "")%> value="xul" />XUL (requires Mozilla) (experimental pre-alpha)
 <br/><br/>
 <input type="SUBMIT" value="Submit">
 </form>

@@ -16,7 +16,7 @@ Date: March 2001
   
   List xrefs = null;
   int i=0;
-  String keys[] = {"field", "returned by", "passed to", "thrown by", "implemented by", "subclasses", "extended by"};
+  String keys[] = {"field", "returnedby", "passedto", "thrownby", "implementedby", "subclasses", "extendedby"};
   while (xrefs==null && i<keys.length)
   {
       xrefs = (List) request.getAttribute(keys[i++]);
@@ -25,11 +25,9 @@ Date: March 2001
   TreeNode desc = (TreeNode) request.getAttribute("descendents");
 %>
 
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-
-<A NAME="cls_xref">
+<a name="cls_xref">
 <TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TD COLSPAN=2><FONT SIZE="+2">
@@ -131,7 +129,7 @@ if (i<=4) // displaying member info
   String mmb_type = "all";
   if (keys[i-1].equals("field"))
     mmb_type = "field";
-  if (keys[i-1].equals("returned by"))
+  if (keys[i-1].equals("returnedby"))
     mmb_type = "method";
 %>
   <DIV ID="xref_member">
@@ -149,7 +147,7 @@ else
 {
   request.setAttribute("classes", xrefs);
 %>
-  <DIV ID="xref_class">
+  <div id="xref_class">
       <jsp:include page="class_list.jsp" flush="true">
         <jsp:param name="caption" value="<%=keys[i-1]%>" />
         <jsp:param name="empty_msg" value="<%=emptyMsg%>" />
@@ -157,7 +155,7 @@ else
         <jsp:param name="classes_type" value="all" />
         <jsp:param name="div_id" value="xref_class" />
       </jsp:include>
-  </DIV>
+  </div>
 <% } %>
 
 <% } // end if xrefs ! null %>

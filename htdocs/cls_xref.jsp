@@ -25,14 +25,6 @@ Date: March 2001
   TreeNode desc = (TreeNode) request.getAttribute("descendents");
 %>
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <P STYLE="font-size: larger;"><B>Which cross references might you be interested in?</B></P>
