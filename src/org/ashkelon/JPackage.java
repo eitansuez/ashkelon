@@ -48,9 +48,10 @@ public class JPackage implements JDoc, Serializable
       setDoc(new DocInfo());
    }
    
-   public JPackage(PackageDoc packageDoc, boolean recurseClasses)
+   public JPackage(PackageDoc packageDoc, boolean recurseClasses, API api)
    {
       this(packageDoc.name());
+      this.api = api;
       setDoc(new DocInfo(packageDoc));
       if (recurseClasses)
       {
@@ -73,6 +74,7 @@ public class JPackage implements JDoc, Serializable
       fieldInfo.put("ID", new Integer(getId(conn)));
       fieldInfo.put("NAME", StringUtils.truncate(name, 60));
       fieldInfo.put("DOCID", new Integer(getDoc().getId(conn)));
+      fieldInfo.put("API_ID", new Integer(api.getId(conn)));
 
       DBUtils.insert(conn, TABLENAME, fieldInfo);
       getDoc().store(conn);
@@ -89,6 +91,7 @@ public class JPackage implements JDoc, Serializable
    {
       Map constraints = new HashMap();
       constraints.put("NAME", getName());
+      constraints.put("API_ID", new Integer(api.getId(conn)));
       Object obj = DBUtils.getObject(conn, TABLENAME, "ID", constraints);
       if (obj == null)
          return false;
@@ -249,7 +252,7 @@ public class JPackage implements JDoc, Serializable
    public void addClass(ClassDoc classdoc)
    {
       log.verbose(classdoc.qualifiedName());
-      addClass(new ClassType(classdoc, this));
+      addClass(new ClassType(classdoc, this, getAPI()));
    }
    
    public void addClass(ClassType classtype)

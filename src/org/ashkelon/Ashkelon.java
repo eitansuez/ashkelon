@@ -17,7 +17,7 @@ public class Ashkelon extends Doclet
    private PKManager pkmgr;
    private DBProc proc;
 
-   
+
    /** required for Doclet inheritance */
    public static boolean start(RootDoc root)
    {
@@ -113,6 +113,20 @@ public class Ashkelon extends Doclet
          }
       }
       
+		if (api != null)
+		{
+		  try
+		 {
+			 log.traceln("Storing api");
+			 api.store(conn);
+			 conn.commit();
+		 }
+		 catch (SQLException ex)
+		 {
+			  DBUtils.logSQLException(ex);
+		 }
+		}
+      
       if(!refsonly)
       {
          try
@@ -130,7 +144,7 @@ public class Ashkelon extends Doclet
             try
             {
                log.traceln("Processing package " + packages[i].name() + "..");
-               new JPackage(packages[i], true).store(conn);
+               new JPackage(packages[i], true, api).store(conn);
                conn.commit();
                log.traceln("Package: " + packages[i].name() + " stored (committed)", Logger.VERBOSE);
             } catch (SQLException ex)
@@ -153,7 +167,7 @@ public class Ashkelon extends Doclet
          {
             try
             {
-               new ClassType(classes[i], null).store(conn);
+               new ClassType(classes[i], null, api).store(conn);
                conn.commit();
                log.traceln("Class: "+classes[i].qualifiedName()+" stored (committed)", Logger.VERBOSE);
             } catch (SQLException ex)
@@ -202,19 +216,16 @@ public class Ashkelon extends Doclet
       long reftime = new java.util.Date().getTime() - start - addtime;
       log.traceln("Ref. Time: "+reftime/1000+" seconds");
 
-      if (api != null)
-      {
-         try
-         {
-            api.store(conn);
-            conn.commit();
-         }
-         catch (SQLException ex)
-         {
-            DBUtils.logSQLException(ex);
-         }
-      }
-      
+		try
+		{
+			conn.commit();
+		}
+		catch (SQLException ex)
+		{
+			log.error("jdbc commit failed");
+			DBUtils.logSQLException(ex);
+		}
+		
       log.traceln("done");
    }
    
@@ -507,7 +518,7 @@ public class Ashkelon extends Doclet
       com.sun.tools.javadoc.Main.main(javadocargs);
    }
    
-   private static void resetCmd()
+   public static void resetCmd()
    {
       Logger log = Logger.getInstance();
       log.traceln("Please wait while all tables are reset..");
@@ -582,7 +593,24 @@ public class Ashkelon extends Doclet
       }
    }
    
-   private static void listCmd()
+	public static void updateRefsCmd()
+	{
+	  Logger log = Logger.getInstance();
+	  Ashkelon ashkelon = new Ashkelon();
+	  ashkelon.init();
+	  ashkelon.setInternalReferences();
+	  try
+	  {
+		  new AncestorPopulator(); // populates class ancestor table
+	  }
+	  catch (SQLException ex)
+	  {
+		  log.error("Failed to populate class ancestors table");
+		  DBUtils.logSQLException(ex);
+	  }
+	}
+
+   public static void listCmd()
    {
       Logger log = Logger.getInstance();
       log.setPrefix("list");
@@ -609,7 +637,7 @@ public class Ashkelon extends Doclet
       ashkelon.finish();
    }
    
-   private static void removeCmd(String args[])
+   public static void removeCmd(String args[])
    {
       Logger log = Logger.getInstance();
       log.setPrefix("remove");
@@ -685,18 +713,7 @@ public class Ashkelon extends Doclet
       }
       else if (args[0].equals("updaterefs"))
       {
-         Ashkelon ashkelon = new Ashkelon();
-         ashkelon.init();
-         ashkelon.setInternalReferences();
-         try
-         {
-           new AncestorPopulator();  // populates class ancestor table
-         }
-         catch (SQLException ex)
-         {
-            log.error("Failed to populate class ancestors table");
-            DBUtils.logSQLException(ex);
-         }
+         updateRefsCmd();
       }
       else
       {

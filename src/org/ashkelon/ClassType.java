@@ -46,6 +46,7 @@ public class ClassType implements Comparator, JDoc, Serializable
    private String containingClassName;
    private ClassType containingClass;
    private List innerClasses;
+   private API api;
    
    private int id;
    private boolean idSet = false;
@@ -67,7 +68,7 @@ public class ClassType implements Comparator, JDoc, Serializable
    /** constants representing the four types of classesdocs */
    public static final int ERROR_CLASS = 4;
 
-	public static final String[] CLASSTYPES = {"ordinaryClass", "interface", "exception", "errorClass"};
+   public static final String[] CLASSTYPES = {"ordinaryClass", "interface", "exception", "errorClass"};
 
    private transient Logger log;
    
@@ -84,21 +85,27 @@ public class ClassType implements Comparator, JDoc, Serializable
       setMethods(new ArrayList());
       
       setSuperClassName("");
-      setQualifiedName(qualifiedName);
       
       setContainingClassName("");
       setInnerClasses(new ArrayList());
 
       Logger.getInstance().debug("qualified name: "+qualifiedName);
-      setPackage(new JPackage(qualifiedName.substring(0, qualifiedName.lastIndexOf("."))));
+
+      // there are cases where the qualified name passed in may not be fully qualified
+      // as expected by this method.  such a situation is where a class extends another class
+      // that is in a separate package that is not in the sourcepath.  in that case, 
+      // superclass().qualifiedName() will not return the superclass qualified name
+      if (qualifiedName.indexOf(".") > -1)
+        setPackage(new JPackage(qualifiedName.substring(0, qualifiedName.lastIndexOf("."))));
       
       setDoc(new DocInfo());
       
       log = Logger.getInstance();
    }
    
-   public ClassType(ClassDoc classdoc)
+   public ClassType(ClassDoc classdoc, API api)
    {
+      this.api = api;
       setName(classdoc.name());
       setQualifiedName(classdoc.qualifiedTypeName());
       
@@ -153,12 +160,12 @@ public class ClassType implements Comparator, JDoc, Serializable
       addInnerClasses(classdoc.innerClasses());
    }
    
-   public ClassType(ClassDoc classdoc, JPackage jp)
+   public ClassType(ClassDoc classdoc, JPackage jp, API api)
    {
-      this(classdoc);
+      this(classdoc, api);
       if (jp == null)
       {
-         jp = new JPackage(classdoc.containingPackage(), false);
+         jp = new JPackage(classdoc.containingPackage(), false, api);
          storePackage = true;
       }
       setPackage(jp);
@@ -657,7 +664,7 @@ public class ClassType implements Comparator, JDoc, Serializable
    {
       for (int i=0; i<innerClasses.length; i++)
       {
-         addInnerClass(new ClassType(innerClasses[i], getPackage()));
+         addInnerClass(new ClassType(innerClasses[i], getPackage(), (api==null) ? getAPI() : api));
       }
    }
    
