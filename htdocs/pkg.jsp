@@ -7,19 +7,7 @@ Date: March 2001
 --%>
 
 <%
-  List cols = new ArrayList(4);
-  List javaPkgs = (List) application.getAttribute("javaPkgs");
-  List javaxPkgs = (List) application.getAttribute("javaxPkgs");
-  List orgPkgs = (List) application.getAttribute("orgPkgs");
-  List comPkgs = (List) application.getAttribute("comPkgs");
-  if (!javaPkgs.isEmpty())
-    cols.add(javaPkgs);
-  if (!javaxPkgs.isEmpty())
-    cols.add(javaxPkgs);
-  if (!orgPkgs.isEmpty())
-    cols.add(orgPkgs);
-  if (!comPkgs.isEmpty())
-    cols.add(comPkgs);
+  HashMap cols = (HashMap) application.getAttribute("javaPkgs");
  %>
 
 <%-- SECTION: TEMPLATE --%> 
@@ -27,7 +15,7 @@ Date: March 2001
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc - Packages</TITLE>
+	<TITLE>Ashkelon - Packages</TITLE>
   <jsp:include page="includes.html" flush="true"/>
 
   <!-- SECTION: PAGE STYLES -->
@@ -45,51 +33,60 @@ Date: March 2001
 <DIV CLASS="PAGEBODY">
 
 <% if (cols.isEmpty()) { %>
- <P>No packages exist in the dbdoc repository at this time.</P>
+ <P>No packages exist in the Ashkelon repository at this time.</P>
 <% } else { %>
 
 <DIV ALIGN="CENTER">
 <TABLE CLASS="columnar">
 <CAPTION>Packages by Type</CAPTION>
-<!--
 <THEAD CLASS="table_header">
 <TR>
-  <TD>java.*</TD>
-  <TD>javax.*</TD>
-  <TD>org.*</TD>
-  <TD>com.*</TD>
+  <%
+  String columnName = null;
+  Set keys = cols.keySet();
+  Iterator iter = keys.iterator();
+  while (iter.hasNext())
+  {
+    columnName = iter.next().toString();
+  %>
+  <TD><%=columnName%></TD>
+  <%
+  }
+  %>
 </TR>
 </THEAD>
--->
 <TBODY>
 <TR>
   <%
-  JPackage pkg;
-  String title;
-  List col;
-  for (int i=0; i<cols.size(); i++) { %>
+    JPackage pkg;
+    String title;
+    List col;
+    iter = keys.iterator();
+    while (iter.hasNext())
+    {
+  %>
   <TD VALIGN="TOP">
- <DIV CLASS="scroll_column">
-    <TABLE>
-    <%
-     col = (List) cols.get(i);
-     for (int j=0; j<col.size(); j++)
-     {
-        pkg = (JPackage) col.get(j);
-        title = pkg.getDoc().getSummaryDescription();
-        if (StringUtils.isBlank(title))
-          title = pkg.getName(); 
-        %>
-    <TR>
-    	<TD>
+  <DIV CLASS="scroll_column">
+  <TABLE>
+  <%
+       col = (List) cols.get(iter.next());
+       for (int j=0; j<col.size(); j++)
+       {
+          pkg = (JPackage) col.get(j);
+          title = pkg.getDoc().getSummaryDescription();
+          if (StringUtils.isBlank(title))
+            title = pkg.getName(); 
+   %>
+   <TR>
+     <TD>
         <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"  TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></SPAN></A>
-      </TD>
-    </TR>
-  <% }  // end inner for loop %>
+     </TD>
+   </TR>
+   <%   }  // end inner for loop %>
     </TABLE>
  </DIV>
   </TD>
-<% } // end for %>
+<%  } // end while %>
 </TR>
 </TBODY>
 </TABLE>
