@@ -76,7 +76,7 @@
    </target>
 
   <!-- ======================== -->
-  <!-- SECTION:  Tomcat Related -->
+  <!-- SECTION:  Tomcat Related
 
   <taskdef name="tomcat-reload" classname="org.apache.catalina.ant.ReloadTask" />
   <taskdef name="tomcat-install" classname="org.apache.catalina.ant.InstallTask" />
@@ -100,14 +100,16 @@
     <tomcat-install url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" path="${contextpath}" 
        war="file://${distdir}/ashkelon.war" />
   </target>
-   
-   <target name="ear" depends="war" description="packages ear file">
-      <ear destfile="${distdir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${distdir}" includes="ashkelon.war" />
-   </target>
 
   <target name="listwebapps" description="list webapps deployed to tomcat">
     <tomcat-list url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" />
   </target>
+
+  -->
+   
+   <target name="ear" depends="war" description="packages ear file">
+      <ear destfile="${distdir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${distdir}" includes="ashkelon.war" />
+   </target>
   
   <!-- ================================== -->
   <!-- SECTION:  Documentation Production -->
