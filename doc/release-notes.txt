@@ -1,6 +1,13 @@
 3/21/2003
 Release Notes
 
+What's new in v0.8.2:
+---------------------
+ 1. Small but important fix to conn pooling:  on error pool is now flushed/
+    reset/discarded.
+ 2. Finally:  Ant task for running ashkelon from Ant (thanks to bob)
+ 3. Other miscellaneous bug fixes.
+
 What's new in v0.8.1:
 ---------------------
 
