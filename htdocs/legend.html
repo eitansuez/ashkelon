@@ -1,0 +1,64 @@
+
+<div style="position: relative; margin-right: 15px;">
+
+<button onClick="showLegend();" accesskey="l" style="font-size: small;">
+  <u>L</u>egend
+</button>
+
+<div id="legend">
+  <div class="api">API</div>
+  <div class="package">Package</div>
+  <div class="ordinaryClass">Class</div>
+  <div class="interface">Interface</div>
+  <div class="exception">Exception</div>
+  <div class="errorClass">Error</div>
+  <div class="method">Method</div>
+  <div class="constructor">Constructor</div>
+  <div clas="field">Field</div>
+  <div class="author">Author</div>
+  <div class="abstract">abstract</div>
+  <div class="static">static</div>
+  <div class="deprecated">deprecated</div>
+</div>
+
+</div>
+
+<style TYPE="text/css">
+#legend
+{
+  visibility: hidden;
+  position: absolute;
+  border: 1px solid black;
+  padding: 3px;
+  top: 25;
+  right: 0;
+  height: 300;
+  width: 100;
+  overflow: auto;
+  background-color: beige;
+  cursor: default;
+}
+#legend div
+{
+  margin-bottom: 5px;
+  border-bottom: 1px dotted black;
+}
+</style>
+
+<script>
+function showLegend()
+{
+  toggleVisibility("legend", "visibility", false);
+}
+// enable 'esc' key to hide legend
+function esc(evt)
+{
+  if (!evt) evt = window.event;
+  var code = evt.keyCode;
+  if (!code) code = evt.which;
+  if (code != 27) return;
+  setVisible("legend", false, "visibility", false);
+}
+document.onkeypress = esc;
+</script>
+

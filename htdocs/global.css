@@ -79,7 +79,7 @@ fieldset
 
 .leafnode
 {
-  display: 'inline';
+  display: inline;
 }
 
 
@@ -87,68 +87,36 @@ fieldset
 {
   color: #0000FF;
 }
-hr.ordinaryClass
-{
-  background-color: #0000ff;
-}
 .interface
 {
   color: #008000;
   font-style: italic;
 }
-hr.interface
-{
-  background-color: #008000;
-}
 .exception
 {
   color: #FF0000;
-}
-hr.exception
-{
-  background-color: #ff0000;
 }
 .errorClass
 {
   color: #BC2540;
   font-weight: bold;
 }
-hr.errorClass
-{
-  background-color: #BC2540;
-}
 .method
 {
   color: #004040;
-}
-hr.method
-{
-  background-color: #004040;
 }
 .constructor
 {
   color: #800080;
 }
-hr.constructor
-{
-  background-color: #800080;
-}
 .field
 {
   color: #804040;
-}
-hr.field
-{
-  background-color: #804040;
 }
 .package
 {
   color: #004080;
   font-weight: bold;
-}
-hr.package
-{
-  background-color: #004080;
 }
 .superclass
 {
@@ -160,18 +128,10 @@ hr.package
   color: #000000;
   font-weight: bold;
 }
-hr.api
-{
-  background-color: black;
-}
 .author
 {
   color: #9a3a47;
   font-style: italic;
-}
-hr.author
-{
-  background-color: #9a3a47;
 }
 
 .scroll_column
@@ -204,3 +164,15 @@ hr.author
   text-decoration: line-through;
 }
 
+#search-callout
+{
+   text-align: right;
+   margin-right: 15px;
+}
+#search-form
+{
+   display: inline;
+   background-color: #92a6f5;
+   padding: 10px;
+   border: 1px solid black;
+}

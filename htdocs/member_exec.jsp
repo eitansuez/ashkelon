@@ -34,10 +34,6 @@ Date: March 2001
 %>
 
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
 <%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
 <SCRIPT>
   var selectedColor = "lightyellow";
@@ -74,24 +70,16 @@ Date: March 2001
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<TABLE WIDTH="92%">
-<TR VALIGN="TOP">
-<TD>
+<table width="100%">
+<tr valign="top">
+<td style="width: 300px;">
 
+<table class="columnar" rules="rows" border="1" cellspacing="0" cellpadding="5">
+<caption>
 <% if (execs.size()>1)  { %>
-  <P><SPAN CLASS="<%=membertype%>"><%=caption%></SPAN> has <%=execs.size()%> variants:</P>
+  <span class="<%=membertype%>"><%=caption%></span> has <%=execs.size()%> variants:
 <% } %>
-</TD>
-
-<TD>
-Description:
-</TD>
-</TR>
-
-<TR VALIGN="TOP">
-<TD WIDTH="50%">
-
-<TABLE CLASS="columnar" RULES="rows" BORDER="1" CELLSPACING="0" CELLPADDING="5">
+</caption>
 <TBODY>
 
 <%
@@ -120,7 +108,7 @@ Description:
       String name = JDocUtil.conditionalQualify(method.getReturnTypeName(), pkgName);
       String dim = JDocUtil.getDimension(method.getReturnTypeDimension());
    %>
-   <SPAN TITLE="<%=HtmlUtils.cleanAttributeText(method.getReturnDescription())%>">
+   <span title="<%=HtmlUtils.cleanAttributeText(method.getReturnDescription())%>">
    <% if (method.getReturnType() != null && method.getReturnType().getId() > 0)
       { %>
      <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
@@ -128,10 +116,10 @@ Description:
       { %>
      <%=name%><%=dim%>
    <% } %>
-   </SPAN>
+   </span>
 <% } %>
 
-   <SPAN CLASS="<%=membertype%>"><%=exec.getName()%></SPAN>
+   <span class="<%=membertype%>"><%=exec.getName()%></span>
      (
    
    <%
@@ -144,7 +132,7 @@ Description:
           typeName = JDocUtil.conditionalQualify(param.getTypeName(), pkgName);
           dimStr = JDocUtil.getDimension(param.getTypeDimension());
    %>
-   <SPAN TITLE="<%=HtmlUtils.cleanAttributeText(param.getDescription())%>">
+   <span title="<%=HtmlUtils.cleanAttributeText(param.getDescription())%>">
    <% if (param.getType()!=null && param.getType().getId()>0)
       { %>
      <A HREF="cls.main.do?cls_id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
@@ -156,7 +144,7 @@ Description:
    <% if (j < params.size() - 1) { %>
     , 
    <% } %>
-   </SPAN>
+   </span>
    <% } // end for params
     %>
 
@@ -172,7 +160,7 @@ Description:
       {
         ex = (ThrownException) exs.get(j);
  %>
-       <SPAN TITLE="<%=HtmlUtils.cleanAttributeText(ex.getDescription())%>">
+       <span title="<%=HtmlUtils.cleanAttributeText(ex.getDescription())%>">
          <%
           if (ex.getException()!=null && ex.getException().getId()>0)
           {
@@ -186,7 +174,7 @@ Description:
           <%
           }
           %>
-       </SPAN>
+       </span>
 <%
       } // end for 
  %>
@@ -200,10 +188,10 @@ Description:
 </TBODY>
 </TABLE>
 
-</TD>
-<TD WIDTH="50%">
+</td> <td>
 
-  <DIV ID="detailDescriptions" STYLE="border: thin solid black; padding: 10 px;">
+  <div align="center">Description</div>
+  <DIV ID="detailDescriptions" STYLE="border: thin solid black; padding: 10px;">
 <% for (int i=0; i<execs.size(); i++)
    {
      request.setAttribute("execmember", execs.get(i));
@@ -214,11 +202,12 @@ Description:
 <% } %>
   </DIV>
 
-</TD>
-</TR>
-</TABLE>
+</td>
+</tr>
+</table>
 
   
 <SCRIPT>
   showDescr(0);
 </SCRIPT>
+

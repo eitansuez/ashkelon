@@ -28,9 +28,7 @@ String pkgName = containingClass.getPackage().getName();
   <P><B>Deprecated:</B> <%=execmember.getDoc().getDeprecated()%></P>
 <% } %>
 
-<P>
 <%=execmember.getDescription()%>
-</P>
 
 <%-- RETURN TYPE INFO --%>
 <%

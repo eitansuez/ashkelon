@@ -2,10 +2,6 @@
 
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
-  String cmd = (String) request.getAttribute("cmd");
-  String[] parts = StringUtils.split(cmd, ".");
-  //String inittab = "cls_"+parts[1];
-  String inittab = "cls_member";
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -14,38 +10,9 @@
 <head>
   <title><%=cls.getName()%> at a glance</title>
   <jsp:include page="includes.html" flush="true"/>
-
-  <script>
-    function initTabs()
-    {
-      var page_signature = readCookie("pagecontext");
-      if (location.search == page_signature)
-      {  // must be a reload or a back button press
-        togglePage(readCookie("tabid"), "<%=cls.getName()%>");
-      } else
-      {
-        togglePage("<%=inittab%>", "<%=cls.getName()%>");
-      }
-      // enable tabs:
-      for (var i=0; i<cmds.length; i++)
-      {
-        var tag = getElementById(cmds[i]+"_tabchild");
-        tag.disabled = false;
-      }
-    }
-
-    function init()
-    {
-      if (IE)
-        document.onclick = expandCollapse;
-      else
-        document.addEventListener("click", expandCollapse, false);
-    }
-
-  </script>
 </head>
 
-<body onLoad="init();loadCookies();initTabs();cleanTitles('span');cleanTitles();"
+<body onLoad="configureExpandCollapse();loadCookies();initTabs('cls_member', '<%=cls.getName()%>');cleanTitles('span');cleanTitles();"
       onUnload="saveCookies();">
       
   <jsp:include page="main_header.jsp" flush="true"/>

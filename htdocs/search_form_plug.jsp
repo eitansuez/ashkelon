@@ -1,10 +1,11 @@
-<div align="right">
-  <form name="search_form" method="POST" action="search.do" style="background-color: #92A6F5; border: 1px solid black; padding: 10px; display: inline;">
+
+<div id="search-callout">
+  <form id="search-form" name="search_form" method="post" action="search.do">
     <input type="hidden" name="simple" value="true" />
     <input type="hidden" name="srch_type" value="class">
 
     <label for="searchField" accesskey="s">Class <u>S</u>earch: </label>
-    <input type="text" id="searchField" name="searchField" size="25" maxlength="100" />
+    <input type="text" id="searchField" name="searchField" size="25" maxlength="100" style="background-color: beige;" />
 
     <button accesskey="g" type="submit">&nbsp;<u>G</u>o&nbsp;</button>
   </form>

@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" TYPE="text/css" HREF="l2_hdr.css" />
 
-<script src="l2_hdr.js"></script>
+<script src="page.js"></script>
 <script>
   var cmds = new Array();
   <% for (int i=0; i<cmds.size(); i++) { %>

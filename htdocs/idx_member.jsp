@@ -61,7 +61,7 @@ Date: March 2001
 <FORM METHOD="GET" ACTION="idx.member.do">
   <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
   <BUTTON TYPE="SUBMIT"
-          STYLE="background-color: #dddddd; font-size: 8 pt;"
+          STYLE="background-color: #dddddd; font-size: 8pt;"
           ACCESSKEY="N"><U>N</U>ext &gt;</BUTTON>
 </FORM>
 <% } // end if %>

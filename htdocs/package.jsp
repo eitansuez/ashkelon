@@ -10,39 +10,10 @@
 <head>
   <title><%=pkg.getName()%> at a glance</title>
   <jsp:include page="includes.html" flush="true" />
-
-  <script>
-    function initTabs()
-    {
-      var context = readCookie("pagecontext");
-      if (location.search == context)
-      {  // must be a reload or a back button press
-        togglePage(readCookie("tabid"), "<%=pkg.getName()%>");
-      } else
-      {
-        togglePage("pkg_member", "<%=pkg.getName()%>");
-      }
-      // enable tabs:
-      for (var i=0; i<cmds.length; i++)
-      {
-        var tag = getElementById(cmds[i]+"_tabchild");
-        tag.disabled = false;
-      }
-    }
-    
-    function init()
-    {
-      if (IE)
-        document.onclick = expandCollapse;
-      else
-        document.addEventListener("click", expandCollapse, false);
-    }
-    
-  </script>
 </head>
 
 
-<body onLoad="init();loadCookies();initTabs();cleanTitles('SPAN');cleanTitles();"
+<body onLoad="configureExpandCollapse();loadCookies();initTabs('pkg_member', '<%=pkg.getName()%>');cleanTitles('span');cleanTitles();"
       onUnload="saveCookies();">
       
   <jsp:include page="main_header.jsp" flush="true"/>

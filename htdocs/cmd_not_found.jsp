@@ -1,7 +1,7 @@
 <%@ page info="command not found page" import="java.io.*,org.ashkelon.util.*"%>
 
 <%
-  String cmd = (String) request.getAttribute("cmd");
+  String cmd = ServletUtils.getCommand(request);
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">

@@ -5,7 +5,7 @@
   JPackage pkg = cls.getPackage();
   String cls_type = cls.getClassTypeName();
   
-  String cmd = (String) request.getAttribute("cmd");
+  String cmd = ServletUtils.getCommand(request);
   String descr_type = request.getParameter("descr_type");
 
   ClassType impl_interface;
@@ -43,14 +43,14 @@ Version: <%=version%>
      <TD COLSPAN="3"><A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"><%=pkg.getName()%></SPAN></A>
 <% if (pkg.getAPI() != null) { %>
 &nbsp;&nbsp;&nbsp;
-<SPAN CLASS="api" STYLE="font-size: 8 pt;">
+<SPAN CLASS="api" STYLE="font-size: 8pt;">
 (<a href="api.main.do?id=<%=cls.getAPI().getId()%>"><%=cls.getAPI().getName()%></a> API)
 </SPAN>
 <% } %>
      </TD>
       <TD WIDTH="20"></TD>
      <TD ALIGN="RIGHT">
-       <A HREF="cls.source.do?cls_name=<%=cls.getQualifiedName()%>" STYLE="font-size: 8 pt;">View Source</A>
+       <A HREF="cls.source.do?cls_name=<%=cls.getQualifiedName()%>" STYLE="font-size: 8pt;">View Source</A>
      </TD>
   </TR>
 	<TR VALIGN="BOTTOM">

@@ -1,164 +1,22 @@
 
-<STYLE TYPE="text/css">
+<style TYPE="text/css">
 .footer
 {
+  border-top: thin solid black;
+  border-bottom: thin solid black;
+  padding-top: 5px;
+  padding-bottom: 5px;
   font-size: 8pt;
+  text-align: right;
+  line-height: 1.2em;
+  padding-right: 5px;
+  background-color: lightgray;
 }
-HR.footer
-{
-  color: black;
-  background-color: blue;
-}
-#legend
-{
-  visibility: hidden;
-  border: 1px solid black;
-  display: inline;
-  padding: 3;
-  position: absolute;
-  top: -260;
-  left: 50;
-  height: 200;
-  width: 120;
-  overflow: auto;
-  background-color: white;
-}
-</STYLE>
+</style>
 
-<SCRIPT>
-function showLegend()
-{
-  toggleVisibility("legend", "visibility", false);
-}
-</SCRIPT>
+<div class="footer">
+  &copy; Copyright 2001 UptoData Inc.; <br/>      
+  This product documents software developed by the Apache Software Foundation 
+    (see <A TARGET="_new" HREF="http://www.apache.org/">http://www.apache.org/</A>)      
+</div>
 
-<HR CLASS="footer">
-<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="3">
-<TR VALIGN="TOP">
-	<TD ALIGN="LEFT" STYLE="padding-left: 20;">
-    <BUTTON onClick="showLegend();" CLASS="footer" ACCESSKEY="L"><U>L</U>egend</BUTTON>
-  </TD>
-	<TD>&nbsp;</TD>
-	<TD ALIGN="RIGHT" CLASS="footer">
-    &copy; Copyright 2001 UptoData Inc.;
-  
-    <BR>      
-    This product documents software developed by the Apache Software Foundation 
-      (see <A TARGET="_new" HREF="http://www.apache.org/">http://www.apache.org/</A>)      
-
-
-  </TD>
-</TR>
-</TABLE>
-
-<div style="position: relative;">
-<div id="legend">
-<TABLE>
-<TR>
-  <TD>
-    <HR CLASS="api" SIZE="12" WIDTH="12">
-  </TD>
-  <TD>
-    API
-  </TD>
-</TR>
-<TR>
-  <TD>
-    <HR CLASS="package" SIZE="12" WIDTH="12">
-  </TD>
-  <TD>
-    Package
-  </TD>
-</TR>
-</TABLE>
-
-<TABLE BORDER="0">
-<TR>
-<TD>
-<HR CLASS="ordinaryClass" SIZE="12" WIDTH="12">
-</TD>
-<TD>
-Class
-</TD>
-</TR>
-<TR>
-<TD>
-<HR CLASS="interface" SIZE="12" WIDTH="12">
-</TD>
-<TD>
-Interface
-</TD>
-</TR>
-<TR>
-<TD>
-<HR CLASS="exception" SIZE="12" WIDTH="12">
-</TD>
-<TD>
-Exception
-</TD>
-</TR>
-<TR>
-<TD>
-<HR CLASS="errorClass" SIZE="12" WIDTH="12">
-</TD>
-<TD>
-Error
-</TD>
-</TR>
-</TABLE>
-
-<TABLE BORDER="0">
-<TR>
-  <TD>
-    <HR CLASS="method" SIZE="12" WIDTH="12">
-  </TD>
-  <TD>
-    Method
-  </TD>
-</TR>
-<TR>
-  <TD>
-    <HR CLASS="constructor" SIZE="12" WIDTH="12">
-  </TD>
-  <TD>
-    Constructor
-  </TD>
-</TR>
-<TR>
-  <TD>
-    <HR CLASS="field" SIZE="12" WIDTH="12">
-  </TD>
-  <TD>
-    Field
-  </TD>
-</TR>
-<TR>
-  <TD>
-    <HR CLASS="author" SIZE="12" WIDTH="12">
-  </TD>
-  <TD>
-    Author
-  </TD>
-</TR>
-</TABLE>
-
-<TABLE BORDER="0">
-<TR>
-  <TD COLSPAN="2">
-    <SPAN CLASS="abstract">abstract</SPAN>
-  </TD>
-</TR>
-<TR>
-  <TD COLSPAN="2">
-    <SPAN CLASS="static">static</SPAN>
-  </TD>
-</TR>
-<TR>
-  <TD COLSPAN="2">
-    <SPAN CLASS="deprecated">deprecated</SPAN>
-  </TD>
-</TR>
-</TABLE>
-
-</DIV>
-</DIV>

@@ -106,7 +106,7 @@ as follows:
   </COLGROUP>
 <THEAD CLASS="table_header">
 <TR TITLE="Click on one of the modifiers to filter the table by modifier type">
-<TD STYLE="font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" TITLE="Reset table to include all rows">R<BR>e<BR>s<BR>e<BR>t</TD>
+<TD STYLE="font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" TITLE="Reset table to include all rows">C<BR>l<BR>e<BR>a<BR>r</TD>
 <% if ( "all".equals(memberstype) || ismethod ) { %>
 <TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'abstract', '<%=divid%>');" TITLE="Show only abstract members">a<BR>b<BR>s<BR>t<BR>r</TD>
 <% } %>

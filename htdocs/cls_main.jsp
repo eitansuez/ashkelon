@@ -23,7 +23,7 @@ Date: March 2001
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<DIV STYLE="height: 260; overflow: auto; border: thin solid #bbbbbb; padding: 5 px;">
+<DIV STYLE="height: 260px; overflow: auto; border: thin solid #bbbbbb; padding: 5px;">
     <P><%= cls.getDescription() %></P>
 </DIV>
 

@@ -11,27 +11,18 @@ Date: March 2001
   String membertypename = member.getMemberTypeName();
  %>
 
-<%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE><%=member.getName()%></TITLE>
+<html>
+<head>
+  <title><%=member.getName()%></title>
   <jsp:include page="includes.html" flush="true"/>
+</head>
 
-  <!-- SECTION: PAGE STYLES -->
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <!-- SECTION: BEHAVIOR (JAVASCRIPT) -->
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY onLoad="cleanTitles('A');cleanTitles('SPAN');">
+<body onLoad="cleanTitles('A');cleanTitles('span');">
   <jsp:include page="main_header.jsp" flush="true"/>
   
-  <DIV CLASS="PAGEBODY">
+  <div class="pagebody">
     <jsp:include page="member_info.jsp" flush="true"/>
   
      <% if ("field".equals(membertypename)) { %>
@@ -41,10 +32,9 @@ Date: March 2001
      <% } %>
 
     <jsp:include page="doc_footer.jsp" flush="true"/>
-  </DIV> <!-- end page body -->
+  </div> <!-- end page body -->
   
   <jsp:include page="footer.html" flush="true"/>
 
-
-</BODY>
-</HTML>
+</body>
+</html>

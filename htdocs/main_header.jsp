@@ -11,7 +11,7 @@
   
   String[] cmds = {"apis", "pkg", "search", "idx", "stats.general", "authors"};
 
-  String cmd = (String) request.getAttribute("cmd");
+  String cmd = ServletUtils.getCommand(request);
   String area = "";
   if (cmd != null)
     area = StringUtils.split(cmd,".")[0];
@@ -26,40 +26,26 @@
 }
 </style>
 
-<script>
-// sole purpose of this is to enable 'esc' key hiding of legend if visible (convenience)
-// should really be in an htc but i don't believe mozilla supports that
-function esc(evt)
-{
-  if (!evt) evt = window.event;
-  var code = evt.keyCode;
-  if (!code) code = evt.which;
-  if (code != 27) return;
-  setVisible("legend", false, "visibility", false);
-}
-document.onkeypress = esc;
-</script>
-
 
 <table width="100%" cellpadding="3" cellspacing="0">
 <tr style="background-color: #cdcdcd;">
 <td align="left">
 <% for (int i=0; i<cmds.length; i++)
   { %>
-      <A CLASS="menuitem" HREF="<%=request.getContextPath()%>/<%=cmds[i]%>.do"><%=tabs.get(cmds[i])%></A>
+      <a class="menuitem" href="<%=request.getContextPath()%>/<%=cmds[i]%>.do"><%=tabs.get(cmds[i])%></a>
 <%}%>
 </td>
 <td align="right">
 
-<A CLASS="menuitem" HREF="contact.do">Contact</A>
-<A CLASS="menuitem" HREF="config.do">Settings</A>
-<A CLASS="menuitem" HREF="help.do">Help</A>
+<a class="menuitem" href="contact.do">Contact</a>
+<a class="menuitem" href="config.do">Settings</a>
+<a class="menuitem" href="help.do">Help</a>
 
 </td>
 </tr>
 </table>
 
-<DIV STYLE="border-bottom: 1px solid black;"></DIV>
+<div style="border-bottom: 1px solid black;"></div>
 
 
 <%-- SECTION:  NAVIGATION TRAIL --%>
@@ -70,7 +56,7 @@ document.onkeypress = esc;
   LinkedList trail = (LinkedList) session.getAttribute("trail");
  %>
 
-<DIV STYLE="background-color: beige; padding: 3 3 3 3; border-bottom: 1px solid black;" TITLE="Navigation Trail">
+<div style="background-color: beige; padding: 3 3 3 3; border-bottom: 1px solid black;" title="Navigation Trail">
   <%
   String[] uriLabelPair = null;
   String uri, caption, itemtype;
@@ -88,26 +74,36 @@ document.onkeypress = esc;
     <a href="<%=uri%>"><span class="<%=itemtype%>"><%=caption%></span></a>
   <% } // end if %>
   
-    <% if (i < trail.size() - 2) out.println("<IMG SRC=\""+request.getContextPath()+"/images/arrow_rt.gif\">"); %>
+    <% if (i < trail.size() - 2) out.println("<img src=\""+request.getContextPath()+"/images/arrow_rt.gif\">"); %>
   <% } %>
 
   <%-- 
-    <FORM METHOD="GET" ACTION="<%=request.getContextPath()%>/trail.reset.do">
-  <TD ALIGN="RIGHT">
+    <form method="GET" action="<%=request.getContextPath()%>/trail.reset.do">
+  <td align="right">
     <% if (trail.size() > 3) { %>
-      <BUTTON TYPE="SUBMIT" CLASS="footer" TITLE="Reset navigation trail" STYLE="background-color: #dddddd;">Reset Trail</BUTTON>
+      <button type="submit" class="footer" title="Reset navigation trail" STYLE="background-color: #dddddd;">Reset Trail</button>
     <% } %>
-  </TD>
-    </FORM>
+  </td>
+    </form>
    --%>
-</DIV>
+</div>
 
 <% } %>
 
 <br />
 
-<% if (!("/search.jsp".equals(request.getServletPath()))) { %>
-<jsp:include page="search_form_plug.jsp" flush="true" />
-<% } %>
+<!-- using table to keep both items on same line: -->
+<table style="width: 100%;" align="right">
+<tr>
+<td align="right">
+  <% if (!("/search.jsp".equals(request.getServletPath()))) { %>
+    <jsp:include page="search_form_plug.jsp" flush="true" />
+  <% } %>
+</td>
+<td width="50">
+  <jsp:include page="legend.html" />
+</td></tr>
+</table>
+<!-- i don't know why browser (mozilla) treats above table outside of normal flow as if positioned absolute? -->
+<div style="height: 45px;"></div>
 
-<br />

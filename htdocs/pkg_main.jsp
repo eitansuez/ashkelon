@@ -14,11 +14,11 @@
 %>
 
 <% if (pkg.getAPI() != null) { %>
-<P CLASS="api" STYLE="font-size: 8 pt;">
+<P CLASS="api" STYLE="font-size: 8pt;">
 (<a href="api.main.do?id=<%=pkg.getAPI().getId()%>"><%=pkg.getAPI().getName()%></a> API)
 </P>
 <% } %>
   
-<DIV STYLE="height: 360; overflow: auto; border: thin solid #bbbbbb; padding: 5 px;">
+<DIV STYLE="height: 360; overflow: auto; border: thin solid #bbbbbb; padding: 5px;">
     <P><%= pkg.getDescription() %></P>
 </DIV>

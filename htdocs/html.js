@@ -9,23 +9,56 @@
  *  none.
  */
 
-function cleanTitles(tag)
+function cleanTitlesOld(tag)
 {
     if (!tag)
-      tag = "A";
+      tag = "a";
     var hrefs = getElementsByTagName(tag);
     var href, attribute, tag, cleanedtext;
     
     for (var i=0; i<hrefs.length; i++)
     {
       href = hrefs[i];
-      attribute = href.getAttribute("TITLE");
-      tag = document.createElement("SPAN");
+      attribute = href.getAttribute("title");
+      tag = document.createElement("span");
       tag.innerHTML=attribute;
       cleanedtext = tag.innerHTML;
-      hrefs[i].setAttribute("TITLE", cleanedtext, false);
+      hrefs[i].setAttribute("title", cleanedtext, false);
     }
 }
+
+function cleanTitles(tagname)
+{
+   if (!tagname) tagname = "a";
+   var tags = getElementsByTagName(tagname);
+   for (var i=0; i<tags.length; i++)
+     cleanSingleTitle(tags[i]);
+}
+
+function cleanSingleTitle(tag)
+{
+  var title = tag.getAttribute("title");
+  if (!title) return;
+  title = title.replace("\n", "");
+  var startIdx = 0;
+  while (true)
+  {
+    var idx1 = title.indexOf("<", startIdx);
+    if (idx1 >= startIdx)
+    {
+      var idx2 = title.indexOf(">", idx1);
+      if (idx2 > idx1)
+      {
+        title = title.substring(0, idx1) + title.substring(idx2 + 1);
+        startIdx = idx1 + 1;
+      }
+      else { break; } // end inner if
+    }
+    else { break; } // end outer if
+  } // end while
+  tag.setAttribute("title", title);
+}
+
 
 /**
  * set up a table with a tbody.  each row in the tbody
