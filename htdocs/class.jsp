@@ -12,7 +12,8 @@ Template page for Class or Interface types.
   ClassType cls = (ClassType) request.getAttribute("cls");
   String cmd = ServletUtils.getRequestParam(request, "cmd");
   String[] parts = StringUtils.split(cmd, ".");
-  String inittab = "cls_"+parts[1];
+  //String inittab = "cls_"+parts[1];
+  String inittab = "cls_member";
  %>
 
 <%-- SECTION: TEMPLATE --%> 

@@ -32,7 +32,7 @@ Date: March 2001
         togglePage(readCookie("tabid"), "<%=pkg.getName()%>");
       } else
       {
-        togglePage("pkg_main", "<%=pkg.getName()%>");
+        togglePage("pkg_member", "<%=pkg.getName()%>");
       }
       // enable tabs:
       for (var i=0; i<cmds.length; i++)
