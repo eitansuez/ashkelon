@@ -92,8 +92,8 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getpackages");
       
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(21);
-      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      //p.setFetchSize(21);
+      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
 
@@ -138,8 +138,8 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getclasses");
 
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(21);
-      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      //p.setFetchSize(21);
+      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
       
@@ -195,8 +195,8 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getmembers");
       
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(21);
-      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      //p.setFetchSize(21);
+      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
 
@@ -268,8 +268,8 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getauthors");
 
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(21);
-      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      //p.setFetchSize(21);
+      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
       
