@@ -2,7 +2,7 @@ Ashkelon Repository Manager
 
 Description:
   Manages a Java Documentation Repository.
-  For more information, visit http://www.dbdoc.org/
+  For more information, visit http://ashkelon.sourceforge.net/
   
 Usage:
   ashkelon [add [javadoc options] <items> | remove <names> | reset | list]
@@ -44,4 +44,4 @@ Supported javadoc options:
   -locale <name>            Locale to be used, e.g. en_US or en_US_WIN
   -encoding <name>          Source file encoding name
 
-Copyright 2001-2002 UptoData, Inc.
+Copyleft

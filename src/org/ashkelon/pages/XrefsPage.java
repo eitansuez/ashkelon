@@ -18,7 +18,7 @@ public class XrefsPage extends Page
    public String init() throws SQLException
    {
       int clsId = Integer.parseInt(ServletUtils.getRequestParam(request, "cls_id"));
-      String cmd = (String) request.getAttribute("cmd");
+      String cmd = ServletUtils.getCommand(request);
       
       ClassType cls = ClassType.makeClassFor(conn, clsId, true);
       request.setAttribute("cls", cls);
