@@ -16,13 +16,15 @@ README for ashkelon
 2. for an idea of the many things that need to be improved
    (or fixed) in ashkelon, see todo.txt
 
-3. after you have gotten ashkelon configured and working,
+3. for an ashkelon users' guide, see guide.txt or guide.html
+
+4. after you have gotten ashkelon configured and working,
    read apis/readme.txt as a supplement.
 
-4. I imagine an FAQ will develop as I start getting questions.
-
 5. to send eitan feedback or questions, mailto: eitan@uptodata.com
+   to send the entire team feedback, email ashkelon-devs@lists.sourceforge.net 
 
+thanks for downloading ashkelon!
 
 ----
 Notes:
@@ -33,4 +35,4 @@ j2se1.4 or other code that is only compatible with jdk1.4, you can
 do things like pass in a "-source 1.4" option so that javadoc will
 correctly work with things like assert statements.
 
-Last Updated May 2003
+Last Updated July 2003

@@ -1,4 +1,4 @@
-5/7/2002
+5/7/2002 (last updated July 2003)
 By Eitan Suez
 
 How to download, configure, setup, install, and run ashkelon
@@ -138,7 +138,8 @@ E. Run Ashkelon webapp
 NOTE:  some jsp's have started utilising JSTL (standard taglibs).
 since JSTL is becoming pervasive, i am not including the lib's
 with ashkelon.  for the pages to work, you must have the JSTL
-jar files included in $TOMCAT_HOME/common/lib
+jar files and dependent libs included in $TOMCAT_HOME/common/lib ( or in 
+webapps/ashkelon/WEB-INF/lib )
 
 0. sourcepath info also needs to be set in etc/web.xml
    so revise the param-value for the param-name "sourcepath" and
