@@ -147,7 +147,7 @@ Visit the project page on sourceforge at <ulink url="http://sourceforge.net/proj
 <orderedlist>
 <listitem>J2SE v1.4.x
 </listitem>
-<listitem>A servlet &amp; JSP container (I use Jakarta tomcat 5.x at the mopment, but have used or received reports from many users and/or vendors that ashkelon works with their servlet container)
+<listitem>A servlet &amp; JSP container (I use Jakarta tomcat 5.x at the moment, but have used or received reports from many users and/or vendors that ashkelon works with their servlet container)
 </listitem>
 <listitem>
 postgresql (http://www.postgresql.org/) or mysql (www.mysql.org)
