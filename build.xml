@@ -62,7 +62,8 @@
    </target>
 
    <target name="jar" depends="compile" description="jar">
-      <jar destfile="${builddir}/ashkelon.jar" basedir="${buildclassesdir}" />
+      <jar destfile="${builddir}/ashkelon.jar" basedir="${buildclassesdir}" 
+        includes="org/ashkelon/**/*" />
    </target>
 
    <target name="war" depends="jar" description="war">
