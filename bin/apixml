@@ -13,5 +13,5 @@ then
     exit 1
 fi
 
-java -cp $ASHK_HOME/build/ashkelon.jar org.ashkelon.util.ApiXml $1
+java -cp $ASHK_HOME/build/ashkelon.jar:$ASHK_HOME/lib/jibx-run.jar:$ASHK_HOME/lib/oro.jar org.ashkelon.util.ApiXml $1
 
