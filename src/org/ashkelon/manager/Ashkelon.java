@@ -255,11 +255,11 @@ public class Ashkelon extends Doclet
    
    public void doRemove(String[] elements)
    {
-      if (elements.length == 1 && elements[0].startsWith("@") && elements[0].endsWith(".xml"))
+      if (elements.length == 1 && elements[0].endsWith(".xml"))
       {
          try
          {
-            API api = new API().load(new FileReader(elements[0].substring(1)));
+            API api = new API().load(new FileReader(elements[0]));
             log.debug("api unmarshalled; name is: "+api.getName());
             api.delete(conn);
             conn.commit();
@@ -272,7 +272,7 @@ public class Ashkelon extends Doclet
          return;
       }
       
-      if (elements.length == 1 && elements[0].startsWith("@"))
+      if (elements.length == 1)
       {
          List elemList = JDocUtil.getPackageListFromFileName(elements[0]);
          elements = (String[]) elemList.toArray(elements);
