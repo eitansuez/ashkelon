@@ -25,14 +25,14 @@ import org.jibx.runtime.*;
  */
 public class API implements JDoc, Serializable
 {
-    private String name;
-    private String summaryDescription;
-    private String description;
-    private String publisher;
-    private String downloadURL;
-    private java.util.Date releaseDate;
-    private String version;
-    private ArrayList packagenames;
+    private String name = "";
+    private String summaryDescription = "";
+    private String description = "";
+    private String publisher = "";
+    private String downloadURL = "";
+    private java.util.Date releaseDate = new java.util.Date();
+    private String version = "";
+    private ArrayList packagenames = new ArrayList();
     
     private List packages;
 
@@ -50,7 +50,6 @@ public class API implements JDoc, Serializable
     {
        log = Logger.getInstance();
        loadBindingFactory();
-       packagenames = new ArrayList();
        setPackages(new ArrayList());
     }
     
@@ -74,7 +73,7 @@ public class API implements JDoc, Serializable
     }
     
     public API load(String filename, String sourcepath) 
-      throws FileNotFoundException, org.exolab.castor.xml.MarshalException
+      throws FileNotFoundException, java.text.ParseException
     {
        try
        {
