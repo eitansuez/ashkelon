@@ -1,7 +1,7 @@
 --
 -- author: Eitan Suez
 --   org.: UptoData, Inc.
--- descr.: sql script for creating schema for ashkelon database for mysql
+-- descr.: sql script for creating schema for ashkelon database for postgres 
 --   date: 9.16.2001
 -- 
 --
