@@ -33,7 +33,7 @@ public class StatementsBuilder extends Task
     * the resulting hash is then written out to the final statements.properties
     * file
     * 
-    * the most ideal way to use this code would be as an ant task, coming up.
+    * the most ideal way to use this code would be as an ant task.  this is it.
     *  
     * <taskdef name="build-statements"
     *   classname="org.ashkelon.db.StatementsBuilder" classpath="?">
