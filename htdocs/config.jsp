@@ -14,7 +14,8 @@
 </head>
 
 <body onLoad="cleanTitles();">
-<c:import url="main_header.jsp" />
+<jsp:include page="main_header.jsp" flush="true" />
+
 
 <div class="pagebody">
 
