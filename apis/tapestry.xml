@@ -68,6 +68,7 @@
 <package>net.sf.tapestry.vlib.pages</package>
 <package>net.sf.tapestry.vlib.pages.admin</package>
 <package>net.sf.tapestry.wml</package>
+<!--
 <package>tutorial.border</package>
 <package>tutorial.hangman</package>
 <package>tutorial.portal</package>
@@ -80,4 +81,5 @@
 <package>tutorial.workbench.palette</package>
 <package>tutorial.workbench.table</package>
 <package>tutorial.workbench.upload</package>
+-->
 </api>
