@@ -1,7 +1,14 @@
 3/21/2003
 Release Notes
 
-What's new in v0.8.2:
+What's new in v0.8.3 (May 2004):
+--------------------
+
+ 1. Class Search Field on every page
+ 2. JSTL libs included with distro (simpler install)
+
+
+What's new in v0.8.2: (2003)
 ---------------------
  1. Small but important fix to conn pooling:  on error pool is now flushed/
     reset/discarded.
