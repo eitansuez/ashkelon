@@ -10,6 +10,9 @@ import org.ashkelon.util.*;
 import org.ashkelon.db.*;
 import java.sql.*;
 import java.io.*;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+import org.xml.sax.*;
 
 /**
  * Part of Persistable javadoc object model known as 'ashkelon'
@@ -40,9 +43,39 @@ public class Author implements Serializable
     * add logic to properly parse out an <a href..> author tag into a name and an email
     * address
     */
-   private void parseName(String name)
+   private void parseName(String data)
    {
-     setName(name);
+     String name = data;
+     String email = "";
+     try
+     {
+       DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+       InputStream is = new ByteArrayInputStream(data.getBytes());
+       Document d = builder.parse(is);
+       Element root = d.getDocumentElement();
+       NamedNodeMap attr = root.getAttributes();
+       for (int i=0; i<attr.getLength(); i++)
+       {
+         email = attr.item(i).getNodeValue();
+         int idx = email.indexOf("mailto:");
+         email = email.substring(idx+7);
+       }
+       name = root.getFirstChild().getNodeValue();
+     }
+     catch (ParserConfigurationException pconfex) { }
+     catch (SAXException saxex) { }
+     catch (IOException ioex) { }
+
+    setName(name);
+    setEmail(email);
+   }
+   
+   private void parseNameAlternative()
+   {
+    // regular expression:
+    // to match email address: (\w+\@\w+\.\w+)
+    // to match caption: >((\w+\s*)+)<
+    // tbd.
    }
    
    public void store(Connection conn) throws SQLException
@@ -52,6 +85,7 @@ public class Author implements Serializable
       Map fieldInfo = new HashMap(5);
       fieldInfo.put("ID", new Integer(getId(conn)));
       fieldInfo.put("NAME", StringUtils.truncate(getName(), 120));
+      fieldInfo.put("EMAIL", StringUtils.truncate(getEmail(), 120));
       DBUtils.insert(conn, TABLENAME, fieldInfo);
       conn.commit();
    }
@@ -149,6 +183,7 @@ public class Author implements Serializable
       {
          author = new Author(rset.getString(1));
          author.setId(id);
+         author.setEmail(rset.getString(5));
          
          ct = new ClassType(rset.getString(3));
          ct.setId(rset.getInt(2));

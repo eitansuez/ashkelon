@@ -55,6 +55,12 @@ td.listing
 </tbody>
 </table>
 
+<% if (!StringUtils.isBlank(author.getEmail())) { %>
+<p>
+Email Author at <a href="mailto:<%=author.getEmail()%>"><%=author.getEmail()%></a>
+</p>
+<% } %>
+
 
 </div>
 
