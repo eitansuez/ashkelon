@@ -7,5 +7,7 @@
 <download_url>http://www.jhlabs.com/</download_url>
 <release_date>2003-01-01T08:00:00.000</release_date>
 <version>1</version>
+<packages>
 <package>com.jhlabs.awt</package>
+</packages>
 </api>

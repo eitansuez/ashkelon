@@ -7,10 +7,12 @@
 <download_url>http://www.jdom.org/</download_url>
 <release_date>2001-07-03T08:00:00.000</release_date>
 <version>beta 8</version>
+<packages>
 <package>org.jdom</package>
 <package>org.jdom.adapters</package>
 <package>org.jdom.filter</package>
 <package>org.jdom.input</package>
 <package>org.jdom.output</package>
 <package>org.jdom.transform</package>
+</packages>
 </api>

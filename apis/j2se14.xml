@@ -7,6 +7,7 @@
 <download_url>http://java.sun.com/j2se/</download_url>
 <release_date>2003-11-01T08:00:00.000</release_date>
 <version>1.4.2</version>
+<packages>
 <package>java.applet</package>
 <package>java.awt</package>
 <package>java.awt.color</package>
@@ -121,4 +122,5 @@
 <package>org.xml.sax</package>
 <package>org.xml.sax.ext</package>
 <package>org.xml.sax.helpers</package>
+</packages>
 </api>

@@ -7,10 +7,12 @@
 <download_url>http://jakarta.apache.org/oro/index.html</download_url>
 <release_date>2002-01-17T11:59:00.000</release_date>
 <version>2.0.5</version>
+<packages>
 <package>org.apache.oro.io</package>
 <package>org.apache.oro.text</package>
 <package>org.apache.oro.text.awk</package>
 <package>org.apache.oro.text.perl</package>
 <package>org.apache.oro.text.regex</package>
 <package>org.apache.oro.util</package>
+</packages>
 </api>

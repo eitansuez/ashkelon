@@ -10,6 +10,7 @@
   <release_date>2002-11-04T08:00:00.000</release_date>
   <version>0.9.4.3</version>
 
+<packages>
   <package>org.exolab.castor.builder</package>
   <package>org.exolab.castor.dsml</package>
   <package>org.exolab.castor.jdo</package>
@@ -55,6 +56,8 @@
   <package>org.exolab.castor.xml.util</package>
   <package>org.exolab.castor.xml.validators</package>
   <package>org.exolab.javasource</package>
+</packages>
+
 </api>
 
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<api>
+<name>JGoodies Forms</name>
+<summarydescription>Build better screens faster</summarydescription>
+<description>The JGoodies Forms framework helps you lay out and implement elegant Swing panels quickly and consistently. It makes simple things easy and the hard stuff possible, the good design easy and the bad difficult.</description>
+<publisher>JGoodies Karsten Lentzsch</publisher>
+<download_url>ihttp://www.jgoodies.com/freeware/forms/index.html</download_url>
+<release_date>2001-07-03T08:00:00.000</release_date>
+<version>1.0.5</version>
+<packages>
+<package>com.jgoodies.forms.builder</package>
+<package>com.jgoodies.forms.debug</package>
+<package>com.jgoodies.forms.extras</package>
+<package>com.jgoodies.forms.factories</package>
+<package>com.jgoodies.forms.layout</package>
+<package>com.jgoodies.forms.util</package>
+</packages>
+</api>

@@ -10,6 +10,7 @@ From the draft W3C specification: SOAP is a lightweight protocol for exchange of
 <download_url>http://xml.apache.org/soap/index.html</download_url>
 <release_date>2001-05-30T08:00:00.000</release_date>
 <version>2.2</version>
+<packages>
 <package>org.apache.soap</package>
 <package>org.apache.soap.encoding</package>
 <package>org.apache.soap.encoding.literalxml</package>
@@ -28,4 +29,5 @@ From the draft W3C specification: SOAP is a lightweight protocol for exchange of
 <package>org.apache.soap.util.mime</package>
 <package>org.apache.soap.util.net</package>
 <package>org.apache.soap.util.xml</package>
+</packages>
 </api>

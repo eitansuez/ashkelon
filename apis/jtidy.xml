@@ -7,6 +7,8 @@
 <download_url>http://jtidy.sourceforge.net/</download_url>
 <release_date>2001-07-03T08:00:00.000</release_date>
 <version>r7</version>
+<packages>
 <package>org.w3c.dom</package>
 <package>org.w3c.tidy</package>
+</packages>
 </api>

@@ -7,6 +7,7 @@
 <download_url>http://jdnc.dev.java.net/</download_url>
 <release_date>2004-06-01T08:00:00.000</release_date>
 <version>0.6</version>
+<packages>
 <package>org.jdesktop.jdnc</package>
 <package>org.jdesktop.jdnc.actions</package>
 <package>org.jdesktop.jdnc.runner</package>
@@ -22,4 +23,5 @@
 <package>org.jdesktop.swing.table</package>
 <package>org.jdesktop.swing.treetable</package>
 <package>org.jdesktop.swing.utils</package>
+</packages>
 </api>

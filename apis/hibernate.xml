@@ -7,6 +7,7 @@
 <download_url>http://www.hibernate.org/</download_url>
 <release_date>2003-12-01T08:00:00.000</release_date>
 <version>2.1.3</version>
+<packages>
 <package>net.sf.hibernate</package>
 <package>net.sf.hibernate.cache</package>
 <package>net.sf.hibernate.cfg</package>
@@ -36,4 +37,5 @@
 <package>net.sf.hibernate.type</package>
 <package>net.sf.hibernate.util</package>
 <package>net.sf.hibernate.xml</package>
+</packages>
 </api>

@@ -7,6 +7,7 @@
 <download_url>http://www.netbeans.org/</download_url>
 <release_date>2003-08-01T08:00:00.000</release_date>
 <version>3.5.1</version>
+<packages>
 <package>org.netbeans.openide</package>
 <package>org.netbeans.openide.actions</package>
 <package>org.netbeans.openide.awt</package>
@@ -33,4 +34,5 @@
 <package>org.netbeans.openide.util.lookup</package>
 <package>org.netbeans.openide.windows</package>
 <package>org.netbeans.openide.xml</package>
+</packages>
 </api>

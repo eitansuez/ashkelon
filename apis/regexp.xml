@@ -7,5 +7,7 @@
 <download_url>http://jakarta.apache.org/regexp/index.html</download_url>
 <release_date>2000-11-27T12:07:00.000</release_date>
 <version>1.2</version>
+<packages>
 <package>org.apache.regexp</package>
+</packages>
 </api>

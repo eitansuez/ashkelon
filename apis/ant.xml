@@ -7,6 +7,7 @@
   <download_url>http://ant.apache.org/</download_url>
   <release_date>2004-07-16T08:00:00</release_date>
   <version>1.6.2</version>
+<packages>
   <package>org.apache.tools.ant</package>
   <package>org.apache.tools.ant.filters</package>
   <package>org.apache.tools.ant.filters.util</package>
@@ -74,4 +75,5 @@
   <package>org.apache.tools.mail</package>
   <package>org.apache.tools.tar</package>
   <package>org.apache.tools.zip</package>
+</packages>
 </api>

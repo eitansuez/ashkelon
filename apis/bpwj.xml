@@ -7,6 +7,7 @@
 <download_url>http://bpwj.javanicus.com/</download_url>
 <release_date>2001-07-03T08:00:00.000</release_date>
 <version>?</version>
+<packages>
 <package>sjm.combinatorics</package>
 <package>sjm.engine</package>
 <package>sjm.imperative</package>
@@ -38,4 +39,5 @@
 <package>sjm.examples.tests</package>
 <package>sjm.examples.tokens</package>
 <package>sjm.examples.track</package>
+</packages>
 </api>

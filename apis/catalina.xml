@@ -7,6 +7,7 @@
 <download_url>http://jakarta.apache.org/tomcat/tomcat-4.0-doc/index.html</download_url>
 <release_date>2002-01-01T11:59:00.000</release_date>
 <version>4.1</version>
+<packages>
 <package>org.apache.catalina</package>
 <package>org.apache.catalina.ant</package>
 <package>org.apache.catalina.authenticator</package>
@@ -34,4 +35,5 @@
 <package>org.apache.naming.java</package>
 <package>org.apache.naming.resources</package>
 <package>org.apache.naming.resources.jndi</package>
+</packages>
 </api>

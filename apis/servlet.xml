@@ -7,9 +7,11 @@
 <download_url>http://java.sun.com/products/servlet/</download_url>
 <release_date>2001-08-13T08:00:00.000</release_date>
 <version>2.4</version>
+<packages>
 <package>javax.servlet</package>
 <package>javax.servlet.http</package>
 <package>javax.servlet.jsp</package>
 <package>javax.servlet.jsp.tagext</package>
+</packages>
 </api>
 

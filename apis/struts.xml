@@ -7,6 +7,7 @@
 <download_url>http://jakarta.apache.org/struts/</download_url>
 <release_date>2001-03-24T00:00:00.000</release_date>
 <version>1.0.1</version>
+<packages>
 <package>org.apache.struts.action</package>
 <package>org.apache.struts.actions</package>
 <package>org.apache.struts.digester</package>
@@ -18,4 +19,5 @@
 <package>org.apache.struts.taglib.template.util</package>
 <package>org.apache.struts.upload</package>
 <package>org.apache.struts.util</package>
+</packages>
 </api>

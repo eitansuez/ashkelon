@@ -10,6 +10,7 @@
   <release_date>2004-04-27T08:00:00.000</release_date>
   <version>0.8.4.10</version>
 
+<packages>
 <package>org.jfree.report</package>
 <package>org.jfree.report.content</package>
 <package>org.jfree.report.demo</package>
@@ -86,5 +87,6 @@
 <package>org.jfree.report.style</package>
 <package>org.jfree.report.util</package>
 <package>org.jfree.report.util.serializers</package>
+</packages>
 
 </api>

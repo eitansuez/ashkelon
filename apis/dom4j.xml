@@ -7,6 +7,7 @@
 <download_url>http://www.dom4j.org/</download_url>
 <release_date>2004-05-12T08:00:00</release_date>
 <version>1.4</version>
+<packages>
 <package>org.dom4j</package>
 <package>org.dom4j.bean</package>
 <package>org.dom4j.datatype</package>
@@ -23,4 +24,5 @@
 <package>org.dom4j.util</package>
 <package>org.dom4j.xpath</package>
 <package>org.dom4j.xpp</package>
+</packages>
 </api>
