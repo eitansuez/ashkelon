@@ -1,56 +1,197 @@
 <?xml version="1.0"?>
 <project>
+
   <pomVersion>3</pomVersion>
-  <name>Ashkelon</name>
   <id>ashkelon</id>
-  <currentVersion>1.0-dev</currentVersion>
+  <name>Ashkelon</name>
+  <groupId>org.ashkelon</groupId>
+  <currentVersion>0.8.2</currentVersion>
+  <organization>
+    <name>UptoData, Inc.</name>
+    <url>http://www.uptodata.com/</url>
+    <logo>http://www.uptodata.com/images/u2d.jpg</logo>
+  </organization>
   <inceptionYear>2001</inceptionYear>
-  <siteAddress>ashkelon.sourceforge.net</siteAddress>
   <package>org.ashkelon</package>
-
-
-  <url>http://ashkelon.sourceforge.net/</url>
+  <logo></logo> <!-- tbd:  need a project logo -->
   
-
+  <description>
+  A web-based Java API documentation management system.  Ashkelon is javadoc taken to the next step.  Provides the ability to reference multiple APIs ( in the order of 100,000 methods) in a single, fully cross-referenced and searchable database repository.
+  </description>
+  
+  <shortDescription>Ashkelon is web-based Java API Documentation Management System</shortDescription>
+  
+  <url>ashkelon.sourceforge.net</url>
+  
+  <issueTrackingUrl>http://sourceforge.net/tracker/?group_id=54364</issueTrackingUrl>
+  
+  <repository>
+    <connection>scm:cvs:pserver:anonymous@cvs.sourceforge.net:/cvsroot/ashkelon:ashkelon</connection>
+    <url>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/ashkelon</url>
+  </repository>
+  
+  <versions>
+    <version>
+      <id>0.8.2</id>
+      <name>Ashkelon v0.8.2</name>
+      <tag>Version-0_8_2</tag>
+    </version>
+    <version>
+      <id>0.8.1</id>
+      <name>Ashkelon v0.8.1</name>
+      <tag>Version-0_8_1</tag>
+    </version>
+  </versions>
+  
+  <mailingLists>
+    <mailingList>
+      <name>ashkelon-devs@lists.sourceforge.net</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/ashkelon-devs</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/ashkelon-devs</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum=ashkelon-devs</archive>
+    </mailingList>
+  </mailingLists>
+  
+  <developers>
+    <developer>
+      <name>Ben Walding</name>
+      <id>ben_walding</id>
+      <email>ben_walding@users.sourceforge.net</email>
+      <organization></organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <url></url>
+    </developer>
+    <developer>
+      <name>Bob Hays</name>
+      <id>electricbob</id>
+      <email>electricbob@users.sourceforge.net</email>
+      <organization></organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <url></url>
+    </developer>
+    <developer>
+      <name>Eitan Suez</name>
+      <id>esuez</id>
+      <email>esuez@users.sourceforge.net</email>
+      <organization>UptoData, Inc.</organization>
+      <roles>
+        <role>Developer</role>
+        <role>Project Manager</role>
+      </roles>
+      <url>http://www.uptodata.com/</url>
+    </developer>
+  </developers>
+  
+  <licenses>
+    <license>
+      <name>The Apache Software License</name>
+      <url>http://www.apache.org/LICENSE</url>
+      <distribution>repo</distribution> <!-- ? -->
+    </license>
+  </licenses>
+  
   <dependencies>
-  
 
+    <dependency>
+      <id>ant</id>
+      <version>1.5.2</version>
+      <url>http://ant.apache.org</url>
+    </dependency>
+
+    <dependency>
+      <id>castor</id>
+      <version>0.9.5</version>
+      <url>http://castor.exolab.org</url>
+    </dependency>
+
+    <dependency>
+      <id>java2html</id>
+      <artifactId>j2h</artifactId>
+      <version>1.2</version>
+      <url>http://www.java2html.com/</url>
+    </dependency>
+
+    <dependency>
+      <id>jstl</id>
+      <version>1.0.2</version>
+      <url>http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html</url>
+    </dependency>
+
+    <dependency>
+      <id>servletapi</id>
+      <version>2.3</version>
+      <url>http://java.sun.com/products/servlet/</url>
+    </dependency>
+ 
+   <dependency>
+      <id>oro</id>
+      <version>2.0.7</version>
+      <url>http://jakarta.apache.org/oro/index.html</url>
+    </dependency>
+
+    <dependency>
+      <id>junit</id>
+      <version>3.8.1</version>
+      <url>http://www.junit.org/</url>
+    </dependency>
+    
+    <!-- either mysql or postgresql:  how to express this? -->
+    <dependency>
+      <id>mysql</id>
+      <version>2.0.14</version>
+      <jar>mysql-connector-java-2.0.14-bin.jar</jar>
+      <url>http://www.mysql.org/</url>
+    </dependency>
+    
+    <dependency>
+      <id>postgresql</id>
+      <version>7.3</version>
+      <jar>postgresql-7.3-jdbc3.jar</jar>
+      <url>http://www.postgresql.org/</url>
+    </dependency>
     
   </dependencies>
 
+  
   <build>
-    
     <sourceDirectory>src</sourceDirectory>
-
     <unitTestSourceDirectory>test</unitTestSourceDirectory>
- 
-    <!-- Unit test cases -->
+
     <unitTest>
       <includes>
         <include>**/*Test.java</include>
       </includes>
-      <excludes>
-        <exclude>**/RepositoryTest.java</exclude>
-      </excludes>
     </unitTest>
-              
-    <!-- J A R  R E S O U R C E S -->
-    <!-- Resources that are packaged up inside the JAR file -->
-    <resources>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </resources>
-    
-    <jarResources>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </jarResources>
 
-  </build>
-  
-  
-  
+
+    <resources>
+
+      <resource>
+        <directory>src/org/ashkelon</directory>
+        <targetPath>org/ashkelon</targetPath>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+
+      <resource>
+        <directory>src/org/ashkelon/pages</directory>
+        <targetPath>org/ashkelon/pages</targetPath>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+      
+      <resource>
+        <directory>db/mysql/org/ashkelon/db</directory>
+        <targetPath>org/ashkelon/db</targetPath>
+      </resource>
+      
+    </resources>
+  </build>  
 </project>
 
