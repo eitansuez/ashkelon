@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<api>
+
+  <name>Naked Objects v1.0.2</name>
+  <summarydescription>Naked Objects Framework provider UI and ObjectStore Services</summarydescription>
+  <description>Naked Objects is a framework providing both UI and ObjectStore services.  Develop only an object model for your apps following a simple intuitive convention.  The rest is pretty much done for you.</description>
+  <publisher>Richard Pawson and Robert Matthews</publisher>
+  <download_url>http://www.nakedobjects.org/downloads.html</download_url>
+  <release_date>2001-05-17T00:00:00.000</release_date>
+  <version>1.0.2</version>
+    
+<package>org.nakedobjects</package>
+<package>org.nakedobjects.basicgui.application</package>
+<package>org.nakedobjects.basicgui.event.action</package>
+<package>org.nakedobjects.basicgui.event.dnd</package>
+<package>org.nakedobjects.basicgui.event.popup</package>
+<package>org.nakedobjects.basicgui.utility</package>
+<package>org.nakedobjects.basicgui.view</package>
+<package>org.nakedobjects.basicgui.view.border</package>
+<package>org.nakedobjects.distribution.simple</package>
+<package>org.nakedobjects.object</package>
+<package>org.nakedobjects.object.collection</package>
+<package>org.nakedobjects.object.control</package>
+<package>org.nakedobjects.object.distribution</package>
+<package>org.nakedobjects.object.reflect</package>
+<package>org.nakedobjects.object.value</package>
+<package>org.nakedobjects.objectserver</package>
+<package>org.nakedobjects.persistence.file</package>
+<package>org.nakedobjects.persistence.sql</package>
+<package>org.nakedobjects.persistence.sql.test</package>
+<package>org.nakedobjects.security</package>
+<package>org.nakedobjects.testing</package>
+<package>org.nakedobjects.unittesting</package>
+<package>org.nakedobjects.unittesting.testobjects</package>
+<package>org.nakedobjects.utility</package>
+
+</api>
