@@ -38,32 +38,13 @@ public class DBUtils
       String fieldList = StringUtils.join(fieldInfo.keySet().toArray(), ",");
       cmd += " (" + fieldList + ")";
       cmd += " VALUES (" + StringUtils.join("?", ",", fieldInfo.size()) + ")";
-      
+
       PreparedStatement pstmt = conn.prepareStatement(cmd);
       bind(pstmt, fieldInfo.values().toArray());
       pstmt.executeUpdate();
       pstmt.close();
       } catch( SQLException e ) {
          logSQLException( e, "Command to insert: " + cmd + ", values: " + fieldInfo.values() );
-/* AS TODO: This code is added because there was a problem with an import to Hypersonic or PostgreSQL DB
-   AS will remove it soon
-         Logger log = Logger.getInstance();
-         Object[] values = fieldInfo.values().toArray();
-         for( int i = 0; i < values.length; i++ ) {
-            if( values[ i ] instanceof String ) {
-               String text = values[ i ] + "";
-               if( text.length() > 470 ) {
-                  String sub = text.substring( 470, 480 );
-                  log.error( "Problematic String from 470 to 480: \n" +
-                     sub
-                  );
-                  for( int j = 470; j < 480; j++ ) {
-                     log.error( "Character at " + j + " is: " + ( (int) text.charAt( j ) ) );
-                  }
-               }
-            }
-         }
-*/
          throw e;
       }
    }
