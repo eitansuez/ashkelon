@@ -1,17 +1,17 @@
-<%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*,org.ashkelon.pages.*"%>
+<%@ page info="main class view" import="java.util.*,java.io.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*,org.ashkelon.pages.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%
-  String cls_name = (String) request.getAttribute("cls_name");
-  String source_file = (String) request.getAttribute("source_file");
-  String html_file = (String) request.getAttribute("html_file");
+  String clsName = (String) request.getAttribute("cls_name");
+  File sourceFile = (File) request.getAttribute("source_file");
+  String htmlFile = (String) request.getAttribute("html_file");
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
 <head>
-  <title>Source file: <%=cls_name%></title>
+  <title>Source file: <%=clsName%></title>
   <jsp:include page="includes.html" flush="true"/>
 </head>
 
@@ -20,10 +20,10 @@
   
   <div class="pagebody">
 
-  <% if (StringUtils.isBlank(source_file)) { %>
-    <p class="error-msg">Unable to locate source file for class <%=cls_name%></p>
+  <% if (sourceFile == null || !sourceFile.exists()) { %>
+    <p class="error-msg">Unable to locate source file for class <%=clsName%></p>
   <% } else { %>
-    <iframe class="source-box" src="<%=html_file%>" />
+    <iframe class="source-box" src="<%=htmlFile%>" />
  <% } %>
   
   </div> <!-- end page body -->

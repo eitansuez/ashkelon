@@ -1,7 +1,7 @@
 
 <div style="position: relative; margin-right: 15px;">
 
-<button onClick="showLegend();" accesskey="l" style="font-size: small;">
+<button onClick="toggleLegend();" accesskey="l" style="font-size: small;">
   <u>L</u>egend
 </button>
 
@@ -26,7 +26,7 @@
 <style TYPE="text/css">
 #legend
 {
-  visibility: hidden;
+  display: none;
   position: absolute;
   border: 1px solid black;
   padding: 3px;
@@ -46,19 +46,29 @@
 </style>
 
 <script>
-function showLegend()
+function toggleLegend()
 {
-  toggleVisibility("legend", "visibility", false);
+  var legend = document.getElementById("legend");
+  if (legend.style.display == "none")
+  {
+    legend.style.display = "block";
+  }
+  else
+  {
+    legend.style.display = "none";
+  }
 }
-// enable 'esc' key to hide legend
-function esc(evt)
+
+function esc(evt)  // enable 'esc' key to hide legend
 {
   if (!evt) evt = window.event;
   var code = evt.keyCode;
   if (!code) code = evt.which;
   if (code != 27) return;
-  setVisible("legend", false, "visibility", false);
+  if (document.getElementById("legend").style.display == "none") return;
+  toggleLegend();
 }
 document.onkeypress = esc;
+document.getElementById("legend").style.display = "none";
 </script>
 

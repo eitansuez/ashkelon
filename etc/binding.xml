@@ -12,7 +12,7 @@
     <collection name="packages" field="packagenames">
       <value name="package" />
     </collection>
-    <structure name="repository" field="repository">
+    <structure name="repository" field="repository" usage="optional">
       <value name="type" field="type" />
       <value name="url" field="url" />
       <value name="modulename" field="modulename" />

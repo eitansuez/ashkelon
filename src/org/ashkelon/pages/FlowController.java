@@ -76,6 +76,10 @@ public class FlowController extends HttpServlet
       }
       catch (IOException ex) { }
       
+      String sourcepath = getServletContext().getInitParameter("sourcepath");
+      log.traceln("retrieving source path: "+sourcepath);
+      getServletContext().setAttribute("sourcepath", getPaths(sourcepath));
+
       perlutil = new Perl5Util();
       classPool = new HashMap(30);
    }

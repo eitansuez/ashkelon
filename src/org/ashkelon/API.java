@@ -1,25 +1,11 @@
 package org.ashkelon;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import org.ashkelon.db.DBMgr;
-import org.ashkelon.db.DBUtils;
-import org.ashkelon.db.PKManager;
-import org.ashkelon.manager.Config;
-import org.ashkelon.manager.MavenPOMAdapter;
-import org.ashkelon.manager.Repository;
-import org.ashkelon.util.Logger;
-import org.ashkelon.util.StringUtils;
+import java.sql.*;
+import java.util.*;
+import org.ashkelon.db.*;
+import org.ashkelon.manager.*;
+import org.ashkelon.util.*;
 import org.jibx.runtime.*;
 
 /**
@@ -49,6 +35,7 @@ public class API implements JDoc, Serializable
     private boolean idSet = false;
    
     private transient Logger log;
+
     
     public API()
     {
@@ -92,14 +79,15 @@ public class API implements JDoc, Serializable
    public int getId(Connection conn) throws SQLException
    {
       if (!idSet)
-         setId(PKManager.getInstance().nextVal(SEQUENCE));
+      {
+         PKManager pkmgr = PKManager.getInstance();
+         int nextVal = pkmgr.nextVal(SEQUENCE);
+         setId(nextVal);
+      }
       return id;
    }
    
-   public int getId()
-   {
-      return id;
-   }
+   public int getId() { return id; }
    
    public void setId(int id)
    {
@@ -107,7 +95,50 @@ public class API implements JDoc, Serializable
       idSet = true;
    }
 
+   public void update(Connection conn) throws SQLException
+   {
+      String updateSql = 
+      "update " + TABLENAME + " set NAME=?, SUMMARYDESCRIPTION=?, " +
+      " PUBLISHER=?, DOWNLOAD_URL=?, RELEASE_DATE=?, VERSION=?, " + 
+      " DESCRIPTION=?, POPULATED=?, REPOSITORY_TYPE=?, REPOSITORY_URL=?, " + 
+      " REPOSITORY_MODULE=?, REPOSITORY_TAGNAME=?, REPOSITORY_SRCPATH=?, " +
+      " PACKAGENAMES=? where ID=?";
+      
+      PreparedStatement pstmt = conn.prepareStatement(updateSql);
+      pstmt.setString(1, name);
+      pstmt.setString(2, summaryDescription);
+      pstmt.setString(3, publisher);
+      pstmt.setString(4, downloadURL);
+      pstmt.setDate(5, new java.sql.Date(releaseDate.getTime()));
+      pstmt.setString(6, version);
+      pstmt.setString(7, description);
+      pstmt.setInt(8, populatedVal().intValue());
+      pstmt.setString(9, repository.getType());
+      pstmt.setString(10, repository.getUrl());
+      pstmt.setString(11, repository.getModulename());
+      pstmt.setString(12, repository.getTagname());
+      pstmt.setString(13, repository.getSourcepath());
+      pstmt.setString(14, StringUtils.join(packagenames.toArray(), " "));
+      
+      pstmt.setInt(15, id);
+      
+      pstmt.executeUpdate();
+      pstmt.close();
+      
+   }
+   
    public void store(Connection conn) throws SQLException
+   {
+      if (exists(conn))
+         update(conn);
+      else
+         insert(conn);
+      
+      if (!populated)
+         state = SINGLE_STATE;
+   }
+   
+   public void insert(Connection conn) throws SQLException
    {
       String prefix = log.getPrefix();
       log.setPrefix("API");
@@ -165,7 +196,7 @@ public class API implements JDoc, Serializable
    {
       Map constraints = new HashMap();
       constraints.put("NAME", getName());
-      constraints.put("VERSION", getVersion());
+//      constraints.put("VERSION", getVersion());
       Object obj = DBUtils.getObject(conn, TABLENAME, "ID", constraints);
       if (obj == null)
          return false;
@@ -253,17 +284,20 @@ public class API implements JDoc, Serializable
     public void setPopulated(boolean populated)
     {
        this.populated = populated;
+       if (populated) state = POPULATED_STATE;
     }
-    private Integer populatedVal()
+    public Integer populatedVal()
     {
        int val = (populated) ? 1 : 0;
        return new Integer(val);
     }
-    private void setPopulated(int populatedVal)
+    public void setPopulated(int populatedVal)
     {
        this.populated = (populatedVal == 0) ? false : true;
+       if (populated) state = POPULATED_STATE;
     }
     
+    public Repository getRepository() { return repository; }
     public void setRepository(Repository repository)
     {
        this.repository = repository;
@@ -336,6 +370,9 @@ public class API implements JDoc, Serializable
       pstmt.close();
       
       api.getPackageInfo(conn);
+      
+      if (!api.isPopulated())
+         api.state = SINGLE_STATE;
       
       return api;
    }
@@ -410,5 +447,54 @@ public class API implements JDoc, Serializable
       return basepath + File.separator + repository.getPath();
    }
    
+   
+   public APIState state = TRANSIENT_STATE;
+
+   public static APIState TRANSIENT_STATE = new TransientAPIState();
+   public static APIState SINGLE_STATE = new SingleAPIState();
+   public static APIState EXPECTING_STATE = new ExpectingAPIState();
+   public static APIState POPULATED_STATE = new PopulatedAPIState();
+   
+   public Set getActions()
+   {
+      return state.getActions(this);
+   }
+   
+   static class TransientAPIState implements APIState
+   {
+      public Set getActions(API api)
+      {
+         return new HashSet();
+      }
+}
+   static class SingleAPIState implements APIState
+   {
+      public Set getActions(API api)
+      {
+         Set actions = new HashSet();
+         Action action = new Action("Test Source Repository", "api.testrepos.do");
+         actions.add(action);
+         action = new Action("Process API Docs", "api.populate.do");
+         actions.add(action);
+         return actions;
+      }
+}
+   static class ExpectingAPIState implements APIState
+   {
+      public Set getActions(API api)
+      {
+         return new HashSet();
+      }
+   }
+   static class PopulatedAPIState implements APIState
+   {
+      public Set getActions(API api)
+      {
+         Set actions = new HashSet();
+         Action action = new Action("Go to API Doc Page", "api.main.do?id="+api.getId());
+         actions.add(action);
+         return actions;
+      }
+   }
    
 }

@@ -33,6 +33,12 @@ public class Repository
       this.sourcepath = sourcepath;
    }
    
+   public boolean isSpecified()
+   {
+      return !( StringUtils.isBlank(type) || StringUtils.isBlank(url) ||
+               StringUtils.isBlank(modulename) );
+   }
+   
    // cvs -d :pserver:anonymous@cvs.sourceforge.net:/cvsroot/ashkelon checkout ashkelon/src
    // cvs -d $url checkout $module/$srcpath
    
@@ -141,6 +147,12 @@ public class Repository
    
    public void fetch(File base)
    {
+      if (!isSpecified())
+      {
+         log.traceln("(no repository specified)");
+         return;
+      }
+      
       if (!checkedOut(base))
       {
          checkout(base);

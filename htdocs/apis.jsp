@@ -71,6 +71,10 @@ Ashkelon is an online reference to Java API documentation (see the help document
 </tbody>
 </table>
 
+<div class="actions">
+  <a href="api.edit.do">Submit a new API</a>
+</div>
+
 </div>
 
 <c:import url="footer.html" />

@@ -5,6 +5,8 @@ import org.ashkelon.manager.Config;
 import org.ashkelon.util.*;
 import java.io.*;
 import java.sql.*;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -39,16 +41,8 @@ public class ClassSourcePage extends Page
       
       request.setAttribute("cls_name", qualifiedName);
       
-      // determine class.api (maybe pass it in the request, because already know it)
-      // lookup the api (possibly from cache)
-      // from the api, get the sourcepath
-      
-      String sourcepath = fetchSourcePath(qualifiedName);
-      if (!sourcepath.endsWith(File.separator))
-         sourcepath += File.separator;
-      String sourceFile = sourcepath + fileName;
-      log.debug("looking for "+sourceFile);
-      if (new File(sourceFile).exists())
+      File sourceFile = fetchSourceFile(qualifiedName, fileName);
+      if (sourceFile != null)
       {
          makeHtmlFile(sourceFile, fileName);
          return null;
@@ -58,7 +52,7 @@ public class ClassSourcePage extends Page
       return null;
    }
    
-   private void makeHtmlFile(String sourceFile, String fileName)
+   private void makeHtmlFile(File sourceFile, String fileName)
    {
       request.setAttribute("source_file", sourceFile);
       String htmlFile = SRCHTMLDIRNAME + File.separator + fileName + ".html";
@@ -67,7 +61,7 @@ public class ClassSourcePage extends Page
       
       if (! (new File(realHtmlFile).exists()) )
       {
-         generator.produceHtml(sourceFile, realHtmlFile);
+         generator.produceHtml(sourceFile.getAbsolutePath(), realHtmlFile);
       }
    }
    
@@ -86,6 +80,41 @@ public class ClassSourcePage extends Page
       pstmt.close();
       
       return base + File.separator + modulename + File.separator + sourcepath;
+   }
+   
+   private File fetchSourceFile(String className, String fileName) throws SQLException
+   {
+      String repositorypath = fetchSourcePath(className);
+      if (!repositorypath.endsWith(File.separator))
+         repositorypath += File.separator;
+      
+      String sourcepath = repositorypath + fileName;
+      File sourceFile = new File(sourcepath);
+      if (sourceFile.exists())
+      {
+         log.debug("Found sourceFile at: "+sourceFile.getAbsolutePath());
+         return sourceFile;
+      }
+      
+      // fallback to checking source path context parameter..
+      List sourcePaths = (List) app.getAttribute("sourcepath");
+      Iterator itr = sourcePaths.iterator();
+      String candidatePath = null;
+      File candidateFile = null;
+      while (itr.hasNext())
+      {
+         candidatePath = (String) itr.next();
+         if (!candidatePath.endsWith(File.separator))
+            candidatePath += File.separator;
+         candidatePath += fileName;
+         candidateFile = new File(candidatePath);
+         if (candidateFile.exists())
+         {
+            log.debug("Found sourceFile at: "+candidateFile.getAbsolutePath());
+            return candidateFile;
+         }
+      }
+      return null;
    }
    
 }

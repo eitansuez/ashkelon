@@ -84,7 +84,8 @@ public class PKManager
          rs.close();
          statement.close();
          mgr.releaseConnection(conn);
-      } catch (SQLException ex)
+      }
+      catch (SQLException ex)
       {
          log.error("Exiting: failed to load indices");
          DBUtils.logSQLException(ex, SELECT_SEQS);

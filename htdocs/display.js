@@ -51,11 +51,7 @@ function toggleVisibility(tagid, displaystyle, isargobject)
 
 function expandCollapse(evt)
 {
-  var source;
-  if (IE)
-    source = event.srcElement;
-  else
-    source = evt.target;
+  var source = getEvtTarget(evt);
 
   if (source.className != "collapsible")
     return;

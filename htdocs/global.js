@@ -7,6 +7,8 @@
  */
 
 var IE = (document.all != null);
+var ELEMENT_TYPE = 1; // DOM Node Type (as in element, attribute, text, etc..)
+
 
 function eraseBlank(ref, alternate)
 {
@@ -117,5 +119,12 @@ function strip(text, part)
   var idx = text.indexOf(part);
   if (idx < 0) return text;
   return text.substring(0, idx) + text.substring(idx + part.length);
+}
+
+function getEvtTarget(evt)
+{
+  if (document.all) return window.event.srcElement; // for M$IE
+  if (evt.target.nodeType == Node.TEXT_NODE) return evt.target.parentNode; // for Safari
+  return evt.target;
 }
 

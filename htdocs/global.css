@@ -217,4 +217,19 @@ fieldset
   background-color: #ccc;
 }
 
-
+.actions
+{
+  margin: 1em 2em;
+  background-color: #eee;
+  padding: 0.5em;
+  border: 1px solid black;
+  text-align: center;
+}
+.actions a
+{
+   color: blue;
+   border: 1px solid black;
+   padding: 0.2em 0.5em;
+   margin: 0.2em;
+   cursor: pointer;
+}

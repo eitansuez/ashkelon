@@ -7,7 +7,6 @@ import java.sql.*;
 import java.util.*;
 
 import org.ashkelon.API;
-import org.ashkelon.Generic;
 import org.ashkelon.JPackage;
 import org.ashkelon.db.*;
 import org.ashkelon.util.*;

@@ -53,9 +53,9 @@ public class AshkelonCmd
       }
       else
       {
-         argslist.remove(sourcepathIndex+1);
+         argslist.remove(sourcepathIndex);
          String sourcepath = getSourcePathOption(args);
-         argslist.add(sourcepathIndex+1, api.getSourcePath() + ":" + sourcepath);
+         argslist.add(sourcepathIndex, api.getSourcePath() + ":" + sourcepath);
       }
       
       // doclet argument:  which api (id) to populate
@@ -381,9 +381,9 @@ public class AshkelonCmd
       }
       
       String lastarg = args[args.length-1];
-      if (lastarg.endsWith(".xml") )
+      if (lastarg.endsWith(".xml"))
       {
-        addApiXmlCmd(args);
+         addApiXmlCmd(args);
       }
       else
       {
