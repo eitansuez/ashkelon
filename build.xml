@@ -3,7 +3,7 @@
 <project name="ashkelon" default="war">
    <description>open source java documentation management system</description>
    
-   <property name="version" value="0.8.8" />
+   <property name="version" value="0.8.9" />
    <property environment="env" />
 
    <!-- currently, valid options are: mysql, postgres, mckoidb -->
