@@ -15,7 +15,7 @@ public class XrefsPage extends Page
       super();
    }
    
-   public String handleRequest() throws SQLException
+   public String handleRequest() throws SQLException, ClassNotFoundException
    {
       int clsId = Integer.parseInt(ServletUtils.getRequestParam(request, "cls_id"));
       String cmd = ServletUtils.getCommand(request);

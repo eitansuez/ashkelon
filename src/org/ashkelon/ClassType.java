@@ -1046,7 +1046,7 @@ public class ClassType implements Comparator, JDoc, Serializable
 
    
    public static ClassType makeClassFor(Connection conn, int clsId, boolean fetchChildren)
-      throws SQLException
+      throws SQLException, ClassNotFoundException
    {
       /*
       String sql =
@@ -1065,7 +1065,7 @@ public class ClassType implements Comparator, JDoc, Serializable
       pstmt.setInt(1, clsId);
       ResultSet rset = pstmt.executeQuery();
       
-      if (!rset.next()) return null;
+      if (!rset.next()) throw new ClassNotFoundException("No class found matching id "+clsId);
       
       ClassType cls = new ClassType(rset.getString(2));
       cls.setId(rset.getInt(1));
@@ -1136,16 +1136,24 @@ public class ClassType implements Comparator, JDoc, Serializable
          log.debug(treetext);
 
          mgr.releaseConnection(conn);
-      } catch (SQLException ex)
+      }
+      catch (SQLException ex)
       {
          DBUtils.logSQLException(ex);
+      }
+      catch (ClassNotFoundException ex)
+      {
+         log.error(ex.getMessage());
+      }
+      finally
+      {
          if (conn!=null)
             mgr.releaseConnection(conn);
       }
   }
 
   
-  public void fetchInnerClasses(Connection conn) throws SQLException
+  public void fetchInnerClasses(Connection conn) throws SQLException, ClassNotFoundException
   {
      String sql = "select id from CLASSTYPE c where containingclassname=? order by name";
      PreparedStatement pstmt = conn.prepareStatement(sql);

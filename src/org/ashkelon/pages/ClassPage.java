@@ -3,6 +3,7 @@ package org.ashkelon.pages;
 import org.ashkelon.*;
 import org.ashkelon.util.*;
 import org.ashkelon.db.*;
+
 import java.sql.*;
 import org.apache.oro.util.*;
 
@@ -14,7 +15,7 @@ public class ClassPage extends Page
       super();
    }
    
-   public String handleRequest() throws SQLException
+   public String handleRequest() throws SQLException, ClassNotFoundException
    {
       int clsId = 0;
       try
@@ -60,6 +61,7 @@ public class ClassPage extends Page
       }
       
       ClassType cls = ClassType.makeClassFor(conn, clsId, true);
+      
       classCache.addElement(clsId_obj, cls);
       app.setAttribute("classCache", classCache);
 
@@ -67,7 +69,6 @@ public class ClassPage extends Page
       TreeNode superclasses = cls.getSuperclasses(conn);
       request.setAttribute("tree", superclasses);
       return null;
-      
    }
    
 }
