@@ -95,17 +95,15 @@ public class Repository
    private void exec(String cmd, File basepath) throws IOException, InterruptedException
    {
       Process p = Runtime.getRuntime().exec(cmd, null, basepath);
-      BufferedReader reader = 
-         new BufferedReader(new InputStreamReader(p.getInputStream()));
-      String line = reader.readLine();
-      while (line != null)
-      {
-         log.traceln(line);
-         line = reader.readLine();
-      }
-      p.waitFor();
-      reader.close();
+      InputStream is = p.getInputStream();
+      InputStream er = p.getErrorStream();
+      new StreamConsumer(is).start();
+      new StreamConsumer(er).start();
+      int exitValue = p.waitFor();
+      is.close();
+      er.close();
    }
+   
    
    private void login(File basepath) throws IOException, InterruptedException
    {
@@ -118,7 +116,7 @@ public class Repository
       while ( line!= null )
          line = reader.readLine();
       os.write('\n');
-      p.waitFor();
+      int exitValue = p.waitFor();
       reader.close();
       os.close();
    }
@@ -161,8 +159,50 @@ public class Repository
       {
          update(base);
       }
-      
    }
+
+   
+   class StreamConsumer extends Thread
+   {
+      InputStream _stream;
+      StreamConsumer(InputStream stream)
+      {
+         _stream = stream;
+      }
+      public void run()
+      {
+         BufferedReader reader = null;
+         try
+         {
+            reader = new BufferedReader(new InputStreamReader(_stream));
+            String line = reader.readLine();
+            while (line != null)
+            {
+               log.traceln(line);
+               line = reader.readLine();
+            }
+         }
+         catch (IOException ex)
+         {
+            System.err.println("IOException: "+ex.getMessage());
+            ex.printStackTrace();
+         }
+         finally
+         {
+            try
+            {
+               if (reader != null) reader.close();
+            }
+            catch (IOException ex)
+            {
+               System.err.println("Exception attempting to closer stream/reader");
+               System.err.println("IOException: "+ex.getMessage());
+               ex.printStackTrace();
+            }
+         }
+      }
+   }
+   
    
 }
 
