@@ -69,6 +69,6 @@
       <type>cvs</type>
       <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
       <modulename>jakarta-tapestry</modulename>
-      <sourcepath>framework/src</sourcepath>
+      <sourcepath>framework/src/java</sourcepath>
    </repository>
 </api>
