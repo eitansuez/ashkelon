@@ -6,7 +6,7 @@
 <book>
 
 <bookinfo>
-<title>ashkelon Guide</title>
+<title>ashkelon</title>
 <author>Eitan Suez</author>
 <date>October 14 2002 (updated May 2003)</date>
 </bookinfo>
@@ -26,17 +26,17 @@ ashkelon addresses the following issues that javadoc does not:
 </para>
 
 <itemizedlist>
-<listitem>
-  ashkelon is a multi-api documentation system, unlike javadoc which produces single-api documentation
+<listitem><para>
+  ashkelon is a multi-api documentation system, unlike javadoc which produces single-api documentation</para>
 </listitem>
-<listitem>
-  ashkelon's documentation system leverages <acronym>SQL</acronym> to provide a queriable/searchable repository for documentation
+<listitem><para>
+  ashkelon's documentation system leverages <acronym>SQL</acronym> to provide a queriable/searchable repository for documentation</para>
 </listitem>
-<listitem>
-  The <acronym>DHTML</acronym> <acronym>GUI</acronym> produced by ashkelon (which works with Mozilla 1.x or IE 5.x or IE 6.x browsers) is markedly different from the defacto html 3.2 user interface produced by javadoc, which i call "classic."
+<listitem><para>
+  The <acronym>DHTML</acronym> <acronym>GUI</acronym> produced by ashkelon (which works with Mozilla 1.x or IE 5.x or IE 6.x browsers) is markedly different from the defacto html 3.2 user interface produced by javadoc, which i call "classic."</para>
 </listitem>
-<listitem>
-  ashkelon's user interface is a Java web application, not a set of static html pages
+<listitem><para>
+  ashkelon's user interface is a Java web application, not a set of static html pages</para>
 </listitem>
 </itemizedlist>
 
@@ -129,16 +129,17 @@ In an internet environment, it is conceivable that a single high-availability si
 </chapter>
 
 <chapter>
-<title>Installation</title>
-
-<sect1>
 <title>Download</title>
 
 <para>
 Visit the project page on sourceforge at <ulink url="http://sourceforge.net/projects/ashkelon">http://sourceforge.net/projects/ashkelon</ulink>.  On that page, under "Latest File Releases", select the package "ashkelon", a hyperlink which will lead you to the download page.  After you download ashkelon (a tar.gz or tgz file), unpack it.
 </para>
 
-</sect1>
+</chapter>
+
+
+<chapter>
+<title>Installation</title>
 
 <sect1>
 <title>Requirements</title>
@@ -376,7 +377,7 @@ If all succeeds, you should end up with your mysql ashkelon database
 <sect1>
 <title>Run Ashkelon Web Application</title>
 
-<note>JSTL 1.1 libs are now included with ashkelon (no longer need to download it separately)</note>
+<note><para>JSTL 1.1 libs are now included with ashkelon (no longer need to download it separately)</para></note>
 
 <orderedlist>
 <listitem>
@@ -470,7 +471,7 @@ ashkelon Repository Manager (ashkelon v0.8+)
 
 Description:
   Manages a Java Documentation Repository.
-  For more information, visit <ulink url="http://www.uptodata.com/">http://www.uptodata.com/</ulink>
+  For more information, visit <ulink url="http://ashkelon.sourceforge.net/">http://ashkelon.sourceforge.net/</ulink>
   
 Usage:
   ashkelon [add [javadoc options] &lt;items&gt; | remove &lt;names&gt; | reset | list]
@@ -828,7 +829,7 @@ Packages already added so won't be repopulated, only API info (descr, version, e
 <varlistentry>
 <term>JavaOne (2002) alternate presentation (ppt)</term>
 <listitem>
-<ulink url="http://www.uptodata.com/1145suez.pdf">http://www.uptodata.com/1145suez.pdf</ulink>
+<ulink url="http://www.u2d.com/1145suez.pdf">http://www.u2d.com/1145suez.pdf</ulink>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -876,7 +877,7 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </para>
 
 <table>
-<title>ScreenShots of Ashkelon DHTML Client</title>
+<title>APIs and Package Listings</title>
 <tgroup cols="3">
 <tbody>
 <row>
@@ -910,24 +911,6 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </entry>
 
 <entry>
-<ulink url="figures/screenshots/legend.png">
-<screenshot>
-<screeninfo>Legend</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/legend.png" format="PNG" /></imageobject>
-<caption>
-<para>Legend:  Color coding and Styles</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-
-<row>
-
-<entry>
 <ulink url="figures/screenshots/packages.png">
 <screenshot>
 <screeninfo>Packages View</screeninfo>
@@ -940,6 +923,17 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </screenshot>
 </ulink>
 </entry>
+
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<table>
+<title>Sample Package: java.awt</title>
+<tgroup cols="3">
+<tbody>
+<row>
 
 <entry>
 <ulink url="figures/screenshots/java-awt-brief.png">
@@ -969,10 +963,6 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </ulink>
 </entry>
 
-</row>
-
-<row>
-
 <entry>
 <ulink url="figures/screenshots/java-awt-interfaces.png">
 <screenshot>
@@ -986,6 +976,10 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </screenshot>
 </ulink>
 </entry>
+
+</row>
+
+<row>
 
 <entry>
 <ulink url="figures/screenshots/java-awt-main.png">
@@ -1016,7 +1010,15 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </entry>
 
 </row>
+</tbody>
+</tgroup>
+</table>
 
+
+<table>
+<title>Sample Class: java.lang.String</title>
+<tgroup cols="3">
+<tbody>
 <row>
 
 <entry>
@@ -1066,21 +1068,6 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 <row>
 
 <entry>
-<ulink url="figures/screenshots/string-methods-static.png">
-<screenshot>
-<screeninfo>String Static Methods Listing</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/string-methods-static.png" format="PNG" /></imageobject>
-<caption>
-<para>String Static Method Listing</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-
-<entry>
 <ulink url="figures/screenshots/string-methods.png">
 <screenshot>
 <screeninfo>String Method Listing</screeninfo>
@@ -1095,6 +1082,32 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </entry>
 
 <entry>
+<ulink url="figures/screenshots/string-methods-static.png">
+<screenshot>
+<screeninfo>String Static Methods Listing</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="figures/screenshots/thumbs/string-methods-static.png" format="PNG" /></imageobject>
+<caption>
+<para>String Static Method Listing</para>
+</caption>
+</mediaobject>
+</screenshot>
+</ulink>
+</entry>
+
+</row>
+</tbody>
+</tgroup>
+</table>
+
+
+<table>
+<title>Search</title>
+<tgroup cols="3">
+<tbody>
+<row>
+
+<entry>
 <ulink url="figures/screenshots/search-method-simple.png">
 <screenshot>
 <screeninfo>Simple Search</screeninfo>
@@ -1107,10 +1120,6 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </screenshot>
 </ulink>
 </entry>
-
-</row>
-
-<row>
 
 <entry>
 <ulink url="figures/screenshots/search-results-method-simple.png">
@@ -1140,6 +1149,10 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </ulink>
 </entry>
 
+</row>
+
+<row>
+
 <entry>
 <ulink url="figures/screenshots/search-results-bloch.png">
 <screenshot>
@@ -1154,10 +1167,6 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </ulink>
 </entry>
 
-</row>
-
-<row>
-
 <entry>
 <ulink url="figures/screenshots/search-wildcard.png">
 <screenshot>
@@ -1171,6 +1180,17 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </screenshot>
 </ulink>
 </entry>
+
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<table>
+<title>Method Detail &amp; Cross Reference Lookup</title>
+<tgroup cols="3">
+<tbody>
+<row>
 
 <entry>
 <ulink url="figures/screenshots/session-find-method.png">
@@ -1201,23 +1221,15 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </entry>
 
 </row>
+</tbody>
+</tgroup>
+</table>
 
+<table>
+<title>Stats</title>
+<tgroup cols="3">
+<tbody>
 <row>
-
-<entry>
-<ulink url="figures/screenshots/author-sample.png">
-<screenshot>
-<screeninfo>Author View</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/author-sample.png" format="PNG" /></imageobject>
-<caption>
-<para>Author View</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
 
 <entry>
 <ulink url="figures/screenshots/stats-authors.png">
@@ -1248,10 +1260,6 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </ulink>
 </entry>
 
-</row>
-
-<row>
-
 <entry>
 <ulink url="figures/screenshots/stats-main.png">
 <screenshot>
@@ -1260,6 +1268,31 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 <imageobject><imagedata fileref="figures/screenshots/thumbs/stats-main.png" format="PNG" /></imageobject>
 <caption>
 <para>Stats</para>
+</caption>
+</mediaobject>
+</screenshot>
+</ulink>
+</entry>
+
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<table>
+<title>Miscellaneous</title>
+<tgroup cols="3">
+<tbody>
+<row>
+
+<entry>
+<ulink url="figures/screenshots/author-sample.png">
+<screenshot>
+<screeninfo>Author View</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="figures/screenshots/thumbs/author-sample.png" format="PNG" /></imageobject>
+<caption>
+<para>Author View</para>
 </caption>
 </mediaobject>
 </screenshot>
@@ -1280,6 +1313,21 @@ Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon
 </screenshot>
 </ulink>
 </entry>
+
+<entry>
+<ulink url="figures/screenshots/legend.png">
+<screenshot>
+<screeninfo>Legend</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="figures/screenshots/thumbs/legend.png" format="PNG" /></imageobject>
+<caption>
+<para>Legend:  Color coding and Styles</para>
+</caption>
+</mediaobject>
+</screenshot>
+</ulink>
+</entry>
+
 
 </row>
 
@@ -1516,7 +1564,7 @@ For project updates, see:
   <ulink url="http://sourceforge.net/projects/ashkelon/">http://sourceforge.net/projects/ashkelon/</ulink>
   </listitem>
   <listitem>
-  <ulink url="http://www.uptodata.com/">http://www.uptodata.com/</ulink>
+  <ulink url="http://ashkelon.sourceforge.net/">http://ashkelon.sourceforge.net/</ulink>
   </listitem>
   </itemizedlist>
 </para>
@@ -1646,10 +1694,10 @@ The project name "ashkelon" is definitely influenced by names of other open sour
 </para>
 
 <para>
-The first is my becoming aware of a the jakarta project called "Alexandria" (now defunct).  As I read about Alexandria, I realized that my project had many goals similar to Alexandria's:  making many api docs available on a single site.  One cannot find a more aptly named project, as the city of Alexandria was the host of the largest known library in antiquity.
+I became aware of a Jakarta project called "Alexandria" (now defunct).  As I read about Alexandria, I realized that my project had many goals similar to Alexandria's:  making many api docs available in a single place.  One cannot find a more aptly named project, as the city of Alexandria was the host of the largest known library in antiquity.
 </para>
 
-<para>It turns out that Ashkelon is also a city, an ancient city, not 250 miles from Alexandria on the mediterranean coast of Israel.  The thought that two projects so close to each other conceptually were also named after two cities close to each other geographically amused me.  Furthermore, the Alexandria project was hosted on what I considered a high profile and high visibilitly open source site:  The Apache Jakarta project.  My project came from relative obscurity (ashkelon likewise is not known for being the source of great libraries or documentation projects).  I thought to myself.. "maybe a great project can emerge from relative obscurity.."
+<para>It turns out that Ashkelon is also a city, an ancient city, not 250 miles from Alexandria on the mediterranean coast of Israel.  The thought that two projects so close to each other conceptually were also named after two cities close to each other geographically amused me.  Furthermore, the Alexandria project was hosted on what I considered to be a high profile and high visibilitly open source site:  The Apache Jakarta project.  My project came from relative obscurity (ashkelon likewise is not known for being the source of great libraries or documentation projects).  I thought to myself.. "maybe a great project can emerge from relative obscurity.."
 </para>
 
 <para>What tipped the scales in favor of naming the project 'ashkelon' is the additional fact that the city of Ashkelon was my home for a number of years in my youth.
