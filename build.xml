@@ -1,42 +1,54 @@
 <?xml version="1.0"?>
 
 <project name="ashkelon" default="jar">
-   <description>project ashkelon</description>
+   <description>project ashkelon: open source java documentation management system</description>
    
-   <property name="version" value="0.9" />
+   <property name="version" value="0.8.1" />
+   <property environment="env" />
 
-   <!-- currently, valid options are: mysql | oracle -->
-   <property name="db.type" value="mysql" />
-   <property name="dbdir" location="db/${db.type}" />
+   <!-- currently, valid options are: mysql,oracle,postgres -->
+   <property name="dbtype" value="postgres" />
+   <property name="dbdir" location="db/${dbtype}" />
 
-   <property name="webappsdir" location="${user.home}/devel/tomcat/webapps" />
+   <property name="srcdir" location="src" />
+   <property name="builddir" location="build" />
+   <property name="buildclassesdir" location="build/classes" />
+   <property name="libdir" location="lib" />
+   <property name="etcdir" location="etc" />
+   <property name="distdir" location="dist" />
 
-   <target name="init">
-      <mkdir dir="build/classes" />
-      <available file="${webappsdir}" type="dir" property="webappsdir.present" />
-   </target>
-   
-   <target name="clean">
-      <delete dir="build" />
-   </target>
+   <property name="webappsdir" location="${env.CATALINA_HOME}/webapps" />
 
    <path id="class.path">
       <pathelement location="${java.home}/lib/tools.jar" />
-      <fileset dir="lib" includes="*.jar" />
+      <fileset dir="${libdir}" includes="*.jar" />
       <fileset dir="${dbdir}" includes="*.jar" />
-      <pathelement location="build/classes" />
+      <pathelement location="${buildclassesdir}" />
    </path>
 
-   <target name="compile" depends="init" description="compile">
-      <javac debug="on" srcdir="src" destdir="build/classes" classpathref="class.path" />
 
-      <copy todir="build/classes">
-        <fileset dir="src">
+   <target name="init">
+      <mkdir dir="${buildclassesdir}" />
+      <mkdir dir="${distdir}" />
+      <available file="${webappsdir}" type="dir" property="webappsdir.present" />
+      <tstamp />
+   </target>
+   
+   <target name="clean">
+      <delete dir="${builddir}" />
+      <delete dir="${distdir}" />
+   </target>
+
+   <target name="compile" depends="init" description="compile">
+      <javac debug="on" srcdir="${srcdir}" destdir="${buildclassesdir}" classpathref="class.path" />
+
+      <copy todir="${buildclassesdir}">
+        <fileset dir="${srcdir}">
           <exclude name="**/*.java" />
         </fileset>
       </copy>
       
-      <copy todir="build/classes">
+      <copy todir="${buildclasssesdir}">
         <fileset dir="${dbdir}">
           <exclude name="**/*.jar" />
         </fileset>
@@ -44,21 +56,26 @@
    </target>
 
    <target name="jar" depends="compile" description="jar">
-      <jar destfile="build/ashkelon.jar" basedir="build/classes" />
+      <jar destfile="${builddir}/ashkelon.jar" basedir="${buildclassesdir}" />
    </target>
 
-   <target name="war" depends="jar" description="packages war file">
-      <war destfile="build/ashkelon.war" webxml="etc/web.xml" basedir="htdocs">
-         <lib dir="lib">
-           <exclude name="servlet.jar" />
-         </lib>
+   <target name="war" depends="jar" description="war">
+      <war destfile="${builddir}/ashkelon.war" webxml="${etcdir}/web.xml" basedir="htdocs">
+         <lib dir="${libdir}" excludes="servlet.jar" />
          <lib dir="${dbdir}" includes="*.jar" />
-         <lib dir="build" includes="ashkelon.jar" />
+         <lib dir="${builddir}" includes="ashkelon.jar" />
+         <webinf dir="${etcdir}" includes="*.tld" />
       </war>
    </target>
    
    <target name="ear" depends="war" description="packages ear file">
-      <ear destfile="build/ashkelon.ear" appxml="etc/application.xml" basedir="build" includes="ashkelon.war" />
+      <ear destfile="${builddir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${builddir}" includes="ashkelon.war" />
    </target>
+
+<!-- flawed -  needs to copy stuff to build and then zip that
+   <target name="dist-src" depends="init" description="generate source distribution">
+    <zip destfile="${distdir}/ashkelon-${DSTAMP}.zip" basedir="${basedir}" excludes="${builddir}/**,${distdir}/**" />
+   </target>
+-->
    
 </project>
