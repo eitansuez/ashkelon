@@ -16,12 +16,12 @@
 <style>
 #api-pkglist
 {
-  height: 330px;
-  overflow: auto;
   padding: 0;
   text-align: center;
   border: 1px solid gray;
   clear: right;
+  height: 330px;
+  overflow: auto;
 }
 #api-pkglist-caption
 {

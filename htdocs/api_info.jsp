@@ -6,7 +6,7 @@
 %>
 
 <div style="float: left;">
-  <a href="<%=api.getDownloadURL()%>" target="_new"><span class="api" style="font-size: large; font-weight: bold;"><%=api.getName()%></span></a> v<%=api.getVersion()%>
+  <span class="api" style="font-size: large; font-weight: bold;"><%=api.getName()%></span> v<%=api.getVersion()%>
 </div>
 
 <div style="float: right;">
@@ -15,7 +15,7 @@
 
 
 <div class="publisher" style="border-top: 1px solid #808080; margin-bottom: 1.5em; clear: both;">
-  <%=api.getPublisher()%>
+  <a href="<%=api.getDownloadURL()%>" target="_new"><%=api.getPublisher()%></a>
 </div>
 
 
