@@ -1,7 +1,7 @@
 /*
  * Created on Aug 16, 2004
  */
-package org.ashkelon;
+package org.ashkelon.manager;
 
 import java.io.*;
 import org.dom4j.*;
@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.util.*;
 import org.apache.tools.ant.*;
 import org.apache.tools.ant.types.*;
+import org.ashkelon.API;
 
 /**
  * @author Eitan Suez

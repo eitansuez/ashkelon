@@ -11,4 +11,12 @@
 <package>org.w3c.dom</package>
 <package>org.w3c.tidy</package>
 </packages>
+
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jtidy</url>
+    <modulename>jtidy</modulename>
+    <sourcepath>src/main</sourcepath>
+  </repository>
+
 </api>

@@ -22,4 +22,13 @@
 <package>org.apache.log4j.xml</package>
 <package>org.apache.log4j.xml.examples</package>
 </packages>
+
+
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
+    <modulename>logging-log4j</modulename>
+    <sourcepath>src/java</sourcepath>
+  </repository>
+
 </api>

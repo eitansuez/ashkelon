@@ -1,6 +1,7 @@
-package org.ashkelon;
+package org.ashkelon.manager;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +14,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.ashkelon.API;
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.util.Logger;
@@ -26,11 +28,11 @@ public class AshkelonCmd
    public static void addapiCmd(String[] args)
    {
       Logger log = Logger.getInstance();
-      String apifilename = args[args.length-1].substring(1); // remove leading @ char
+      String apifilename = args[args.length-1];
       log.debug("api file name: "+apifilename);
       try
       {
-         String sourcepath = extractSourcepath(args);
+         String sourcepath = getSourcePathOption(args);
          API api = new API().load(apifilename, sourcepath);
          log.debug("api unmarshalled; name is: "+api.getName());
          
@@ -41,8 +43,30 @@ public class AshkelonCmd
             return;
          }
          
+         String basepath = Config.getInstance().getSourcePathBase();
+         File base = new File(basepath);
+         if (!base.exists())
+         {
+            log.traceln("Creating directory "+basepath);
+            base.mkdir();
+         }
+         api.fetch(base);
+         
          LinkedList argslist = new LinkedList(Arrays.asList(args));
-         argslist.removeLast();
+         argslist.removeFirst();  // the ashkelon "add" cmd
+         argslist.removeLast();  // @apiname.xml
+         
+         int sourcepathIndex = getSourcePathIndex(args);
+         if (sourcepathIndex < 0)
+         {
+            argslist.addLast("-sourcepath");
+            argslist.add(api.getSourcePath());
+         }
+         else
+         {
+            argslist.remove(sourcepathIndex+1);
+            argslist.add(sourcepathIndex+1, api.getSourcePath() + ":" + sourcepath);
+         }
          
          argslist.add("-api");
          argslist.add(apifilename);
@@ -50,8 +74,16 @@ public class AshkelonCmd
          Collection packagenames = api.getPackagenames();
          argslist.addAll(packagenames);
          log.debug(StringUtils.join(argslist.toArray(), " "));
+         
+//         System.out.println(argslist);
+         
          String[] addlist = new String[argslist.size()];
-         addCmd((String[]) argslist.toArray(addlist));
+         String[] javadocargs = (String[]) argslist.toArray(addlist);
+         
+         // parms are: programName, docletClassName, javadocargs
+         com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.manager.Ashkelon", 
+               javadocargs);
+         
       }
       catch (FileNotFoundException ex)
       {
@@ -84,25 +116,36 @@ public class AshkelonCmd
       return false;
    }
    
-   private static void addCmd(String[] args)
+   private static String getSourcePathOption(String[] args)
    {
-      String[] javadocargs = new String[args.length - 1];
-      for (int i=1; i<args.length; i++)
-         javadocargs[i-1] = args[i];
-      // parms are: programName, docletClassName, javadocargs
-      com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.Ashkelon", javadocargs);
+      return getOption("-sourcepath", args);
    }
-   
-   private static String extractSourcepath(String[] args)
+   private static String getOption(String optionFlag, String[] args)
    {
       for (int i=0; i<args.length; i++)
       {
-         if ("-sourcepath".equals(args[i]))
+         if (optionFlag.equals(args[i]))
          {
             return args[i+1];
          }
       }
       return ".";
+   }
+   
+   private static int getSourcePathIndex(String[] args)
+   {
+      return getIndex("-sourcepath", args);
+   }
+   private static int getIndex(String optionFlag, String[] args)
+   {
+      for (int i=0; i<args.length; i++)
+      {
+         if (optionFlag.equals(args[i]))
+         {
+            return i;
+         }
+      }
+      return -1;
    }
    
    private static void testCmd()
@@ -140,7 +183,8 @@ public class AshkelonCmd
       Logger log = Logger.getInstance();
       try
       {
-         InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("org/ashkelon/Usage.txt");
+         ClassLoader loader = AshkelonCmd.class.getClassLoader();
+         InputStream is = loader.getResourceAsStream("org/ashkelon/manager/Usage.txt");
          if (is == null) { return; }
          BufferedReader br = new BufferedReader(new InputStreamReader(is));
          String line = "";
@@ -187,11 +231,12 @@ public class AshkelonCmd
       
       try
       {
-         List names = ashkelon.listPackageNames();
+         List names = ashkelon.listAPINames();
+         log.traceln(names.size()+" APIs in ashkelon:");
          Iterator i = names.iterator();
          while (i.hasNext())
          {
-            log.traceln("API: " + (String) i.next());
+            log.traceln("   " + (String) i.next());
             // TODO: Put the version of this package into the list
             // TODO: List the packages and classes for this api
             if (names.isEmpty())
@@ -281,7 +326,6 @@ public class AshkelonCmd
          
          String lastarg = args[args.length-1];
          if (lastarg != null && 
-               lastarg.startsWith("@") && 
                lastarg.endsWith(".xml"))
             addapiCmd(args);
          else

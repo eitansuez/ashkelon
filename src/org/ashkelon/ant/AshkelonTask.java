@@ -22,7 +22,7 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.taskdefs.Javadoc;
 import org.apache.tools.ant.types.PatternSet;
 import org.ashkelon.API;
-import org.ashkelon.AshkelonCmd;
+import org.ashkelon.manager.AshkelonCmd;
 import org.ashkelon.util.Logger;
 
 /**

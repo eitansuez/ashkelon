@@ -69,11 +69,7 @@
       <build-statements dbtype="${dbtype}" 
          tofile="${buildclassesdir}/org/ashkelon/db/statements.properties" />
 
-      <copy file="${etcdir}/web.xml" tofile="${builddir}/web.xml" filtering="true">
-        <filterset>
-          <filter token="SOURCEPATH" value="${env.SOURCEPATH}" />
-        </filterset>
-      </copy> 
+      <copy file="${etcdir}/web.xml" tofile="${builddir}/web.xml" />
 
       <copy tofile="${builddir}/jdbc-driver.jar">
         <fileset dir="${dbdir}" includes="*.jar" /> <!-- should be a single file -->

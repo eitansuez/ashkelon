@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <api>
 
-  <name>Ashkelon</name>
+  <name>ashkelon</name>
   <summarydescription>Ashkelon is a multi-api java documentation system composed of [1] a tool to persist javadocs in a relational database, and [b] a modern dhtml web application for referencing javadocs</summarydescription>
   <description>Ashkelon is a multi-api java documentation system composed of [1] a tool to persist javadocs in a relational database, and [b] a modern dhtml web application for referencing javadocs.  The latter is a serious attempt to redefine how javadocs should be referenced online.  It goes above and beyond the defactor ui for javadocs by color coding programming elements, allowing database searches, cross reference lookups, and providing various statistical information on javadocs (class count by api, class count by author, etc..)</description>
 
@@ -18,7 +18,12 @@
     <package>org.ashkelon.ant</package>
   </packages>
 
-  <srcpath>src</srcpath>
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/ashkelon</url>
+    <modulename>ashkelon</modulename>
+    <sourcepath>src</sourcepath>
+  </repository>
 
 </api>
 

@@ -3,7 +3,7 @@ package org.ashkelon.pages;
 import java.util.*;
 import java.io.*;
 import org.jibx.runtime.*;
-import org.ashkelon.*;
+import org.ashkelon.manager.InlineTagResolver;
 
 /**
  * @author Eitan Suez

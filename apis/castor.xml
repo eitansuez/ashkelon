@@ -19,6 +19,13 @@
   <package>org.exolab.castor.xml</package>
 </packages>
 
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anon@cvs.castor.codehaus.org:/scm/castor</url>
+    <modulename>castor</modulename>
+    <sourcepath>src/main</sourcepath>
+  </repository>
+
 </api>
 
 

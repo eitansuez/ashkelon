@@ -1,8 +1,9 @@
 package org.ashkelon.pages;
 
+import org.ashkelon.db.DBMgr;
+import org.ashkelon.manager.Config;
 import org.ashkelon.util.*;
 import java.io.*;
-import java.util.*;
 import java.sql.*;
 
 
@@ -38,37 +39,53 @@ public class ClassSourcePage extends Page
       
       request.setAttribute("cls_name", qualifiedName);
       
-      List sourcepaths = (List) app.getAttribute("sourcepath");
-      log.debug("number of paths in source path: "+sourcepaths.size());
+      // determine class.api (maybe pass it in the request, because already know it)
+      // lookup the api (possibly from cache)
+      // from the api, get the sourcepath
       
-      Iterator itr = sourcepaths.iterator();
-      String path = null;
-      String sourceFile = null;
-      while (itr.hasNext())
+      String sourcepath = fetchSourcePath(qualifiedName);
+      if (!sourcepath.endsWith(File.separator))
+         sourcepath += File.separator;
+      String sourceFile = sourcepath + fileName;
+      log.debug("looking for "+sourceFile);
+      if (new File(sourceFile).exists())
       {
-         path = (String) itr.next();
-         if (!path.endsWith(File.separator))
-            path += File.separator;
-         sourceFile = path + fileName;
-         log.debug("looking for "+sourceFile);
-         if (new File(sourceFile).exists())
-         {
-            request.setAttribute("source_file", sourceFile);
-            String htmlFile = SRCHTMLDIRNAME + File.separator + fileName + ".html";
-            request.setAttribute("html_file", htmlFile);
-            String realHtmlFile = srcHtmlDir + File.separator + fileName + ".html";
-            
-            if (! (new File(realHtmlFile).exists()) )
-            {
-               generator.produceHtml(sourceFile, realHtmlFile);
-            }
-            
-            return null;
-         }
+         makeHtmlFile(sourceFile, fileName);
+         return null;
       }
-
+      
       request.setAttribute("source_file", "");
       return null;
+   }
+   
+   private void makeHtmlFile(String sourceFile, String fileName)
+   {
+      request.setAttribute("source_file", sourceFile);
+      String htmlFile = SRCHTMLDIRNAME + File.separator + fileName + ".html";
+      request.setAttribute("html_file", htmlFile);
+      String realHtmlFile = srcHtmlDir + File.separator + fileName + ".html";
+      
+      if (! (new File(realHtmlFile).exists()) )
+      {
+         generator.produceHtml(sourceFile, realHtmlFile);
+      }
+   }
+   
+   private String fetchSourcePath(String className) throws SQLException
+   {
+      String base = Config.getInstance().getSourcePathBase();
+      
+      String sql = DBMgr.getInstance().getStatement("getsourcepath");
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, className);
+      ResultSet rset = pstmt.executeQuery();
+      rset.next();
+      String modulename = rset.getString(1);
+      String sourcepath = rset.getString(2);
+      rset.close();
+      pstmt.close();
+      
+      return base + File.separator + modulename + File.separator + sourcepath;
    }
    
 }

@@ -76,4 +76,12 @@
   <package>org.apache.tools.tar</package>
   <package>org.apache.tools.zip</package>
 </packages>
+
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
+    <modulename>ant</modulename>
+    <sourcepath>src/main</sourcepath>
+  </repository>
+
 </api>

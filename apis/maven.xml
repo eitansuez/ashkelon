@@ -20,4 +20,13 @@
 <package>org.apache.maven.util</package>
 <package>org.apache.maven.verifier</package>
 </packages>
+
+<!-- need to add svn support -->
+  <repository>
+    <type>svn</type>
+    <url>http://svn.apache.org/viewcvs/maven/maven-1/core/trunk/</url>
+    <modulename>[tbd]</modulename>
+    <sourcepath>[tbd]</sourcepath>
+  </repository>
+
 </api>

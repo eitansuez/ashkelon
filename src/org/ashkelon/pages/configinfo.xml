@@ -6,7 +6,7 @@
   <maxtraillength>10</maxtraillength>
   <tracelevel>25</tracelevel>
   <tracefile>/Users/eitansuez/devel/ashkelon/trace.log</tracefile>
-  <inline-tag-resolver>org.ashkelon.AshkelonTagResolver</inline-tag-resolver>
+  <inline-tag-resolver>org.ashkelon.manager.AshkelonTagResolver</inline-tag-resolver>
   <pagesize>20</pagesize>
 
   <command-list>

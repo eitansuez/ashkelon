@@ -25,4 +25,12 @@
 <package>org.dom4j.xpath</package>
 <package>org.dom4j.xpp</package>
 </packages>
+
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/dom4j</url>
+    <modulename>dom4j</modulename>
+    <sourcepath>src/java</sourcepath>
+  </repository>
+
 </api>

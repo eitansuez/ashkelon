@@ -1,8 +1,10 @@
 /*
  * Created on Jul 24, 2004
  */
-package org.ashkelon;
+package org.ashkelon.manager;
 
+import org.ashkelon.DocInfo;
+import org.ashkelon.Reference;
 import org.ashkelon.util.Logger;
 import org.ashkelon.util.StringUtils;
 import com.sun.javadoc.SeeTag;

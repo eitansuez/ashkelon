@@ -1,7 +1,9 @@
 /*
  * Created on Jul 24, 2004
  */
-package org.ashkelon;
+package org.ashkelon.manager;
+
+import org.ashkelon.DocInfo;
 
 import com.sun.javadoc.Tag;
 

@@ -8,11 +8,6 @@
 
     <display-name>Multi-API Java Documentation System</display-name>
 
-    <context-param>
-      <param-name>sourcepath</param-name>
-      <param-value>@SOURCEPATH@</param-value>
-    </context-param>
-
     <servlet>
         <servlet-name>
             flowcontroller

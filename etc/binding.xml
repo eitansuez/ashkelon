@@ -12,6 +12,12 @@
     <collection name="packages" field="packagenames">
       <value name="package" />
     </collection>
+    <structure name="repository" field="repository">
+      <value name="type" field="type" />
+      <value name="url" field="url" />
+      <value name="modulename" field="modulename" />
+      <value name="sourcepath" field="sourcepath" />
+    </structure>
   </mapping>
   
   <mapping name="ashkelon-viewer-config" class="org.ashkelon.pages.ConfigInfo">
@@ -33,6 +39,6 @@
     <value name="tablename" field="tableName" />
     <value name="intrail" field="inTrail" />
   </mapping>
-                
+
 </binding>
 

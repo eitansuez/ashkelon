@@ -14,6 +14,9 @@ import java.util.Map;
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.db.PKManager;
+import org.ashkelon.manager.Config;
+import org.ashkelon.manager.MavenPOMAdapter;
+import org.ashkelon.manager.Repository;
 import org.ashkelon.util.Logger;
 import org.ashkelon.util.StringUtils;
 import org.jibx.runtime.*;
@@ -33,6 +36,7 @@ public class API implements JDoc, Serializable
     private java.util.Date releaseDate = new java.util.Date();
     private String version = "";
     private ArrayList packagenames = new ArrayList();
+    private Repository repository = new Repository();
     
     private List packages;
 
@@ -135,6 +139,10 @@ public class API implements JDoc, Serializable
       fieldInfo.put("RELEASE_DATE", new java.sql.Date(releaseDate.getTime()));
       fieldInfo.put("VERSION", StringUtils.truncate(version, 30));
       fieldInfo.put("DESCRIPTION", description);
+      fieldInfo.put("REPOSITORY_TYPE", repository.getType());
+      fieldInfo.put("REPOSITORY_URL", repository.getUrl());
+      fieldInfo.put("REPOSITORY_MODULE", repository.getModulename());
+      fieldInfo.put("REPOSITORY_SRCPATH", repository.getSourcepath());
 
       try
       {
@@ -320,5 +328,18 @@ public class API implements JDoc, Serializable
    
    public DocInfo getDoc() { return null; }  // this is crummy.  TODO: fix
    public String getStyle() { return "api"; }  // maybe getstyle should have a separate interface
+   
+   
+   public void fetch(File base)
+   {
+      repository.fetch(base);
+   }
+   
+   public String getSourcePath()
+   {
+      String basepath = Config.getInstance().getSourcePathBase();
+      return basepath + File.separator + repository.getPath();
+   }
+   
    
 }

@@ -38,4 +38,12 @@
 <package>net.sf.hibernate.util</package>
 <package>net.sf.hibernate.xml</package>
 </packages>
+
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/hibernate</url>
+    <modulename>Hibernate2</modulename>
+    <sourcepath>src</sourcepath>
+  </repository>
+
 </api>

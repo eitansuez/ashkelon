@@ -15,11 +15,11 @@ import java.util.*;
  */
 public abstract class Page
 {
-   Logger log;
-   Connection conn;
-   HttpServletRequest request;
-   ServletContext app;
-   HttpSession session;
+   protected Logger log;
+   protected Connection conn;
+   protected HttpServletRequest request;
+   protected ServletContext app;
+   protected HttpSession session;
    
    // overriden by configinfo.xml pagesize element:
    public static int PAGE_SIZE = 60;
@@ -28,6 +28,7 @@ public abstract class Page
    {
       log = Logger.getInstance();
       log.setPrefix("Page");
+      log.setTraceLevel(Logger.DEBUG);
    }
    
    public Page(Connection conn, HttpServletRequest request)

@@ -84,4 +84,14 @@
 <package>tutorial.workbench.upload</package>
 -->
 </packages>
+
+
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
+    <modulename>jakarta-tapestry</modulename>
+    <sourcepath>framework/src</sourcepath>
+  </repository>
+
+
 </api>

@@ -1,28 +1,19 @@
 /*
  * Created on Mar 19, 2005
  */
-package org.ashkelon;
+package org.ashkelon.manager;
 
-import java.io.FileReader;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
 
-import org.ashkelon.db.DBMgr;
-import org.ashkelon.db.DBProc;
-import org.ashkelon.db.DBUtils;
-import org.ashkelon.db.PKManager;
-import org.ashkelon.util.JDocUtil;
-import org.ashkelon.util.Logger;
-import org.ashkelon.util.StringUtils;
-
-import com.sun.javadoc.Doclet;
-import com.sun.javadoc.PackageDoc;
-import com.sun.javadoc.RootDoc;
+import org.ashkelon.API;
+import org.ashkelon.ClassType;
+import org.ashkelon.Generic;
+import org.ashkelon.JPackage;
+import org.ashkelon.db.*;
+import org.ashkelon.util.*;
+import com.sun.javadoc.*;
 
 /**
  * @author Eitan Suez
@@ -486,7 +477,7 @@ public class Ashkelon extends Doclet
       proc.doAction(conn, "reset");
    }
    
-   public List listPackageNames() throws SQLException
+   public List listAPINames() throws SQLException
    {
       return Generic.listNames(conn, API.getTableName());
    }
@@ -518,6 +509,4 @@ public class Ashkelon extends Doclet
       }
    }
    
-   
-
 }

@@ -8,7 +8,16 @@
 <release_date>2002-09-03T19:00:00.000</release_date>
 <version>3.8.1</version>
 <packages>
-<package>junit.extensions</package>
-<package>junit.framework</package>
+  <package>junit.extensions</package>
+  <package>junit.framework</package>
 </packages>
+
+
+  <repository>
+    <type>cvs</type>
+    <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/junit</url>
+    <modulename>junit</modulename>
+    <sourcepath></sourcepath>
+  </repository>
+
 </api>

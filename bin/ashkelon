@@ -36,14 +36,7 @@ done
 
 if [ "$CMD" = "add" ]
 then
-    if [ "$SOURCEPATH" = "" ]
-    then
-	echo "SOURCEPATH not defined"
-	exit 2
-    fi
-    SRCPATHINFO="-sourcepath ${SOURCEPATH}"
     CLASSPATHINFO="-classpath ${CLASSPATH}"
-
 fi # CMD == add
 
 # Shift argument list (if not empty) so we can use $* in command
@@ -52,6 +45,5 @@ then
     shift
 fi
 
-# got memory to burn on this box..
-${JAVA_HOME}/bin/java -Xmx250m -cp $CP org.ashkelon.AshkelonCmd $CMD $SRCPATHINFO $CLSPATHINFO $*
+${JAVA_HOME}/bin/java -Xmx250m -cp $CP org.ashkelon.manager.AshkelonCmd $CMD $CLSPATHINFO $*
 
