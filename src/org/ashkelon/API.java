@@ -29,26 +29,18 @@ public class API implements Serializable
     private boolean idSet = false;
    
     private transient Logger log;
+    private Unmarshaller ums = null;
+    
     
     public API()
     {
        log = Logger.getInstance();
        setPackagenames(new ArrayList());
        setPackages(new ArrayList());
-    }
-    
-    public API(String name)
-    {
-       this();
-       setName(name);
-    }
-    
-    static Unmarshaller ums = null;
-    static
-    {
+
        try
        {
-          ClassLoader loader = ClassLoader.getSystemClassLoader();
+          ClassLoader loader = this.getClass().getClassLoader();
           URL resource = loader.getResource("org/ashkelon/apimapping.xml");
           Mapping mapping = new Mapping();
           mapping.loadMapping(resource);
@@ -58,10 +50,18 @@ public class API implements Serializable
        }
        catch (Exception ex)
        {
+           System.err.println("exception: "+ex.getMessage());
+           ex.printStackTrace();
        }
     }
     
-    public static API load(Reader reader) throws MarshalException, ValidationException
+    public API(String name)
+    {
+       this();
+       setName(name);
+    }
+    
+    public API load(Reader reader) throws MarshalException, ValidationException
     {
       return (API) ums.unmarshal(reader);
     }

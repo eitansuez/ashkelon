@@ -104,7 +104,7 @@ public class Ashkelon extends Doclet
       {
          try
          {
-            api = API.load(new FileReader(apifilename));
+            api = new API().load(new FileReader(apifilename));
             log.debug("api unmarshalled; name is: "+api.getName());
          }
          catch (Exception ex)
@@ -225,7 +225,7 @@ public class Ashkelon extends Doclet
       {
          try
          {
-            API api = API.load(new FileReader(elements[0].substring(1)));
+            API api = new API().load(new FileReader(elements[0].substring(1)));
             log.debug("api unmarshalled; name is: "+api.getName());
             api.delete(conn);
          }
@@ -444,14 +444,14 @@ public class Ashkelon extends Doclet
       com.sun.tools.javadoc.Main.main(javadocargs);
    }
    
-   private static void addapiCmd(String[] args)
+   public static void addapiCmd(String[] args)
    {
       Logger log = Logger.getInstance();
       String apifilename = args[args.length-1].substring(1); // remove leading @ char
       log.debug("api file name: "+apifilename);
       try
       {
-         API api = API.load(new FileReader(apifilename));
+         API api = new API().load(new FileReader(apifilename));
          log.debug("api unmarshalled; name is: "+api.getName());
          LinkedList argslist = new LinkedList(Arrays.asList(args));
          argslist.removeLast();
