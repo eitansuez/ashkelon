@@ -193,5 +193,10 @@
       
     </resources>
   </build>  
+
+  <reports>
+    <!-- for now do not generate any reports -->
+  </reports>
+
 </project>
 
