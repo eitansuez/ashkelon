@@ -5,30 +5,15 @@ Description:
   For more information, visit http://ashkelon.sourceforge.net/
   
 Usage:
-  ashkelon [add [javadoc options] <items> | remove <names> | reset | list]
+  ashkelon [add [javadoc options] <apiref> | remove <apiref> | reset | list]
 
-    add      Add items to repository where items is the names of packages
-             and/or source files to be added to the repository
-    remove   Remove names from repository.  A name is the fully
-             qualified name of a java package, class, or interface
+    add      Add an api's docs to repository;  apiref can be either 
+             a maven project.xml file or an ashkelon api xml file 
+             (see documentation for details on the latter's format)
+    remove   Remove api ref from the repository
     reset    Reset repository (i.e. delete everything, use with care)
     list     List package names currently existing in the repository
 
-Items Reference
-  items = [packagenames] [sourcefiles] [@files]
-    packagenames
-      A series of package names, separated by spaces, such as:
-        java.lang java.lang.reflect java.awt
-      You must separately specify each package you want to document.
-      Like javadoc, ashkelon uses -sourcepath to look for these package
-      names.  Wildcards are not allowed
-    sourcefiles
-      A series of source file names, separated by spaces, each of which
-      can begin with a path and contain a wildcard
-    @files
-      One or more files that contain packagenames and sourcefiles
-      in any order, one name per line
-    
 Supported javadoc options:
   -overview <file>          Read overview documentation from HTML file
   -public                   Show only public classes and members
