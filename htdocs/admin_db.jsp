@@ -15,44 +15,36 @@ Date: March 2001
 <%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-  <TITLE>Admin Page</TITLE>
+<html>
+<head>
+  <title>Admin Page</title>
   <jsp:include page="includes.html" flush="true" />
+</head>
 
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
+<body>
 
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY>
-
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 <%-- <jsp:include page="sub_header.jsp" flush="true"/> --%>
 
-<P>Welcome to Ashkelon...eitan.</P>
+<p>Welcome to Ashkelon...eitan.</p>
 
-<FIELDSET>
-<LEGEND><B>Database Connection Pooling</B></LEGEND>
-<P>Pool Status: <%=dbmgr.getPoolStatus()%></P>
-<P CLASS="message"><%=message%></P>
+<fieldset>
+<legend><b>Database Connection Pooling</b></legend>
+<p>Pool Status: <%=dbmgr.getPoolStatus()%></p>
+<p class="message"><%=message%></p>
 
-<FORM METHOD="POST" ACTION="admin.db.do">
-  <INPUT TYPE="HIDDEN" NAME="command" VALUE="resetconns">
-  <BUTTON TYPE="SUBMIT">Reset Connections</BUTTON>
-</FORM>
-</FIELDSET>
+<form method="POST" action="admin.db.do">
+  <input type="HIDDEN" name="command" value="resetconns">
+  <button type="SUBMIT">Reset Connections</button>
+</form>
+</fieldset>
 
-<FIELDSET>
-<LEGEND>Cache</LEGEND>
+<fieldset>
+<legend>Cache</legend>
 
-<UL>
+<ul>
 <%
   Enumeration attributes = application.getAttributeNames();
   String att;
@@ -69,22 +61,22 @@ Date: March 2001
     else
       continue;
  %>
-   <LI><B><%=att%></B>: <%=size%></LI>
+   <li><b><%=att%></b>: <%=size%></li>
  <%
   }
  %>
-</UL>
+</ul>
 
-<FORM METHOD="POST" ACTION="admin.db.do">
-  <INPUT TYPE="HIDDEN" NAME="command" VALUE="resetcache">
-  <BUTTON TYPE="SUBMIT">Reset Cache</BUTTON>
-</FORM>
-</FIELDSET>
+<form method="POST" action="admin.db.do">
+  <input type="hidden" name="command" value="resetcache">
+  <button type="submit">Reset Cache</button>
+</form>
+</fieldset>
 
-</DIV>
+</div>
 
 <jsp:include page="footer.html" flush="true"/>
 
 
-</BODY>
-</HTML>
+</body>
+</html>

@@ -11,7 +11,7 @@
   
   String[] cmds = {"apis", "pkg", "search", "idx", "stats.general", "authors"};
 
-  String cmd = ServletUtils.getCommand(request);
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
   String area = "";
   if (cmd != null)
     area = StringUtils.split(cmd,".")[0];

@@ -17,7 +17,7 @@
   cmds.add("stats.classes");
   cmds.add("stats.authors");
   
-  String cmd = ServletUtils.getCommand(request);
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
 
   request.setAttribute("tabs", tabs);
   request.setAttribute("cmds", cmds);

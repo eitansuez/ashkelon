@@ -1,8 +1,8 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
 <%
-  String cmd = ServletUtils.getCommand(request);
-    
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
+ 
   Boolean needToDisplayResults = (Boolean) request.getAttribute("display_results");
   if (needToDisplayResults == null)
   {

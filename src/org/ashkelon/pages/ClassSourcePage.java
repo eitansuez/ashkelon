@@ -5,12 +5,28 @@ import java.io.*;
 import java.util.*;
 import java.sql.*;
 
+
 public class ClassSourcePage extends Page
 {
+   private File srcHtmlDir = null;
+   private static final String SRCHTMLDIRNAME = "srchtml";
+   private HtmlGenerator generator = new Java2HtmlGenerator();
+
    public ClassSourcePage()
    {
       super();
    }
+   
+   public void setApplication(javax.servlet.ServletContext context)
+   {
+      super.setApplication(context);
+      
+      srcHtmlDir = new File(context.getRealPath("/") + File.separator + SRCHTMLDIRNAME);
+      if (!srcHtmlDir.exists()) srcHtmlDir.mkdir();
+
+      generator.initialize(srcHtmlDir);
+   }
+   
    
    public String handleRequest() throws SQLException
    {
@@ -19,24 +35,31 @@ public class ClassSourcePage extends Page
       
       request.setAttribute("cls_name", qualifiedName);
       
-      //List sourcepaths = getSourcePaths();
       List sourcepaths = (List) app.getAttribute("sourcepath");
-      
       log.debug("number of paths in source path: "+sourcepaths.size());
       
       Iterator itr = sourcepaths.iterator();
       String path = null;
-      String canonical = null;
+      String sourceFile = null;
       while (itr.hasNext())
       {
          path = (String) itr.next();
          if (!path.endsWith(File.separator))
             path += File.separator;
-         canonical = path + fileName;
-         log.debug("looking for "+canonical);
-         if (new File(canonical).exists())
+         sourceFile = path + fileName;
+         log.debug("looking for "+sourceFile);
+         if (new File(sourceFile).exists())
          {
-            request.setAttribute("source_file", canonical);
+            request.setAttribute("source_file", sourceFile);
+            String htmlFile = SRCHTMLDIRNAME + File.separator + fileName + ".html";
+            request.setAttribute("html_file", htmlFile);
+            String realHtmlFile = srcHtmlDir + File.separator + fileName + ".html";
+            
+            if (! (new File(realHtmlFile).exists()) )
+            {
+               generator.produceHtml(sourceFile, realHtmlFile);
+            }
+            
             return null;
          }
       }

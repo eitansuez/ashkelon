@@ -176,3 +176,23 @@ fieldset
    padding: 10px;
    border: 1px solid black;
 }
+
+.source-box
+{
+  width: 90%;
+  text-align: center;
+  height: 470px;
+  border: 1px solid black;
+  margin: 1.5em;
+  padding: 0;
+}
+.error-msg
+{
+  font-weight: bold;
+  font-style: italic;
+  color: red;
+  margin: 1em;
+  border: 1px solid black;
+  padding: 0.5em;
+}
+

@@ -1,7 +1,7 @@
 <%@ page info="page" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*,java.text.*,java.util.*"%>
 
 <%
-  String cmd = ServletUtils.getCommand(request);
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
   Integer api_count = (Integer) application.getAttribute("api_count");
   Integer package_count = (Integer) application.getAttribute("package_count");
   Integer class_count = (Integer) application.getAttribute("class_count");

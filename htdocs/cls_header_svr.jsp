@@ -53,7 +53,7 @@
   tabs.put("cls.xref", "Cross References");
   cmds.add("cls.xref");
   
-  String cmd = ServletUtils.getCommand(request);
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
   String cls_id = ServletUtils.getRequestParam(request, "cls_id");
   
   request.setAttribute("tabs", tabs);

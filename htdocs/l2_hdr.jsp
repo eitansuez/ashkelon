@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%
-  String cmd = ServletUtils.getCommand(request);
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
   Map tabs = (HashMap) request.getAttribute("tabs");
   List cmds = (List) request.getAttribute("cmds");
   String titlePrefix = request.getParameter("title_prefix");

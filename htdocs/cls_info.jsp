@@ -5,7 +5,7 @@
   JPackage pkg = cls.getPackage();
   String cls_type = cls.getClassTypeName();
   
-  String cmd = ServletUtils.getCommand(request);
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
   String descr_type = request.getParameter("descr_type");
 
   ClassType impl_interface;

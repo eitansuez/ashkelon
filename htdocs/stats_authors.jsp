@@ -1,7 +1,7 @@
 <%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
 
 <%
-  String cmd = ServletUtils.getCommand(request);
+  String cmd = ServletUtils.getRequestParam(request, "cmd");
   List numByAuthor = (List) request.getAttribute("classCounts");
  %>
 
