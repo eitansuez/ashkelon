@@ -48,6 +48,8 @@ Date: March 2001
 
 <% if (xrefs != null) { %>
 
+<p>Total Results: <%= request.getAttribute("total-results") %></p>
+
 <%
 String emptyMsg = name + " has no " + keys[i-1] + " cross references";
 if (i<=4) // displaying member info
@@ -56,7 +58,7 @@ if (i<=4) // displaying member info
   String mmb_type = "all";
   if (keys[i-1].equals("field"))
     mmb_type = "field";
-  if (keys[i-1].equals("returnedby"))
+  else if (keys[i-1].equals("returnedby"))
     mmb_type = "method";
 %>
   <div id="xref_member">
@@ -84,6 +86,30 @@ else
       </jsp:include>
   </div>
 <% } %>
+
+
+<!-- paging -->
+<table width="100%"><tr>
+<% if (request.getAttribute("prev-cursor-position") != null) { %>
+<td align="left">
+  <form method="get" action="cls.xref.<%=keys[i-1]%>.do">
+   <input type="hidden" name="cls_id" value="<%=cls.getId()%>" />
+   <input type="hidden" name="cursor-position" value="<%= request.getAttribute("prev-cursor-position") %>" />
+   <button type="submit">Previous</button>
+  </form>
+</td>
+<% } %>
+<% if (request.getAttribute("next-cursor-position") != null) { %>
+<td align="right">
+  <form method="get" action="cls.xref.<%=keys[i-1]%>.do">
+   <input type="hidden" name="cls_id" value="<%=cls.getId()%>" />
+   <input type="hidden" name="cursor-position" value="<%= request.getAttribute("next-cursor-position") %>" />
+   <button type="submit">Next</button>
+  </form>
+</td>
+<% } %>
+</tr></table>
+
 
 <% } // end if xrefs ! null %>
 

@@ -30,7 +30,8 @@ public class ServletUtils
       try
       {
          return Integer.parseInt(value);
-      } catch (NumberFormatException ex)
+      }
+      catch (NumberFormatException ex)
       {
          return -1;
       }

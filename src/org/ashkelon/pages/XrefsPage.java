@@ -27,46 +27,23 @@ public class XrefsPage extends Page
       request.setAttribute("cls", cls);
       
       if (cmd.equals("cls.xref"))
-      {
          return null;
-      }
 
       String xrefType = StringUtils.split(cmd, ".")[2];
       if (xrefType.equals("field"))
-      {
-         List fields = getFields(clsId);
-         request.setAttribute("field", fields);
-      }
+         doFields(clsId);
       else if (xrefType.equals("returnedby"))
-      {
-         List returnedBy = getReturnedBy(clsId);
-         request.setAttribute("returnedby", returnedBy);
-      }
+         doReturnedBy(clsId);
       else if (xrefType.equals("passedto"))
-      {
-         List passedTo = getPassedTo(clsId);
-         request.setAttribute("passedto", passedTo);
-      }
+         doPassedTo(clsId);
       else if (xrefType.equals("thrownby"))
-      {
-         List thrownBy = getThrownBy(clsId);
-         request.setAttribute("thrownby", thrownBy);
-      }
+         doThrownBy(clsId);
       else if (xrefType.equals("implementedby"))
-      {
-         List implementedBy = getImplementedBy(clsId);
-         request.setAttribute("implementedby", implementedBy);
-      }
+         doImplementedBy(clsId);
       else if (xrefType.equals("extendedby"))
-      {
-         List extendedBy = getExtendedBy(clsId);
-         request.setAttribute("extendedby", extendedBy);
-      }
+         doExtendedBy(clsId);
       else if (xrefType.equals("subclasses"))
-      {
-         List subclasses = getSubclasses(cls);
-         request.setAttribute("subclasses", subclasses);
-      }
+         doSubclasses(cls);
       else if (xrefType.equals("descendents"))
       {
          TreeNode descendents = cls.getDescendents(conn);
@@ -76,21 +53,16 @@ public class XrefsPage extends Page
       return null;
    }
    
-   private static int MAX_ROWS = 50;
+   private static int FETCH_SIZE = 60;
    
-   public List getFields(int clsId) throws SQLException
+   public void doFields(int clsId) throws SQLException
    {
-      String sql = DBMgr.getInstance().getStatement("xref_fields");
+      ResultSet rset = executeQuery("xref_fields", clsId);
+      int position = position(rset);
 
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, clsId);
-      pstmt.setMaxRows(MAX_ROWS);
-      ResultSet rset = pstmt.executeQuery();
-      
       List fields = new ArrayList();
-      
       FieldMember field;
-      while(rset.next())
+      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          field = new FieldMember(rset.getString(1), rset.getString(3));
          field.setId(rset.getInt(2));
@@ -105,22 +77,51 @@ public class XrefsPage extends Page
          fields.add(field);
       }
       
-      return fields;
+      rset.close();
+      request.setAttribute("field", fields);
    }
-
-   public List getReturnedBy(int clsId) throws SQLException
+   
+   private ResultSet executeQuery(String stmtName, int clsId)
+      throws SQLException
    {
-      String sql = DBMgr.getInstance().getStatement("xref_returnedby");
+      String sql = DBMgr.getInstance().getStatement(stmtName);
 
-      PreparedStatement pstmt = conn.prepareStatement(sql);
+      PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_READ_ONLY);
       pstmt.setInt(1, clsId);
-      pstmt.setMaxRows(MAX_ROWS);
-      ResultSet rset = pstmt.executeQuery();
+      pstmt.setFetchSize(FETCH_SIZE);
+      return pstmt.executeQuery();
+   }
+   
+   private int position(ResultSet rset)
+      throws SQLException
+   {
+      rset.last();
+      int totalResults = rset.getRow();
+      request.setAttribute("total-results", new Integer(totalResults));
       
+      int position = ServletUtils.getIntParam(request, "cursor-position");
+      if (position == 0)
+         rset.beforeFirst();
+      else
+         rset.absolute(position);
+      
+      if (position + FETCH_SIZE < totalResults)
+         request.setAttribute("next-cursor-position", new Integer(position + FETCH_SIZE));
+      if (position - FETCH_SIZE >= 0)
+         request.setAttribute("prev-cursor-position", new Integer(position - FETCH_SIZE));
+      
+      return position;
+   }
+   
+   public void doReturnedBy(int clsId) throws SQLException
+   {
+      ResultSet rset = executeQuery("xref_returnedby", clsId);
+      int position = position(rset);
+
       List methods = new ArrayList();
-      
       MethodMember method;
-      while(rset.next())
+      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          method = new MethodMember(rset.getString(1), rset.getString(7));
          method.setId(rset.getInt(2));
@@ -138,24 +139,20 @@ public class XrefsPage extends Page
          methods.add(method);
       }
       
-      return methods;
+      rset.close();
+      request.setAttribute("returnedby", methods);
    }
 
    
-   public List getPassedTo(int clsId) throws SQLException
+   public void doPassedTo(int clsId) throws SQLException
    {
-      String sql = DBMgr.getInstance().getStatement("xref_passedto");
+      ResultSet rset = executeQuery("xref_passedto", clsId);
+      int position = position(rset);
 
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, clsId);
-      pstmt.setMaxRows(MAX_ROWS);
-      ResultSet rset = pstmt.executeQuery();
-      
       List execs = new ArrayList();
-      
       ExecMember exec;
       int memberType;
-      while(rset.next())
+      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          memberType = rset.getInt(3);
          if (memberType == Member.METHOD_MEMBER)
@@ -178,24 +175,20 @@ public class XrefsPage extends Page
          execs.add(exec);
       }
       
-      return execs;
+      rset.close();
+      request.setAttribute("passedto", execs);
    }
    
 
-   public List getThrownBy(int clsId) throws SQLException
+   public void doThrownBy(int clsId) throws SQLException
    {
-      String sql = DBMgr.getInstance().getStatement("xref_thrownby");
+      ResultSet rset = executeQuery("xref_thrownby", clsId);
+      int position = position(rset);
 
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, clsId);
-      pstmt.setMaxRows(MAX_ROWS);
-      ResultSet rset = pstmt.executeQuery();
-      
       List execs = new ArrayList();
-      
       ExecMember exec;
       int memberType;
-      while(rset.next())
+      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          memberType = rset.getInt(3);
          if (memberType == Member.METHOD_MEMBER)
@@ -212,42 +205,31 @@ public class XrefsPage extends Page
          execs.add(exec);
       }
       
-      return execs;
+      rset.close();
+      request.setAttribute("thrownby", execs);
    }
 
 
-   public List getExtendedBy(int clsId) throws SQLException
+   public void doExtendedBy(int clsId) throws SQLException
    {
-      return getImplementedBy(clsId, false);
+      doImplementedBy(clsId, "extendedby");
    }
 
-   public List getImplementedBy(int clsId) throws SQLException
+   public void doImplementedBy(int clsId) throws SQLException
    {
-      return getImplementedBy(clsId, true);
+      doImplementedBy(clsId, "implementedby");
    }
    
-   public List getImplementedBy(int clsId, boolean classtarget) throws SQLException
+   public void doImplementedBy(int clsId, String key) throws SQLException
    {
-      String sql = "";
-      if( classtarget )
-      {
-         sql = DBMgr.getInstance().getStatement("xref_implementedbyclasstarget");
-      }
-      else
-      {
-         sql = DBMgr.getInstance().getStatement("xref_implementedby");
-      }
+      ResultSet rset = null;
+      rset = executeQuery("xref_"+key, clsId);
       
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, clsId);
-      pstmt.setInt(2, ClassType.INTERFACE);
-      pstmt.setMaxRows(MAX_ROWS);
-      ResultSet rset = pstmt.executeQuery();
+      int position = position(rset);
       
       List classes = new ArrayList();
-      
       ClassType c;
-      while(rset.next())
+      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          c = new ClassType(rset.getString(1));
          c.setId(rset.getInt(2));
@@ -260,24 +242,26 @@ public class XrefsPage extends Page
          classes.add(c);
       }
       
-      return classes;
+      rset.close();
+      request.setAttribute(key, classes);
    }
    
 
-   public List getSubclasses(ClassType refc) throws SQLException
+   public void doSubclasses(ClassType refc) throws SQLException
    {
       String sql = DBMgr.getInstance().getStatement("xref_subclass");
 
-      PreparedStatement pstmt = conn.prepareStatement(sql);
+      PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_READ_ONLY);
       pstmt.setString(1, refc.getQualifiedName());
-      pstmt.setInt(2, ClassType.INTERFACE);
-      pstmt.setMaxRows(MAX_ROWS);
+      pstmt.setFetchSize(FETCH_SIZE);
       ResultSet rset = pstmt.executeQuery();
-      
+
+      int position = position(rset);
+
       List classes = new ArrayList();
-      
       ClassType c;
-      while(rset.next())
+      while(rset.next() && rset.getRow() <= (position + FETCH_SIZE))
       {
          c = new ClassType(rset.getString(1));
          c.setId(rset.getInt(2));
@@ -290,7 +274,8 @@ public class XrefsPage extends Page
          classes.add(c);
       }
       
-      return classes;
+      rset.close();
+      request.setAttribute("subclasses", classes);
    }
    
 
