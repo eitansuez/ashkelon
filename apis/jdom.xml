@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <api>
-<name>jdom</name>
-<summarydescription>java developer-friendly java xml parsing</summarydescription>
-<description>java xml parsing - developer friendly</description>
-<publisher>apache? jason hunter et al</publisher>
+<name>JDOM</name>
+<summarydescription>Java-friendly XML parsing</summarydescription>
+<description>Java-friendly XML parsing by Jason Hunter and Brett McLaughlin</description>
+<publisher>Jason Hunter et al</publisher>
 <download_url>http://www.jdom.org/</download_url>
 <release_date>2001-07-03T08:00:00.000</release_date>
 <version>beta 8</version>
