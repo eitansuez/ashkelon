@@ -26,7 +26,6 @@ import org.ashkelon.util.JDocUtil;
 import org.ashkelon.util.Logger;
 import org.ashkelon.util.StringUtils;
 import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.ValidationException;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.Doclet;
@@ -511,11 +510,6 @@ public class Ashkelon extends Doclet
       catch (MarshalException ex)
       {
          log.error("MarshalException: "+ex.getMessage());
-         ex.printStackTrace(log.getWriter());
-      }
-      catch (ValidationException ex)
-      {
-         log.error("ValidationException: "+ex.getMessage());
          ex.printStackTrace(log.getWriter());
       }
    }

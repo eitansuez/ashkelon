@@ -14,8 +14,15 @@
    <property name="builddir" location="build" />
    <property name="buildclassesdir" location="build/classes" />
    <property name="libdir" location="lib" />
+   <property name="libtoolsdir" location="${libdir}/tools" />
    <property name="etcdir" location="etc" />
    <property name="distdir" location="dist" />
+
+   <property name="test.dir" location="test" />
+   <property name="test.src.dir" location="${test.dir}" />
+   <property name="test.classes.dir" location="${buildclassesdir}" />
+   <property name="test.lib.dir" location="lib/test" />
+   <property name="test.reports.dir" location="${builddir}/reports" />
 
    <property name="webappsdir" location="${env.CATALINA_HOME}/webapps" />
 
@@ -24,6 +31,12 @@
       <fileset dir="${libdir}" includes="*.jar" />
       <fileset dir="${dbdir}" includes="*.jar" />
       <pathelement location="${buildclassesdir}" />
+   </path>
+
+   <path id="test.classpath">
+     <path refid="class.path" />
+     <fileset dir="${test.lib.dir}" includes="**/*.jar" />
+     <pathelement location="${test.classes.dir}" />
    </path>
 
 
@@ -67,7 +80,27 @@
       </copy>
    </target>
 
-   <target name="jar" depends="compile" description="jar">
+   <!-- JiBX binding compiler task definition -->
+   <taskdef name="bind" classname="org.jibx.binding.ant.CompileTask">
+     <classpath>
+       <pathelement location="${libtoolsdir}/bcel.jar" />
+       <pathelement location="${libtoolsdir}/jibx-bind.jar" />
+       <pathelement location="${libdir}/jibx-run.jar" />
+       <pathelement location="${libdir}/xpp3.jar" />
+     </classpath>
+   </taskdef>
+
+   <!-- Run JiBX binding compiler -->
+   <target name="bind" depends="compile" description="run JiBX binding compiler">
+     <bind verbose="true" load="true" binding="${etcdir}/binding.xml">
+       <classpathset dir="${buildclassesdir}" />
+       <classpathset dir="${libdir}/jibx-run.jar" />
+       <classpathset dir="${libdir}/castor.jar" />
+     </bind>
+   </target>
+
+
+   <target name="jar" depends="bind" description="jar">
       <jar destfile="${builddir}/ashkelon.jar" basedir="${buildclassesdir}" 
         includes="org/ashkelon/**/*" />
    </target>
@@ -172,5 +205,41 @@
         <fileset dir="${doc.srcdir}" includes="*.txt,*.rtf" />
       </copy>
   </target>
+
+
+ <!-- targets pertaining to junit testing -->
+
+ <target name="test-init">
+   <mkdir dir="${test.classes.dir}"/>
+   <mkdir dir="${test.reports.dir}"/>
+ </target>
+
+ <target name="compile-tests" depends="test-init,bind" description="compile tests">
+   <javac debug="on" deprecation="on"
+          classpathref="test.classpath" destdir="${test.classes.dir}" srcdir="${test.src.dir}" />
+ </target>
+
+ <target name="run-tests" depends="compile-tests" description="run tests" >
+    <junit fork="true" haltonfailure="true" printsummary="true">
+       <classpath refid="test.classpath" />
+       <formatter type="brief" usefile="false" /> <!-- alternative type="xml" for producing reports -->
+       <batchtest todir="${test.reports.dir}">
+          <fileset dir="${test.classes.dir}" includes="**/*Suite.class" />
+       </batchtest>
+    </junit>
+ </target>
+
+ <target name="run-test" description="run a test class" depends="compile-tests,bind">
+   <java classname="${main.class}" classpathref="class.path" fork="true" />
+ </target>
+
+
+ <target name="test-report" depends="run-tests" description="produce junit reports">
+   <junitreport todir="${test.reports.dir}">
+     <fileset dir="${test.reports.dir}" includes="TEST-*.xml" />
+     <report todir="${test.reports.dir}/html" />
+   </junitreport>
+ </target>
+
 
 </project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<api>
+<name>Building Parsers with Java (BPWJ)</name>
+<summarydescription>Parser Library Code from BPWJ Book</summarydescription>
+<description></description>
+<publisher>Steven John Metsker</publisher>
+<download_url>http://bpwj.javanicus.com/</download_url>
+<release_date>2001-07-03T08:00:00.000</release_date>
+<version>?</version>
+<package>sjm.combinatorics</package>
+<package>sjm.engine</package>
+<package>sjm.imperative</package>
+<package>sjm.parse</package>
+<package>sjm.parse.tokens</package>
+<package>sjm.parse.chars</package>
+<package>sjm.utensil</package>
+<package>sjm.examples.arithmetic</package>
+<package>sjm.examples.chips</package>
+<package>sjm.examples.cloning</package>
+<package>sjm.examples.coffee</package>
+<package>sjm.examples.design</package>
+<package>sjm.examples.engine</package>
+<package>sjm.examples.imperative</package>
+<package>sjm.examples.introduction</package>
+<package>sjm.examples.karate</package>
+<package>sjm.examples.logic</package>
+<package>sjm.examples.mechanics</package>
+<package>sjm.examples.midimath</package>
+<package>sjm.examples.minimath</package>
+<package>sjm.examples.preface</package>
+<package>sjm.examples.pretty</package>
+<package>sjm.examples.query</package>
+<package>sjm.examples.regular</package>
+<package>sjm.examples.reserved</package>
+<package>sjm.examples.robot</package>
+<package>sjm.examples.sling</package>
+<package>sjm.examples.string</package>
+<package>sjm.examples.tests</package>
+<package>sjm.examples.tokens</package>
+<package>sjm.examples.track</package>
+</api>

@@ -42,7 +42,7 @@
 Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <b>open source</b> and available for download off sourceforge.net as project <a target="_new" href="http://sourceforge.net/projects/ashkelon/">ashkelon</a>.
 </p>
 
-<table id="apis" align="center" rules="rows" cellspacing="0">
+<table id="apis" align="center" rules="rows" cellspacing="0" width="100%">
 <caption>API Listing</caption>
 <tbody>
  <c:forEach items="${apilist}" var="api" varStatus="status">
@@ -52,7 +52,7 @@ Ashkelon is an online reference to Java API documentation (see the help document
    <c:if test="${status.index % 2 == 0}">
      <tr class="even">
    </c:if>
-      <td>
+      <td width="150">
         <c:out value="${status.index + 1}." />
         <a href="api.main.do?id=<c:out value="${api.id}" />">
           <span class="api" title="<c:out value="${api.summaryDescription}" />">

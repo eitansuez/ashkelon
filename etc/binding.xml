@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<binding>
+
+  <mapping name="api" class="org.ashkelon.API">
+    <value name="name" field="name" />
+    <value name="summarydescription" field="summaryDescription" />
+    <value name="description" field="description" />
+    <value name="publisher" field="publisher" />
+    <value name="download_url" field="downloadURL" />
+    <value name="release_date" field="releaseDate" />
+    <value name="version" field="version" />
+    <collection field="packagenames">
+      <value name="package" />
+    </collection>
+  </mapping>
+  
+</binding>
+
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<api>
+<name>JDNC</name>
+<summarydescription>Java Desktop Network Components</summarydescription>
+<description></description>
+<publisher>javadesktop.org</publisher>
+<download_url>http://jdnc.dev.java.net/</download_url>
+<release_date>2004-06-01T08:00:00.000</release_date>
+<version>0.6</version>
+<package>org.jdesktop.jdnc</package>
+<package>org.jdesktop.jdnc.actions</package>
+<package>org.jdesktop.jdnc.runner</package>
+<package>org.jdesktop.swing</package>
+<package>org.jdesktop.swing.actions</package>
+<package>org.jdesktop.swing.binding</package>
+<package>org.jdesktop.swing.calendar</package>
+<package>org.jdesktop.swing.data</package>
+<package>org.jdesktop.swing.decorator</package>
+<package>org.jdesktop.swing.event</package>
+<package>org.jdesktop.swing.form</package>
+<package>org.jdesktop.swing.icon</package>
+<package>org.jdesktop.swing.table</package>
+<package>org.jdesktop.swing.treetable</package>
+<package>org.jdesktop.swing.utils</package>
+</api>

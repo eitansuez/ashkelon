@@ -1,7 +1,6 @@
 package org.ashkelon;
 
 import java.io.*;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,16 +11,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.db.PKManager;
 import org.ashkelon.util.Logger;
 import org.ashkelon.util.StringUtils;
-import org.exolab.castor.mapping.Mapping;
-import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.ValidationException;
+import org.jibx.runtime.*;
 
 /**
  * Represents a Java API (a collection of related packages)
@@ -37,7 +32,7 @@ public class API implements JDoc, Serializable
     private String downloadURL;
     private java.util.Date releaseDate;
     private String version;
-    private Collection packagenames;
+    private ArrayList packagenames;
     
     private List packages;
 
@@ -48,29 +43,27 @@ public class API implements JDoc, Serializable
     private boolean idSet = false;
    
     private transient Logger log;
-    private Unmarshaller ums = null;
+    private IBindingFactory _bfact = null;
     
     
     public API()
     {
        log = Logger.getInstance();
-       setPackagenames(new ArrayList());
+       loadBindingFactory();
+       packagenames = new ArrayList();
        setPackages(new ArrayList());
-
+    }
+    
+    private void loadBindingFactory()
+    {
        try
        {
-          ClassLoader loader = this.getClass().getClassLoader();
-          URL resource = loader.getResource("org/ashkelon/apimapping.xml");
-          Mapping mapping = new Mapping();
-          mapping.loadMapping(resource);
-
-          ums = new Unmarshaller(API.class);
-          ums.setMapping(mapping);
+          _bfact = BindingDirectory.getFactory(API.class);
        }
-       catch (Exception ex)
+       catch (JiBXException ex)
        {
-           System.err.println("exception: "+ex.getMessage());
-           ex.printStackTrace();
+          System.err.println("JiBXException: "+ex.getMessage());
+          ex.printStackTrace();
        }
     }
     
@@ -81,13 +74,13 @@ public class API implements JDoc, Serializable
     }
     
     public API load(String filename, String sourcepath) 
-      throws FileNotFoundException, MarshalException, ValidationException
+      throws FileNotFoundException, org.exolab.castor.xml.MarshalException
     {
        try
        {
           return load(new FileReader(filename));
        }
-       catch (MarshalException ex)
+       catch (JiBXException ex)
        {
           // see if xml file matches maven POM format..
           System.out.println("let's see if file matches maven pom format..");
@@ -95,12 +88,13 @@ public class API implements JDoc, Serializable
        }
     }
     
-    public API load(Reader reader) throws MarshalException, ValidationException
+    public API load(Reader reader) throws JiBXException
     {
-       return (API) ums.unmarshal(reader);
+       IUnmarshallingContext umctxt = _bfact.createUnmarshallingContext();
+       return (API) umctxt.unmarshalDocument(reader);
     }
     
-    private API readMavenPOM(Reader reader) throws MarshalException
+    private API readMavenPOM(Reader reader)
     {
        return null;
     }
@@ -228,7 +222,11 @@ public class API implements JDoc, Serializable
     public void setVersion(String version) { this.version = version; }
 
     public Collection getPackagenames() { return packagenames; }
-    public void setPackagenames(Collection packagenames) { this.packagenames = packagenames; }
+    public void setPackagenames(Collection packagenames)
+    {
+       this.packagenames = new ArrayList();
+       this.packagenames.addAll(packagenames);
+    }
     
     public List getPackages() { return packages; }
     public void setPackages(List packages) { this.packages = packages; }
