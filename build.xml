@@ -7,7 +7,7 @@
    <property environment="env" />
 
    <!-- currently, valid options are: mysql, postgres, mckoidb -->
-   <property name="dbtype" value="postgres" />
+   <property name="dbtype" value="mckoidb" />
    <property name="dbdir" location="db/${dbtype}" />
 
    <property name="srcdir" location="src" />

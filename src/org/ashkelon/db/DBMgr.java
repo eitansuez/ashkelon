@@ -75,23 +75,23 @@ public class DBMgr
    }
    
    public void setTarget(ResourceBundle connectionBundle) 
-      {
-         if (targetSet) { return; } // don't allow switching of targets (for now)
-         
-         loadConnectionInfo(connectionBundle);
-         statements = PropertyResourceBundle.getBundle("org.ashkelon.db.statements");
+   {
+      if (targetSet) { return; } // don't allow switching of targets (for now)
       
-         log.verbose("Connection url is: "+connectionURL);
-         log.verbose("User is: "+user);
-         //log.verbose("password is: "+password);
-      
-         loadDriver();
-      
-         log.verbose("jdbc driver: " + jdbcDriverName + " loaded");
-      
-         pool = new HashMap(maxpoolsize);
-         targetSet = true;
-      }
+      loadConnectionInfo(connectionBundle);
+      statements = PropertyResourceBundle.getBundle("org.ashkelon.db.statements");
+   
+      log.verbose("Connection url is: "+connectionURL);
+      log.verbose("User is: "+user);
+      //log.verbose("password is: "+password);
+   
+      loadDriver();
+   
+      log.verbose("jdbc driver: " + jdbcDriverName + " loaded");
+   
+      pool = new HashMap(maxpoolsize);
+      targetSet = true;
+   }
    
    public static DBMgr getInstance()
    {
@@ -104,10 +104,18 @@ public class DBMgr
    
    private void loadConnectionInfo(ResourceBundle bundle) throws MissingResourceException
    {
-      
       dbtype = bundle.getString("dbtype");
       jdbcDriverName = bundle.getString("jdbcDriverName");
       connectionURL = bundle.getString("connectionURL");
+      
+      if (webContext && connectionURL.equals("jdbc:mckoi:local://./db.conf"))
+      {
+         // need to translate relative path to an absolute path to
+         // resolve the proper location of the db
+         connectionURL = "jdbc:mckoi:local://"+realPath+"WEB-INF/db/db.conf";
+         // decision to place db in WEB-INF/db is simply a convention
+      }
+      
       user = bundle.getString("user");
       password = bundle.getString("password");
    }
@@ -123,6 +131,15 @@ public class DBMgr
          log.error("No sql statement corresponding to key: "+key);
          return "";
       }
+   }
+   
+   private String realPath = "";
+   private boolean webContext = false;
+   public void setWebApp(javax.servlet.ServletContext webapp)
+   {
+      webContext = true;
+      realPath = webapp.getRealPath("/");
+      log.brief("Running in a web context.  Real Path is: "+realPath);
    }
    
    private void loadDriver()

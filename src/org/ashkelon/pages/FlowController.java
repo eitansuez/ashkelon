@@ -50,6 +50,7 @@ public class FlowController extends HttpServlet
       }
       
       dbmgr = DBMgr.getInstance();
+      dbmgr.setWebApp(getServletContext());
          
       log.setTraceLevel(configInfo.getTraceLevel());
       String traceFile = "trace.log";
