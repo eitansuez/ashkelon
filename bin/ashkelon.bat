@@ -9,7 +9,7 @@ rem assume dbdoc home is set to installation dir
 if not defined ASHK_HOME goto error2
 if not defined SOURCEPATH goto error
 
-set CP=%JAVA_HOME%\lib\tools.jar;%ASHK_HOME%\build\ashkelon.jar;%ASHK_HOME%\db\mysql\mysql-connector-java-2.0.14-bin.jar
+set CP=%JAVA_HOME%\lib\tools.jar;%ASHK_HOME%\build\ashkelon.jar;%ASHK_HOME%\build\jdbc-driver.jar
 for %%i in (%ASHK_HOME%\lib\*.jar) do call cp.bat %%i
 
 if %CMD%==add set SRCPATHINFO=-sourcepath %SOURCEPATH%
