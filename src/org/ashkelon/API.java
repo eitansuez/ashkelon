@@ -24,6 +24,11 @@ import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Unmarshaller;
 import org.exolab.castor.xml.ValidationException;
 
+/**
+ * Represents a Java API (a collection of related packages)
+ *
+ * @author Eitan Suez
+ */
 public class API implements JDoc, Serializable
 {
     private String name;
