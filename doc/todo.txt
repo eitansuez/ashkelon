@@ -16,7 +16,7 @@ Ashkelon To-Do List
 
 XP
  1. Write Unit Tests for Application and begin developing using
-  test-first method
+  test-first method.
 
 Refactoring
  1. Oracle version uses separate connect-by statements to generate
@@ -56,7 +56,7 @@ UI
  1. Improve usability of GUI and continue refactoring JSPs
  2. Port solution to use Struts (Under consideration)
    Current solution is MVC but author's own implementation.
- 3. GUI Customeization:  Make packages page configurable so it
+ 3. GUI Customization:  Make packages page configurable so it
   can list packages of relevance to a specific business 
   environment [hays]
  4. Use JSTL in JSPs
@@ -64,7 +64,7 @@ UI
  6. Make DHTML look & feel work in Safari
 
 Performance
- 1. Replace current caching with a solid caching architecture
+ 1. Make caching implemntation more complete
  2. Profile application
 
 Major
@@ -77,6 +77,7 @@ Major
   a. Eclipse [hays]
   b. NetBeans
   c. JBuilder
+  d. IDEA
 
  3. Integration with GForge
  (Add GForge support to automatically run ashkelon against a project
@@ -84,11 +85,38 @@ Major
 
  4. Integration with Maven.  That is, make ashkelon a maven-enabled project
    so that code can be built using maven.  Also at some point might want to
-   consider writing a maven plugin to the populator.
+   consider writing a maven plugin to the populator (ben walding intends to work
+   on an ashkelon plugin for maven)..
  
 Add Value
  1. Integrate with open source measurement tools [hays]
+   - jdepend
  2. Add a referenced-by and references list [hays]
+
+XML
+ 1. add a third dimension (xml) to ashkelon.
+
+   currently model can exist at runtime (org.ashkelon model objects) or in 
+   database (have a database schema and code to support transfer of doc 
+   info from model to db and back).
+
+   vision:
+     cvs export apiname
+      exports api information as an xml document
+
+     cvs import apiinfo.xml
+      imports an entire api into the db from corresponding info save
+       into apiinfo.xml (not to confuse with existing api.xml file
+       which contains only info about the api entity; this new xml
+       is deep and contains package and class and member info and more)
+
+      new doclet:  ashkelon xml @api.xml
+        functions similar to ashkelon add but instead of dumping
+        data into db, it would dump it to a target xml file
+
+ 2. build on top of this xml infrastructure web services to allow
+   the transfer of api info to a remote repository
+
 
 Ashkelon Completed List
 -----------------------

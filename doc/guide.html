@@ -13,7 +13,7 @@ ashkelon documentation
 <hr/>
 
 <date>
-October 14 2002
+October 14 2002 (updated May 2003)
 </date>
 
 by
@@ -127,7 +127,7 @@ as an aid in development.
 </p>
 
 <p>
-an important difference with dbdoc is that as an administrator,
+an important difference with ashkelon is that as an administrator,
 you will use the repository manager repeatedly to add new api's
 into the repository.  you don't have to (and should not try to)
 add all api's in one step.
@@ -189,19 +189,19 @@ build process.
 </p>
 
 <p>
-The ashkelon command-line tool is called "dbdoc".  The code is 
+The ashkelon command-line tool is called "ashkelon".  The code is 
 a shell script wrapper around a java program.  On win32, the file
-is dbdoc.bat while on unix it's dbdoc.sh or dbdoc.  This file 
-resides in $DBDOC_HOME/mgr/bin
+is ashkelon.bat while on unix it's ashkelon.sh or ashkelon.  This file 
+resides in $ASHK_HOME/bin
 </p>
 
 <p>
 After installation of ashkelon (see the file install.txt), you
-should be able to run dbdoc from the command line:
+should be able to run ashkelon from the command line:
 </p>
 
 <pre>
-&gt; dbdoc
+&gt; ashkelon
 </pre>
 
 <p>
@@ -210,21 +210,21 @@ which should produce something similar to this output:
 
 <pre>
 ==============================================================
-DbDoc Manager (ashkelon v0.8+)
+Ashkelon Repository Manager (ashkelon v0.8+)
 
 Description:
   Manages a Java Documentation Repository.
   For more information, visit <A HREF="http://www.dbdoc.org/">http://www.dbdoc.org/</A>
   
 Usage:
-  dbdoc [add [javadoc options] &lt;items&gt; | remove &lt;names&gt; | reset | list]
+  ashkelon [add [javadoc options] &lt;items&gt; | remove &lt;names&gt; | reset | list]
 
     add      Add items to repository where items is the names of packages
              and/or source files to be added to the repository
     remove   Remove names from repository.  A name is the fully
              qualified name of a java package, class, or interface
     reset    Reset repository (i.e. delete everything, use with care)
-    list     List package names currently existing in the repository
+    list     List api names currently existing in the repository
 
 Items Reference
   items = [packagenames] [sourcefiles] [@files]
@@ -232,7 +232,7 @@ Items Reference
       A series of package names, separated by spaces, such as:
         java.lang java.lang.reflect java.awt
       You must separately specify each package you want to document.
-      Like javadoc, dbdoc uses -sourcepath to look for these package
+      Like javadoc, ashkelon uses -sourcepath to look for these package
       names.  Wildcards are not allowed
     sourcefiles
       A series of source file names, separated by spaces, each of which
@@ -261,36 +261,36 @@ Copyright 2001 UptoData, Inc.
 </pre>
 
 <p>
-You will primarily use the dbdoc tool to add content to your
+You will primarily use the ashkelon tool to add content to your
 database.  However, there are four main commands the this tool
 currently supports:
 </p>
 
 <ul>
 <li>
-  dbdoc add - use to add api's to your database
+  ashkelon add - use to add api's to your database
 </li>
 <li>
-  dbdoc reset - use to nuke the contents of the database
+  ashkelon reset - use to nuke the contents of the database
     (start from scratch)
 </li>
 <li>
-  dbdoc list - lists the packages currently documented
+  ashkelon list - lists the api's currently documented
     in the database
 </li>
 <li>
-  dbdoc remove - opposite of dbdoc add, use it to remove
+  ashkelon remove - opposite of ashkelon add, use it to remove
     api's from the repository
 </li>
 </ul>
 
 <p>
-"dbdoc reset" and "dbdoc list" are really easy to use.  they
+"ashkelon reset" and "ashkelon list" are really easy to use.  they
 require no other parameters to function.
 </p>
 
 <p>
-"dbdoc add" is richer.  let's talk about "dbdoc add".
+"ashkelon add" is richer.  let's talk about "ashkelon add".
 </p>
 
 <h2>
@@ -316,7 +316,7 @@ documenting source code
   the ashkelon project has devised a simple xml structure
   (no, i haven't written an xml schema for it [yet]) to 
   describe an api.  here's a sample (more samples are available 
-  in the plists/ folder) for the servlet api (file name is 
+  in the apis/ folder) for the servlet api (file name is 
   servlet.xml):
 </p>
   
@@ -362,10 +362,10 @@ documenting source code
 </p>
 
 <p>
-  These xml api "descriptors" are the primary input to the dbdoc
+  These xml api "descriptors" are the primary input to the ashkelon
   script (aside from the actual source code that you're trying to 
   document).  So you'll need to construct them.  The xml file for
-  the api you need may already exist in the plists/ folder.  If it
+  the api you need may already exist in the apis/ folder.  If it
   doesn't email the asheklon-devs@lists.sourceforge.net mailing
   list and someone will build one for you (if it's a public api,
   not your internal code).
@@ -385,15 +385,15 @@ documenting source code
    provide the names of the java packages that comprise the api.
    save the file as &lt;apiname&gt;.xml (you might also want to consider
     contributing the file by cvs add/commit &lt;apiname&gt;.xml to the 
-    ashkelon plists folder).
+    ashkelon apis folder).
 </p>
 
 <p>
-  Now you're ready to feed it into dbdoc:
+  Now you're ready to feed it into ashkelon:
 </p>
 
 <pre>
-  &gt; dbdoc add @&lt;apiname&gt;.xml
+  &gt; ashkelon add @&lt;apiname&gt;.xml
 </pre>
 
 <p>
@@ -401,13 +401,13 @@ documenting source code
 </p>
   
 <pre>
-  &gt; dbdoc add @servlet.xml
+  &gt; ashkelon add @servlet.xml
 </pre>
 
 <p>
-  dbdoc will take it from here.  it will invoke the javadoc engine
+  ashkelon will take it from here.  it will invoke the javadoc engine
   to parse the source code and produce an object model of the
-  information, and dbdoc will take the information and stuff it
+  information, and ashkelon will take the information and stuff it
   into the database.  depending on the speed of your machine and
   the size of the api, the whole process might take 5-10 seconds
   or 2-3 minutes.
@@ -434,15 +434,15 @@ How to replace an api that is already in the database
 <pre>
 
     1. nuke everything and start over
-     &gt; dbdoc reset
-     &gt; dbdoc add @api1.xml
-     &gt; dbdoc add @api2.xml
+     &gt; ashkelon reset
+     &gt; ashkelon add @api1.xml
+     &gt; ashkelon add @api2.xml
      &gt; ...
-     &gt; dbdoc add @apin.xml
+     &gt; ashkelon add @apin.xml
      
     2. differential:
-     &gt; dbdoc remove @apii.xml
-     &gt; dbdoc add @apii.xml
+     &gt; ashkelon remove @apii.xml
+     &gt; ashkelon add @apii.xml
      
   If your environment uses nightly builds, you'll probably
   do [1] above nightly.
@@ -454,30 +454,20 @@ J2SDK1.4 caveats
 
 <p>
   j2sdk1.4 introduces a new keyword "assert" into the java
-  language.  in order to get dbdoc to populate api's that
+  language.  in order to get ashkelon to populate api's that
   use the assert keyword without failing, you need to pass
-  an extra flag to the dbdoc script, like so:
+  an extra flag to the ashkelon script, like so:
 </p>
 
 <pre>
-  &gt; dbdoc add -source 1.4 @j2sdk14.xml
+  &gt; ashkelon add -source 1.4 @j2sdk14.xml
 </pre>
-
-<p>
-  jdom is another example api that uses asserts so if you're
-  documenting jdom, do the same:
-</p>
-
-<pre>
-  &gt; dbdoc add -source 1.4 @jdom.xml
-</pre>
-
 
 <p>
   TIP:  any flag that javadoc accepts will be passed 
-   through to javadoc by dbdoc.  remember, dbdoc uses
-   javadoc under the hood.  dbdoc plugs in to javadoc
-   as a doclet.  dbdoc does not need to explicitly
+   through to javadoc by ashkelon.  remember, ashkelon uses
+   javadoc under the hood.  ashkelon plugs in to javadoc
+   as a doclet.  ashkelon does not need to explicitly
    know about the flag (it will pass it through).
 </p>
 
@@ -487,7 +477,7 @@ what's this about "sourcepath"?
 </h2>
 
 <p>
-  so, when dbdoc runs, it needs to know where to find
+  so, when ashkelon runs, it needs to know where to find
   your source code.  the environment variable "sourcepath"
   is analogous to "classpath" which we're all familiar with.
 </p>
@@ -521,7 +511,7 @@ dealing with very large api's (i.e. j2se)
 </h2>
 
 <p>
-  if you look at dbdoc.bat or dbdoc.sh, you'll notice
+  if you look at ashkelon.bat or ashkelon.sh, you'll notice
   something a little alarming:
 </p>
 
@@ -532,7 +522,7 @@ dealing with very large api's (i.e. j2se)
 </pre>
 
 <p>
-  this means that when dbdoc runs, it requests 100 or
+  this means that when ashkelon runs, it requests 100 or
   150 MB of memory to run with.  it probably doesn't need
   that much memory.  but in some cases, j2se, it may
   need even more!
@@ -557,7 +547,7 @@ dealing with very large api's (i.e. j2se)
 
 <p>
     i assume you've already created a j2se.xml file
-    (actually there already is one in plists/)
+    (actually there already is one in apis/)
 </p>
 
 <p>
@@ -577,10 +567,10 @@ dealing with very large api's (i.e. j2se)
 </p>
 
 <pre>
-    &gt; dbdoc add @java.plist
-    &gt; dbdoc add @javax.plist
-    &gt; dbdoc add @org.omg.plist
-    &gt; dbdoc add @j2se.xml
+    &gt; ashkelon add @java.plist
+    &gt; ashkelon add @javax.plist
+    &gt; ashkelon add @org.omg.plist
+    &gt; ashkelon add @j2se.xml
        (packages already added so won't be 
          repopulated, only api info (descr, version, etc..)
          will be added)
@@ -614,12 +604,13 @@ database schema description
 </h1>
 
 <p>
- [ to be written ]
+ i have created a diagram (pdf) representing the database
+ schema used by ashkelon.  see $ASHK_HOME/doc/ERD.pdf
 </p>
-
+ 
 <p>
- [ ddl for $dbtype is in db/$dbtype/scripts/dbdoc_v2.sql if you're
-   curious ]
+ the script that constructs the schema for a given database
+ is located in $ASHK_HOME/db/$dbtype/org/ashkelon/db/ashkelon.sql
 </p>
 
 
@@ -627,22 +618,9 @@ database schema description
 future versions / features
 </h1>
 
-<ol>
-<li>
-an ashkelon ant task for nightly builds
-</li>
-<li>
-integration with jakarta gump
-</li>
-<li>
-a repository manager web app
-</li>
-<li>
-more user-friendly installed by pre-bundling
-     a lightweight servlet container and database
-     for people who just want to use the darn thing
-</li>
-</ol>
+<p>
+ see todo.txt file
+</p>
 
 <p>
  feedback is encouraged.  write: <br/>
