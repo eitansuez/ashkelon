@@ -6,6 +6,7 @@ import java.net.*;
 
 import org.exolab.castor.mapping.*;
 import org.exolab.castor.xml.*;
+import org.ashkelon.*;
 
 public class ConfigInfo
 {
@@ -16,10 +17,9 @@ public class ConfigInfo
    private int maxTrailLength;
    private int traceLevel;
    private String traceFile;
+   private String inlineTagResolver;
    
-   public ConfigInfo()
-   {
-   }
+   public ConfigInfo() {}
    
    public ConfigInfo load() throws Exception
    {
@@ -92,8 +92,56 @@ public class ConfigInfo
    public String getTraceFile() { return traceFile; }
    public void setTraceFile(String traceFile) { this.traceFile = traceFile; }
 
+   public String getInlineTagResolver() { return inlineTagResolver; }
+   public void setInlineTagResolver(String resolver) { inlineTagResolver = resolver; }
+
+   private static InlineTagResolver _resolver = null;
+   private static ConfigInfo _cInfo = null;
+   public static InlineTagResolver getResolver()
+   {
+      if (_resolver == null)
+      {
+         try
+         {
+            _cInfo = new ConfigInfo().load();
+         }
+         catch (Exception ex)
+         {
+            System.err.println("Failed to load config info");
+            System.err.println(ex.getMessage());
+            System.exit(0);
+         }
+         
+         try
+         {
+            Class resolverClass = Class.forName(_cInfo.getInlineTagResolver());
+            _resolver = (InlineTagResolver) resolverClass.newInstance(); 
+         }
+         catch (ClassNotFoundException ex)
+         {
+            System.err.println("Failed to instantiate inline tag resolver class");
+            System.err.println("ClassNotFoundException: " + ex.getMessage());
+            System.exit(0);
+         }
+         catch (IllegalAccessException ex)
+         {
+            System.err.println("Failed to instantiate inline tag resolver class");
+            System.err.println("IllegalAccessException: " + ex.getMessage());
+            System.exit(0);
+         }
+         catch (InstantiationException ex)
+         {
+            System.err.println("Failed to instantiate inline tag resolver class");
+            System.err.println("InstantiationException: " + ex.getMessage());
+            System.exit(0);
+         }
+      }
+      return _resolver;
+   }
+
    public static void main(String args[]) throws Exception
    {
       (new ConfigInfo()).load();
    }
 }
+

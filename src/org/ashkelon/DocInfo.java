@@ -333,5 +333,7 @@ public class DocInfo implements Serializable
       return (getDeprecated().trim().length() > 0);
    }
    
+   public String toString() { return summaryDescription; }
+   
    
 }

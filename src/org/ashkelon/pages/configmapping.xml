@@ -33,6 +33,11 @@
                        type="java.lang.String">
                         <bind-xml name="tracefile" node="element"/>
                 </field>
+
+                <field name="inlineTagResolver"
+                       type="java.lang.String">
+                        <bind-xml name="inline-tag-resolver" node="element"/>
+                </field>
         </class>
 
         <class name="org.ashkelon.pages.CommandInfo">

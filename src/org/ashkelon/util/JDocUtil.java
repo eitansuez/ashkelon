@@ -13,11 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.ashkelon.DocInfo;
-import org.ashkelon.Reference;
+import org.ashkelon.pages.ConfigInfo;
 
 import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.ProgramElementDoc;
-import com.sun.javadoc.SeeTag;
 import com.sun.javadoc.Tag;
 import com.sun.javadoc.Type;
 
@@ -132,57 +131,7 @@ public class JDocUtil
     */
    public static String resolveDescription(DocInfo sourcedoc, Tag tags[])
    {
-      Logger log = Logger.getInstance();
-      
-      StringBuffer text = new StringBuffer("");
-      for (int i=0; i<tags.length; i++)
-      {
-         log.debug("tag 'kind': "+tags[i].kind());
-         
-         if ("@see".equals(tags[i].kind()))  // javadoc docs say 'link' - liars
-         {
-            Reference ref = new Reference(sourcedoc, (SeeTag) tags[i]);
-            String cmd = "";
-            if (ref.getRefDocType() == DocInfo.PACKAGE_TYPE)
-            {
-               cmd = "pkg";
-            }
-            else if (ref.getRefDocType() == DocInfo.CLASS_TYPE)
-            {
-               cmd = "cls";
-            }
-            else if (ref.getRefDocType() == DocInfo.MEMBER_TYPE || ref.getRefDocType() == DocInfo.EXECMEMBER_TYPE)
-            {
-               cmd = "member";
-               String name = ref.getRefDocName();
-               int idx = name.indexOf("(");
-               if (idx > 0)
-                  name = name.substring(0, idx);
-               ref.setRefDocName(name);
-            }
-            String var = cmd + "_name";
-            String value = ref.getRefDocName();
-            String label = ref.getLabel();
-            if (StringUtils.isBlank(label))
-            {
-               label = ref.getRefDocName();
-            }
-            
-            // <A HREF="{cmd}.main.do?{var}=$value">$caption</A>
-            text.append("<a href=\"").append(cmd).append(".main.do?");
-            text.append(var).append("=").append(value).append("\">");
-            text.append(label).append("</a>");
-            
-            //log.debug("Resolved inline tag: "+text);
-         }
-         else  // otherwise usually will be kind 'Text'
-         {
-            //log.debug("Tag text: "+tags[i].text());
-            text.append(tags[i].text());
-         }
-         text.append(" ");
-      }
-      return text.toString().trim();
+      return ConfigInfo.getResolver().resolveDescription(sourcedoc, tags);
    }
    
    /**
