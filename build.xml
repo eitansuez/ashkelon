@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="ashkelon" default="jar">
+<project name="ashkelon" default="war">
    <description>project ashkelon: open source java documentation management system</description>
    
    <property name="version" value="0.8.1" />
@@ -48,7 +48,7 @@
         </fileset>
       </copy>
       
-      <copy todir="${buildclasssesdir}">
+      <copy todir="${buildclassesdir}">
         <fileset dir="${dbdir}">
           <exclude name="**/*.jar" />
         </fileset>
@@ -72,10 +72,4 @@
       <ear destfile="${builddir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${builddir}" includes="ashkelon.war" />
    </target>
 
-<!-- flawed -  needs to copy stuff to build and then zip that
-   <target name="dist-src" depends="init" description="generate source distribution">
-    <zip destfile="${distdir}/ashkelon-${DSTAMP}.zip" basedir="${basedir}" excludes="${builddir}/**,${distdir}/**" />
-   </target>
--->
-   
 </project>
