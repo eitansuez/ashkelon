@@ -142,7 +142,8 @@ Specific Tasks / Bugs, Small Features
   on mozilla), fix it
 - Search:  ability to restrict a search (both 'direct' and 'power')
   to a single API
-
+- member or class listing:  modifier columns:  establish min-width in style
+   to improve look
 
 
 Ashkelon Completed List
