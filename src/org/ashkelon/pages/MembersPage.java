@@ -106,14 +106,15 @@ public class MembersPage extends Page
       }
 
       String sql = 
-            " select m.id, m.qualifiedname, m.type, " +
+            " select " +
+            " m.id, m.qualifiedname, m.type, " +
             "  m.isstatic, m.isfinal, m.accessibility, m.modifier, " +
             "  meth.isabstract, meth.returntypeid, meth.returntypename, meth.returntypedimension, " +
             "  em.signature, " +
             "  d.summarydescription, d.since, d.deprecated " +
             " from METHOD meth, MEMBER m, EXECMEMBER em, DOC d ";
       
-      if (!DBMgr.getInstance().getDbtype().equals("oracle"))
+      if (!DBMgr.getInstance().isOracle())
       {
          sql = 
             " select m.id, m.qualifiedname, m.type, " +
@@ -172,13 +173,10 @@ public class MembersPage extends Page
 
       sql += StringUtils.join(whereClause.toArray(), " and ");
 
-      if (DBMgr.getInstance().getDbtype().equals("oracle"))
-         sql += "  and rownum<50 ";
-
-      sql += " order by m.qualifiedname ";
-
-      if (!DBMgr.getInstance().getDbtype().equals("oracle"))
-         sql += " limit 50 ";
+      if (DBMgr.getInstance().isOracle())
+         sql += "  and rownum<50 order by m.qualifiedname ";
+      else
+         sql += " order by m.qualifiedname limit 50 ";
 
 
       PreparedStatement p = conn.prepareStatement(sql);
@@ -276,9 +274,10 @@ public class MembersPage extends Page
             " from METHOD meth right outer join MEMBER m on meth.id=m.id " +
             "  left outer join EXECMEMBER em on em.id=m.id, DOC d " +
             " where lower("+selectby+") like ? and m.docid=d.id  " +
-            " order by m.qualifiedname limit 50 ";
+            " order by m.qualifiedname " +
+            " limit 50 ";
       
-      if (DBMgr.getInstance().getDbtype().equals("oracle"))
+      if (DBMgr.getInstance().isOracle())
       {
          sql =
          "select m.id, m.qualifiedname, m.type, " +
@@ -294,7 +293,6 @@ public class MembersPage extends Page
          "  and rownum<50 " + 
          " order by m.qualifiedname";
       }
-      
       
       PreparedStatement p = conn.prepareStatement(sql);
       p.setString(1, searchField);

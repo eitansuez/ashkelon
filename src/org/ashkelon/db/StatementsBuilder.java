@@ -42,7 +42,7 @@ public class StatementsBuilder extends Task
     *   tofile="${build.classes.dir}/org/ashkelon/db/statements.properties" />
     */
    
-   private static final String[] DBTYPES = {"postgres", "mysql"};
+   private static final String[] DBTYPES = {"postgres", "mysql", "mckoidb"};
    private String _dbtype = null;
    private File _tofile = null;
    

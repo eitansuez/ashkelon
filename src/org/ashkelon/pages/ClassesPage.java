@@ -113,14 +113,11 @@ public class ClassesPage extends Page
       
       sql += StringUtils.join(whereClause.toArray(), " and ");
 
-      if (DBMgr.getInstance().getDbtype().equals("oracle"))
-         sql += "  and rownum<50 ";
+      if (DBMgr.getInstance().isOracle())
+         sql += "  and rownum<50 order by c.qualifiedname, c.type ";
+      else
+         sql += " order by c.qualifiedname, c.type limit 50";
       
-      sql += " order by c.qualifiedname, c.type ";
-      
-      if (!DBMgr.getInstance().getDbtype().equals("oracle"))
-         sql += "limit 50";
-
       PreparedStatement p = conn.prepareStatement(sql);
       int i=1;
       if (filters.get("searchField")!=null)
@@ -184,7 +181,7 @@ public class ClassesPage extends Page
          " order by c.qualifiedname, c.type " +
          " limit 50 ";
       
-      if (DBMgr.getInstance().getDbtype().equals("oracle"))
+      if (DBMgr.getInstance().isOracle())
       {
          sql =
          " select c.id, c.qualifiedname, c.type, " + 

@@ -307,6 +307,11 @@ public class DBMgr
    {
       return dbtype;
    }
+   public boolean isOracle() { return "oracle".equals(dbtype); }
+   public boolean isAnsiSql()
+   {
+      return "mysql".equals(dbtype) || "postgres".equals(dbtype);
+   }
    
    /**
     * get the value of the connectionURL in use
