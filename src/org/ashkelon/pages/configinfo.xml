@@ -281,7 +281,7 @@
    <cmd>authors</cmd>
    <page>authors.jsp</page>
    <class>AuthorsPage</class>
-   <caption>$NAME$</caption>
+   <caption>Authors</caption>
    <tablename>AUTHOR</tablename>
    <intrail>true</intrail>
   </cmdinfo>
