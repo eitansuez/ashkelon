@@ -134,6 +134,7 @@ public class API implements Serializable
    {
       Map constraints = new HashMap();
       constraints.put("NAME", getName());
+      constraints.put("VERSION", getVersion());
       Object obj = DBUtils.getObject(conn, TABLENAME, "ID", constraints);
       if (obj == null)
          return false;
