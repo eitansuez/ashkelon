@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# 1. create db
+java -jar mckoidb.jar -create ashkelon ashkelon
+
+# 2. feed it init.sql file
+java -cp mckoidb.jar com.mckoi.tools.JDBCScriptTool -url jdbc:mckoi:local://./db.conf -u ashkelon -p ashkelon -in ./org/ashkelon/db/init.sql -out ./output
+
