@@ -51,12 +51,12 @@ The javadoc tool is composed of two parts:
 </para>
 
 <orderedlist>
-<listitem>
+<listitem><para>
   The documentation generator, used to produce html (or other) documentation
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
   a graphical user interface used to browse and peruse through the documentation (static html pages)
-</listitem>
+</para></listitem>
 </orderedlist>
   
 <para>
@@ -68,12 +68,12 @@ Similarly, ashkelon is also composed of two parts:
 </para>
 
 <orderedlist>
-<listitem>
+<listitem><para>
   the <emphasis>repository manager</emphasis>, used to populate (and otherwise manage) a database with documentation information
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
   The <emphasis>viewer application</emphasis>, a web application that provides access to the documentation in a variety of ways (search, browse, cross-reference, etc..).  this app is in some ways markedly different from javadoc's user interface.
-</listitem>
+</para></listitem>
 </orderedlist>
     
 <para>
@@ -81,15 +81,15 @@ In an intranet environment, a development team needs to reference a number of AP
 </para>
 
 <orderedlist>
-<listitem>
+<listitem><para>
   Internal company code
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
   Sun APIs (J2SE, J2EE, etc..)
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
   Popular third party APIs (from Apache, Sourceforge, or other)
-</listitem>
+</para></listitem>
 </orderedlist>
 
 <para>
@@ -101,24 +101,24 @@ The entire development team would use the viewer application as its window into 
 </para>
 
 <itemizedlist>
-<listitem>
+<listitem><para>
 Hierarchical navigation to a target class or method
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
 Search by name
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
 Search by wildcard
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
 Navigating programmatic relationships
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
 Cross referencing classes or interfaces
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
 Power search feature (search by meta information such as author, modifier (et al) or a combination thereof
-</listitem>
+</para></listitem>
 </itemizedlist>
 
 <para>
@@ -151,16 +151,18 @@ Visit the project page on sourceforge at <ulink url="http://sourceforge.net/proj
 <title>Requirements</title>
 
 <orderedlist>
-<listitem>J2SE v1.4.x
-</listitem>
-<listitem>A servlet &amp; JSP container (I use Jakarta tomcat 5.x at the moment, but have used or received reports from many users and/or vendors that ashkelon works with their servlet container)
-</listitem>
-<listitem>
+<listitem><para>
+J2SE v1.4.x
+</para></listitem>
+<listitem><para>
+A servlet &amp; JSP container (I use Jakarta tomcat 5.x at the moment, but have used or received reports from many users and/or vendors that ashkelon works with their servlet container)
+</para></listitem>
+<listitem><para>
 postgresql (<ulink url="http://www.postgresql.org/">http://www.postgresql.org/</ulink>) or mysql (<ulink url="http://www.mysql.org">http://www.mysql.org</ulink>)
-</listitem>
-<listitem>
+</para></listitem>
+<listitem><para>
 Jakarta Ant (v1.5 or higher) (<ulink url="http://ant.apache.org">http://ant.apache.org</ulink>)
-</listitem>
+</para></listitem>
 </orderedlist>
 
 <note><para>In the following subsections, substitute the database type you've decided to use for the replaceable item ${dbtype}</para></note>
@@ -171,9 +173,9 @@ Jakarta Ant (v1.5 or higher) (<ulink url="http://ant.apache.org">http://ant.apac
 <title>Configure database connection and build the distribution</title>
 
 <orderedlist>
-<listitem>
+<listitem><para>
 Download &amp; unpack the ashkelon tarball
-</listitem>
+</para></listitem>
 <listitem>
 <para>
 Edit <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/conn-info.properties</filename> to specify the proper database connection information:
@@ -228,9 +230,9 @@ Edit <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/conn-info
 <title>Configure environment</title>
 
 <orderedlist>
-<listitem>
+<listitem><para>
 Make sure you have a <envar>JAVA_HOME</envar> environment variable configured with its value set to the base directory for J2SE (e.g. <filename>c:\j2sdk1.4.2</filename>)
-</listitem>
+</para></listitem>
 <listitem>
 <para>
 Set up <envar>ASHK_HOME</envar> environment variable
@@ -249,7 +251,9 @@ Set up <envar>ASHK_HOME</envar> environment variable
 </example>
 </listitem>
 <listitem>
+<para>
 Add <filename class="directory">%ASHK_HOME%\bin</filename> (or <filename class="directory">$ASHK_HOME/bin</filename>) to your path
+</para>
 <screen>
   <prompt>$</prompt> <command>export</command> PATH=$PATH:$ASHK_HOME/bin
 </screen>
@@ -263,7 +267,9 @@ Add <filename class="directory">%ASHK_HOME%\bin</filename> (or <filename class="
 
 <orderedlist>
 <listitem>
+<para>
 In <replaceable>${dbtype}</replaceable>, create database named ashkelon:
+</para>
 
 <example>
 <title>For mysql</title>
@@ -283,7 +289,9 @@ In <replaceable>${dbtype}</replaceable>, create database named ashkelon:
 </listitem>
 
 <listitem>
+<para>
 Run script: <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/init.sql</filename>
+</para>
 <example>
 <title>Using mysql</title>
 <screen>
@@ -412,19 +420,22 @@ INSERT 1693070 1
 
 <orderedlist>
 <listitem>
-<para>
-Set up environment variable SOURCEPATH (analogous to classpath,
-   it is a list of paths where source code may be located by ashkelon)
-   </para>
+ <para>
+   Set up environment variable SOURCEPATH (analogous to classpath, it is a list of paths where source code may be located by ashkelon)
+ </para>
    
  <example>
  <title>Populating servlet API</title>
  <orderedlist>
  <listitem>
-  Download source code for the servlet api from jakarta at: <ulink url="http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src">http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src</ulink>
+  <para>
+   Download source code for the servlet api from jakarta at: <ulink url="http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src">http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src</ulink>
+  </para>
   </listitem>
   <listitem>
-   Unpack the zip or tar.gz file
+   <para>
+    Unpack the zip or tar.gz file
+   </para>
   </listitem>
   <listitem>
   <screen>
@@ -438,7 +449,9 @@ Set up environment variable SOURCEPATH (analogous to classpath,
 </listitem>
 
 <listitem>
+<para>
 Run ashkelon repository manager to add servlet api to repository:
+</para>
 <screen>
    c:\%ASHK_HOME%\> cd apis
    c:\%ASHK_HOME%\apis\> ashkelon add @servlet.xml
@@ -447,11 +460,11 @@ Run ashkelon repository manager to add servlet api to repository:
 <listitem>
 <para>
 If all succeeds, you should end up with your mysql ashkelon database
-   populated with the java api documentation for the servlet api.</para>
+   populated with the java api documentation for the servlet api.
+</para>
 
-   <note><para>You may repeat step 2 for additional APIs as long as they're in your
-   sourcepath (follows same convention as classpath: semicolon separator for windows or colon for unix)
-   </para></note>
+<note><para>You may repeat step 2 for additional APIs as long as they're in your sourcepath (follows same convention as classpath: semicolon separator for windows or colon for unix)
+</para></note>
 </listitem>
 </orderedlist>
 
@@ -481,26 +494,34 @@ You still need to set up your sourcepath as described at the beginning of this s
 <sect1>
 <title>Run Ashkelon Web Application</title>
 
-<note><para>JSTL 1.1 libs are now included with ashkelon (no longer need to download it separately)</para></note>
+<note><para>JSTL 1.0 libs are now included with ashkelon (no longer need to download it separately)</para></note>
 
 <orderedlist>
 <listitem>
+<para>
 sourcepath info also needs to be set in <filename>etc/web.xml</filename> so revise the param-value for the param-name "sourcepath" and rebuild war file:
+</para>
 <screen>
   <prompt>$</prompt> <command>ant</command>
 </screen>
 </listitem>
 <listitem>
+<para>
 Copy war file from <filename>dist/ashkelon.war</filename> to your tomcat  (or other) webapps folder:
+</para>
 <screen>
   <prompt>$</prompt> <command>cp</command> %ASHK_HOME%/dist/ashkelon.war $TOMCAT_HOME/webapps
 </screen>
 </listitem>
 <listitem>
+<para>
 Restart tomcat so it can pick up war file (&amp; unpack it etc..)
+</para>
 </listitem>
 <listitem>
+<para>
 Open a web browser (preferably Mozilla but it will work in IE) and hit the URL: <ulink url="http://localhost:8080/ashkelon/">http://localhost:8080/ashkelon/</ulink>  (adjust if you've configured tomcat (or other) to run on another port
+</para>
 </listitem>
 </orderedlist>
 
@@ -628,24 +649,24 @@ You will primarily use the ashkelon tool to add content to your database.  This 
 <variablelist>
  <varlistentry>
   <term><command>ashkelon add</command></term>
-  <listitem>use to add APIs to your database</listitem>
+  <listitem><para>use to add APIs to your database</para></listitem>
  </varlistentry>
  <varlistentry>
   <term><command>ashkelon reset</command></term>
   <listitem>
-   use to "nuke" the contents of the database (start from scratch)
+   <para>use to "nuke" the contents of the database (start from scratch)</para>
   </listitem>
  </varlistentry>
  <varlistentry>
   <term><command>ashkelon list</command></term>
   <listitem>
-  lists the APIs currently documented in the database
+   <para>lists the APIs currently documented in the database</para>
   </listitem>
  </varlistentry>
  <varlistentry>
   <term><command>ashkelon remove</command></term>
   <listitem>
-  opposite of ashkelon add, use it to remove APIs from the repository
+   <para>opposite of ashkelon add, use it to remove APIs from the repository</para>
   </listitem>
  </varlistentry>
 </variablelist>
@@ -927,13 +948,14 @@ The API information will be recorded in the ashkelon repository upon adding the 
 <varlistentry>
 <term>July 2002 java.sun.com main story/article</term>
 <listitem>
-<ulink url="http://java.sun.com/features/2002/07/dbdoc.html">http://java.sun.com/features/2002/07/dbdoc.html</ulink>
-</listitem>
-</varlistentry>
+ <para>
+  <ulink url="http://java.sun.com/features/2002/07/dbdoc.html">http://java.sun.com/features/2002/07/dbdoc.html</ulink> 
+ </para>
+</listitem></varlistentry>
 <varlistentry>
 <term>JavaOne (2002) alternate presentation (ppt)</term>
-<listitem>
-<ulink url="http://www.u2d.com/1145suez.pdf">http://www.u2d.com/1145suez.pdf</ulink>
+<listitem> <para>  <ulink url="http://www.u2d.com/1145suez.pdf">http://www.u2d.com/1145suez.pdf</ulink>
+ </para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -1451,18 +1473,17 @@ Future Versions and Upcoming Features
 
 <para>
 Here are what I believe to be important enhancements to ashkelon:
+</para>
 
 <itemizedlist>
-<listitem>Brainless installation</listitem>
-<listitem>A public repository and web site with support for API owners and maintainers, remote population</listitem>
-<listitem>Eclipse plugin</listitem>
-<listitem>More stats, code metrics</listitem>
-<listitem>javadocs xml representation and xml marshalling</listitem>
-<listitem>a XUL gui</listitem>
-<listitem>GUIs for the repository manager</listitem>
+<listitem><para>Brainless installation</para></listitem>
+<listitem><para>A public repository and web site with support for API owners and maintainers, remote population</para></listitem>
+<listitem><para>Eclipse plugin</para></listitem>
+<listitem><para>More stats, code metrics</para></listitem>
+<listitem><para>javadocs xml representation and xml marshalling</para></listitem>
+<listitem><para>a XUL gui</para></listitem>
+<listitem><para>GUIs for the repository manager</para></listitem>
 </itemizedlist>
-
-</para>
 
 </sect1>
 
@@ -1475,7 +1496,9 @@ Here are what I believe to be important enhancements to ashkelon:
 
 <orderedlist>
 <listitem>
+<para>
 Add a third dimension (xml) to ashkelon.
+</para>
 <para>
    Currently model can exist at runtime (org.ashkelon model objects) or in 
    database (have a database schema and code to support transfer of doc 
@@ -1488,8 +1511,11 @@ Add a third dimension (xml) to ashkelon.
 <term>
  <command>ashkelon</command> export <replaceable>apiname</replaceable>
 </term>
-<listitem>(Database to XML)
+<listitem>
+<para>
+(Database to XML)
 Exports API information as an xml document
+</para>
 </listitem>
 </varlistentry>
 
@@ -1497,8 +1523,11 @@ Exports API information as an xml document
 <term>
  <command>ashkelon</command> import <replaceable>apiinfo.xml</replaceable>
 </term>
-<listitem>(XML to Database)
+<listitem>
+<para>
+(XML to Database)
 Imports an entire API into the db from corresponding info saved in apiinfo.xml (not to confuse with existing api.xml file which contains only info about the api entity; this new xml is deep and contains package and class and member info and more)
+</para>
 </listitem>
 </varlistentry>
 
@@ -1506,8 +1535,11 @@ Imports an entire API into the db from corresponding info saved in apiinfo.xml (
 <term>
  New doclet: <command>ashkelon</command> xml <replaceable>@api.xml</replaceable>
 </term>
-<listitem>(Source code to XML)
+<listitem>
+<para>
+(Source code to XML)
 Functions similar to <command>ashkelon add</command> but instead of dumping data into db, it would dump it to a target xml file
+</para>
 </listitem>
 </varlistentry>
 
@@ -1531,7 +1563,9 @@ Functions similar to <command>ashkelon add</command> but instead of dumping data
 
 </listitem>
 <listitem>
+<para>
 Build web services on top of this xml infrastructure to allow the transfer of API info to a remote repository
+</para>
 </listitem>
 </orderedlist>
 
@@ -1543,17 +1577,25 @@ Build web services on top of this xml infrastructure to allow the transfer of AP
 
 <orderedlist>
 <listitem>
+<para>
 Code that supports multiple GUIs forces data duplication.  Refactor.  Proposed solution:  One set of JSPs generate the content to go on all versions of a page in XML format. Use separate XSLT transform to produce the different look and feel's.
+</para>
 </listitem>
 <listitem>
+<para>
 Review how application is configured and try to consolidate config files into a single file (look at Spring?)
+</para>
 </listitem>
 
 <listitem>
+<para>
 Support hypersonicsql (idea is to bundle prepopulated database with ashkelon so that basic APIs are already available out of the box without having to populate)
+</para>
 </listitem>
 <listitem>
+<para>
 Improve caching implementation
+</para>
 </listitem>
 
 </orderedlist>
@@ -1567,9 +1609,12 @@ UI
 
 <orderedlist>
 <listitem>
+<para>
 Improve usability of GUI and continue refactoring JSPs
+</para>
 <orderedlist>
 <listitem>
+<para>
   Make ui javabeans aware.  separate accessor/mutator pairs
     as listed properties in the ui.  ones that are read-only
     should display as such (no mutator).  this would really
@@ -1578,32 +1623,36 @@ Improve usability of GUI and continue refactoring JSPs
     that coincidentally has getter/setter methods but was never
     intended to be a javabean (example: java.awt.Color)??
     maybe do this only for classes with associated beaninfo classes.
+</para>
 </listitem>
 </orderedlist>
 
 </listitem>
 
-<listitem>
+<listitem> <para>
 A third, XUL-based GUI
-</listitem>
+</para> </listitem>
 
 <listitem>
+<para>
 GUI for Ashkelon Manager (populator)
+</para>
+
   <orderedlist>
   <listitem>
-  Swing
+   <para>Swing</para>
   </listitem>
   <listitem>
-  Web front-end
+   <para>Web front-end</para>
   </listitem>
   <listitem>
-  Remote proxy (like cvs pserver et al)
+   <para>Remote proxy (like cvs pserver et al)</para>
   </listitem>
   </orderedlist>
   
 </listitem>
 <listitem>
-Eclipse plugin
+ <para>Eclipse plugin</para>
 </listitem>
 
 </orderedlist>
@@ -1617,16 +1666,16 @@ Specific Tasks / Bugs, Small Features
 
 <orderedlist>
 <listitem>
-Tab selection initialization:  appears to be broken (at least on mozilla)
+ <para>Tab selection initialization:  appears to be broken (at least on mozilla)</para>
 </listitem>
 <listitem>
-API Page:  add listing of classes in a single api, flattening the various packages an api contains.  sort of like a single package page, but for multiple packages (all belonging to a certain api).
+ <para>API Page:  add listing of classes in a single api, flattening the various packages an api contains.  sort of like a single package page, but for multiple packages (all belonging to a certain api).</para>
 </listitem>
 <listitem>
-Enhance search feature:  allow scope restrict to a single API (e.g. find all static methods in API x)
+ <para>Enhance search feature:  allow scope restrict to a single API (e.g. find all static methods in API x)</para>
 </listitem>
 <listitem>
-Stats:  add 'Class count by API' (in addition to existing 'Class count by package')
+ <para>Stats:  add 'Class count by API' (in addition to existing 'Class count by package')</para>
 </listitem>
 </orderedlist>
 </sect2>
@@ -1640,21 +1689,24 @@ Stats:  add 'Class count by API' (in addition to existing 'Class count by packag
 </chapter>
 
 <chapter>
-<title>
-Resources
-</title>
+ <title> Resources </title>
 
-<para>
-For project updates, see:
-  <itemizedlist>
-  <listitem>
-  <ulink url="http://sourceforge.net/projects/ashkelon/">http://sourceforge.net/projects/ashkelon/</ulink>
-  </listitem>
-  <listitem>
-  <ulink url="http://ashkelon.sourceforge.net/">http://ashkelon.sourceforge.net/</ulink>
-  </listitem>
-  </itemizedlist>
+ <para>
+ For project updates, see:
 </para>
+
+  <itemizedlist>
+   <listitem>
+    <para>
+     <ulink url="http://sourceforge.net/projects/ashkelon/">http://sourceforge.net/projects/ashkelon/</ulink>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <ulink url="http://ashkelon.sourceforge.net/">http://ashkelon.sourceforge.net/</ulink>
+    </para>
+   </listitem>
+  </itemizedlist>
 
 </chapter>
 
@@ -1675,34 +1727,34 @@ Conceived, designed, &amp; built by Eitan Suez, Austin, Texas (www.u2d.com).
   <term>
 Andreas Schaefer
   </term>
-  <listitem>
+  <listitem><para>
   For writing the initial ant build file for
   this project, and for being the first individual
   to step up to the plate and actively contribute
   to this project.
-  </listitem>
+  </para></listitem>
  </varlistentry>
 
  <varlistentry>
   <term>
   Bob Hays (alephnaught.com)
   </term>
-  <listitem>
+  <listitem><para>
   For actively helping on the project, contributing
   a number of patches and features, including an ashkelon
   ant task
-  </listitem>
+  </para></listitem>
  </varlistentry>
 
  <varlistentry>
   <term>
-Ben Walding
+  Ben Walding
   </term>
-  <listitem>
+  <listitem><para>
   Who wrote a maven plugin for ashkelon
   and who planted the idea in my mind to write a maven
   POM file for ashkelon (forthcoming)
-  </listitem>
+  </para></listitem>
  </varlistentry>
 
 </variablelist>
@@ -1725,28 +1777,28 @@ The idea simmered a little longer and a year later I decided that I could no lon
 
 <itemizedlist>
 <listitem>
-developed my own MVC framework to support the web application (a la struts)
+ <para>developed my own MVC framework to support the web application (a la struts)</para>
 </listitem>
 <listitem>
-redesigned and implemented the database schema from scratch
+ <para>redesigned and implemented the database schema from scratch</para>
 </listitem>
 <listitem>
-refactored the javadoc html doclet into jsp pages
+ <para>refactored the javadoc html doclet into jsp pages</para>
 </listitem>
 <listitem>
-learned css
+ <para>learned css</para>
 </listitem>
 <listitem>
-wrote an entirely new gui for javadocs, employing dhtml and css vigorously
+ <para>wrote an entirely new gui for javadocs, employing dhtml and css vigorously</para>
 </listitem>
 <listitem>
-wrote the viewer application in jsp
+ <para>wrote the viewer application in jsp</para>
 </listitem>
 <listitem>
-wrote my own crappy database connection pool
+ <para>wrote my own crappy database connection pool</para>
 </listitem>
 <listitem>
-Added entirely new sections to the viewer app, going beyond the scope of just javadocs (stats section, authors section)
+ <para>Added entirely new sections to the viewer app, going beyond the scope of just javadocs (stats section, authors section)</para>
 </listitem>
 </itemizedlist>
 
@@ -1755,16 +1807,16 @@ Added entirely new sections to the viewer app, going beyond the scope of just ja
 
 <itemizedlist>
 <listitem>
-A second GUI, in the style of javadoc (html 3.2)
+ <para>A second GUI, in the style of javadoc (html 3.2)</para>
 </listitem>
 <listitem>
-postgres and mysql support besides the original oracle version
+ <para>postgres and mysql support besides the original oracle version</para>
 </listitem>
 <listitem>
-mozilla support for the DHTML GUI
+ <para>mozilla support for the DHTML GUI</para>
 </listitem>
 <listitem>
-Added a "power search" feature to complement the simple search feature that had originally been built into the viewer app
+ <para>Added a "power search" feature to complement the simple search feature that had originally been built into the viewer app</para>
 </listitem>
 </itemizedlist>
 
