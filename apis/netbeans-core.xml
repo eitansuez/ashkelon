@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<api>
+<name>NetBeans Core</name>
+<summarydescription>NetBeans Core API</summarydescription>
+<description>NetBeans Core API</description>
+<publisher>netbeans.org</publisher>
+<download_url>http://www.netbeans.org/</download_url>
+<release_date>2003-08-01T08:00:00.000</release_date>
+<version>3.5.1</version>
+<package>org.netbeans.core</package>
+<package>org.netbeans.core.actions</package>
+<package>org.netbeans.core.awt</package>
+<package>org.netbeans.core.filesystems</package>
+<package>org.netbeans.core.modules</package>
+<package>org.netbeans.core.perftool</package>
+<package>org.netbeans.core.projects</package>
+<package>org.netbeans.core.projects.cache</package>
+<package>org.netbeans.core.resources</package>
+<package>org.netbeans.core.resources.actions</package>
+<package>org.netbeans.core.resources.frames</package>
+<package>org.netbeans.core.resources.welcome</package>
+<package>org.netbeans.core.resources.windowmanager</package>
+<package>org.netbeans.core.ui</package>
+<package>org.netbeans.core.windows</package>
+<package>org.netbeans.core.windows.dnd</package>
+<package>org.netbeans.core.windows.frames</package>
+<package>org.netbeans.core.windows.layers</package>
+<package>org.netbeans.core.windows.nodes</package>
+<package>org.netbeans.core.windows.toolbars</package>
+<package>org.netbeans.core.windows.util</package>
+<package>org.netbeans.core.xml</package>
+</api>
