@@ -92,6 +92,7 @@ public class FlowController extends HttpServlet
       log.setPrefix("FlowController");
 
       String cmd = ServletUtils.getCommand(request, configInfo.getDefaultCmd());
+      request.setAttribute("cmd", cmd);
 
       Connection conn = null;
       try
