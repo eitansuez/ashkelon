@@ -1,16 +1,17 @@
 <%@ page info="page" import="java.util.*, org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
 <head>
   <title>Ashkelon Author Index</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <c:import url="includes.html" />
 </head>
 
 <body>
 
-<jsp:include page="main_header.jsp" flush="true"/>
+<c:import url="main_header.jsp" />
 
 <div class="pagebody">
 
@@ -52,9 +53,27 @@ Authors
 </tbody>
 </table>
 
+<%--
+<hr/>
+<table width="100%" style="border: thin solid black;" cellpadding="3" cellspacing="0">
+<caption>
+Authors
+</caption>
+<tbody>
+<tr>
+<td class="listing">
+<c:forEach items="${authors}" var="author" varStatus="status">
+  <c:out value="${status.count}" />
+  <span class="author"><c:out value="${author.name}" /></span>
+  <br/>
+</c:forEach>
+</td>
+</tr>
+</tbody>
+</table>
+--%>
 
-
-<jsp:include page="footer.html" flush="true" />
+<c:import url="footer.html" />
 
 
 </body>
