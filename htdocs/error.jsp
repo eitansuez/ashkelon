@@ -12,7 +12,7 @@
   <style type="text/css">
     #errorDetail
     {
-      display: '';
+      display: block;
       font-family: monospace;
     }
   </style>
@@ -20,8 +20,19 @@
   <script>
   function errorToggleDetail()
   {
-    var isvisible = toggleDisplay("errorDetail");
-    document.forms[0].elements[0].value = (isvisible == "hidden") ? "Hide Detail" : "Show Detail";
+    var detail = document.getElementById("errorDetail");
+    var toggleBtn = document.getElementById("toggleBtn");
+    var hidden = (detail.style.display == "none");
+    if (hidden)
+    {
+       detail.style.display = "block"; // show
+       toggleBtn.innerHTML = "Hide Detail"; // toggle button caption
+    }
+    else
+    {
+       detail.style.display = "none";  // hide
+       toggleBtn.innerHTML = "Show Detail";  // toggle button caption
+    } 
   }
   </script>
 </head>
@@ -32,15 +43,15 @@
   <jsp:param name="style" value="simple"/>
 </jsp:include>
 
-<div class="PAGEBODY">
+<div class="pagebody">
 
-  <p class="message">An error has occurred.</p>
+  <p class="message">An error has occurred:</p>
 
-  Error: <%=exception%>
+  <blockquote>
+    <%=exception%>
+  </blockquote>
   
-  <form name="frm">
-   <button accesskey="e" onClick="errorToggleDetail();">Hide Detail</button>
-  </form>
+  <button id="toggleBtn" accesskey="e" onClick="errorToggleDetail();">Hide Detail</button>
     
   <pre id="errorDetail">
     <% 

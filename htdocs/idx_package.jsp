@@ -12,13 +12,22 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
+<html>
+<head>
   <title>Ashkelon Package Index</title>
   <jsp:include page="includes.html" flush="true"/>
-</HEAD>
+  <style>
+  ol#pkg-list
+  {
+  }
+  ol#pkg-list li
+  {
+    border-bottom: 1px dotted gray;
+  }
+  </style>
+</head>
 
-<BODY onLoad="loadCookies();" onUnload="saveCookies();">
+<body onLoad="loadCookies();" onUnload="saveCookies();">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 <jsp:include page="idx_header.jsp" flush="true"/>
@@ -27,7 +36,7 @@
   <jsp:param name="element_type" value="package" />
 </jsp:include>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
 <% if (needToDisplayResults.booleanValue()) { %>
 
@@ -35,24 +44,24 @@
   List results = (List) request.getAttribute("results");
   JPackage pkg;
  %>
-<TABLE CLASS="columnar">
+<ol id="pkg-list">
  <% for (int i=0; i<results.size(); i++) { %>
  <%  pkg = (JPackage) results.get(i); %>
-    <TR>
-      <TD>
-        <A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></A>
-      </TD>
-    </TR>
+   <li> 
+     <a href="pkg.main.do?pkg_id=<%=pkg.getId()%>">
+      <span class="package"><%=pkg.getName()%></span>
+     </a>
+   </li>
  <% } %>
-</TABLE>
+</ol>
 
 <% if (!StringUtils.isBlank((String) request.getAttribute("next"))) { %>
-<FORM METHOD="GET" ACTION="idx.package.do">
-  <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
-  <BUTTON TYPE="SUBMIT"
-          STYLE="background-color: #dddddd; font-size: 8pt;"
-          ACCESSKEY="N"><U>N</U>ext &gt;</BUTTON>
-</FORM>
+<form method="get" action="idx.package.do" style="text-align: right;">
+  <input type="hidden" name="start" value="<%=request.getAttribute("next")%>">
+  <button type="submit"
+          style="background-color: #dddddd; font-size: 8pt;"
+          accesskey="n"><U>N</U>ext &gt;</button>
+</form>
 <% } // end if %>
 
 <% } else { %>

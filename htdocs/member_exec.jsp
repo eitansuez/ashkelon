@@ -35,52 +35,65 @@ Date: March 2001
 
 
 <%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
+<script>
   var selectedColor = "lightyellow";
-  function showDescr(i)
+
+  function selectItem(targetIdx)
   {
-    try {
-      getElementById("exec"+i).bgColor = selectedColor;
-      getElementById("detailDescr"+i).style.display = "";  // show description
-    } catch (ex) {}
-  }
-  
-  function toggleDetailDescr(source, targetIdx)
-  {
-    try {
-      // highlight row:
-      var tableRows = source.parentNode.getElementsByTagName("TR");
-      for (var i=0; i<tableRows.length; i++)
-        tableRows[i].bgColor = "#FFFFFF";
-      source.bgColor = selectedColor;
-      
-      // show descriptions:
-      var numRows = getElementById("detailDescriptions").getElementsByTagName("DIV").length;
-      for (var i=0; i<numRows; i++)
+      var olnode = document.getElementById("variants");
+      var listItems = olnode.getElementsByTagName("li");
+      for (var i=0; i<listItems.length; i++)
       {
-        getElementById("detailDescr"+i).style.display = "none";
+        listItems[i].style.backgroundColor = "#fff";
+        document.getElementById("detailDescr"+i).style.display = "none";
       }
-      getElementById("detailDescr"+targetIdx).style.display = "";
-    } catch (ex)
-    {
-      alert(ex);
-    }
+      listItems[targetIdx].style.backgroundColor = selectedColor;
+      document.getElementById("detailDescr"+targetIdx).style.display = "block";
   }
-  </SCRIPT>
+  </script>
+
+<style>
+#variants
+{
+  border: 1px solid gray;
+  list-style-position: inside;
+  padding: 0px;
+  margin-top: 0px;
+}
+#variants li
+{
+  border-bottom: 1px dotted gray;
+  padding: 0.2em 0.5em;
+  cursor: pointer;
+}
+#variants li:hover
+{
+  background-color: #ff8;
+}
+#detailDescriptions
+{
+  border: 1px solid gray;
+  padding: 0.5em;
+  position: relative;
+  height: 250px;
+  overflow: auto;
+}
+#detailDescriptions div.descr-item
+{
+  position: absolute;
+  display: none;
+}
+</style>
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<table width="100%">
-<tr valign="top">
-<td style="width: 300px;">
+<div style="float: left; width: 45%;">
 
-<table class="columnar" rules="rows" border="1" cellspacing="0" cellpadding="5">
-<caption>
 <% if (execs.size()>1)  { %>
   <span class="<%=membertype%>"><%=caption%></span> has <%=execs.size()%> variants:
 <% } %>
-</caption>
-<TBODY>
+
+<ol id="variants">
 
 <%
  ExecMember exec;
@@ -95,11 +108,7 @@ Date: March 2001
   if (exec.getDoc().isDeprecated())
     modifiers += " deprecated";
  %>
- <TR ID="exec<%=i%>" onClick="toggleDetailDescr(this, <%=i%>);" STYLE="cursor: pointer;">
- <TD>
-  <%= i+1 %>.
- </TD>
- <TD CLASS="<%=modifiers%>">
+ <li id="exec<%=i%>" class="<%=modifiers%>" onClick="selectItem(<%=i%>);">
    <%=modifiers%>
 
    <% if (membertype.equals("method"))
@@ -111,7 +120,7 @@ Date: March 2001
    <span title="<%=HtmlUtils.cleanAttributeText(method.getReturnDescription())%>">
    <% if (method.getReturnType() != null && method.getReturnType().getId() > 0)
       { %>
-     <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
+     <a href="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></a><%=dim%>
    <% } else 
       { %>
      <%=name%><%=dim%>
@@ -135,7 +144,7 @@ Date: March 2001
    <span title="<%=HtmlUtils.cleanAttributeText(param.getDescription())%>">
    <% if (param.getType()!=null && param.getType().getId()>0)
       { %>
-     <A HREF="cls.main.do?cls_id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
+     <a href="cls.main.do?cls_id=<%=param.getType().getId()%>"><%=typeName%></a><%=dimStr%> <%=param.getName()%>
    <% } else 
       { %>
      <%=typeName%><%=dimStr%> <%=param.getName()%>
@@ -165,7 +174,7 @@ Date: March 2001
           if (ex.getException()!=null && ex.getException().getId()>0)
           {
           %>
-           <A HREF="cls.main.do?cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A>
+           <a href="cls.main.do?cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></a>
           <%
           } else
           {
@@ -179,35 +188,31 @@ Date: March 2001
       } // end for 
  %>
  
- </TD>
- </TR>
+ </li>
  <%
  }  // end iterating over method/constructor variants
  %>
 
-</TBODY>
-</TABLE>
+</ol>
 
-</td> <td>
+</div>
+
+<div style="float: right; width: 50%;">
 
   <div align="center">Description</div>
-  <DIV ID="detailDescriptions" STYLE="border: thin solid black; padding: 10px;">
+  <div id="detailDescriptions">
 <% for (int i=0; i<execs.size(); i++)
    {
      request.setAttribute("execmember", execs.get(i));
  %>
-      <DIV ID="detailDescr<%=i%>" STYLE="display: none;">
-        <jsp:include page="member_child_descr.jsp" flush="true"/>  
-      </DIV>
+      <div class="descr-item" id="detailDescr<%=i%>">
+        <jsp:include page="member_child_descr.jsp" flush="true"/>
+      </div>
 <% } %>
-  </DIV>
+  </div>
 
-</td>
-</tr>
-</table>
+</div>
 
-  
-<SCRIPT>
-  showDescr(0);
-</SCRIPT>
+<div style="clear: both;"></div>
+<script>selectItem(0);</script> 
 

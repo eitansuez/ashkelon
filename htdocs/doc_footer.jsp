@@ -48,50 +48,44 @@ if (request.getAttribute("execmember") != null)
 <%-- if (doc.hasAnythingToShow()) { --%>
 
 <%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-.docFooter
+<style type="text/css">
+.doc_footer
 {
   font-size: 8pt;
+  margin-top: 3em;
 }
-HR.docFooter
+hr.docFooter
 {
   color: #808080;
 }
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
+</style>
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-<BR>
+  <div class="doc_footer">
 
-<TABLE WIDTH="80%" BORDER="0" CELLSPACING="0" CELLPADDING="3">
-<TR>
-	<TD ALIGN="LEFT" CLASS="docFooter">
   <% 
   boolean hrin = false;
   if (!StringUtils.isBlank(doc.getSince())) {
     hrin = true;
   %>
-  <HR CLASS="docFooter">
+  <hr class="docFooter" />
   Since: <%=doc.getSince()%>
-  <BR>
+  <br/>
   <% } %>
 
   <% if (!StringUtils.isBlank(doc.getDeprecated())) { %>
   <% if (!hrin) { %>
-  <HR CLASS="docFooter">
+  <hr class="docFooter" />
   <% } %>
   Deprecated: <%=doc.getDeprecated()%>
-  <BR>
+  <br/>
   <% } %>
 
   <% List refs = doc.getReferences();
      if (refs != null && !refs.isEmpty()) { %>
   <% if (!hrin) { %>
-  <HR CLASS="docFooter">
+  <hr class="docFooter" />
   <% } %>
   See Also:
   <% Reference ref;
@@ -116,17 +110,15 @@ HR.docFooter
        {
          refdoctypename = DocInfo.DOCTYPES[refdoctype-1];
      %>
-      <A HREF="<%=refdoctypename%>.main.do?<%=refdoctypename%>_id=<%=refDoc.getId()%>"><%=label%></A>
+      <a href="<%=refdoctypename%>.main.do?<%=refdoctypename%>_id=<%=refDoc.getId()%>"><%=label%></a>
     <% } else { %>
       <%=label%>
     <% } %>
   <% }  // end for refs %>
 
-  <BR>
   <% }  // end if refs not is empty %>
-  
-  </TD>
-</TR>
-</TABLE>
 
+  </div>
+  
 <%-- }  // end if has anything to show --%>
+

@@ -56,9 +56,6 @@
   String cmd = ServletUtils.getCommand(request);
   String cls_id = ServletUtils.getRequestParam(request, "cls_id");
   
-  String[] cmd_hierarchy = StringUtils.split(cmd,".");
-  String area = cmd_hierarchy[0] + "." + cmd_hierarchy[1];
-  
   request.setAttribute("tabs", tabs);
   request.setAttribute("cmds", cmds);
 %>

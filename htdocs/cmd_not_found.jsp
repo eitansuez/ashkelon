@@ -6,46 +6,56 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-  <TITLE>Ashkelon - Command Not Found</TITLE>
+<html>
+<head>
+  <title>Ashkelon - Command Not Found</title>
   <jsp:include page="includes.html" flush="true"/>
 
-  <STYLE TYPE="text/css">
+  <style type="text/css">
     #errorDetail
     {
-      display: '';
+      display: block;
     }
-  </STYLE>
+  </style>
 
-  <SCRIPT>
-  function notFoundToggleDetail()
+  <script>
+  function toggleDetail()
   {
-    var isvisible = toggleDisplay("errorDetail");
-    document.forms[0].elements[0].value = (isvisible == "hidden") ? "Hide Detail" : "Show Detail";
+    var detail = document.getElementById("errorDetail");
+    var toggleBtn = document.getElementById("toggleBtn");
+    var hidden = (detail.style.display == "none");
+    if (hidden)
+    {
+       detail.style.display = "block"; // show
+       toggleBtn.innerHTML = "Hide Detail"; // toggle button caption
+    }
+    else
+    {
+       detail.style.display = "none";  // hide
+       toggleBtn.innerHTML = "Show Detail";  // toggle button caption
+    }
   }
-  </SCRIPT>
-</HEAD>
+  </script>
+</head>
 
-<BODY>
+<body>
 
 <jsp:include page="main_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
-  <P CLASS="message">An error has occurred</P>
+  <p class="message">An error has occurred</p>
 
-  <FORM>
-  <BUTTON ACCESSKEY="e" onClick="notFoundToggleDetail();">Hide Detail</BUTTON>
-  </FORM>
-    
-  <SPAN ID="errorDetail">
-    The requested command: <B><%=cmd%></B> was not found
-  </SPAN>
+  <button id="toggleBtn" accesskey="e" onClick="toggleDetail();">Hide Detail</button>
 
-</DIV>
+  <div id="errorDetail" style="margin-top: 2em;">
+    The requested command: <b><%=cmd%></b> was not found
+  </div>
+
+</div>
 
 <jsp:include page="footer.html" flush="true"/>
 
-</BODY>
-</HTML>
+</body>
+</html>
+

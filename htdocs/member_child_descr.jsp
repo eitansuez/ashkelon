@@ -25,7 +25,7 @@ String pkgName = containingClass.getPackage().getName();
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <% if (execmember.getDoc().isDeprecated()) { %>
-  <P><B>Deprecated:</B> <%=execmember.getDoc().getDeprecated()%></P>
+  <p><B>Deprecated:</B> <%=execmember.getDoc().getDeprecated()%></p>
 <% } %>
 
 <%=execmember.getDescription()%>

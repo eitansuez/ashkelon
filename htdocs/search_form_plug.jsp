@@ -7,7 +7,7 @@
     <label for="searchField" accesskey="s">Class <u>S</u>earch: </label>
     <input type="text" id="searchField" name="searchField" size="25" maxlength="100" style="background-color: beige;" />
 
-    <button accesskey="g" type="submit">&nbsp;<u>G</u>o&nbsp;</button>
+    <input type="submit" value="Go" /> <!-- safari does not like other method of using a button tag for form submission -->
   </form>
 </div>
 

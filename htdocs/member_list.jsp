@@ -62,19 +62,10 @@ as follows:
 %>
 
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
-
 <% if (members.isEmpty()) { %>
-  <P CLASS="message"><%=emptyMsg%></P>
+  <p class="message"><%=emptyMsg%></P>
 <% } else { %>
 
 <%
@@ -92,40 +83,73 @@ as follows:
    String membertype = "";
 %>
 
+<%-- SECTION: COMPONENT STYLES --%>
+<style type="text/css">
+#member-listing thead td
+{
+  background-color: beige;
+  cursor: default;
+  font-size: small;
+  font-variant: small-caps;
+}
+#member-listing thead td.dynamic, #member-listing thead td.thin
+{
+  width: 1.1em;
+  text-align: center;
+  font: 12pt monospace;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+#member-listing thead td.dynamic:hover
+{
+  background-color: #ff8;
+  cursor: pointer;
+}
+#member-listing tbody td
+{
+  padding: 0.1em;
+}
+#member-listing tbody tr:hover
+{
+  background-color: #ff8;
+}
+</style>
 
-<TABLE BORDER="1" CLASS="columnar" WIDTH="90%">
-<CAPTION><%=caption%></CAPTION>
-  <COLGROUP SPAN="<%=colsadjust+6%>" WIDTH="15" ALIGN="CENTER">
-  </COLGROUP>
-  <COLGROUP SPAN="<%=colsadjust+2%>">
-    <% if ("all".equals(memberstype) || ismethod || isfield ) { %>
-    <COL WIDTH="100" ALIGN="LEFT">
-    <% } %>
-    <COL WIDTH="100">
-    <COL WIDTH="300">
-  </COLGROUP>
-<THEAD CLASS="table_header">
-<TR TITLE="Click on one of the modifiers to filter the table by modifier type">
-<TD STYLE="font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" TITLE="Reset table to include all rows">C<BR>l<BR>e<BR>a<BR>r</TD>
+
+<table id="member-listing" border="1" class="columnar" width="100%" align="center">
+<caption><%=caption%></caption>
+<colgroup span="<%=colsadjust+6%>" align="center">
+  <col width="15" align="center">
+</colgroup>
+<colgroup span="<%=colsadjust+2%>">
+  <% if ("all".equals(memberstype) || ismethod || isfield ) { %>
+  <col width="100" align="left">
+  <% } %>
+  <col width="100">
+  <col width="300">
+</colgroup>
+<thead class="table_header">
+<tr title="Click on one of the modifiers to filter the table by modifier type">
+<td class="dynamic" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" title="Reset table to include all rows">c l e a r</td>
 <% if ( "all".equals(memberstype) || ismethod ) { %>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'abstract', '<%=divid%>');" TITLE="Show only abstract members">a<BR>b<BR>s<BR>t<BR>r</TD>
+<td class="dynamic" onClick="filterRows('memberrow', 'abstract', '<%=divid%>');" title="Show only abstract members">a b s t r</td>
 <% } %>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'public', '<%=divid%>');" TITLE="Show only public members">p<BR>u<BR>b<BR>l<BR>i<BR>c</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'static', '<%=divid%>');" TITLE="Show only static members">s<BR>t<BR>a<BR>t<BR>i<BR>c</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'final', '<%=divid%>');" TITLE="Show only final members">f<BR>i<BR>n<BR>a<BR>l</TD>
-<TD STYLE="font-size: x-small; font-variant: small-caps;" TITLE="Version of API that this member was introduced">s<BR>i<BR>n<BR>c<BR>e</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'deprecated', '<%=divid%>');" TITLE="Show only deprecated members">d<BR>e<BR>p<BR>r<BR>e<BR>c</TD>
+<td class="dynamic" onClick="filterRows('memberrow', 'public', '<%=divid%>');" title="Show only public members">p u b l i c</td>
+<td class="dynamic" onClick="filterRows('memberrow', 'static', '<%=divid%>');" title="Show only static members">s t a t i c</tx>
+<td class="dynamic" onClick="filterRows('memberrow', 'final', '<%=divid%>');" title="Show only final members">f i n a l</td>
+<td class="thin" title="Version of API that this member was introduced">s i n c e</td>
+<td class="dynamic" onclick="filterRows('memberrow', 'deprecated', '<%=divid%>');" title="Show only deprecated members">d e p r e c</td>
 <% if ("all".equals(memberstype) || ismethod ) { %>
-<TD STYLE="font-size: x-small; font-variant: small-caps; text-align: right;">Returns</TD>
+<td style="text-align: right;">Returns</td>
 <% } else if (isfield) { %>
-<TD STYLE="font-size: x-small; font-variant: small-caps; text-align: right;">Field Type</TD>
+<td style="text-align: right;">Field Type</td>
 <% } %>
-<TD STYLE="font-size: x-small; font-variant: small-caps;"><%=colname_heading%></TD>
-<TD STYLE="font-size: x-small; font-variant: small-caps;">Summary Description</TD>
-</TR>
-</THEAD>
+<td><%=colname_heading%></td>
+<td>Summary Description</td>
+</tr>
+</thead>
 
-<TBODY>
+<tbody>
 <% for (int i=0; i<members.size(); i++)
    {
      member = (Member) members.get(i);
@@ -155,40 +179,40 @@ as follows:
      }
      membertype = member.getMemberTypeName();
 %>
-<TR ID="memberrow<%=i%>" CLASS="<%=member.getModifiers() + ((member.isDeprecated()) ? " deprecated" : " ")%>" STYLE="display: ;">
-  <TD>&nbsp;</TD>
+<tr id="memberrow<%=i%>" class="<%=member.getModifiers() + ((member.isDeprecated()) ? " deprecated" : " ")%>" style="display: ;">
+  <td></td>
 <% if (member instanceof MethodMember) { %>
-  <TD>
+  <td>
     <% if (method.isAbstract()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0">
     <% } %>
-  </TD>
+  </td>
 <% } else if ("all".equals(memberstype)) { %>
-  <TD>
+  <td>
    n/a
-  </TD>
+  </td>
 <% } %>
-  <TD>
+  <td>
     <% if (member.getAccessibility() == JDocUtil.PUBLIC) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0">
     <% } %>
-  </TD>
-  <TD>
+  </td>
+  <td>
     <% if (member.isStatic()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0">
     <% } %>
-  </TD>
-  <TD>
+  </td>
+  <td>
     <% if (member.isFinal()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0">
     <% } %>
-  </TD>
-  <TD><%=member.getDoc().getCleanSince()%></TD>
-  <TD>
+  </td>
+  <td><%=member.getDoc().getCleanSince()%></td>
+  <td>
     <% if (member.isDeprecated()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0">
     <% } %>
-  </TD>
+  </td>
   <% if (member instanceof MethodMember) { %>
       <TD ALIGN="RIGHT">
       <% if (method.getReturnType()!=null && method.getReturnType().getId()>0) { %>
@@ -196,11 +220,11 @@ as follows:
       <% } else { %>
         <%=returnstuff%>
       <% } // end if linkable %>
-      </TD>
+      </td>
   <% } else if ("all".equals(memberstype)) { %>
       <TD ALIGN="RIGHT">
        n/a
-      </TD>
+      </td>
   <% } // end if ismethod %>
   <% if (member instanceof FieldMember && !"all".equals(memberstype)) { %>
       <TD ALIGN="RIGHT">
@@ -209,18 +233,18 @@ as follows:
       <% } else { %>
         <%=field.getTypeName()%> 
       <% } // end if linkable %>
-      </TD>
+      </td>
   <% } %>
 
-  <TD><A HREF="member.main.do?member_id=<%=member.getId()%>"><SPAN CLASS="<%=membertype%>" TITLE="<%=HtmlUtils.cleanAttributeText(memberDescr)%>"><%=(qualify) ? member.getQualifiedName() : member.getName()%></SPAN></A></TD>
-  <TD><%=memberDescr%></TD>
-</TR>
+  <td><A HREF="member.main.do?member_id=<%=member.getId()%>"><SPAN CLASS="<%=membertype%>" title="<%=HtmlUtils.cleanAttributeText(memberDescr)%>"><%=(qualify) ? member.getQualifiedName() : member.getName()%></SPAN></A></td>
+  <td><%=memberDescr%></td>
+</tr>
 <% } // end for %>
 
 
-</TBODY>
+</tbody>
 
-</TABLE>
+</table>
 
  
 <% } // end if members is empty %>

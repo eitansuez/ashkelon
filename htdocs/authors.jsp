@@ -30,9 +30,7 @@ td.listing
 </style>
 
 <table width="100%" style="border: thin solid black;" cellpadding="3" cellspacing="0">
-<caption>
-Authors
-</caption>
+<caption>Authors</caption>
 <tbody>
 <tr>
 <td class="listing">
@@ -53,25 +51,7 @@ Authors
 </tbody>
 </table>
 
-<%--
-<hr/>
-<table width="100%" style="border: thin solid black;" cellpadding="3" cellspacing="0">
-<caption>
-Authors
-</caption>
-<tbody>
-<tr>
-<td class="listing">
-<c:forEach items="${authors}" var="author" varStatus="status">
-  <c:out value="${status.count}" />
-  <span class="author"><c:out value="${author.name}" /></span>
-  <br/>
-</c:forEach>
-</td>
-</tr>
-</tbody>
-</table>
---%>
+</div>
 
 <c:import url="footer.html" />
 

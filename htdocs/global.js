@@ -82,3 +82,18 @@ function getElementsByTagName(tagname)
   }
   return document.getElementsByTagName(tagname);
 }
+
+Object.prototype.getElementsByClassName = function ( className )
+{
+    var matches = new Array();
+    var alltags = this.getElementsByTagName( "*" );
+    for (var i=0; i<alltags.length; i++)
+    {
+      if (alltags[i].className.toLowerCase() == className.toLowerCase())
+      {
+        matches[matches.length] = alltags[i];
+      }
+    }
+    return matches;
+}
+

@@ -92,18 +92,13 @@
 
 <br />
 
-<!-- todo:  use float instead -->
-<table style="width: 100%;" align="right">
-<tr>
-<td align="right">
+<div style="float: right;">
+  <jsp:include page="legend.html" />
+</div>
+<div style="float: right;">
   <% if (!("/search.jsp".equals(request.getServletPath()))) { %>
     <jsp:include page="search_form_plug.jsp" flush="true" />
   <% } %>
-</td>
-<td width="50">
-  <jsp:include page="legend.html" />
-</td></tr>
-</table>
-<!-- i don't know why browser (mozilla) treats above table outside of normal flow as if positioned absolute? -->
-<div style="height: 45px;"></div>
+</div>
+<div style="clear: both;">&nbsp;</div>
 

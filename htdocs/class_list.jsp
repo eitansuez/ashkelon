@@ -61,18 +61,10 @@ as follows:
   
 %>
 
-<%-- SECTION: COMPONENT STYLES --%>
-<STYLE TYPE="text/css">
-</STYLE>
-
-<%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
-<SCRIPT>
-</SCRIPT>
-
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 
 <% if (classes.isEmpty()) { %>
-  <P CLASS="message"><%=emptyMsg%></P>
+  <p class="message"><%=emptyMsg%></p>
 <% } else { %>
 
   
@@ -86,78 +78,111 @@ as follows:
    boolean qualify = ("true".equals(displayQualified)) ? true : false;
    String classtype = "";
 %>
-<TABLE BORDER="1" CLASS="columnar" WIDTH="90%" ALIGN="CENTER">
-  <CAPTION><%=caption%></CAPTION>
-  <COLGROUP SPAN="<%=colsadjust+5%>" WIDTH="15" ALIGN="CENTER"></COLGROUP>
-  <COLGROUP SPAN="2">
-    <COL WIDTH="100">
-    <COL WIDTH="300">
-  </COLGROUP>
-<THEAD CLASS="table_header">
-<TR TITLE="Click on one of the modifiers to filter the table by modifier type">
-<TD STYLE="font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" TITLE="Reset table to include all rows">C<BR>l<BR>e<BR>a<BR>r</TD>
+
+<style>
+#class-listing thead td
+{     
+  background-color: beige;
+  cursor: default;
+  font-size: small;
+  font-variant: small-caps;
+}
+#class-listing thead td.dynamic, #class-listing thead td.thin
+{
+  width: 1.1em;
+  text-align: center;
+  font: 12pt monospace;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+#class-listing thead td.dynamic:hover
+{ 
+  background-color: #ff8;
+  cursor: pointer; 
+} 
+#class-listing tbody td
+{ 
+  padding: 0.1em;
+}
+#class-listing tbody tr:hover
+{
+  background-color: #ff8;
+}
+
+</style>
+
+<table id="class-listing" border="1" class="columnar" width="100%" align="center">
+<caption><%=caption%></caption>
+<colgroup span="<%=colsadjust+5%>">
+  <col width="15" align="center"
+</colgroup>
+<colgroup span="2">
+  <col width="100">
+  <col width="300">
+</colgroup>
+<thead class="table_header">
+<tr title="Click on one of the modifiers to filter the table by modifier type">
+<td class="dynamic" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" title="Reset table to include all rows">c l e a r</td>
 <% if (!isinterface) { %>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'abstract', '<%=divid%>');" TITLE="Show only abstract members">a<BR>b<BR>s<BR>t<BR>r</TD>
+<td class="dynamic" onClick="filterRows('memberrow', 'abstract', '<%=divid%>');" title="Show only abstract members">a b s t r</td>
 <% } %>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'public', '<%=divid%>');" TITLE="Show only public members">p<BR>u<BR>b<BR>l<BR>i<BR>c</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'static', '<%=divid%>');" TITLE="Show only static members">s<BR>t<BR>a<BR>t<BR>i<BR>c</TD>
+<td class="dynamic" onClick="filterRows('memberrow', 'public', '<%=divid%>');" title="Show only public members">p u b l i c</td>
+<td class="dynamic" onClick="filterRows('memberrow', 'static', '<%=divid%>');" title="Show only static members">s t a t i c</td>
 <% if (!isinterface) { %>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'final', '<%=divid%>');" TITLE="Show only final members">f<BR>i<BR>n<BR>a<BR>l</TD>
+<td class="dynamic" onClick="filterRows('memberrow', 'final', '<%=divid%>');" title="Show only final members">f i n a l</td>
 <% } %>
-<TD STYLE="font-size: x-small; font-variant:small-caps;" TITLE="Version of API that this member was introduced">s<BR>i<BR>n<BR>c<BR>e</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'deprecated', '<%=divid%>');" TITLE="Show only deprecated members">d<BR>e<BR>p<BR>r<BR>e<BR>c</TD>
-<TD STYLE="font-size: x-small; font-variant:small-caps;"><%=colname_heading%></TD>
-<TD STYLE="font-size: x-small; font-variant:small-caps;">Summary Description</TD>
-</TR>
-</THEAD>
-<TBODY>
+<td class="thin" title="Version of API that this member was introduced">s i n c e</td>
+<td class="dynamic" onClick="filterRows('memberrow', 'deprecated', '<%=divid%>');" title="Show only deprecated members">d e p r e c</td>
+<td><%=colname_heading%></td>
+<td>Summary Description</td>
+</tr>
+</thead>
+<tbody>
 <% for (int i=0; i<classes.size(); i++)
    {
      cls = (ClassType) classes.get(i);
      clsDescr = cls.getSummaryDescription();
      classtype = cls.getClassTypeName();
 %>
-<TR ID="memberrow<%=i%>" CLASS="<%=cls.getModifiers() + (cls.isDeprecated() ? " deprecated" : " ")%>" STYLE="display: ;">
-  <TD>&nbsp;</TD>
-<% if (!isinterface) { %>
-  <TD>
+<tr id="memberrow<%=i%>" class="<%=cls.getModifiers() + (cls.isDeprecated() ? " deprecated" : " ")%>" style="display: ;">
+  <td>&nbsp;</td>
+  <% if (!isinterface) { %>
+  <td>
     <% if (cls.isAbstract()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0" />
     <% } %>
-  </TD>
+  </td>
 <% } %>
-  <TD>
+  <td>
     <% if (cls.getAccessibility() == JDocUtil.PUBLIC) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0" />
     <% } %>
-  </TD>
-  <TD>
+  </td>
+  <td>
     <% if (cls.isStatic()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0" />
     <% } %>
-  </TD>
+  </td>
 <% if (!isinterface) { %>
-  <TD>
+  <td>
     <% if (cls.isFinal()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0" />
     <% } %>
-  </TD>
+  </td>
 <% } %>
-  <TD><%=cls.getDoc().getCleanSince()%></TD>
-  <TD>
+  <td><%=cls.getDoc().getCleanSince()%></td>
+  <td>
     <% if (cls.isDeprecated()) { %>
-    <IMG SRC="images/check_sm.gif" WIDTH="15" HEIGHT="14" ALT="" BORDER="0">
+    <img src="images/check_sm.gif" border="0" />
     <% } %>
-  </TD>
-  <TD><A HREF="cls.main.do?cls_id=<%=cls.getId()%>"><SPAN CLASS="<%=classtype%>" TITLE="<%=HtmlUtils.cleanAttributeText(clsDescr)%>"><%=(qualify) ? cls.getQualifiedName() : cls.getName()%></SPAN></A></TD>
-  <TD><%=clsDescr%></TD>
-</TR>
+  </td>
+  <td><a href="cls.main.do?cls_id=<%=cls.getId()%>"><span class="<%=classtype%>" title="<%=HtmlUtils.cleanAttributeText(clsDescr)%>"><%=(qualify) ? cls.getQualifiedName() : cls.getName()%></span></a></td>
+  <td><%=clsDescr%></td>
+</tr>
 <% } // end for %>
 
-
-</TBODY>
-</TABLE>
-
+</tbody>
+</table>
 
 
 <% } // end else statement (if packages is empty) %>

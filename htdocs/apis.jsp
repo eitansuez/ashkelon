@@ -24,6 +24,7 @@
   table#apis td
   {
     padding: 0.3em 0.7em;
+    border-bottom: 1px dotted gray;
   }
   </style>
 </head>
@@ -40,7 +41,7 @@
 Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <b>open source</b> and available for download off sourceforge.net as project <a target="_new" href="http://sourceforge.net/projects/ashkelon/">ashkelon</a>.
 </p>
 
-<table id="apis" align="center" rules="rows">
+<table id="apis" align="center" rules="rows" cellspacing="0">
 <caption>API Listing</caption>
 <tbody>
  <c:forEach items="${apilist}" var="api" varStatus="status">

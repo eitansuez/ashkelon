@@ -11,51 +11,62 @@
 <head>
   <title>Ashkelon - Packages</title>
   <c:import url="includes.html" />
+  <style>
+  div.pkg-family
+  {
+    width: 25%;
+    float: left;
+    text-align: left;
+  }
+  div.pkg-family p
+  {
+    margin: 0px;
+    text-align: center;
+    background-color: beige;
+    border: 1px solid gray;
+    border-width: 1px 1px 0px 1px;
+  }
+  div.pkg-family ol
+  {
+    margin-top: 0px;
+    height: 440px;
+    border: 1px solid gray;
+    overflow: auto;
+  }
+  div.pkg-family ol li
+  {
+    border-bottom: 1px dotted gray;
+  }
+  </style>
 </head>
 
 <body onLoad="cleanTitles();">
-<jsp:include page="main_header.jsp" flush="true"/>
+<jsp:include page="main_header.jsp" flush="true" />
 
-<DIV CLASS="pagebody">
+<div class="pagebody">
 
 <% if (cols.isEmpty()) { %>
- <P>No packages exist in the Ashkelon repository at this time.</P>
+ <p>No packages exist in the Ashkelon repository at this time.</p>
 <% } else { %>
 
-<DIV ALIGN="CENTER">
-<TABLE CLASS="columnar">
-<CAPTION>Packages by Type</CAPTION>
-<THEAD CLASS="table_header">
-<TR>
-  <%
-  String columnName = null;
-  Set keys = cols.keySet();
-  Iterator iter = keys.iterator();
-  while (iter.hasNext())
-  {
-    columnName = iter.next().toString();
-  %>
-  <TD><%=columnName%></TD>
-  <%
-  }
-  %>
-</TR>
-</THEAD>
-<TBODY>
-<TR>
+<div style="text-align: center;">
+<p style="font-size: 120%; margin-bottom: 0px;">Packages by Type</p>
+
   <%
     JPackage pkg;
     String title;
     List col;
-    iter = keys.iterator();
+    String columnName;
+    Iterator iter = cols.keySet().iterator();
     while (iter.hasNext())
     {
+       columnName = iter.next().toString();
+       col = (List) cols.get(columnName);
   %>
-  <TD VALIGN="TOP">
-  <DIV CLASS="scroll_column">
-  <TABLE>
-  <%
-       col = (List) cols.get(iter.next());
+  <div class="pkg-family">
+  <p style="font-weight: bold;"><%=columnName%>.*</p>
+  <ol>
+   <%
        for (int j=0; j<col.size(); j++)
        {
           pkg = (JPackage) col.get(j);
@@ -63,28 +74,23 @@
           if (StringUtils.isBlank(title))
             title = pkg.getName(); 
    %>
-   <TR>
-     <TD>
-        <A HREF="pkg.main.do?pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package" TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></SPAN></A>
-     </TD>
-   </TR>
+   <li>
+        <a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><span class="package" title="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></span></a>
+   </li>
    <%   }  // end inner for loop %>
-    </TABLE>
- </DIV>
-  </TD>
+  </ol>
+  </div>
 <%  } // end while %>
-</TR>
-</TBODY>
-</TABLE>
-</DIV>
+</div>
 
 <% } // end if %>
 
+</div>
 
-</DIV>
+<div style="clear: left; margin-bottom: 1em;">&nbsp;</div>
 
 <jsp:include page="footer.html" flush="true"/>
 
+</body>
+</html>
 
-</BODY>
-</HTML>
