@@ -83,9 +83,20 @@ public class ServletUtils
    public static String getCommand(HttpServletRequest request)
    {
        String path = request.getServletPath();
+       //debugRequest(request);
        int len = path.length();
        String cmd = path.substring(1,len-3); // trim prefixed / and suffixed .do
        return cmd;
+   }
+   private static void debugRequest(HttpServletRequest request)
+   {
+      Logger logger = Logger.getInstance();
+      logger.verbose("getServletPath: "+request.getServletPath());
+      logger.verbose("getRequestURI: "+request.getRequestURI());
+      logger.verbose("getQueryString: "+request.getQueryString());
+      logger.verbose("getPathTranslated: "+request.getPathTranslated());
+      logger.verbose("getPathInfo: "+request.getPathInfo());
+      logger.verbose("getContextPath: "+request.getContextPath());
    }
    
    public static String getCommand(HttpServletRequest request, String defaultCmd)
