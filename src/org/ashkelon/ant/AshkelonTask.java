@@ -10,8 +10,14 @@ Contributors:
 **********************************************************************/
 package org.ashkelon.ant;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileReader;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.tools.ant.*;
 import org.apache.tools.ant.taskdefs.*;
@@ -33,7 +39,7 @@ public class AshkelonTask extends Javadoc
 	 */
 	public AshkelonTask()
 	{
-	   super();
+		super();
 	}
 
 	/**
@@ -62,11 +68,15 @@ public class AshkelonTask extends Javadoc
 			}
 			else if (_operation.compareTo(_LIST_OPERATION) == 0)
 			{
+				// TODO: This isn't working right now
 				Ashkelon.listCmd();
 			}
 			else if (_operation.compareTo(_REMOVE_OPERATION) == 0)
 			{
-				String[] includes = _includePatterns.getIncludePatterns(getProject());
+				String[] includes =
+					_includePatterns.getIncludePatterns(getProject());
+				includes =
+					_appendStringPrefixToArray(new String("remove"), includes);
 				Ashkelon.removeCmd(includes);
 			}
 			else if (_operation.compareTo(_UPDATEREFS_OPERATION) == 0)
@@ -75,8 +85,28 @@ public class AshkelonTask extends Javadoc
 			}
 			else if (_operation.compareTo(_ADD_OPERATION) == 0)
 			{
-                           String[] args = {"-api", "@"+_descriptionFile.getCanonicalPath()};
-		  	   Ashkelon.addapiCmd(args);
+				// The next two lines won't work - javadoc must run in a separate thread, and
+				// the javadoc task in ant knows how to do that already.
+				// String[] args = {"-api", "@"+_descriptionFile.getCanonicalPath()};
+				// Ashkelon.addapiCmd(args);
+				//
+				// Load the api with our description file
+				FileReader reader = new FileReader(_descriptionFile);
+				API api = new API();
+				api = api.load(reader);
+				reader.close();
+				// Now get the package names we are to process so we can pass them along to the doclet
+				Collection packagenames = api.getPackagenames();
+				Iterator iterator = packagenames.iterator();
+				while (iterator.hasNext())
+				{
+					Object item = iterator.next();
+					PackageName pn = new PackageName();
+					pn.setName(item.toString());
+					addPackage(pn);
+				}
+				// And finally execute our super class, the javadoc task for ant
+				super.execute();
 			}
 		}
 		catch (BuildException bex)
@@ -94,22 +124,22 @@ public class AshkelonTask extends Javadoc
 
 	public void setApi(File f) throws BuildException
 	{
-	   _descriptionFile = f;
+		_descriptionFile = f;
 	}
 
 	public void setOperation(String op)
 	{
-	   _operation = op;
+		_operation = op;
 	}
 
 	public void setVerbose(boolean v)
 	{
-	   _verbose = v;
+		_verbose = v;
 	}
 
 	public void setDebug(boolean d)
 	{
-	   _debug = d;
+		_debug = d;
 	}
 
 	/**
@@ -132,6 +162,21 @@ public class AshkelonTask extends Javadoc
 	private boolean _isOperationSet()
 	{
 		return !(_operation == null);
+	}
+
+	/**
+	 * Insert the specified string at the start of the array.
+	 * 
+	 * @param aStr is the string to insert ahead in the array
+	 * @param aArray is the target array
+	 * @return the new String[] with the prepended item.
+	 */
+	private String[] _appendStringPrefixToArray(String aStr, String[] aArray)
+	{
+		List al = new ArrayList(Arrays.asList(aArray));
+		al.add(0, new String(aStr));
+		String[] newArray = (String[]) al.toArray(new String[0]);
+		return newArray;
 	}
 
 	/**
@@ -192,7 +237,9 @@ public class AshkelonTask extends Javadoc
 			}
 			else
 			{
-				throw new BuildException(_PROGRAM_NAME + " task requires the api attribute, which is the XML file to describe the project");
+				throw new BuildException(
+					_PROGRAM_NAME
+						+ " task requires the api attribute, which is the XML file to describe the project");
 			}
 		}
 		else if (_operation.compareTo(_REMOVE_OPERATION) == 0)
@@ -200,7 +247,9 @@ public class AshkelonTask extends Javadoc
 			String[] list = _includePatterns.getIncludePatterns(getProject());
 			if (list.length <= 0)
 			{
-				throw new BuildException(_PROGRAM_NAME + " task operation remove requires an include list");
+				throw new BuildException(
+					_PROGRAM_NAME
+						+ " task operation remove requires an include list");
 			}
 		}
 	}
