@@ -120,14 +120,14 @@ public class ExecMember extends Member implements Comparator
    {
       Map constraint = new HashMap();
       constraint.put("throwerid", new Integer(memberid));
-      DBUtils.delete(conn, "thrownexception", constraint);
+      DBUtils.delete(conn, "THROWNEXCEPTION", constraint);
    }
     
    public static void deleteParameters(Connection conn, int memberid) throws SQLException
    {
       Map constraint = new HashMap();
       constraint.put("execmemberid", new Integer(memberid));
-      DBUtils.delete(conn, "parameter", constraint);
+      DBUtils.delete(conn, "PARAMETER", constraint);
    }
 
    // accessor methods:
