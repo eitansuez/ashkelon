@@ -1,0 +1,46 @@
+<project name="alephnaught" default="all" basedir=".">
+
+  <!-- bob's sample ant build file illustrating use of ashkelon task he wrote -->
+
+  <taskdef name="ashkelon" classname="org.ashkelon.ant.AshkelonTask"/>
+
+  <target name="ashkelon" depends="init">
+    <path id="ashkelon.path">
+      <pathelement location="/Users/roberthays/ashkelon/build/ashkelon.jar"/>
+      <pathelement location="/Users/roberthays/ashkelon/lib/castor.jar"/>
+      <pathelement location="/Users/roberthays/ashkelon/lib/commons-dbcp.jar"/>                                             
+      <pathelement location="/Users/roberthays/ashkelon/lib/java2html.jar"/>                                             
+      <pathelement location="/Users/roberthays/ashkelon/lib/oro.jar"/>                                             
+      <pathelement location="/Users/roberthays/ashkelon/lib/servlet.jar"/>                                             
+      <pathelement location="/Users/roberthays/ashkelon/lib/xerces.jar"/>                                             
+      <pathelement location="/Users/roberthays/ashkelon/db/mysql/mysql-connector-java-2.0.14-bin.jar"/>               
+    </path>
+    <ashkelon operation="reset"/>
+    <ashkelon operation="add"
+              api="${alephnaught.basedir}/alephnaught.xml"
+              classpath="${alephnaught.cdir}"
+              sourcepath="${alephnaught.sdir}"
+              extdirs="${alephnaught.ldir}">
+      <doclet name="org.ashkelon.Ashkelon"
+              pathref="ashkelon.path">
+        <param name="-api" value="${alephnaught.basedir}/alephnaught.xml"/>
+      </doclet>
+    </ashkelon>
+    <ashkelon operation="list"/>
+    <ashkelon operation="remove">
+      <include name="@${alephnaught.basedir}/alephnaught.xml"/>
+    </ashkelon>
+    <ashkelon operation="add"
+              api="${alephnaught.basedir}/alephnaught.xml"
+              classpath="${alephnaught.cdir}"
+              sourcepath="${alephnaught.sdir}"
+              extdirs="${alephnaught.ldir}">
+      <doclet name="org.ashkelon.Ashkelon"
+              pathref="ashkelon.path">    
+        <param name="-api" value="${alephnaught.basedir}/alephnaught.xml"/>
+      </doclet>
+    </ashkelon>
+    <ashkelon operation="updaterefs"/>
+  </target>
+
+</project>
