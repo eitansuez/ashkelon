@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<api>
+
+  <name>Castor Complete API</name>
+  <summarydescription>Castor is an open source data binding framework for Java[tm].</summarydescription>
+  <description>Castor is an open source data binding framework for Java[tm]. It's basically the shortest path between Java objects, XML documents, SQL tables and LDAP directories. Castor provides Java to XML binding, Java to SQL/LDAP persistence, and then some more.</description>
+
+  <publisher>Exolab</publisher>
+  <download_url>http://castor.exolab.org/</download_url>
+  <release_date>2002-11-04T08:00:00.000</release_date>
+  <version>0.9.4.3</version>
+
+  <package>org.exolab.castor.builder</package>
+  <package>org.exolab.castor.dsml</package>
+  <package>org.exolab.castor.jdo</package>
+  <package>org.exolab.castor.mapping</package>
+  <package>org.exolab.castor.types</package>
+  <package>org.exolab.castor.xml</package>
+  <package>org.exolab.castor.builder.binding</package>
+  <package>org.exolab.castor.builder.binding.types</package>
+  <package>org.exolab.castor.builder.types</package>
+  <package>org.exolab.castor.builder.util</package>
+  <package>org.exolab.castor.dsml.jndi</package>
+  <package>org.exolab.castor.dsml.mozilla</package>
+  <package>org.exolab.castor.dsml.schema</package>
+  <package>org.exolab.castor.dsml.tools</package>
+  <package>org.exolab.castor.dtx</package>
+  <package>org.exolab.castor.gui</package>
+  <package>org.exolab.castor.jdo.conf</package>
+  <package>org.exolab.castor.jdo.drivers</package>
+  <package>org.exolab.castor.jdo.engine</package>
+  <package>org.exolab.castor.jdo.oql</package>
+  <package>org.exolab.castor.jdo.transactionmanager</package>
+  <package>org.exolab.castor.jdo.transactionmanager.spi</package>
+  <package>org.exolab.castor.mapping.handlers</package>
+  <package>org.exolab.castor.mapping.loader</package>
+  <package>org.exolab.castor.mapping.xml</package>
+  <package>org.exolab.castor.mapping.xml.types</package>
+  <package>org.exolab.castor.net</package>
+  <package>org.exolab.castor.net.util</package>
+  <package>org.exolab.castor.persist</package>
+  <package>org.exolab.castor.persist.spi</package>
+  <package>org.exolab.castor.tools</package>
+  <package>org.exolab.castor.util</package>
+  <package>org.exolab.castor.xml.descriptors</package>
+  <package>org.exolab.castor.xml.dtd</package>
+  <package>org.exolab.castor.xml.dtd.parser</package>
+  <package>org.exolab.castor.xml.handlers</package>
+  <package>org.exolab.castor.xml.schema</package>
+  <package>org.exolab.castor.xml.schema.reader</package>
+  <package>org.exolab.castor.xml.schema.simpletypes</package>
+  <package>org.exolab.castor.xml.schema.simpletypes.factory</package>
+  <package>org.exolab.castor.xml.schema.util</package>
+  <package>org.exolab.castor.xml.schema.writer</package>
+  <package>org.exolab.castor.xml.util</package>
+  <package>org.exolab.castor.xml.validators</package>
+  <package>org.exolab.javasource</package>
+</api>
+
+
