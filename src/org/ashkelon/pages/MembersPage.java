@@ -10,6 +10,9 @@ import java.sql.*;
 import org.apache.oro.text.perl.*;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class MembersPage extends Page
 {
    public MembersPage()
@@ -165,21 +168,18 @@ public class MembersPage extends Page
          whereClause.add("m.classid=c.id and p.id=c.packageid and lower(p.name) like ?");
       whereClause.add("m.docid=d.id");
 
-      if (DBMgr.getInstance().getDbtype().equals("oracle"))  // for oracle outer join
+      if (DBMgr.getInstance().isOracle())  // for oracle outer join
       {
          whereClause.add(" m.id=em.id (+) ");
          whereClause.add(" m.id=meth.id (+) ");
       }
 
-      sql += StringUtils.join(whereClause.toArray(), " and ");
-
-      if (DBMgr.getInstance().isOracle())
-         sql += "  and rownum<50 order by m.qualifiedname ";
-      else
-         sql += " order by m.qualifiedname limit 50 ";
-
+      sql += StringUtils.join(whereClause.toArray(), " and ") + 
+             " order by m.qualifiedname ";
 
       PreparedStatement p = conn.prepareStatement(sql);
+      p.setMaxRows(50);
+      
       int i=1;
 
       if (filters.get("searchField")!=null)
@@ -274,8 +274,7 @@ public class MembersPage extends Page
             " from METHOD meth right outer join MEMBER m on meth.id=m.id " +
             "  left outer join EXECMEMBER em on em.id=m.id, DOC d " +
             " where lower("+selectby+") like ? and m.docid=d.id  " +
-            " order by m.qualifiedname " +
-            " limit 50 ";
+            " order by m.qualifiedname ";
       
       if (DBMgr.getInstance().isOracle())
       {
@@ -290,11 +289,11 @@ public class MembersPage extends Page
          "    and m.docid = d.id " + 
          "    and m.id = meth.id (+) " +
          "    and m.id = em.id (+) " +
-         "  and rownum<50 " + 
          " order by m.qualifiedname";
       }
       
       PreparedStatement p = conn.prepareStatement(sql);
+      p.setMaxRows(50);
       p.setString(1, searchField);
       ResultSet rset = p.executeQuery();
 

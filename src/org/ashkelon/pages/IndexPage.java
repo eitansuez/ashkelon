@@ -7,8 +7,13 @@ import org.ashkelon.db.*;
 import java.util.*;
 import java.sql.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class IndexPage extends Page
 {
+   private static int PAGE_SIZE = 21;
+   
    public IndexPage()
    {
       super();
@@ -29,7 +34,7 @@ public class IndexPage extends Page
       if (browseType.equals("package"))
       {
          results = getPackages(startFrom);
-         if (results.size()>20)
+         if (results.size()>=PAGE_SIZE)
          {
             JPackage next = (JPackage) results.remove(results.size()-1);
             request.setAttribute("next", next.getName());
@@ -38,7 +43,7 @@ public class IndexPage extends Page
       else if (browseType.equals("class"))
       {
          results = getClasses(startFrom);
-         if (results.size()>20)
+         if (results.size()>=PAGE_SIZE)
          {
             ClassType next = (ClassType) results.remove(results.size()-1);
             request.setAttribute("next", next.getName());
@@ -47,7 +52,7 @@ public class IndexPage extends Page
       else if (browseType.equals("member"))
       {
          results = getMembers(startFrom);
-         if (results.size()>20)
+         if (results.size()>=PAGE_SIZE)
          {
             Member next = (Member) results.remove(results.size()-1);
             request.setAttribute("next", next.getName());
@@ -56,7 +61,7 @@ public class IndexPage extends Page
       else if (browseType.equals("author"))
       {
          results = getAuthors(startFrom);
-         if (results.size()>20)
+         if (results.size()>=PAGE_SIZE)
          {
             Author next = (Author) results.remove(results.size()-1);
             request.setAttribute("next", next.getName());
@@ -76,33 +81,20 @@ public class IndexPage extends Page
    {
       startFrom = startFrom.toLowerCase();
 
-      // oracle light will not allow a nested query with an order by clause!!
-      // either that or my installation is corrupt.
-
-      /*
-      String sql =
-         "select p.id, p.name, " +
-         " d.summarydescription, d.since, d.deprecated " +
-         " from package p, doc d " + 
-         " where lower(p.name) >= ? " +
-         " and p.docid = d.id " + 
-         " order by p.name ";
-      */
-      
       String sql = DBMgr.getInstance().getStatement("getpackages");
       
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      //p.setFetchSize(21);
-      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setFetchSize(PAGE_SIZE);
+      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setMaxFieldSize(PAGE_SIZE);
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
 
       List results = new ArrayList();
       JPackage pkg;
-      //DocInfo doc;
       
       int rownum = 0;
-      while (rset.next() && rownum < 21)
+      while (rset.next() && rownum < PAGE_SIZE)
       {
         pkg = new JPackage(rset.getString(2));
         pkg.setId(rset.getInt(1));
@@ -121,34 +113,21 @@ public class IndexPage extends Page
    {
       startFrom = startFrom.toLowerCase();
 
-      // oracle light will not allow a nested query with an order by clause!!
-      // either that or my installation is corrupt.
-
-      /*
-      String sql =
-         "select c.id, c.qualifiedname, c.type, " +
-         " c.isstatic, c.isfinal, c.isabstract, c.accessibility, c.modifier, " +
-         " d.summarydescription, d.since, d.deprecated " +
-         " from classtype c, doc d " + 
-         " where lower(c.name) >= ? " +
-         " and c.docid = d.id " + 
-         " order by lower(c.name) ";
-        */
-      
       String sql = DBMgr.getInstance().getStatement("getclasses");
 
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      //p.setFetchSize(21);
-      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setFetchSize(PAGE_SIZE);
+      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setMaxRows(PAGE_SIZE);
+      
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
       
       List results = new ArrayList();
       ClassType c;
-      //DocInfo doc;
       
       int rownum = 0;
-      while (rset.next() && rownum < 21)
+      while (rset.next() && rownum < PAGE_SIZE)
       {
         c = new ClassType(rset.getString(2));
         c.setId(rset.getInt(1));
@@ -175,28 +154,13 @@ public class IndexPage extends Page
    {
       startFrom = startFrom.toLowerCase();
 
-      /*
-      String sql =
-      "select * from ( " + 
-         "select m.id, m.qualifiedname, m.type, " +
-         "       m.isstatic, m.isfinal, m.accessibility, m.modifier, " +
-         "       meth.isabstract, meth.returntypeid, meth.returntypename, meth.returntypedimension, " +
-         "       em.signature, " + 
-         "       d.summarydescription, d.since, d.deprecated " +
-         " from member m, doc d, method meth, execmember em " + 
-         " where lower(m.name) >= ? " +
-         "    and m.docid = d.id " + 
-         "    and m.id = meth.id (+) " +
-         "    and m.id = em.id (+) " +
-         " order by lower(m.name) " + 
-       " ) where rownum <= 20";
-       */
-      
       String sql = DBMgr.getInstance().getStatement("getmembers");
       
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      //p.setFetchSize(21);
-      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setFetchSize(PAGE_SIZE);
+      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setMaxRows(PAGE_SIZE);
+      
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
 
@@ -204,7 +168,7 @@ public class IndexPage extends Page
       Member m;
 
       int rownum = 0;
-      while (rownum<21 && rset.next())
+      while (rownum<PAGE_SIZE && rset.next())
       {
         m = new Member(rset.getString(2), rset.getInt(3));
         m.setId(rset.getInt(1));
@@ -257,19 +221,13 @@ public class IndexPage extends Page
    {
       startFrom = startFrom.toLowerCase();
 
-      /*
-      String sql =
-         "select id, name " +
-         " from author " + 
-         " where lower(name) >= ? " +
-         " order by lower(name) ";
-        */
-      
       String sql = DBMgr.getInstance().getStatement("getauthors");
 
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      //p.setFetchSize(21);
-      //p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setFetchSize(PAGE_SIZE);
+      p.setFetchDirection(ResultSet.FETCH_FORWARD);
+      p.setMaxRows(PAGE_SIZE);
+      
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
       
@@ -277,7 +235,7 @@ public class IndexPage extends Page
       
       int rownum = 0;
       Author author = null;
-      while (rset.next() && rownum < 21)
+      while (rset.next() && rownum < PAGE_SIZE)
       {
         author = new Author(rset.getString(2));
         author.setId(rset.getInt(1));

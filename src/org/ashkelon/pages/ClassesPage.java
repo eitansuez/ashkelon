@@ -9,6 +9,9 @@ import java.sql.*;
 
 import org.apache.oro.text.perl.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class ClassesPage extends Page
 {
    public ClassesPage() throws SQLException
@@ -111,14 +114,12 @@ public class ClassesPage extends Page
             whereClause.add("d.deprecated = ''");
       }
       
-      sql += StringUtils.join(whereClause.toArray(), " and ");
-
-      if (DBMgr.getInstance().isOracle())
-         sql += "  and rownum<50 order by c.qualifiedname, c.type ";
-      else
-         sql += " order by c.qualifiedname, c.type limit 50";
+      sql += StringUtils.join(whereClause.toArray(), " and ") + 
+              " order by c.qualifiedname, c.type ";
       
       PreparedStatement p = conn.prepareStatement(sql);
+      p.setMaxRows(50);
+      
       int i=1;
       if (filters.get("searchField")!=null)
          p.setString(i++, (String) filters.get("searchField"));
@@ -137,7 +138,7 @@ public class ClassesPage extends Page
 
       List found = new ArrayList();
       ClassType c;
-      //DocInfo doc;
+      
       while (rset.next())
       {
         c = new ClassType(rset.getString(2));
@@ -178,8 +179,7 @@ public class ClassesPage extends Page
          " from CLASSTYPE c, DOC d " + 
          " where lower("+selectby+") like ? " + 
          "  and c.docid=d.id " +
-         " order by c.qualifiedname, c.type " +
-         " limit 50 ";
+         " order by c.qualifiedname, c.type ";
       
       if (DBMgr.getInstance().isOracle())
       {
@@ -190,17 +190,17 @@ public class ClassesPage extends Page
          " from CLASSTYPE c, DOC d " + 
          " where lower("+selectby+") like ? " + 
          "  and c.docid=d.id " +
-         "  and rownum<50 " + 
          " order by c.qualifiedname, c.type";
       }
       
       PreparedStatement p = conn.prepareStatement(sql);
+      p.setMaxRows(50);
       p.setString(1, searchField);
       ResultSet rset = p.executeQuery();
 
       List found = new ArrayList();
       ClassType c;
-      //DocInfo doc;
+      
       while (rset.next())
       {
         c = new ClassType(rset.getString(2));

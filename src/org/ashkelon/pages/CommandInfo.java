@@ -1,5 +1,8 @@
 package org.ashkelon.pages;
 
+/**
+ * @author Eitan Suez
+ */
 public class CommandInfo
 {
    private String command;

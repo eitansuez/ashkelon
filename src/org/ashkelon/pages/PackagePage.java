@@ -7,6 +7,9 @@ import org.ashkelon.db.*;
 import java.util.*;
 import java.sql.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class PackagePage extends Page
 {
    public PackagePage()

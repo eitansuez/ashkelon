@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Eitan Suez
+ */
 public class Generic
 {
    public static List listNames(Connection conn, String tablename) throws SQLException

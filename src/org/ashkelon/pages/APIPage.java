@@ -7,6 +7,9 @@ import java.util.*;
 import java.sql.*;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class APIPage extends Page
 {
    public APIPage()

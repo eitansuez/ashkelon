@@ -6,6 +6,9 @@ import java.util.*;
 import java.sql.*;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class ClassSourcePage extends Page
 {
    private File srcHtmlDir = null;

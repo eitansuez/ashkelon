@@ -8,6 +8,9 @@ import org.exolab.castor.mapping.*;
 import org.exolab.castor.xml.*;
 import org.ashkelon.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class ConfigInfo
 {
    private Collection commandList;

@@ -3,6 +3,9 @@ package org.ashkelon.pages;
 import org.ashkelon.util.*;
 import java.sql.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class ConfigPage extends Page
 {
    public ConfigPage()

@@ -5,13 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * @author Eitan Suez
- *
- * a utility to write xml skeleton file from package-list file
+ * A utility to write xml skeleton file from package-list file
  * to take away drudgery of creating xml files that are inputs
  * into the repository manager
+ *
+ * @author Eitan Suez
  */
-
 public class ApiXml
 {
   public static void main(String args[]) throws IOException

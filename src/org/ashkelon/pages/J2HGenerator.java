@@ -8,9 +8,10 @@ import java.io.IOException;
 import com.java2html.Java2HTML;
 
 /**
+ * implementation based on the tool "j2h" ; see http://www.java2html.com/
+ * 
  * @author Eitan Suez
  */
-// implementation based on the tool "j2h" ; see http://www.java2html.com/
 class J2HGenerator implements HtmlGenerator
 {
    private Java2HTML j2h = null;

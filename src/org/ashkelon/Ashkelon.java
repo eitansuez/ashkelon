@@ -33,6 +33,9 @@ import com.sun.javadoc.Doclet;
 import com.sun.javadoc.PackageDoc;
 import com.sun.javadoc.RootDoc;
 
+/**
+ * @author Eitan Suez
+ */
 public class Ashkelon extends Doclet
 {
    private RootDoc root = null;

@@ -9,6 +9,9 @@ import java.sql.*;
 
 import org.apache.oro.util.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class MemberPage extends Page
 {
    public MemberPage()

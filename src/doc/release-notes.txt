@@ -4,7 +4,9 @@ What's new in v0.8.8 ():
 ------------------------
 
 1. Internal refactoring of statements.properties files for various databases:  eliminated duplication in common sql statements
-
+2. Added support for mckoidb
+3. Revised all queries using "limit" clause and replaced with jdbc "setMaxRows" on statements or preparedstatements
+4. Fixed bug regarding alphabet tab links on class index pages
 
 What's new in v0.8.7 (August 17 2004):
 --------------------------------------

@@ -9,9 +9,10 @@ import de.java2html.javasource.*;
 import de.java2html.options.*;
 
 /**
+ * implementation based on the tool "Java2Html" ;  see http://www.java2html.de/
+ * 
  * @author Eitan Suez
  */
-// implementation based on the tool "Java2Html" ;  see http://www.java2html.de/
 class Java2HtmlGenerator implements HtmlGenerator
 {
    private Java2HtmlConversionOptions _options = null;

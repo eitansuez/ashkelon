@@ -4,6 +4,9 @@ import org.ashkelon.util.*;
 import java.sql.*;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class SearchPage extends Page
 {
    public SearchPage() throws SQLException

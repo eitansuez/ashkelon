@@ -6,6 +6,9 @@ import org.ashkelon.db.*;
 import java.util.*;
 import java.sql.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class StatsAuthors extends Page
 {
    public StatsAuthors()
@@ -19,24 +22,18 @@ public class StatsAuthors extends Page
       return null;
    }
    
+   private static int MAX_ROWS = 50;
    
    public List getAuthorStats() throws SQLException
    {
-      /*
-      String sql = 
-         " select * from ( " + 
-         "  select a.name, count(*) " +
-         "  from classtype c, author a, class_author ca " + 
-         "  where c.id=ca.classid and a.id=ca.authorid " +
-         "   group by a.name order by count(*) desc " +
-         " ) where rownum <= 50 ";
-       */
       String sql = DBMgr.getInstance().getStatement("authorstats");
       
       Statement stmt = conn.createStatement();
+      stmt.setMaxRows(MAX_ROWS);
+      
       ResultSet rset = stmt.executeQuery(sql);
       
-      List stats = new ArrayList(50);
+      List stats = new ArrayList(MAX_ROWS);
       
       List info = null;
       

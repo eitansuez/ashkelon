@@ -2,8 +2,11 @@ package org.ashkelon.pages;
 
 import java.sql.*;
 
-/** jsp's with no or empty associated java class can refer to
- *  this one in the config.xml file 
+/**
+ * jsp's with no or empty associated java class can refer to
+ * this one in the config.xml file
+ *  
+ * @author Eitan Suez
  */
 public class NoopPage extends Page
 {

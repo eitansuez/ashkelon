@@ -8,6 +8,9 @@ import org.ashkelon.db.DBMgr;
 import org.ashkelon.util.Logger;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class AncestorPopulator
 {
 

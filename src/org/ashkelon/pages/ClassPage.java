@@ -8,6 +8,9 @@ import java.sql.*;
 import org.apache.oro.util.*;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class ClassPage extends Page
 {
    public ClassPage()

@@ -8,6 +8,9 @@ import java.util.*;
 import java.sql.*;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class XrefsPage extends Page
 {
    public XrefsPage()
@@ -73,12 +76,15 @@ public class XrefsPage extends Page
       return null;
    }
    
+   private static int MAX_ROWS = 50;
+   
    public List getFields(int clsId) throws SQLException
    {
       String sql = DBMgr.getInstance().getStatement("xref_fields");
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, clsId);
+      pstmt.setMaxRows(MAX_ROWS);
       ResultSet rset = pstmt.executeQuery();
       
       List fields = new ArrayList();
@@ -104,23 +110,11 @@ public class XrefsPage extends Page
 
    public List getReturnedBy(int clsId) throws SQLException
    {
-      /*
-      String sql = 
-         " select m.qualifiedname, m.id, m.isstatic, m.isfinal, m.accessibility, m.modifier, " + 
-         "  ex.signature, meth.returntypename, meth.returntypedimension, meth.isabstract, " +
-         " d.summarydescription, d.since, d.deprecated " + 
-         " from method meth, execmember ex, member m, doc d " + 
-         " where meth.returntypeid=? " + 
-         "  and meth.id=ex.id  " + 
-         "  and meth.id=m.id " + 
-         "  and m.docid=d.id " + 
-         "  and rownum < 50 " + 
-         " order by m.qualifiedname ";
-       */
       String sql = DBMgr.getInstance().getStatement("xref_returnedby");
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, clsId);
+      pstmt.setMaxRows(MAX_ROWS);
       ResultSet rset = pstmt.executeQuery();
       
       List methods = new ArrayList();
@@ -150,24 +144,11 @@ public class XrefsPage extends Page
    
    public List getPassedTo(int clsId) throws SQLException
    {
-      /*
-      String sql = 
-         " select mem.qualifiedname, mem.id, mem.type, " + 
-         "  ex.signature, d.summarydescription, " + 
-         "  p.typedimension, p.name " + 
-         " from parameter p, " + 
-         "  execmember ex, member mem, doc d " + 
-         " where p.typeid=? " + 
-         "  and p.execmemberid=ex.id " + 
-         "  and ex.id=mem.id " + 
-         "  and mem.docid=d.id " + 
-         "  and rownum < 50 " + 
-         " order by mem.qualifiedname, mem.type ";
-      */
       String sql = DBMgr.getInstance().getStatement("xref_passedto");
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, clsId);
+      pstmt.setMaxRows(MAX_ROWS);
       ResultSet rset = pstmt.executeQuery();
       
       List execs = new ArrayList();
@@ -203,24 +184,11 @@ public class XrefsPage extends Page
 
    public List getThrownBy(int clsId) throws SQLException
    {
-      /*
-      String sql = 
-         " select mem.qualifiedname, mem.id, mem.type, " + 
-         "  ex.signature, d.summarydescription, " + 
-         "  te.description, te.name " + 
-         " from thrownexception te, " +
-         "  execmember ex, member mem, doc d " + 
-         " where te.exceptionid=? " + 
-         "  and te.throwerid=ex.id " + 
-         "  and ex.id=mem.id " + 
-         "  and mem.docid=d.id " + 
-         "  and rownum < 50 " + 
-         " order by mem.qualifiedname, mem.type ";
-       */
       String sql = DBMgr.getInstance().getStatement("xref_thrownby");
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, clsId);
+      pstmt.setMaxRows(MAX_ROWS);
       ResultSet rset = pstmt.executeQuery();
       
       List execs = new ArrayList();
@@ -260,47 +228,20 @@ public class XrefsPage extends Page
    
    public List getImplementedBy(int clsId, boolean classtarget) throws SQLException
    {
-      /*
-      String sql =
-         " select " +
-         "  c.qualifiedname, c.id,  " + 
-         "  d.summarydescription, c.type " + 
-         " from IMPL_INTERFACE ii, " +
-         "  CLASSTYPE c, DOC d " + 
-         " where ii.interfaceid=? " + 
-         "  and ii.classid=c.id " + 
-         "  and c.type "+maybe+"=? " + 
-         "  and c.docid=d.id " + 
-         "  and rownum < 50 " + 
-         " order by c.qualifiedname ";
-         
-      if (DBMgr.getInstance().getDbtype().equals("mysql"))
-      {
-         sql = 
-         " select " +
-         "  c.qualifiedname, c.id,  " + 
-         "  d.summarydescription, c.type " + 
-         " from IMPL_INTERFACE ii, " +
-         "  CLASSTYPE c, DOC d " + 
-         " where ii.interfaceid=? " + 
-         "  and ii.classid=c.id " + 
-         "  and c.type "+maybe+"=? " + 
-         "  and c.docid=d.id " + 
-         " order by c.qualifiedname " +
-         " limit 50";
-      }
-      */
-      
       String sql = "";
-      if( classtarget ) {
+      if( classtarget )
+      {
          sql = DBMgr.getInstance().getStatement("xref_implementedbyclasstarget");
-      } else {
+      }
+      else
+      {
          sql = DBMgr.getInstance().getStatement("xref_implementedby");
       }
       
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, clsId);
       pstmt.setInt(2, ClassType.INTERFACE);
+      pstmt.setMaxRows(MAX_ROWS);
       ResultSet rset = pstmt.executeQuery();
       
       List classes = new ArrayList();
@@ -325,23 +266,12 @@ public class XrefsPage extends Page
 
    public List getSubclasses(ClassType refc) throws SQLException
    {
-      /*
-      String sql =
-         " select " +
-         "  c.qualifiedname, c.id,  " + 
-         "  d.summarydescription, c.type " + 
-         " from classtype c, doc d " + 
-         " where c.superclassname=? " + 
-         "  and c.type != ? " + 
-         "  and c.docid=d.id " + 
-         "  and rownum < 50 " + 
-         " order by c.qualifiedname ";
-       */
       String sql = DBMgr.getInstance().getStatement("xref_subclass");
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, refc.getQualifiedName());
       pstmt.setInt(2, ClassType.INTERFACE);
+      pstmt.setMaxRows(MAX_ROWS);
       ResultSet rset = pstmt.executeQuery();
       
       List classes = new ArrayList();

@@ -4,6 +4,9 @@ import org.ashkelon.*;
 import org.ashkelon.util.*;
 import java.sql.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class AuthorPage extends Page
 {
    public AuthorPage()

@@ -4,6 +4,9 @@ import org.ashkelon.util.*;
 import java.util.*;
 import javax.servlet.http.*;
 
+/**
+ * @author Eitan Suez
+ */
 public class Trail extends Page
 {
    public Trail()

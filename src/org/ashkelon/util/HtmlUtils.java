@@ -4,6 +4,9 @@ package org.ashkelon.util;
 import org.apache.oro.text.perl.Perl5Util;
 
 
+/**
+ * @author Eitan Suez
+ */
 public class HtmlUtils
 {
    /**

@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * @author Eitan Suez
+ */
 public class TreeNode
 {
    private TreeNode parent;

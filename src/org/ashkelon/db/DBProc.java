@@ -10,6 +10,9 @@ import java.util.Map;
 
 import org.ashkelon.util.Logger;
 
+/**
+ * @author Eitan Suez
+ */
 public class DBProc
 {
    static Map scriptMap = null;
