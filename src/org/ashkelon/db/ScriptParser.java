@@ -21,12 +21,17 @@ public class ScriptParser
    {
    }
    
+   public static List parse(String script)
+   {
+     return parse(script, true);
+   }
+
    /**
     * @param script the fully qualified path & name of the .sql script file
     * to parse
     * @return the list of sql statements in the script file, as strings
     */
-   public static List parse(String script)
+   public static List parse(String script, boolean warn)
    {
       List commands = new ArrayList();
       try
@@ -34,7 +39,8 @@ public class ScriptParser
          InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(script);
          if (is == null)
          {
-            Logger.getInstance().brief("could not find resource:  "+script);
+            if (warn)
+              Logger.getInstance().brief("could not find resource:  "+script);
             return commands;
          }
          BufferedReader br = new BufferedReader(new InputStreamReader(is));

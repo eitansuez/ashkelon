@@ -33,7 +33,8 @@ public class DBProc
       String script = (String) scriptMap.get(action);
       proc.log.debug("Script is: "+script);
       if (script == null) return;
-      List commands = ScriptParser.parse(script);
+      boolean warn = (action.indexOf("idx") > -1) ? false : true;
+      List commands = ScriptParser.parse(script, warn);
       proc.log.debug("Commands length: "+commands.size());
 
       try
@@ -71,7 +72,8 @@ public class DBProc
          return;
       }
       // script = StringUtils.substitute(script, "\\$dbtype", DBMgr.getInstance().getDbtype());
-      List commands = ScriptParser.parse(script);
+      boolean warn = (action.indexOf("idx") > -1) ? false : true;
+      List commands = ScriptParser.parse(script, warn);
       DBUtils.submitBatch(conn, commands);
    }
    
