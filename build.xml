@@ -53,6 +53,12 @@
           <exclude name="**/*.jar" />
         </fileset>
       </copy>
+
+      <copy file="${etcdir}/web.xml" tofile="${builddir}/web.xml" filtering="true">
+        <filterset>
+          <filter token="SOURCEPATH" value="${env.SOURCEPATH}" />
+        </filterset>
+      </copy> 
    </target>
 
    <target name="jar" depends="compile" description="jar">
@@ -60,7 +66,7 @@
    </target>
 
    <target name="war" depends="jar" description="war">
-      <war destfile="${distdir}/ashkelon.war" webxml="${etcdir}/web.xml" basedir="htdocs">
+      <war destfile="${distdir}/ashkelon.war" webxml="${builddir}/web.xml" basedir="htdocs">
          <lib dir="${libdir}" excludes="servlet.jar" />
          <lib dir="${dbdir}" includes="*.jar" />
          <lib dir="${builddir}" includes="ashkelon.jar" />

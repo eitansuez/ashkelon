@@ -10,7 +10,7 @@
 
     <context-param>
       <param-name>sourcepath</param-name>
-      <param-value>/Users/eitansuez/devel/j2se-src/j2se/src/share/classes:/Users/eitansuez/devel/sources</param-value>
+      <param-value>@SOURCEPATH@</param-value>
     </context-param>
 
     <servlet>
