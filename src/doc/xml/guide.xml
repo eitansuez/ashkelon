@@ -4,12 +4,18 @@
   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
   
 <book>
+<title>Ashkelon User Guide</title>
+<titleabbrev>Ashkelon</titleabbrev>
 
 <bookinfo>
-<title>ashkelon</title>
-<author>Eitan Suez</author>
-<date>October 14 2002 (updated May 2003)</date>
+  <title>
+   <inlinegraphic fileref="figures/ashkelon-logo.gif" format="GIF" />
+   ashkelon
+  </title>
+  <author>Eitan Suez</author>
+  <date>October 14 2002 (updated May 2003)</date>
 </bookinfo>
+
 
 <chapter>
 <title>Overview</title>
@@ -296,6 +302,83 @@ Run script: <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/in
 </example>
 </listitem>
 </orderedlist>
+
+<para>
+Fyi, this is the output postgres produces in response to executing the commands in init.sql:
+</para>
+
+<screen>
+psql:db/init.sql:16: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "doc_pkey" for table "doc"
+CREATE TABLE
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+psql:db/init.sql:45: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "api_pkey" for table "api"
+CREATE TABLE
+CREATE INDEX
+psql:db/init.sql:57: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "package_pkey" for table "package"
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+psql:db/init.sql:81: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "classtype_pkey" for table "classtype"
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+psql:db/init.sql:133: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "author_pkey" for table "author"
+CREATE TABLE
+CREATE INDEX
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+psql:db/init.sql:161: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "member_pkey" for table "member"
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+psql:db/init.sql:177: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "field_pkey" for table "field"
+CREATE TABLE
+CREATE INDEX
+psql:db/init.sql:191: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "execmember_pkey" for table "execmember"
+CREATE TABLE
+psql:db/init.sql:203: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "method_pkey" for table "method"
+CREATE TABLE
+CREATE INDEX
+psql:db/init.sql:212: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "constructor_pkey" for table "constructor"
+CREATE TABLE
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE TABLE
+psql:db/init.sql:272: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "seqs_pkey" for table "seqs"
+CREATE TABLE
+INSERT 1693065 1
+INSERT 1693066 1
+INSERT 1693067 1
+INSERT 1693068 1
+INSERT 1693069 1
+INSERT 1693070 1
+</screen>
+
 
 </sect2>
 
