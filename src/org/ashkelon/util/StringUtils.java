@@ -160,4 +160,24 @@ public class StringUtils
      }
    }
 
+
+  /**
+   * strips out any null characters from string
+   * @return string less any null characters in it
+   */
+  public static String stripNull(String input)
+  {
+    StringBuffer result = new StringBuffer();
+    char c;
+    for (int i=0; i<input.length(); i++)
+    {
+      c = input.charAt(i);
+      if (c != 0)
+      {
+        result.append(c);
+      }
+    }
+    return result.toString();
+  }
+
 }
