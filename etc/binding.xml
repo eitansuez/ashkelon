@@ -9,11 +9,10 @@
     <value name="download_url" field="downloadURL" />
     <value name="release_date" field="releaseDate" />
     <value name="version" field="version" />
-    <collection field="packagenames">
+    <collection name="packages" field="packagenames">
       <value name="package" />
     </collection>
   </mapping>
-  
-</binding>
 
+</binding>
 
