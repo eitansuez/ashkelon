@@ -12,19 +12,18 @@ package org.ashkelon.ant;
 
 import java.io.File;
 import java.io.FileReader;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.tools.ant.*;
-import org.apache.tools.ant.taskdefs.*;
-import org.apache.tools.ant.types.*;
-
-import org.ashkelon.*;
-import org.ashkelon.util.*;
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.taskdefs.Javadoc;
+import org.apache.tools.ant.types.PatternSet;
+import org.ashkelon.API;
+import org.ashkelon.Ashkelon;
+import org.ashkelon.util.Logger;
 
 /**
  * This is an ant task to run ashkelon, a JavaDoc-in-a-database toolkit.

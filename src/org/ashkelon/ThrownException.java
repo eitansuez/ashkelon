@@ -5,11 +5,14 @@ package org.ashkelon;
  *  March 2001
  */
 
-import org.ashkelon.util.*;
-import org.ashkelon.db.*;
-import java.sql.*;
-import java.util.*;
-import java.io.*;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.ashkelon.db.DBUtils;
+import org.ashkelon.util.StringUtils;
 
 /**
  * Part of Persistable javadoc object model
