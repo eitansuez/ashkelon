@@ -157,10 +157,15 @@ public class JDocUtil
                label = ref.getRefDocName();
             }
             
-            // <A HREF="index.html?cmd=$cmd&$var=$value">$caption</A>
-            text.append("<A HREF=\"index.html?cmd=").append(cmd).append(".main");
-            text.append("&").append(var).append("=").append(value).append("\">");
-            text.append(label).append("</A>");
+            // <A HREF="{cmd}.main.do?{var}=$value">$caption</A>
+            text.append("<a href=\"").append(cmd).append(".main.do?");
+            text.append(var).append("=").append(value).append("\">");
+            text.append(label).append("</a>");
+            
+            // <a href="index.html?cmd=$cmd&$var=$value">$caption</A>
+            //text.append("<a href=\"index.html?cmd=").append(cmd).append(".main");
+            //text.append("&").append(var).append("=").append(value).append("\">");
+            //text.append(label).append("</a>");
 
             //log.debug("Resolved inline tag: "+text);
          }
