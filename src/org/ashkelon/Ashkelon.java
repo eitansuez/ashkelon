@@ -56,7 +56,7 @@ public class Ashkelon extends Doclet
       Logger log = Logger.getInstance();
       
       if (verbose)
-   	   log.setTraceLevel(Logger.VERBOSE);
+         log.setTraceLevel(Logger.VERBOSE);
       if (debug)
          log.setTraceLevel(Logger.DEBUG);
       
@@ -134,8 +134,6 @@ public class Ashkelon extends Doclet
          {
             String sourcepath = StringUtils.getStringCommandLineOption("-sourcepath", root.options());
             api = new API().load(apifilename, sourcepath);
-            // was:
-            // api = new API().load(new FileReader(apifilename));
             log.debug("api unmarshalled; name is: "+api.getName());
          }
          catch (Exception ex)
@@ -478,14 +476,10 @@ public class Ashkelon extends Doclet
    
    private static void addCmd(String[] args)
    {
-      String[] javadocargs = new String[args.length + 1];
-      javadocargs[0] = "-doclet";
-      javadocargs[1] = "org.ashkelon.Ashkelon";
+      String[] javadocargs = new String[args.length - 1];
       for (int i=1; i<args.length; i++)
-      {
-         javadocargs[i+1] = args[i];
-      }
-      com.sun.tools.javadoc.Main.main(javadocargs);
+         javadocargs[i-1] = args[i];
+      com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.Ashkelon", args);
    }
    
    public static void addapiCmd(String[] args)
@@ -497,8 +491,6 @@ public class Ashkelon extends Doclet
       {
          String sourcepath = extractSourcepath(args);
          API api = new API().load(apifilename, sourcepath);
-         // was:
-         // API api = new API().load(new FileReader(apifilename));
          log.debug("api unmarshalled; name is: "+api.getName());
          LinkedList argslist = new LinkedList(Arrays.asList(args));
          argslist.removeLast();
@@ -511,17 +503,6 @@ public class Ashkelon extends Doclet
          log.debug(StringUtils.join(argslist.toArray(), " "));
          String[] addlist = new String[argslist.size()];
          addCmd((String[]) argslist.toArray(addlist));
-
-         /* does not work because calling javadoc never returns 
-          * (must contain a system.exit in it)
-         Ashkelon ashkelon = new Ashkelon();
-         ashkelon.init();
-         api.store(ashkelon.conn);
-         ashkelon.finish();
-         log.traceln("..done");
-          *
-          * this is why above i must pass -api [apifilename] parameters to the doclet!
-          */
       }
       catch (FileNotFoundException ex)
       {
