@@ -20,32 +20,27 @@
 <style type="text/css">
 .menuitem
 {
-  padding: 0 10 0 10;
+  padding: 0 0.75em;
   font-weight: bold;
   color: black;
 }
 </style>
 
-
-<table width="100%" cellpadding="3" cellspacing="0">
-<tr style="background-color: #cdcdcd;">
-<td align="left">
+<div style="background-color: #cdcdcd; border-bottom: 1px solid black;">
+<div style="float: left; padding: 0.25em;">
 <% for (int i=0; i<cmds.length; i++)
   { %>
       <a class="menuitem" href="<%=request.getContextPath()%>/<%=cmds[i]%>.do"><%=tabs.get(cmds[i])%></a>
 <%}%>
-</td>
-<td align="right">
-
+</div>
+<div style="float: right; padding: 0.25em;">
 <a class="menuitem" href="contact.do">Contact</a>
 <a class="menuitem" href="config.do">Settings</a>
 <a class="menuitem" href="help.do">Help</a>
+</div>
 
-</td>
-</tr>
-</table>
-
-<div style="border-bottom: 1px solid black;"></div>
+<div style="clear: both;"></div>
+</div>
 
 
 <%-- SECTION:  NAVIGATION TRAIL --%>
@@ -90,8 +85,11 @@
 
 <% } %>
 
-<br />
 
+<div style="float: left;">
+ <img src="images/logo32.gif" style="padding: 0.5em 1.5em; margin-top: 0; vertical-align: top;" />
+</div>
+<br />
 <div style="float: right;">
   <jsp:include page="legend.html" />
 </div>
