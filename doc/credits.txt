@@ -1,15 +1,16 @@
-11/20/2002
+Created 11/20/2002
+Last Updated: May 2004
 
 Credits:
 ========
 
   Conceived, designed, & built by Eitan Suez,
-  Austin, Texas (www.uptodata.com).
+  Austin, Texas (www.u2d.com).
   
   Sincere thanks goes to the following persons:
 
-  Andreas Schaefer (of JBoss fame) for his
-  energy, for writing the initial ant build file for
+  Andreas Schaefer (of JBoss fame)
+  for his energy, for writing the initial ant build file for
   this project, and for being the first individual
   to step up to the plate and actively contribute
   to this project.
@@ -21,5 +22,5 @@ Credits:
 
   Ben Walding who is working on a maven plugin for ashkelon
   and who planted the idea in my mind to write a maven
-  POM file for ashkelon (maybe v 0.8.3)
+  POM file for ashkelon (maybe v 0.9)
 

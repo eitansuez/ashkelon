@@ -424,7 +424,7 @@ future versions / features
  see todo.txt file
  
  feedback is encouraged.  write:
-   eitan@uptodata.com
+   eitan-keyword-tech.cede1b@u2d.com
   or better yet:
    ashkelon-devs@lists.sourceforge.net
    
