@@ -1520,26 +1520,16 @@ Specific Tasks / Bugs, Small Features
 
 <orderedlist>
 <listitem>
-Stats page:  add class count by api in addition to class count
- by package
+Tab selection initialization:  appears to be broken (at least on mozilla)
 </listitem>
 <listitem>
-API Page:  add listing of classes in a single api, flattening
-  the various packages an api contains.  sort of like a 
-  single package page, but for multiple packages (all
-  belonging to a certain api).
+API Page:  add listing of classes in a single api, flattening the various packages an api contains.  sort of like a single package page, but for multiple packages (all belonging to a certain api).
 </listitem>
 <listitem>
-Tab selection initialization:  appears to be broken (at least on mozilla); fix it
+Enhance search feature:  allow scope restrict to a single API (e.g. find all static methods in API x)
 </listitem>
 <listitem>
-Search:  ability to restrict a search (both 'direct' and 'power') to a single API
-</listitem>
-<listitem>
-Member or class listing:  modifier columns:  establish min-width in style to improve look
-</listitem>
-<listitem>
-Command-line tool:  can sourcepath include jar/zip files?
+Stats:  add 'Class count by API' (in addition to existing 'Class count by package')
 </listitem>
 </orderedlist>
 </sect2>
