@@ -22,6 +22,7 @@ import java.io.*;
 public class Author implements Serializable
 {
    private String name;
+   private String email;
    private List classes;
 
    private static String SEQUENCE = "AUTHOR_SEQ";
@@ -32,8 +33,17 @@ public class Author implements Serializable
    
    public Author(String name)
    {
-      setName(name);
+      parseName(name);
       setClasses(new ArrayList());
+   }
+
+   /**
+    * add logic to properly parse out an <a href..> author tag into a name and an email
+    * address
+    */
+   private void parseName(String name)
+   {
+     setName(name);
    }
    
    public void store(Connection conn) throws SQLException
@@ -90,6 +100,9 @@ public class Author implements Serializable
    public String getName() { return name; }
    public void setName(String name) { this.name = name; }
    
+   public String getEmail() { return email; }
+   public void setEmail(String email) { this.email = email; }
+
    public void setClasses(List classes) { this.classes = classes; }
    public List getClasses() { return classes; }
    
