@@ -1,0 +1,26 @@
+# Mozilla/Firefox Search Plugin for JDocs
+# by Erik C. Thauvin <erik@javalobby.org>
+#  
+# Created: 30 July 2004
+# Updated: 30 July 2004
+#
+<!-- note:  dbdoc.org is not yet live
+  if you have a local installation of ashkelon somewhere that
+  you want to use this firefox search plugin with, simply revise
+  the two urls below accordingly.  then, copy this file and
+  ashkelon.gif to your firefox searchplugins directory -->
+
+<search
+    version = "7.1"
+	name = "Ashkelon"
+	method = "GET"
+	description="Search Ashkelon"
+	action = "http://www.dbdoc.org/search.do"
+	searchform = "http://www.dbdoc.org/search.do"
+>
+
+<input name="searchField" user>
+<input name="simple" value="true">
+<input name="srch_type" value="class">
+	
+</search>
