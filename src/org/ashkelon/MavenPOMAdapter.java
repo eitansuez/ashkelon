@@ -4,9 +4,10 @@
 package org.ashkelon;
 
 import java.io.*;
-import org.exolab.castor.xml.MarshalException;
 import org.dom4j.*;
 import org.dom4j.io.*;
+
+import java.text.ParseException;
 import java.util.*;
 import org.apache.tools.ant.*;
 import org.apache.tools.ant.types.*;
@@ -17,7 +18,7 @@ import org.apache.tools.ant.types.*;
 public class MavenPOMAdapter
 {
    
-   public static API read(File file, String sourcepath) throws MarshalException
+   public static API read(File file, String sourcepath) throws ParseException
    {
       // pseudocode:  read xml file
       // here's the mapping: (use dom4j, do it manually, easy enough)
@@ -59,7 +60,8 @@ public class MavenPOMAdapter
       catch (Exception ex)
       {
          ex.printStackTrace();
-         throw new MarshalException("Failed to unmarshal xml file");
+         throw new ParseException(
+               "Failed to parse api file as a maven pom-formatted file", 0);
       }
    }
    
