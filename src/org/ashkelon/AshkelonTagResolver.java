@@ -29,6 +29,12 @@ public class AshkelonTagResolver implements InlineTagResolver
       {
          log.debug("tag 'kind': "+tags[i].kind());
          
+         // thanks Matt for catching this:
+         if ("@return".equals(tags[i].kind()) && (tags[i].inlineTags() != null && tags[i].inlineTags().length > 0))
+         {
+             return resolveDescription(sourcedoc, tags[i].inlineTags());
+         }
+
          if ("@see".equals(tags[i].kind()))  // javadoc docs say 'link' - liars
          {
             Reference ref = new Reference(sourcedoc, (SeeTag) tags[i]);
