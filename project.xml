@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <name>Ashkelon</name>
+  <id>ashkelon</id>
+  <currentVersion>1.0-dev</currentVersion>
+  <inceptionYear>2001</inceptionYear>
+  <siteAddress>ashkelon.sourceforge.net</siteAddress>
+  <package>org.ashkelon</package>
+
+
+  <url>http://ashkelon.sourceforge.net/</url>
+  
+
+  <dependencies>
+  
+
+    
+  </dependencies>
+
+  <build>
+    
+    <sourceDirectory>src</sourceDirectory>
+
+    <unitTestSourceDirectory>test</unitTestSourceDirectory>
+ 
+    <!-- Unit test cases -->
+    <unitTest>
+      <includes>
+        <include>**/*Test.java</include>
+      </includes>
+      <excludes>
+        <exclude>**/RepositoryTest.java</exclude>
+      </excludes>
+    </unitTest>
+              
+    <!-- J A R  R E S O U R C E S -->
+    <!-- Resources that are packaged up inside the JAR file -->
+    <resources>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </resources>
+    
+    <jarResources>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </jarResources>
+
+  </build>
+  
+  
+  
+</project>
+
