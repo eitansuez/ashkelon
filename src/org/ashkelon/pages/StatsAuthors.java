@@ -30,6 +30,8 @@ public class StatsAuthors extends Page
       
       Statement stmt = conn.createStatement();
       stmt.setMaxRows(MAX_ROWS);
+       // in this case MAX_ROWS is the right thing to do.
+       // i want the top 50 authors
       
       ResultSet rset = stmt.executeQuery(sql);
       
