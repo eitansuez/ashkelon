@@ -1,15 +1,16 @@
 5/7/2002
 
-To build documentation for the whole of j2se 1.3
+To build documentation for the whole of j2se
 sometimes it may be necessary to do it in chunks
-due to the shear size of it.
+due to the shear size of it (can take up more memory
+than heap size in your vm).
 
 Here's a simple method to do this:
 
-a. dbdoc add @java.plist
-b. dbdoc add @javax.plist
-c. dbdoc add @org.omg.plist
-d. dbdoc add @j2se.xml
+a. ashkelon add @java.plist
+b. ashkelon add @javax.plist
+c. ashkelon add @org.omg.plist
+d. ashkelon add @j2se.xml
 
 in step [d] the packages will already have been documented
 so the only thing this step will do is create the api 
