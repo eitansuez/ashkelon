@@ -22,9 +22,7 @@ body, td, p
 
 .columnar
 {
-  border-width: thin;
-  border-style: solid;
-  border-color: #937353;
+  border: thin solid #937353;
   border-collapse: collapse;
 }
 
@@ -43,8 +41,8 @@ thead.table_header
 
 tr.highlight
 {
-  /* background-color: #F5B48B; */
   background-color: yellow;
+  font-weight: bold;
 }
 
 .sampleCode
@@ -194,5 +192,18 @@ fieldset
   margin: 1em;
   border: 1px solid black;
   padding: 0.5em;
+}
+
+#footer
+{
+  border-top: thin solid black;
+  border-bottom: thin solid black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 8pt;
+  text-align: right;
+  line-height: 1.2em;
+  padding-right: 5px;
+  background-color: lightgray;
 }
 

@@ -11,8 +11,8 @@ outstanding tasks:
 
 <%-- SECTION: PAGE CODE --%>
 <%
-  String unselectedColor = "#CDCDCD";
-  String selectedColor = "#92A6F5";
+  String unselectedColor = "#cdcdcd";
+  String selectedColor = "#92a6f5";
   
   Map tabs = new HashMap();
   String main_caption = ServletUtils.getRequestParam(request, "main_caption");
@@ -38,5 +38,5 @@ outstanding tasks:
   <jsp:param name="args" value="start=A" />
 </jsp:include>
 
-<BR>
+<br/>
 

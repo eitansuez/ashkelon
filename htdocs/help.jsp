@@ -1,4 +1,4 @@
-<%@ page info="help documentation" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="help documentation" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -9,31 +9,21 @@ Date: May 2001
 <%-- SECTION: TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-  <TITLE>Ashkelon Help</TITLE>
-  <LINK REL="stylesheet" TYPE="text/css" HREF="global.css"></LINK>
+<html>
+<head>
+  <title>Ashkelon Help</title>
+  <link rel="stylesheet" type="text/css" href="global.css" />
   <jsp:include page="includes.html" flush="true"/>
+</head>
 
-  <!-- SECTION: PAGE STYLES -->
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <!-- SECTION: BEHAVIOR (JAVASCRIPT) -->
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY>
+<body>
   <jsp:include page="main_header.jsp" flush="true"/>
   
-  <DIV CLASS="PAGEBODY">
-    <IFRAME SRC="help/main.html" WIDTH="100%" HEIGHT="70%"></IFRAME>
-  </DIV>
+  <div class="pagebody">
+    <iframe src="help/main.html" width="100%" height="70%"></iframe>
+  </div>
 
-
-  
   <jsp:include page="footer.html" flush="true"/>
 
-</BODY>
-</HTML>
+</body>
+</html>

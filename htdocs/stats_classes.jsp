@@ -1,4 +1,4 @@
-<%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.*" %>
 
 <%
   String cmd = ServletUtils.getRequestParam(request, "cmd");
@@ -7,22 +7,22 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-  <TITLE>Class Stats</TITLE>
+<html>
+<head>
+  <title>Class Stats</title>
   <jsp:include page="includes.html" flush="true"/>
-</HEAD>
+</head>
 
-<BODY onLoad="loadCookies();" onUnload="saveCookies();">
+<body onLoad="loadCookies();" onUnload="saveCookies();">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 <jsp:include page="stats_header.jsp" flush="true"/>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
-<TABLE CLASS="columnar" ALIGN="CENTER">
-<CAPTION>Class count by package</CAPTION>
-<TR>
+<table class="columnar" align="center">
+<caption>Class count by package</caption>
+<tr valign="top">
 <%  
   int n = numByPackage.size();
   int numCols = 3;
@@ -43,10 +43,10 @@
   %>
   
   <!-- COLUMN <%=col%> -->
-  <TD>
-   <TABLE RULES="rows" CELLSPACING="0" CELLPADDING="3" BORDERCOLOR="white">
+  <td style="padding: 0.5em 1em;">
+   <table rules="rows" cellspacing="0" cellpadding="3">
   
-  <%  
+  <% 
   for (int i=start; i<end; i++)
    {
     pkg = (JPackage) ((List) numByPackage.get(i)).get(0);
@@ -54,39 +54,28 @@
  %>
     <% if (Integer.parseInt(numPkgClasses)>50)
     { %>
-  <TR CLASS="highlight">
-    <TD><B><a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></B></TD>
-    <TD ALIGN="RIGHT"><B><%=numPkgClasses%></B></TD>
-  </TR>
-    <% } else
-       { %>
-  <TR>
-    <TD><a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></TD>
-    <TD ALIGN="RIGHT"><%=numPkgClasses%></TD>
-  </TR>
+  <tr class="highlight">
+    <% } else { %>
+  <tr>
     <% } %>
+    <td><a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></td>
+    <td align="right"><%=numPkgClasses%></td>
+  </tr>
 <% } %>
  
-  </TABLE>
- </TD>
+  </table>
+ </td>
   
-    <%
-     if (col < numCols - 1)
-     { %>  
-      <!-- padding -->
-      <TD WIDTH="20"></TD>
-  <% } %>
- 
 <% } %>
   
-</TR>
-</TABLE>
+</tr>
+</table>
 
-</DIV>
+</div>
 
 
 <jsp:include page="footer.html" flush="true"/>
 
 
-</BODY>
-</HTML>
+</body>
+</html>

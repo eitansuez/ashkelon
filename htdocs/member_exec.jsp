@@ -1,4 +1,4 @@
-<%@ page info="exec member view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="exec member view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.*" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -36,19 +36,29 @@ Date: March 2001
 
 <%-- SECTION: COMPONENT BEHAVIOR (JAVASCRIPT) --%>
 <script>
-  var selectedColor = "lightyellow";
-
   function selectItem(targetIdx)
   {
       var olnode = document.getElementById("variants");
+      var listItem = olnode.getElementsByClassName("selected")[0];
+      deselect(listItem);
+
       var listItems = olnode.getElementsByTagName("li");
-      for (var i=0; i<listItems.length; i++)
-      {
-        listItems[i].style.backgroundColor = "#fff";
-        document.getElementById("detailDescr"+i).style.display = "none";
-      }
-      listItems[targetIdx].style.backgroundColor = selectedColor;
-      document.getElementById("detailDescr"+targetIdx).style.display = "block";
+      select(listItems[targetIdx]);
+  }
+  function select(node)
+  {
+    addClass(node, "selected");
+    document.getElementById(getCorrespondingId(node)).style.display = "block";
+  }
+  function deselect(node)
+  {
+    if (!node) return;
+    removeClass(node, "selected");
+    document.getElementById(getCorrespondingId(node)).style.display = "none";
+  }
+  function getCorrespondingId(node)
+  {
+    return node.getAttribute("corresponding-descr");
   }
   </script>
 
@@ -69,6 +79,10 @@ Date: March 2001
 #variants li:hover
 {
   background-color: #ff8;
+}
+#variants li.selected
+{
+  background-color: lightyellow;
 }
 #detailDescriptions
 {
@@ -108,7 +122,8 @@ Date: March 2001
   if (exec.getDoc().isDeprecated())
     modifiers += " deprecated";
  %>
- <li id="exec<%=i%>" class="<%=modifiers%>" onClick="selectItem(<%=i%>);">
+ <li id="exec<%=i%>" class="<%=modifiers%>" onClick="selectItem(<%=i%>);" 
+     corresponding-descr="detailDescr<%=i%>">
    <%=modifiers%>
 
    <% if (membertype.equals("method"))
@@ -214,5 +229,5 @@ Date: March 2001
 </div>
 
 <div style="clear: both;"></div>
-<script>selectItem(0);</script> 
+<script>selectItem(0);</script>
 

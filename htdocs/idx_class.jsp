@@ -12,10 +12,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
-<HEAD>
-  <TITLE>Ashkelon Class Index</TITLE>
+<head>
+  <title>Ashkelon Class Index</title>
   <jsp:include page="includes.html" flush="true"/>
-</HEAD>
+</head>
 
 <body onLoad="loadCookies();" onUnload="saveCookies();">
 
@@ -26,7 +26,7 @@
 
 <jsp:include page="idx_az_header.jsp" flush="true"/>
 
-<div class="PAGEBODY">
+<div class="pagebody">
 
 <% if (needToDisplayResults.booleanValue()) { %>
 
@@ -65,9 +65,9 @@
 
 <% } else { %>
 
-<P><B>Class Index Page.</B></P>
+<p><b>Class Index Page.</b></p>
 
-<P>Use the A-Z buttons above to browse classes alphabetically by name.</P>
+<p>Use the A-Z buttons above to browse classes alphabetically by name.</p>
 
 <% } %>
 

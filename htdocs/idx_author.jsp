@@ -1,4 +1,4 @@
-<%@ page info="page" import="java.util.*, org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="page" import="java.util.*, org.ashkelon.util.*,org.ashkelon.*"%>
 
 <%-- SECTION: PAGE COMMENTS & DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -19,21 +19,13 @@ Date: March 2001
 <%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Ashkelon Author Index</TITLE>
+<html>
+<head>
+	<title>Ashkelon Author Index</title>
   <jsp:include page="includes.html" flush="true"/>
+</head>
 
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY onLoad="loadCookies();" onUnload="saveCookies();">
+<body onLoad="loadCookies();" onUnload="saveCookies();">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 <jsp:include page="idx_header.jsp" flush="true"/>
@@ -42,7 +34,7 @@ Date: March 2001
   <jsp:param name="element_type" value="author" />
 </jsp:include>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
 <% if (needToDisplayResults.booleanValue()) { %>
 
@@ -59,42 +51,39 @@ Date: March 2001
   List authors = (List) request.getAttribute("results");
 %>
  
-<DIV ID="author_index">
-<OL>
+<div id="author_index">
+<ol>
 <% Author author;
    for (int i=0; i<authors.size(); i++)
    {
      author = (Author) authors.get(i);
    %>
-  <LI><A HREF="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></A></LI>
+  <li><a href="author.do?id=<%=author.getId()%>" class="author"><%=author.getName()%></a></li>
 <% } %>
-</OL>
+</ol>
 
-</DIV>
+</div>
 
 <% if (!StringUtils.isBlank((String) request.getAttribute("next"))) { %>
-<FORM METHOD="GET" ACTION="idx.author.do">
-  <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
-  <BUTTON TYPE="SUBMIT"
-          STYLE="background-color: #dddddd; font-size: 8pt;"
-          ACCESSKEY="N"><U>N</U>ext &gt;</BUTTON>
-</FORM>
+<form method="get" action="idx.author.do">
+  <input type="hidden" name="start" value="<%=request.getAttribute("next")%>">
+  <button type="submit"
+          style="background-color: #dddddd; font-size: 8pt;"
+          accesskey="N"><u>N</u>ext &gt;</button>
+</form>
 <% } // end if %>
 
 <% } else { %>
 
-<P><B>Author Index Page.</B></P>
+<p><b>Author Index Page.</b></p>
 
-<P>Use the A-Z buttons above to browse authors alphabetically by name.</P>
+<p>Use the A-Z buttons above to browse authors alphabetically by name.</p>
 
 <% } %>
 
-
-</DIV>
-
+</div>
 
 <jsp:include page="footer.html" flush="true"/>
 
-
-</BODY>
-</HTML>
+</body>
+</html>

@@ -66,18 +66,18 @@
 
 <% } else { %>
 
-<P><B>Package Index Page.</B></P>
+<p><b>Package Index Page.</b></p>
 
-<P>Use the A-Z buttons above to browse packages alphabetically by name.</P>
+<p>Use the A-Z buttons above to browse packages alphabetically by name.</p>
 
 <% } %>
 
 
-</DIV>
+</div>
 
 
 <jsp:include page="footer.html" flush="true"/>
 
 
-</BODY>
-</HTML>
+</body>
+</html>

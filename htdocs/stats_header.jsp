@@ -1,4 +1,4 @@
-<%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*" %>
 
 <%
   String unselectedColor = "#CDCDCD";
@@ -25,4 +25,4 @@
 
 <jsp:include page="l2_hdr_svr.jsp" flush="true" />
 
-<BR>
+<br/>

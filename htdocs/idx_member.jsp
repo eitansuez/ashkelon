@@ -16,21 +16,13 @@ Date: March 2001
 <%-- SECTION: PAGE TEMPLATE --%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<HTML>
-<HEAD>
-	<TITLE>Ashkelon Member Index</TITLE>
+<html>
+<head>
+	<title>Ashkelon Member Index</title>
   <jsp:include page="includes.html" flush="true"/>
+</head>
 
-  <%-- SECTION: PAGE STYLES --%>
-  <STYLE TYPE="text/css">
-  </STYLE>
-
-  <%-- SECTION: PAGE BEHAVIOR (JAVASCRIPT) --%>
-  <SCRIPT>
-  </SCRIPT>
-</HEAD>
-
-<BODY onLoad="loadCookies();" onUnload="saveCookies();">
+<body onLoad="loadCookies();" onUnload="saveCookies();">
 
 <jsp:include page="main_header.jsp" flush="true"/>
 <jsp:include page="idx_header.jsp" flush="true"/>
@@ -39,7 +31,7 @@ Date: March 2001
   <jsp:param name="element_type" value="member" />
 </jsp:include>
 
-<DIV CLASS="PAGEBODY">
+<div class="pagebody">
 
 <% if (needToDisplayResults.booleanValue()) { %>
 
@@ -49,7 +41,7 @@ Date: March 2001
   String emptyMsg = "No members found";
  %>
 
-<DIV ID="member_index">
+<div id="member_index">
 <jsp:include page="member_list.jsp" flush="true">
   <jsp:param name="caption" value="Member Index" />
   <jsp:param name="empty_msg" value="<%=emptyMsg%>" />
@@ -57,32 +49,31 @@ Date: March 2001
   <jsp:param name="members_type" value="all" />
   <jsp:param name="div_id" value="member_index" />
 </jsp:include>
-</DIV>
+</div>
 
 <% if (!StringUtils.isBlank((String) request.getAttribute("next"))) { %>
-<FORM METHOD="GET" ACTION="idx.member.do">
-  <INPUT TYPE="HIDDEN" NAME="start" VALUE="<%=request.getAttribute("next")%>">
-  <BUTTON TYPE="SUBMIT"
-          STYLE="background-color: #dddddd; font-size: 8pt;"
-          ACCESSKEY="N"><U>N</U>ext &gt;</BUTTON>
-</FORM>
+<form method="get" action="idx.member.do">
+  <input type="hidden" name="start" value="<%=request.getAttribute("next")%>">
+  <button type="submit"
+          style="background-color: #dddddd; font-size: 8pt;"
+          accesskey="N"><u>N</u>ext &gt;</button>
+</form>
 <% } // end if %>
 
 
 <% } else { %>
 
-<P><B>Member Index Page.</B></P>
+<p><b>Member Index Page.</b></p>
 
-<P>Use the A-Z buttons above to browse packages alphabetically by name.</P>
+<p>Use the A-Z buttons above to browse packages alphabetically by name.</p>
 
 <% } %>
 
 
-</DIV>
+</div>
 
 
 <jsp:include page="footer.html" flush="true"/>
 
-
-</BODY>
-</HTML>
+</body>
+</html>

@@ -89,11 +89,33 @@ Object.prototype.getElementsByClassName = function ( className )
     var alltags = this.getElementsByTagName( "*" );
     for (var i=0; i<alltags.length; i++)
     {
-      if (alltags[i].className.toLowerCase() == className.toLowerCase())
+      if (contains(alltags[i].className.toLowerCase(), className.toLowerCase()))
       {
         matches[matches.length] = alltags[i];
       }
     }
     return matches;
+}
+
+function addClass(node, className)
+{
+  if (!contains(node.className, className))
+  {
+    node.className += " " + className;
+  }
+}
+function removeClass(node, className)
+{
+  if (contains(node.className, className))
+  {
+    node.className = strip(node.className, className);
+  }
+}
+
+function strip(text, part)
+{
+  var idx = text.indexOf(part);
+  if (idx < 0) return text;
+  return text.substring(0, idx) + text.substring(idx + part.length);
 }
 
