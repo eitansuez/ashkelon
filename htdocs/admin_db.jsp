@@ -17,7 +17,7 @@ Date: March 2001
 
 <HTML>
 <HEAD>
-	<TITLE>Admin Page</TITLE>
+  <TITLE>Admin Page</TITLE>
   <jsp:include page="includes.html" flush="true" />
 
   <%-- SECTION: PAGE STYLES --%>
