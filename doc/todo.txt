@@ -54,6 +54,20 @@ Improvements
 
 UI
  1. Improve usability of GUI and continue refactoring JSPs
+  - make ui javabeans aware.  separate accessor/mutator pairs
+    as listed properties in the ui.  ones that are read-only
+    should display as such (no mutator).  this would really
+    clean up the method listing for classes with many methods.
+    on the other hand, how does one distinguish between a class
+    that coincidentally has getter/setter methods but was never
+    intended to be a javabean (example: java.awt.Color)??
+    maybe do this only for classes with associated beaninfo classes.
+
+  - scrollable div's in ui should not have hard-coded height.
+    is it possible with html to do something layout-manager-like?
+    that is, specify that that div should take up whatever
+    vertical space remains on the page?
+
  2. Port solution to use Struts (Under consideration)
    Current solution is MVC but author's own implementation.
  3. GUI Customization:  Make packages page configurable so it
