@@ -53,7 +53,7 @@ TR.highlight
 }
 .message:before
 {
-  content: "<B>&gt; </B>";
+ /* i can't recall why i did this?:  content: <B>&gt;</B>; */
 }
 
 FIELDSET

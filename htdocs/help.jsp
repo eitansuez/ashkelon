@@ -11,7 +11,7 @@ Date: May 2001
 
 <HTML>
 <HEAD>
-  <TITLE>dbdoc Help</TITLE>
+  <TITLE>Ashkelon Help</TITLE>
   <LINK REL="stylesheet" TYPE="text/css" HREF="global.css"></LINK>
   <jsp:include page="includes.html" flush="true"/>
 

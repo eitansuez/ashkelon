@@ -79,7 +79,7 @@ Date: March 2001
    %>
    <TR>
      <TD>
-        <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"  TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></SPAN></A>
+        <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package" TITLE="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></SPAN></A>
      </TD>
    </TR>
    <%   }  // end inner for loop %>

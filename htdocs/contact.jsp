@@ -15,7 +15,7 @@ Date: December 2001
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc - Contact Information</TITLE>
+	<TITLE>Ashkelon - Contact Information</TITLE>
   <jsp:include page="includes.html" flush="true"/>
 
   <!-- SECTION: PAGE STYLES -->
@@ -39,9 +39,9 @@ Date: December 2001
 <P>
 
 <UL>
-<LI>If there's an open source API that you'd like to see in the dbdoc repository; or </LI>
-<LI>If you'd like to license dbdoc for publishing your own docs on your company intranet; or </LI>
-<LI>For any comments or feedback on this site or on dbdoc; or</LI>
+<LI>If there's an open source API that you'd like to see in the Ashkelon repository; or </LI>
+<LI>If you'd like to license Ashkelon for publishing your own docs on your company intranet; or </LI>
+<LI>For any comments or feedback on this site or on Ashkelon; or</LI>
 <LI>For any questions not already answered in the <A HREF="index.html?cmd=issues">FAQ</A></LI>
 </UL>
 

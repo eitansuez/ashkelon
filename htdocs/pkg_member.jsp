@@ -70,7 +70,7 @@ Date: March 2001
           %>
         <TR>
         	<TD>
-            <A HREF="index.html?cmd=cls.main&cls_id=<%=c.getId()%>" TITLE="<%=title%>"><SPAN CLASS="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>"><%=c.getName()%></SPAN></A>
+            <A HREF="index.html?cmd=cls.main&cls_id=<%=c.getId()%>"><SPAN CLASS="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>" TITLE="<%=title%>"><%=c.getName()%></SPAN></A>
           </TD>
         </TR>
     <%

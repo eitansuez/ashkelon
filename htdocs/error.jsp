@@ -15,7 +15,7 @@ Date: March 2001
 
 <HTML>
 <HEAD>
-	<TITLE>dbdoc - Error: <%=exception%></TITLE>
+	<TITLE>Ashkelon - Error: <%=exception%></TITLE>
   <jsp:include page="includes.html" flush="true"/>
 
   <!-- SECTION: PAGE STYLES -->
