@@ -7,6 +7,25 @@
 <head>
   <title>Ashkelon - API Listing</title>
   <c:import url="includes.html" />
+  <style>
+  table#apis
+  {
+    border: 1px solid gray;
+    border-width: 1px 2px 2px 1px;
+  }
+  table#apis tr
+  {
+    vertical-align: top;
+  }
+  table#apis tr.odd
+  {
+    background-color: beige;
+  }
+  table#apis td
+  {
+    padding: 0.3em 0.7em;
+  }
+  </style>
 </head>
 
 <body onLoad="cleanTitles();">
@@ -21,22 +40,28 @@
 Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <b>open source</b> and available for download off sourceforge.net as project <a target="_new" href="http://sourceforge.net/projects/ashkelon/">ashkelon</a>.
 </p>
 
-<table BORDER="1" CELLPADDING="5" CELLSPACING="0" RULES="rows" ALIGN="CENTER" bordercolor="black">
+<table id="apis" align="center" rules="rows">
 <caption>API Listing</caption>
 <tbody>
- <c:forEach items="${apilist}" var="api">
-    <tr>
-      <td VALIGN="TOP">
+ <c:forEach items="${apilist}" var="api" varStatus="status">
+   <c:if test="${status.index % 2 == 1}">
+     <tr class="odd">
+   </c:if>
+   <c:if test="${status.index % 2 == 0}">
+     <tr class="even">
+   </c:if>
+      <td>
+        <c:out value="${status.index + 1}." />
         <a href="api.main.do?id=<c:out value="${api.id}" />">
           <span class="api" title="<c:out value="${api.summaryDescription}" />">
             <c:out value="${api.name}" />
           </span>
         </a>
       </td>
-      <td VALIGN="TOP">
+      <td align="right">
         <c:out value="${api.version}" />
       </td>
-      <td VALIGN="TOP">
+      <td>
         <c:out value="${api.summaryDescription}" />
       </td>
     </tr>

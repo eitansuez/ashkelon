@@ -92,7 +92,7 @@
 
 <br />
 
-<!-- using table to keep both items on same line: -->
+<!-- todo:  use float instead -->
 <table style="width: 100%;" align="right">
 <tr>
 <td align="right">

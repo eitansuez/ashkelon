@@ -5,17 +5,15 @@
   String unselectedColor = "#CDCDCD";
   String selectedColor = "#F9D362";
 
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
-  String[] parts = StringUtils.split(cmd,".");
-  String element_type = parts[1];
   String selectedTab = (String) ServletUtils.getRequestParam(request, "start");
+  String elementType = ServletUtils.getRequestParam(request, "element_type");
   
   Map tabs = new HashMap();
   String[] entries = new String[26];
   for (char c='A'; c<='Z'; c++)
   {
     entries[c-'A'] = (new Character(c)).toString();
-    tabs.put(entries[c-'A'], "idx."+element_type);
+    tabs.put(entries[c-'A'], "idx."+elementType);
   }
 %>
 

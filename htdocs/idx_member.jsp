@@ -35,7 +35,9 @@ Date: March 2001
 <jsp:include page="main_header.jsp" flush="true"/>
 <jsp:include page="idx_header.jsp" flush="true"/>
 
-<jsp:include page="idx_az_header.jsp" flush="true"/>
+<jsp:include page="idx_az_header.jsp" flush="true">
+  <jsp:param name="element_type" value="member" />
+</jsp:include>
 
 <DIV CLASS="PAGEBODY">
 

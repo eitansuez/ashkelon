@@ -106,22 +106,22 @@ as follows:
   </COLGROUP>
 <THEAD CLASS="table_header">
 <TR TITLE="Click on one of the modifiers to filter the table by modifier type">
-<TD STYLE="font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" TITLE="Reset table to include all rows">C<BR>l<BR>e<BR>a<BR>r</TD>
+<TD STYLE="font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'reset', '<%=divid%>');" TITLE="Reset table to include all rows">C<BR>l<BR>e<BR>a<BR>r</TD>
 <% if ( "all".equals(memberstype) || ismethod ) { %>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'abstract', '<%=divid%>');" TITLE="Show only abstract members">a<BR>b<BR>s<BR>t<BR>r</TD>
+<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onClick="filterRows('memberrow', 'abstract', '<%=divid%>');" TITLE="Show only abstract members">a<BR>b<BR>s<BR>t<BR>r</TD>
 <% } %>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'public', '<%=divid%>');" TITLE="Show only public members">p<BR>u<BR>b<BR>l<BR>i<BR>c</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'static', '<%=divid%>');" TITLE="Show only static members">s<BR>t<BR>a<BR>t<BR>i<BR>c</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'final', '<%=divid%>');" TITLE="Show only final members">f<BR>i<BR>n<BR>a<BR>l</TD>
-<TD STYLE="font-size: x-small; font-variant:small-caps;" TITLE="Version of API that this member was introduced">s<BR>i<BR>n<BR>c<BR>e</TD>
-<TD STYLE="cursor: pointer; font-size: x-small; font-variant:small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'deprecated', '<%=divid%>');" TITLE="Show only deprecated members">d<BR>e<BR>p<BR>r<BR>e<BR>c</TD>
+<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'public', '<%=divid%>');" TITLE="Show only public members">p<BR>u<BR>b<BR>l<BR>i<BR>c</TD>
+<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'static', '<%=divid%>');" TITLE="Show only static members">s<BR>t<BR>a<BR>t<BR>i<BR>c</TD>
+<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'final', '<%=divid%>');" TITLE="Show only final members">f<BR>i<BR>n<BR>a<BR>l</TD>
+<TD STYLE="font-size: x-small; font-variant: small-caps;" TITLE="Version of API that this member was introduced">s<BR>i<BR>n<BR>c<BR>e</TD>
+<TD STYLE="cursor: pointer; font-size: x-small; font-variant: small-caps;" onmouseover="this.bgColor='#ffff00';" onmouseout="this.bgColor='beige';" onclick="filterRows('memberrow', 'deprecated', '<%=divid%>');" TITLE="Show only deprecated members">d<BR>e<BR>p<BR>r<BR>e<BR>c</TD>
 <% if ("all".equals(memberstype) || ismethod ) { %>
-<TD STYLE="font-size: x-small; font-variant:small-caps; text-align: right;">Returns</TD>
+<TD STYLE="font-size: x-small; font-variant: small-caps; text-align: right;">Returns</TD>
 <% } else if (isfield) { %>
-<TD STYLE="font-size: x-small; font-variant:small-caps; text-align: right;">Field Type</TD>
+<TD STYLE="font-size: x-small; font-variant: small-caps; text-align: right;">Field Type</TD>
 <% } %>
-<TD STYLE="font-size: x-small; font-variant:small-caps;"><%=colname_heading%></TD>
-<TD STYLE="font-size: x-small; font-variant:small-caps;">Summary Description</TD>
+<TD STYLE="font-size: x-small; font-variant: small-caps;"><%=colname_heading%></TD>
+<TD STYLE="font-size: x-small; font-variant: small-caps;">Summary Description</TD>
 </TR>
 </THEAD>
 

@@ -53,7 +53,7 @@
   tabs.put("cls.xref", "Cross References");
   cmds.add("cls.xref");
   
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
+  String cmd = ServletUtils.getCommand(request);
   String cls_id = ServletUtils.getRequestParam(request, "cls_id");
   
   String[] cmd_hierarchy = StringUtils.split(cmd,".");
