@@ -1,4 +1,5 @@
 <%@ page info="top page: package list" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%
   HashMap cols = (HashMap) application.getAttribute("javaPkgs");
@@ -9,7 +10,7 @@
 <html>
 <head>
   <title>Ashkelon - Packages</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <c:import url="includes.html" />
 </head>
 
 <body onLoad="cleanTitles();">
