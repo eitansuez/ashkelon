@@ -21,7 +21,8 @@ public abstract class Page
    ServletContext app;
    HttpSession session;
    
-   public static int FETCH_SIZE = 60;
+   // overriden by configinfo.xml pagesize element:
+   public static int PAGE_SIZE = 60;
    
    public Page()
    {
@@ -57,6 +58,7 @@ public abstract class Page
    {
       this.app = context;
    }
+   
    
    protected void finalize() throws Throwable
    {
@@ -153,12 +155,12 @@ public abstract class Page
       else
          rset.absolute(position);
 
-      if (position + FETCH_SIZE < totalResults)
+      if (position + PAGE_SIZE < totalResults)
             request.setAttribute("next-cursor-position", new Integer(position
-                  + FETCH_SIZE));
-      if (position - FETCH_SIZE >= 0)
+                  + PAGE_SIZE));
+      if (position - PAGE_SIZE >= 0)
             request.setAttribute("prev-cursor-position", new Integer(position
-                  - FETCH_SIZE));
+                  - PAGE_SIZE));
 
       return position;
    }

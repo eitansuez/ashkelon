@@ -54,9 +54,10 @@ public class MemberPage extends Page
       {
          members_cache = (CacheLRU) members_cache_obj;
          Object member_object = members_cache.getElement(memberId_obj);
-         if (member_object != null)
+         if (member_object != null /* TODO:  && !dirty(memberId_obj) */ )
          {
             List members = (List) member_object;
+            log.brief("retrieving members (id: "+memberId+") from cache");
             request.setAttribute("members", members);
             request.setAttribute("member", members.get(0));
             return null;

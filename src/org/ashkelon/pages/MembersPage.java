@@ -179,7 +179,7 @@ public class MembersPage extends Page
 
       PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_READ_ONLY);
-      pstmt.setFetchSize(FETCH_SIZE);
+      pstmt.setFetchSize(PAGE_SIZE);
       
       int i=1;
 
@@ -208,7 +208,7 @@ public class MembersPage extends Page
       List found = new ArrayList();
       Member m;
 
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
         m = new Member(rset.getString(2), rset.getInt(3));
         m.setId(rset.getInt(1));
@@ -297,7 +297,7 @@ public class MembersPage extends Page
       
       PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_READ_ONLY);
-      pstmt.setFetchSize(FETCH_SIZE);
+      pstmt.setFetchSize(PAGE_SIZE);
       
       pstmt.setString(1, searchField);
       ResultSet rset = pstmt.executeQuery();
@@ -306,7 +306,7 @@ public class MembersPage extends Page
       List found = new ArrayList();
       Member m;
       
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
         m = new Member(rset.getString(2), rset.getInt(3));
         m.setId(rset.getInt(1));

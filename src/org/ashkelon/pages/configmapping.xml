@@ -38,6 +38,10 @@
                        type="java.lang.String">
                         <bind-xml name="inline-tag-resolver" node="element"/>
                 </field>
+                
+                <field name="pageSize" type="integer">
+                  <bind-xml name="pagesize" node="element" />
+                </field>
         </class>
 
         <class name="org.ashkelon.pages.CommandInfo">

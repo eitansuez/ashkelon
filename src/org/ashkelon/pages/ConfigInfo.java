@@ -21,6 +21,7 @@ public class ConfigInfo
    private int traceLevel;
    private String traceFile;
    private String inlineTagResolver;
+   private int pageSize;
    
    public ConfigInfo() {}
    
@@ -97,6 +98,9 @@ public class ConfigInfo
 
    public String getInlineTagResolver() { return inlineTagResolver; }
    public void setInlineTagResolver(String resolver) { inlineTagResolver = resolver; }
+   
+   public int getPageSize() { return pageSize; }
+   public void setPageSize(int size) { pageSize = size; }
 
    private static InlineTagResolver _resolver = null;
    private static ConfigInfo _cInfo = null;

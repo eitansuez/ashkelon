@@ -117,7 +117,7 @@ public class ClassesPage extends Page
       
       PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_READ_ONLY);
-      pstmt.setFetchSize(FETCH_SIZE);
+      pstmt.setFetchSize(PAGE_SIZE);
       
       int i=1;
       if (filters.get("searchField")!=null)
@@ -139,7 +139,7 @@ public class ClassesPage extends Page
       List found = new ArrayList();
       ClassType c;
       
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
         c = new ClassType(rset.getString(2));
         c.setId(rset.getInt(1));
@@ -195,7 +195,7 @@ public class ClassesPage extends Page
       
       PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_READ_ONLY);
-      pstmt.setFetchSize(FETCH_SIZE);
+      pstmt.setFetchSize(PAGE_SIZE);
       
       pstmt.setString(1, searchField);
       ResultSet rset = pstmt.executeQuery();
@@ -204,7 +204,7 @@ public class ClassesPage extends Page
       List found = new ArrayList();
       ClassType c;
       
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
         c = new ClassType(rset.getString(2));
         c.setId(rset.getInt(1));

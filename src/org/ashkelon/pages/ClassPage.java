@@ -52,10 +52,10 @@ public class ClassPage extends Page
       {
          classCache = (CacheLRU) classCacheObj;
          Object clsobject = classCache.getElement(clsId_obj);
-         if (clsobject!=null)
+         if ( clsobject!=null  /* TODO:  && !dirty(clsId_obj) */ )
          {
             ClassType cls = (ClassType) clsobject;
-            log.brief("retrieving "+cls.getName()+" from cache");
+            log.brief("retrieving class "+cls.getName()+" from cache");
             request.setAttribute("cls", cls);
             TreeNode superclasses = cls.getSuperclasses(conn);
             request.setAttribute("tree", superclasses);

@@ -43,6 +43,7 @@ public class FlowController extends HttpServlet
       try
       {
          configInfo = (new ConfigInfo()).load();
+         Page.PAGE_SIZE = configInfo.getPageSize();
       }
       catch (Exception ex)
       {

@@ -12,7 +12,6 @@ import java.sql.*;
  */
 public class IndexPage extends Page
 {
-   private static int PAGE_SIZE = 21;
    
    public IndexPage()
    {
@@ -84,7 +83,7 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getpackages");
       
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(PAGE_SIZE);
+      p.setFetchSize(PAGE_SIZE+1);
       p.setFetchDirection(ResultSet.FETCH_FORWARD);
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
@@ -99,7 +98,7 @@ public class IndexPage extends Page
         pkg.setId(rset.getInt(1));
         pkg.setDoc(new DocInfo(rset.getString(3), rset.getString(4), rset.getString(5)));
         results.add(pkg);
-         
+        
         rownum++;
       }
       rset.close();
@@ -115,9 +114,9 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getclasses");
 
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(PAGE_SIZE);
+      p.setFetchSize(PAGE_SIZE+1);
       p.setFetchDirection(ResultSet.FETCH_FORWARD);
-      p.setMaxRows(PAGE_SIZE);
+      p.setMaxRows(PAGE_SIZE+1);
       
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
@@ -156,9 +155,9 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getmembers");
       
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(PAGE_SIZE);
+      p.setFetchSize(PAGE_SIZE+1);
       p.setFetchDirection(ResultSet.FETCH_FORWARD);
-      p.setMaxRows(PAGE_SIZE);
+      p.setMaxRows(PAGE_SIZE+1);
       
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();
@@ -223,9 +222,9 @@ public class IndexPage extends Page
       String sql = DBMgr.getInstance().getStatement("getauthors");
 
       PreparedStatement p = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      p.setFetchSize(PAGE_SIZE);
+      p.setFetchSize(PAGE_SIZE+1);
       p.setFetchDirection(ResultSet.FETCH_FORWARD);
-      p.setMaxRows(PAGE_SIZE);
+      p.setMaxRows(PAGE_SIZE+1);
       
       p.setString(1, startFrom);
       ResultSet rset = p.executeQuery();

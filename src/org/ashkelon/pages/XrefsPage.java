@@ -60,7 +60,7 @@ public class XrefsPage extends Page
 
       List fields = new ArrayList();
       FieldMember field;
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
          field = new FieldMember(rset.getString(1), rset.getString(3));
          field.setId(rset.getInt(2));
@@ -87,7 +87,7 @@ public class XrefsPage extends Page
       PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_READ_ONLY);
       pstmt.setInt(1, clsId);
-      pstmt.setFetchSize(FETCH_SIZE);
+      pstmt.setFetchSize(PAGE_SIZE);
       return pstmt.executeQuery();
    }
    
@@ -98,7 +98,7 @@ public class XrefsPage extends Page
 
       List methods = new ArrayList();
       MethodMember method;
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
          method = new MethodMember(rset.getString(1), rset.getString(7));
          method.setId(rset.getInt(2));
@@ -129,7 +129,7 @@ public class XrefsPage extends Page
       List execs = new ArrayList();
       ExecMember exec;
       int memberType;
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
          memberType = rset.getInt(3);
          if (memberType == Member.METHOD_MEMBER)
@@ -165,7 +165,7 @@ public class XrefsPage extends Page
       List execs = new ArrayList();
       ExecMember exec;
       int memberType;
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
          memberType = rset.getInt(3);
          if (memberType == Member.METHOD_MEMBER)
@@ -206,7 +206,7 @@ public class XrefsPage extends Page
       
       List classes = new ArrayList();
       ClassType c;
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
          c = new ClassType(rset.getString(1));
          c.setId(rset.getInt(2));
@@ -231,14 +231,14 @@ public class XrefsPage extends Page
       PreparedStatement pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_READ_ONLY);
       pstmt.setString(1, refc.getQualifiedName());
-      pstmt.setFetchSize(FETCH_SIZE);
+      pstmt.setFetchSize(PAGE_SIZE);
       ResultSet rset = pstmt.executeQuery();
 
       int position = position(rset);
 
       List classes = new ArrayList();
       ClassType c;
-      while (rset.next() && rset.getRow() <= (position + FETCH_SIZE))
+      while (rset.next() && rset.getRow() <= (position + PAGE_SIZE))
       {
          c = new ClassType(rset.getString(1));
          c.setId(rset.getInt(2));

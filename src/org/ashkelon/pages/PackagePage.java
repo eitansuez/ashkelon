@@ -55,9 +55,10 @@ public class PackagePage extends Page
       {
          packages = (Hashtable) packages_obj;
          Object pkg_object = packages.get(pkgId_obj);
-         if (pkg_object !=null)
+         if (pkg_object !=null  /* TODO:  && !dirty(pkgId_obj) */ )
          {
             JPackage pkg = (JPackage) pkg_object;
+            log.brief("retrieving package "+pkg.getName()+" from cache");
             request.setAttribute("pkg", pkg);
 
             TreeNode tree = pkg.buildTree(conn);

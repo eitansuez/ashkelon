@@ -2,6 +2,7 @@ package org.ashkelon.pages;
 
 import org.ashkelon.*;
 import org.ashkelon.db.*;
+
 import java.sql.*;
 import java.util.*;
 
@@ -17,10 +18,16 @@ public class APIsPage extends Page
 
    public String handleRequest() throws SQLException
    {
-      if (app.getAttribute("apilist")==null)
+      boolean cacheEmpty = cacheEmpty();
+      int currentMemberCount = fetchMemberCount();
+      boolean cacheDirty = cacheDirty(currentMemberCount);
+      
+      if (cacheEmpty || cacheDirty)
       {
          List apiList = getAPIList();
          app.setAttribute("apilist", apiList);
+         app.setAttribute("membercount", new Integer(currentMemberCount));
+         
          if (apiList == null || apiList.size() <= 1)
             return "pkg";
       }
@@ -28,8 +35,33 @@ public class APIsPage extends Page
       return null;
    }
    
+   private boolean cacheEmpty()
+   {
+      return ( app.getAttribute("apilist") == null );
+   }
+   
+   protected boolean cacheDirty(int currentMemberCount)
+   {
+      if ( app.getAttribute("membercount") == null )
+         return true;
+      
+      int memberCount = ((Integer) app.getAttribute("membercount")).intValue();
+      return (memberCount != currentMemberCount);
+   }
+   
+   private int fetchMemberCount() throws SQLException
+   {
+      String sql = DBMgr.getInstance().getStatement("getmembercount");
+      Statement stmt = conn.createStatement();
+      ResultSet rset = stmt.executeQuery(sql);
+      rset.next();
+      return rset.getInt(1);
+   }
+
+   
    public List getAPIList() throws SQLException
    {
+      log.brief("Fetching APIs Listing..");
       String sql = DBMgr.getInstance().getStatement("getapis");
 
       Statement stmt = conn.createStatement();

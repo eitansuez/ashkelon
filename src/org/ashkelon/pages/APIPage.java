@@ -32,11 +32,11 @@ public class APIPage extends Page
       {
          apis = (Hashtable) apis_obj;
          Object api_object = apis.get(apiId_obj);
-         if (api_object != null)
+         if (api_object != null /* TODO:  && !dirty(apiId_obj) */)
          {
             API api = (API) api_object;
+            log.brief("retrieving api "+api.getName()+" from cache");
             request.setAttribute("api", api);
-
             return null;
          }
       }
