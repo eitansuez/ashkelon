@@ -1,5 +1,38 @@
-3/21/2003
 Release Notes
+
+What's new in v0.8.5 (July 7 2004):
+--------------------------------
+
+ - Updated mysql jdbc driver to v3.0.14
+ - Much refactoring has been done:
+    * The controller servlet is simpler
+    * The HTML pages are simpler, more consistent and more pleasant
+      (though additional refactoring of pages is planned for even further
+       streamlining)
+ - Dynamic HTML now mostly usable with the Safari browser (in addition to 
+     previous support for Mozilla and Internet Explorer)
+    though a few issues remain to be addressed for full Safari support
+ - Simple class search now really is on the header of every page (for quick access)
+ - Some cosmetic ui changes to DHTML ui (legend moved to header)
+ - Started to add first widget allowing end user to toggle whether to constrain block
+    heights and scroll (so everything fits on a page) or whether to just let blocks
+    occupy as much vertical space as they need (and scroll the entire page).  See for
+    example the J2SE API packages list (assuming you've populated J2SE in your 
+    repository)
+
+
+What's new in v0.8.4 (May 20 2004):
+---------------------------------
+
+ This release strictly modifies project documentation, not
+  project codebase.
+
+ 1. Serious revamping of project documentation
+   a. content expanded, updated, corrected
+   b. documentation now written in docbook xml, currently producing html
+
+ 2. ApiXml tool/utility now more easily callable (added shell script
+     in bin/ ) to produce api xml files to feed to ashkelon
 
 What's new in v0.8.3 (May 2004):
 --------------------
