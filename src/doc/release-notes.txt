@@ -15,7 +15,8 @@ What's new in v0.8.6 (July ? 2004):
 
  - Started updating mechanism for producing documentation to work with the latest
   version of the ant docbook styler, to be able to produce pdf docs in addition
-  to html.  This is not yet complete
+  to html.  PDF doco not yet available as more docbook editing work is necessary
+  for correct output.
 
  - Re-implemented view source feature.  This version is much more performant
   and pluggable.  Have two alternative implementations, using two independent
@@ -25,6 +26,14 @@ What's new in v0.8.6 (July ? 2004):
 
  - Fix "ashkelon remove" on mysql.  Database table names are case-sensitive on
   Unix
+
+ - Further refactoring of web content and slight changes/improvements in the
+  looks of some pages.
+
+ - Many description blocks with clipped heights (and scrolling overflow) are 
+   now optionally clipped.
+   A toggle button (on upper rhs) gives user control of whether css style
+   height is auto or fixed.
 
 What's new in v0.8.5 (July 7 2004):
 ----------------------------------
