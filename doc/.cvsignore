@@ -1,6 +1,7 @@
 .DS_Store
-single
-chunked
+html.single
+html.chunked
+pdf.fop
 install.txt
 readme.txt
 release-notes.txt
