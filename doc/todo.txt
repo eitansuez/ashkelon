@@ -48,6 +48,9 @@ Improvements
  1. Replace existing makeshift database connection pooling code with 
     a quality implementation that also handles refreshing stale connections.
     Use Jakarta's dbcp.
+ 2. Smarter parsing of @author tags to extract email address as a separate
+     field (revise schema for author table to include email field)
+ 3. A GUI tool for creating api.xml files
 
 UI
  1. Improve usability of GUI and continue refactoring JSPs
