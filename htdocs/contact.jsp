@@ -48,15 +48,11 @@ Date: December 2001
 ..please contact:
 </P>
 
-<UL>
-Eitan Suez
-<BR>
-<A HREF="mailto:eitan@uptodata.com">eitan@uptodata.com</A>
-<BR>
-UptoData, Inc.
-<BR>
+<blockquote>
+<a href="mailto:eitan-keywork-tech.cede1b@u2d.com">Eitan Suez</a> <br/>
+UptoData, Inc. <br/>
 Austin, Texas
-</UL>
+</blockquote>
 
 </DIV>
 
