@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -37,6 +38,7 @@ public class API implements JDoc, Serializable
     private String version = "";
     private ArrayList packagenames = new ArrayList();
     private Repository repository = new Repository();
+    private boolean populated = false;
     
     private List packages;
 
@@ -47,27 +49,11 @@ public class API implements JDoc, Serializable
     private boolean idSet = false;
    
     private transient Logger log;
-    private IBindingFactory _bfact = null;
-    
     
     public API()
     {
        log = Logger.getInstance();
-       loadBindingFactory();
        setPackages(new ArrayList());
-    }
-    
-    private void loadBindingFactory()
-    {
-       try
-       {
-          _bfact = BindingDirectory.getFactory(API.class);
-       }
-       catch (JiBXException ex)
-       {
-          System.err.println("JiBXException: "+ex.getMessage());
-          ex.printStackTrace();
-       }
     }
     
     public API(String name)
@@ -76,7 +62,7 @@ public class API implements JDoc, Serializable
        setName(name);
     }
     
-    public API unmarshal(String filename, String sourcepath) 
+    public static API unmarshal(String filename, String sourcepath) 
       throws FileNotFoundException, java.text.ParseException
     {
        try
@@ -91,9 +77,10 @@ public class API implements JDoc, Serializable
        }
     }
     
-    public API unmarshal(Reader reader) throws JiBXException
+    public static API unmarshal(Reader reader) throws JiBXException
     {
-       IUnmarshallingContext umctxt = _bfact.createUnmarshallingContext();
+       IBindingFactory bfact = BindingDirectory.getFactory(API.class);
+       IUnmarshallingContext umctxt = bfact.createUnmarshallingContext();
        return (API) umctxt.unmarshalDocument(reader);
     }
     
@@ -139,11 +126,15 @@ public class API implements JDoc, Serializable
       fieldInfo.put("RELEASE_DATE", new java.sql.Date(releaseDate.getTime()));
       fieldInfo.put("VERSION", StringUtils.truncate(version, 30));
       fieldInfo.put("DESCRIPTION", description);
+      fieldInfo.put("POPULATED", populatedVal());
       fieldInfo.put("REPOSITORY_TYPE", repository.getType());
       fieldInfo.put("REPOSITORY_URL", repository.getUrl());
       fieldInfo.put("REPOSITORY_MODULE", repository.getModulename());
       fieldInfo.put("REPOSITORY_TAGNAME", repository.getTagname());
       fieldInfo.put("REPOSITORY_SRCPATH", repository.getSourcepath());
+      
+      String packagenamelist = StringUtils.join(getPackagenames().toArray(), " ");
+      fieldInfo.put("PACKAGENAMES", packagenamelist);
 
       try
       {
@@ -154,7 +145,6 @@ public class API implements JDoc, Serializable
          fieldInfo.put("DESCRIPTION", StringUtils.truncate(description, 3600));
          DBUtils.insert(conn, TABLENAME, fieldInfo);
       }
-
 
       Iterator itr = getPackagenames().iterator();
       String packagename = null;
@@ -202,9 +192,15 @@ public class API implements JDoc, Serializable
       }
 
       // delete self
-      HashMap constraint = new HashMap();
-      constraint.put("NAME", name);
-      DBUtils.delete(conn, TABLENAME, constraint);
+//      HashMap constraint = new HashMap();
+//      constraint.put("NAME", name);
+//      DBUtils.delete(conn, TABLENAME, constraint);
+      setPopulated(false);
+      String sql = "update API set populated=0 where name=?";
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, getName());
+      pstmt.executeUpdate();
+      pstmt.close();
 
       return true;
    }
@@ -253,6 +249,26 @@ public class API implements JDoc, Serializable
        packagenames.add(packagename);
     }
     
+    public boolean isPopulated() { return populated; }
+    public void setPopulated(boolean populated)
+    {
+       this.populated = populated;
+    }
+    private Integer populatedVal()
+    {
+       int val = (populated) ? 1 : 0;
+       return new Integer(val);
+    }
+    private void setPopulated(int populatedVal)
+    {
+       this.populated = (populatedVal == 0) ? false : true;
+    }
+    
+    public void setRepository(Repository repository)
+    {
+       this.repository = repository;
+    }
+    
     public String toString()
     {
        return getName() + " v" + getVersion();
@@ -272,12 +288,27 @@ public class API implements JDoc, Serializable
        return text.toString();
     }
     
+   public static API makeAPIFor(Connection conn, String name) throws SQLException
+   {
+      String sql = DBMgr.getInstance().getStatement("makeapibyname");
+      
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, name);
+      
+      return makeIt(pstmt, conn);
+   }
    public static API makeAPIFor(Connection conn, int apiId) throws SQLException
    {
       String sql = DBMgr.getInstance().getStatement("makeapi");
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, apiId);
+      
+      return makeIt(pstmt, conn);
+   }
+   
+   private static API makeIt(PreparedStatement pstmt, Connection conn) throws SQLException
+   {
       ResultSet rset = pstmt.executeQuery();
       
       if (!rset.next())
@@ -291,6 +322,15 @@ public class API implements JDoc, Serializable
       api.setDownloadURL(rset.getString(6));
       api.setReleaseDate(rset.getDate(7));
       api.setVersion(rset.getString(8));
+      api.setPopulated(rset.getInt(9));
+      
+      Repository repository = new Repository(rset.getString(10),
+            rset.getString(11), rset.getString(12), rset.getString(13), rset.getString(14));
+      api.setRepository(repository);
+      
+      String packagenamesString = rset.getString(15);
+      String[] packageNames = StringUtils.split(packagenamesString, " ");
+      api.setPackagenames(Arrays.asList(packageNames));
       
       rset.close();
       pstmt.close();
@@ -332,6 +372,7 @@ public class API implements JDoc, Serializable
    
    public void getPackageInfoByAPIName(Connection conn) throws SQLException
    {
+      packages = new ArrayList();
       String sql = DBMgr.getInstance().getStatement("packageinfobyname");
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, getName());

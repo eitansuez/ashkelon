@@ -18,14 +18,102 @@ import org.ashkelon.API;
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.util.Logger;
-import org.ashkelon.util.StringUtils;
 
 /**
  * @author Eitan Suez
  */
 public class AshkelonCmd
 {
-   public static void addapiCmd(String[] args)
+   public static void addApiNameCmd(String[] args)
+   {
+      Logger log = Logger.getInstance();
+      String apiname = args[args.length-1];
+      log.debug("api name: "+apiname);
+      
+      API api = loadAPIByName(apiname);
+      
+      if (api == null)
+      {
+         log.error("Cannot find API " + apiname + " in database");
+         return;
+      }
+      
+      fetchSource(api);  // ..from source repository
+      
+      LinkedList argslist = new LinkedList(Arrays.asList(args));
+      argslist.removeFirst();  // the ashkelon "add" cmd
+      argslist.removeLast();  // api name
+      
+      // adjust source path
+      int sourcepathIndex = getSourcePathIndex(args);
+      if (sourcepathIndex < 0)
+      {
+         argslist.addLast("-sourcepath");
+         argslist.add(api.getSourcePath());
+      }
+      else
+      {
+         argslist.remove(sourcepathIndex+1);
+         String sourcepath = getSourcePathOption(args);
+         argslist.add(sourcepathIndex+1, api.getSourcePath() + ":" + sourcepath);
+      }
+      
+      // doclet argument:  which api (id) to populate
+      argslist.add("-api");
+      argslist.add(""+api.getId());
+      
+      // doclet arguments: api packages to process/parse
+      Collection packagenames = api.getPackagenames();
+      argslist.addAll(packagenames);
+      log.debug(argslist.toString());
+      
+      
+      // invoke javadoc..
+      String[] addlist = new String[argslist.size()];
+      String[] javadocargs = (String[]) argslist.toArray(addlist);
+      
+      // parms are: programName, docletClassName, javadocargs
+      com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.manager.Ashkelon", 
+            javadocargs);
+   }
+   
+   private static void fetchSource(API api)
+   {
+      String basepath = Config.getInstance().getSourcePathBase();
+      File base = new File(basepath);
+      if (!base.exists())
+      {
+         Logger.getInstance().traceln("Creating directory "+basepath);
+         base.mkdir();
+      }
+      api.fetch(base);  // fetch api source code from source repository
+   }
+   
+   
+   private static API loadAPIByName(String apiName)
+   {
+      Connection conn = null;
+      try
+      {
+         conn = DBMgr.getInstance().getConnection();
+         API api = API.makeAPIFor(conn, apiName);
+         return api;
+      }
+      catch (SQLException ex)
+      {
+         Logger.getInstance().error("Failed to load api: "+apiName);
+         DBUtils.logSQLException(ex);
+      }
+      finally
+      {
+         if (conn != null)
+            DBMgr.getInstance().releaseConnection(conn);
+      }
+      return null;
+   }
+   
+   
+   public static void addApiXmlCmd(String[] args)
    {
       Logger log = Logger.getInstance();
       String apifilename = args[args.length-1];
@@ -33,7 +121,7 @@ public class AshkelonCmd
       try
       {
          String sourcepath = getSourcePathOption(args);
-         API api = new API().unmarshal(apifilename, sourcepath);
+         API api = API.unmarshal(apifilename, sourcepath);
          log.debug("api unmarshalled; name is: "+api.getName());
          
          if (exists(api))
@@ -43,46 +131,42 @@ public class AshkelonCmd
             return;
          }
          
-         String basepath = Config.getInstance().getSourcePathBase();
-         File base = new File(basepath);
-         if (!base.exists())
+         Connection conn = null;
+         try
          {
-            log.traceln("Creating directory "+basepath);
-            base.mkdir();
+            conn = DBMgr.getInstance().getConnection();
+            api.store(conn);
+            conn.commit();
          }
-         api.fetch(base);
+         catch (SQLException ex)
+         {
+            log.error("Store (api: "+api.getName()+") failed!");
+            DBUtils.logSQLException(ex);
+            log.error("Rolling back..");
+            try
+            {
+               conn.rollback();
+            }
+            catch (SQLException inner_ex)
+            {
+               log.error("rollback failed!");
+            }
+            return;
+         }
+         finally
+         {
+            if (conn != null)
+               DBMgr.getInstance().releaseConnection(conn);
+         }
          
          LinkedList argslist = new LinkedList(Arrays.asList(args));
-         argslist.removeFirst();  // the ashkelon "add" cmd
-         argslist.removeLast();  // @apiname.xml
-         
-         int sourcepathIndex = getSourcePathIndex(args);
-         if (sourcepathIndex < 0)
-         {
-            argslist.addLast("-sourcepath");
-            argslist.add(api.getSourcePath());
-         }
-         else
-         {
-            argslist.remove(sourcepathIndex+1);
-            argslist.add(sourcepathIndex+1, api.getSourcePath() + ":" + sourcepath);
-         }
-         
-         argslist.add("-api");
-         argslist.add(apifilename);
-         
-         Collection packagenames = api.getPackagenames();
-         argslist.addAll(packagenames);
-         log.debug(StringUtils.join(argslist.toArray(), " "));
-         
-//         System.out.println(argslist);
+         argslist.removeLast();
+         argslist.addLast(api.getName());
          
          String[] addlist = new String[argslist.size()];
-         String[] javadocargs = (String[]) argslist.toArray(addlist);
+         args = (String[]) argslist.toArray(addlist);
          
-         // parms are: programName, docletClassName, javadocargs
-         com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.manager.Ashkelon", 
-               javadocargs);
+         addApiNameCmd(args);
          
       }
       catch (FileNotFoundException ex)
@@ -148,18 +232,6 @@ public class AshkelonCmd
       return -1;
    }
    
-   private static void testCmd()
-   {
-      String[] javadocargs = new String[5];
-      javadocargs[0] = "-doclet";
-      javadocargs[1] = "org.ashkelon.Ashkelon";
-      javadocargs[2] = "-sourcepath";
-      javadocargs[3] = "c:\\jdk1.3\\src";
-      //javadocargs[4] = "-remove";
-      javadocargs[4] = "java.util";
-      com.sun.tools.javadoc.Main.main(javadocargs);
-   }
-   
    public static void resetCmd()
    {
       Logger log = Logger.getInstance();
@@ -176,28 +248,6 @@ public class AshkelonCmd
       }
       ashkelon.finish();
       log.traceln("..done");
-   }
-   
-   private static void printUsage()
-   {
-      Logger log = Logger.getInstance();
-      try
-      {
-         ClassLoader loader = AshkelonCmd.class.getClassLoader();
-         InputStream is = loader.getResourceAsStream("org/ashkelon/manager/Usage.txt");
-         if (is == null) { return; }
-         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-         String line = "";
-         while ((line = br.readLine()) != null)
-            log.traceln(line);
-         br.close();
-         is.close();
-      }
-      catch (IOException ex)
-      {
-         log.error("Unable to print usage!");
-         log.error("IOException: "+ex.getMessage());
-      }
    }
    
 	public static void updateRefsCmd()
@@ -256,28 +306,20 @@ public class AshkelonCmd
       ashkelon.finish();
    }
    
-   public static void removeCmd(String args[])
+   public static void removeCmd(String apiname)
    {
       Logger log = Logger.getInstance();
       log.setPrefix("remove");
       
       Ashkelon ashkelon = new Ashkelon();
       ashkelon.init();
-      String[] removeargs = new String[args.length - 1];
-      for (int i=1; i<args.length; i++)
-      {
-         removeargs[i-1] = args[i];
-      }
-      ashkelon.doRemove(removeargs);
+      ashkelon.doRemove(apiname);
       ashkelon.finish();
    }
 
    
-   // entry point into ashkelon
    public static void main(String[] args)
    {
-      //String[] javadocargs;
-      
       Logger log = Logger.getInstance();
 
       if (args.length >=2)
@@ -295,8 +337,11 @@ public class AshkelonCmd
       if (args.length == 0)
       {
          printUsage();
+         return;
       }
-      else if (args[0].equals("reset"))
+      
+      
+      if (args[0].equals("reset"))
       {
          resetCmd();
       }
@@ -304,55 +349,18 @@ public class AshkelonCmd
       {
          listCmd();
       }
-      else if (args[0].equals("test"))
-      {
-         testCmd();
-      }
       else if (args[0].equals("remove"))
       {
-         if (args.length == 1)
-         {
-            printUsage();
-            return;
-         }
-         removeCmd(args);
+         removeApiCmd(args[args.length - 1]);
       }
       else if (args[0].equals("add"))
       {
-         if (args.length == 1)
-         {
-            printUsage();
-            return;
-         }
-         
-         String lastarg = args[args.length-1];
-         if (lastarg == null ||
-               ! lastarg.endsWith(".xml") )
-         {
-            printUsage();
-            return;
-         }
-         addapiCmd(args);
-         
+         addApiCmd(args);
       }
       else if (args[0].equals("update"))
       {
-         if (args.length == 1)
-         {
-            printUsage();
-            return;
-         }
-         removeCmd(args);
-         
-         String lastarg = args[args.length-1];
-         if (lastarg == null ||
-               ! lastarg.endsWith(".xml") )
-         {
-            printUsage();
-            return;
-         }
-         addapiCmd(args);
-         
+         removeApiCmd(args[args.length - 1]);
+         addApiCmd(args);
       }
       else if (args[0].equals("updaterefs"))
       {
@@ -361,6 +369,52 @@ public class AshkelonCmd
       else
       {
          printUsage();
+      }
+   }
+   
+   private static void addApiCmd(String[] args)
+   {
+      if (args.length == 1)
+      {
+         printUsage();
+         return;
+      }
+      
+      String lastarg = args[args.length-1];
+      if (lastarg.endsWith(".xml") )
+      {
+        addApiXmlCmd(args);
+      }
+      else
+      {
+         addApiNameCmd(args);
+      }
+   }
+   private static void removeApiCmd(String apiname)
+   {
+      removeCmd(apiname);
+   }
+   
+
+   private static void printUsage()
+   {
+      Logger log = Logger.getInstance();
+      try
+      {
+         ClassLoader loader = AshkelonCmd.class.getClassLoader();
+         InputStream is = loader.getResourceAsStream("org/ashkelon/manager/Usage.txt");
+         if (is == null) { return; }
+         BufferedReader br = new BufferedReader(new InputStreamReader(is));
+         String line = "";
+         while ((line = br.readLine()) != null)
+            log.traceln(line);
+         br.close();
+         is.close();
+      }
+      catch (IOException ex)
+      {
+         log.error("Unable to print usage!");
+         log.error("IOException: "+ex.getMessage());
       }
    }
    

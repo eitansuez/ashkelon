@@ -216,30 +216,4 @@ public class JDocUtil
        return paramInfo;
     }
     
-    /**
-     * provides ability to specify package list to process indirectly by providing
-     * file name that contains a list of packages sited one per line
-     * (as in javadoc @pkgnamesfile)
-     */
-    public static List getPackageListFromFileName(String filename)
-    {
-       List pkgs = new ArrayList(12);
-       if (filename==null) return pkgs;
-       if (filename.startsWith("@"))
-          filename = filename.substring(1);
-       try
-       {
-          BufferedReader br = new BufferedReader(new FileReader(filename));
-          String pkg = null;
-          while ((pkg=br.readLine()) != null)
-          {
-             pkgs.add(pkg);
-          }
-       }
-       catch (IOException ex)
-       {
-       }
-       return pkgs;
-    }
-    
 }

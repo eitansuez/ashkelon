@@ -3,12 +3,10 @@
  */
 package org.ashkelon.manager;
 
-import java.io.*;
 import java.sql.*;
 import java.util.*;
 
 import org.ashkelon.API;
-import org.ashkelon.ClassType;
 import org.ashkelon.Generic;
 import org.ashkelon.JPackage;
 import org.ashkelon.db.*;
@@ -109,13 +107,31 @@ public class Ashkelon extends Doclet
 
       if(!refsonly)
       {
-         API api = loadAPI();
-         if (api == null || root.specifiedPackages().length == 0)
+         int apiId = StringUtils.getCommandLineOption("-api", root.options(), -1);
+         
+         if (apiId == -1)
          {
-            log.error("No api to add (or 0 packages)..exiting.");
+            log.error("Failed to resolve api in db");
             return;
          }
-         storeAPI(api);
+         
+         try
+         {
+            API api = API.makeAPIFor(conn, apiId);
+            if (api == null || root.specifiedPackages().length == 0)
+            {
+               log.error("No api to add (or 0 packages)..exiting.");
+               return;
+            }
+            populateAPI(api);
+         }
+         catch (SQLException ex)
+         {
+            log.error("Failed to load api (id "+apiId+") from db..");
+            log.error("SQLException: "+ex.getMessage());
+            return;
+         }
+         
       }
 
       long addtime = new java.util.Date().getTime() - start;
@@ -142,42 +158,23 @@ public class Ashkelon extends Doclet
    }
    
    
-   private API loadAPI()
-   {
-      String apifilename = StringUtils.getStringCommandLineOption("-api", root.options());
-      API api = null;
-      if (!StringUtils.isBlank(apifilename))
-      {
-         try
-         {
-            String sourcepath = StringUtils.getStringCommandLineOption("-sourcepath", root.options());
-            api = new API().load(apifilename, sourcepath);
-            log.debug("api unmarshalled; name is: "+api.getName());
-         }
-         catch (java.io.FileNotFoundException ex)
-         {
-            log.error("File Not Found Exception: " + ex.getMessage());
-         }
-         catch (java.text.ParseException ex)
-         {
-            log.error("Exception: " + ex.getMessage());
-         }
-      }
-      return api;
-   }
-   
-   private void storeAPI(API api)
+   private void populateAPI(API api)
    {
       try
       {
-         if (api.exists(conn))
+         if (api.isPopulated())
          {
-            log.traceln("Skipping API " + api.getName() + " (already in repository)");
+            log.traceln("Skipping API " + api.getName() + " (already populated)");
             return;
          }
          
-         log.traceln("Storing api "+api.getName());
-         api.store(conn);
+         api.setPopulated(true);  // if add fails, transaction will rollback
+         String sql = "update API set populated=1 where name=?";
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, api.getName());
+         pstmt.executeUpdate();
+         pstmt.close();
+         
          storePackagesAndClasses(api);
          conn.commit();
       }
@@ -253,71 +250,24 @@ public class Ashkelon extends Doclet
    }
 
    
-   public void doRemove(String[] elements)
+   public void doRemove(String apiname)
    {
-      if (elements.length == 1 && elements[0].endsWith(".xml"))
+      try
       {
-         try
+         API api = API.makeAPIFor(conn, apiname);
+         if (api == null)
          {
-            API api = new API().load(new FileReader(elements[0]));
-            log.debug("api unmarshalled; name is: "+api.getName());
-            api.delete(conn);
-            conn.commit();
+            log.error("No api named "+apiname+" found in db");
+            return;
          }
-         catch (Exception ex)
-         {
-            log.error("Exception: "+ex.getMessage());
-         }
-         log.traceln("remove done");
-         return;
+         
+         api.delete(conn);
+         conn.commit();
       }
-      
-      if (elements.length == 1)
+      catch (Exception ex)
       {
-         List elemList = JDocUtil.getPackageListFromFileName(elements[0]);
-         elements = (String[]) elemList.toArray(elements);
+         log.error("Exception: "+ex.getMessage());
       }
-      for (int i=0; i<elements.length; i++)
-      {
-         log.traceln("Processing " + elements[i] + " for deletion..");
-         try
-         {
-            boolean found = JPackage.delete(conn, elements[i]);  // package does its own commit
-            if (found)
-            {
-               conn.commit();
-               log.traceln("Package: " + elements[i] + " stored (committed)", Logger.VERBOSE);
-            }
-            else
-            {
-               found = ClassType.delete(conn, elements[i]);
-               if (found)
-               {
-                  conn.commit();
-                  log.traceln("Class: " + elements[i] + " stored (committed)", Logger.VERBOSE);
-               }
-               else  // neither package nor class found
-               {
-                  log.traceln("Element " + elements[i] + " not found in repository");
-               }
-            }
-         }
-         catch (SQLException ex)
-         {
-            log.error("Failed to remove element " + elements[i]);
-            DBUtils.logSQLException(ex);
-            log.error("Rolling back..");
-            try
-            {
-               conn.rollback();
-            }
-            catch (SQLException inner_ex)
-            {
-               log.error("rollback failed!");
-            }
-         }
-      }
-      
       log.traceln("remove done");
    }
 
@@ -479,7 +429,17 @@ public class Ashkelon extends Doclet
    
    public List listAPINames() throws SQLException
    {
-      return Generic.listNames(conn, API.getTableName());
+      String sql = "select name from API where populated = 1";
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      ResultSet rset = pstmt.executeQuery();
+      List names = new ArrayList();
+      String name;
+      while (rset.next())
+      {
+         name = rset.getString(1);
+         names.add(name);
+      }
+      return names;
    }
 
    private void addSequences()

@@ -22,6 +22,16 @@ public class Repository
    private Logger log = Logger.getInstance();
    
    public Repository() {}
+   public Repository(String type, String url, String modulename, String tagname,
+         String sourcepath)
+   {
+      this();
+      this.type = type;
+      this.url = url;
+      this.modulename = modulename;
+      this.tagname = tagname;
+      this.sourcepath = sourcepath;
+   }
    
    // cvs -d :pserver:anonymous@cvs.sourceforge.net:/cvsroot/ashkelon checkout ashkelon/src
    // cvs -d $url checkout $module/$srcpath
@@ -52,7 +62,7 @@ public class Repository
    
    private String revision()
    {
-      return (StringUtils.isBlank(tagname)) ? "" : " -r " + tagname + " ";
+      return (StringUtils.isBlank(tagname)) ? " -r HEAD " : " -r " + tagname + " ";
    }
    
    public void update(File basepath)

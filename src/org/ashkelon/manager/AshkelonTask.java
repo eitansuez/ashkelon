@@ -33,8 +33,8 @@ public class AshkelonTask extends Task
       if ("add".equals(cmd))
       {
         String[] args = new String[1];
-        args[0] = "@" + apifile;
-        org.ashkelon.manager.AshkelonCmd.addapiCmd(args);
+        args[0] = apifile;
+        org.ashkelon.manager.AshkelonCmd.addApiXmlCmd(args);
       }
     }
     

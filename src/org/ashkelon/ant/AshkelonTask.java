@@ -76,7 +76,7 @@ public class AshkelonTask extends Javadoc
 					_includePatterns.getIncludePatterns(getProject());
 				includes =
 					_appendStringPrefixToArray(new String("remove"), includes);
-				AshkelonCmd.removeCmd(includes);
+				AshkelonCmd.removeCmd(includes[0]);
 			}
 			else if (_operation.compareTo(_UPDATEREFS_OPERATION) == 0)
 			{
@@ -91,8 +91,7 @@ public class AshkelonTask extends Javadoc
 				//
 				// Load the api with our description file
 				FileReader reader = new FileReader(_descriptionFile);
-				API api = new API();
-				api = api.load(reader);
+				API api = API.unmarshal(reader);
 				reader.close();
 				// Now get the package names we are to process so we can pass them along to the doclet
 				Collection packagenames = api.getPackagenames();
