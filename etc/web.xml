@@ -6,19 +6,13 @@
 
 <web-app>
 
+    <display-name>Multi-API Java Documentation System</display-name>
+
     <context-param>
       <param-name>sourcepath</param-name>
-<param-value>c:\j2se-src\j2sdk1.3.1\src\share\classes;c:\java\sources</param-value>
+      <param-value>/Users/eitansuez/devel/j2se-src/j2se/src/share/classes</param-value>
     </context-param>
 
-<!--
-    <context-param>
-      <param-name>sourcepath</param-name>
-<param-value>/home/eitan/src/ant/src/main:/home/eitan/src/servlet/src:/home/eitan/src/struts/src/share:/home/eitan/src/j2se</param-value>
-    </context-param>
--->
-
-    
     <servlet>
         <servlet-name>
             flowcontroller
@@ -36,22 +30,4 @@
         </url-pattern>
     </servlet-mapping>
 
-
-    <!--
-    <login-config>
-      <auth-method>BASIC</auth-method>
-      <realm-name>Basic Authentication Area</realm-name>
-    </login-config>
-
-    <security-constraint>
-      <web-resource-collection>
-         <web-resource-name>Protected Area</web-resource-name>
-         <url-pattern>/*</url-pattern>
-      </web-resource-collection>
-      <auth-constraint>
-         <role-name>tomcat</role-name>
-      </auth-constraint>
-    </security-constraint>
-    -->
-    
 </web-app>
