@@ -33,7 +33,7 @@ public class AshkelonCmd
       try
       {
          String sourcepath = getSourcePathOption(args);
-         API api = new API().load(apifilename, sourcepath);
+         API api = new API().unmarshal(apifilename, sourcepath);
          log.debug("api unmarshalled; name is: "+api.getName());
          
          if (exists(api))
@@ -295,43 +295,64 @@ public class AshkelonCmd
       if (args.length == 0)
       {
          printUsage();
-         return;
       }
       else if (args[0].equals("reset"))
       {
          resetCmd();
-         return;
       }
       else if (args[0].equals("list"))
       {
          listCmd();
-         return;
       }
       else if (args[0].equals("test"))
       {
          testCmd();
-         return;
       }
       else if (args[0].equals("remove"))
       {
          if (args.length == 1)
+         {
             printUsage();
+            return;
+         }
          removeCmd(args);
-         return;
       }
       else if (args[0].equals("add"))
       {
          if (args.length == 1)
+         {
             printUsage();
+            return;
+         }
          
          String lastarg = args[args.length-1];
-         if (lastarg != null && 
-               lastarg.endsWith(".xml"))
-            addapiCmd(args);
-         else
+         if (lastarg == null ||
+               ! lastarg.endsWith(".xml") )
+         {
             printUsage();
+            return;
+         }
+         addapiCmd(args);
          
-         return;
+      }
+      else if (args[0].equals("update"))
+      {
+         if (args.length == 1)
+         {
+            printUsage();
+            return;
+         }
+         removeCmd(args);
+         
+         String lastarg = args[args.length-1];
+         if (lastarg == null ||
+               ! lastarg.endsWith(".xml") )
+         {
+            printUsage();
+            return;
+         }
+         addapiCmd(args);
+         
       }
       else if (args[0].equals("updaterefs"))
       {

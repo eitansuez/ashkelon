@@ -76,12 +76,12 @@ public class API implements JDoc, Serializable
        setName(name);
     }
     
-    public API load(String filename, String sourcepath) 
+    public API unmarshal(String filename, String sourcepath) 
       throws FileNotFoundException, java.text.ParseException
     {
        try
        {
-          return load(new FileReader(filename));
+          return unmarshal(new FileReader(filename));
        }
        catch (JiBXException ex)
        {
@@ -91,7 +91,7 @@ public class API implements JDoc, Serializable
        }
     }
     
-    public API load(Reader reader) throws JiBXException
+    public API unmarshal(Reader reader) throws JiBXException
     {
        IUnmarshallingContext umctxt = _bfact.createUnmarshallingContext();
        return (API) umctxt.unmarshalDocument(reader);
@@ -142,6 +142,7 @@ public class API implements JDoc, Serializable
       fieldInfo.put("REPOSITORY_TYPE", repository.getType());
       fieldInfo.put("REPOSITORY_URL", repository.getUrl());
       fieldInfo.put("REPOSITORY_MODULE", repository.getModulename());
+      fieldInfo.put("REPOSITORY_TAGNAME", repository.getTagname());
       fieldInfo.put("REPOSITORY_SRCPATH", repository.getSourcepath());
 
       try
@@ -189,10 +190,15 @@ public class API implements JDoc, Serializable
    
    public boolean delete(Connection conn) throws SQLException
    {
-      Iterator itr = packagenames.iterator();
+      getPackageInfoByAPIName(conn);
+      Iterator itr = packages.iterator();
+      JPackage pkg = null;
+      log.traceln("(num packages to delete: "+packages.size()+")");
       while (itr.hasNext())
       {
-         JPackage.delete(conn, (String) itr.next());
+         pkg = (JPackage) itr.next();
+         log.traceln("deleting package "+pkg.getName());
+         JPackage.delete(conn, pkg.getName());
       }
 
       // delete self
@@ -308,6 +314,28 @@ public class API implements JDoc, Serializable
       pstmt.setInt(1, getId());
       ResultSet rset = pstmt.executeQuery();
       
+      JPackage pkg;
+      while (rset.next())
+      {
+         pkg = new JPackage(rset.getString(2));
+         pkg.setId(rset.getInt(1));
+         DocInfo doc = new DocInfo();
+         doc.setSummaryDescription(rset.getString(3));
+         pkg.setDoc(doc);
+         
+         addPackage(pkg);
+      }
+      
+      rset.close();
+      pstmt.close();
+   }
+   
+   public void getPackageInfoByAPIName(Connection conn) throws SQLException
+   {
+      String sql = DBMgr.getInstance().getStatement("packageinfobyname");
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, getName());
+      ResultSet rset = pstmt.executeQuery();
       JPackage pkg;
       while (rset.next())
       {

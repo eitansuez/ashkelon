@@ -118,6 +118,7 @@ public class JPackage implements JDoc, Serializable
       return true;
    }
    
+   
    /**
     * @param pkgName the package to remove
     * @return whether pkgName was found in the repository

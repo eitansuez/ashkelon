@@ -23,6 +23,7 @@
     <type>cvs</type>
     <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/ashkelon</url>
     <modulename>ashkelon</modulename>
+<!--    <tagname>Release-v0_8_8</tagname> -->
     <sourcepath>src</sourcepath>
   </repository>
 

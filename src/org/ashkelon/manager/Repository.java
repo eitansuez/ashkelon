@@ -5,6 +5,9 @@ package org.ashkelon.manager;
 
 import java.io.*;
 
+import org.ashkelon.util.Logger;
+import org.ashkelon.util.StringUtils;
+
 /**
  * @author Eitan Suez
  */
@@ -13,7 +16,10 @@ public class Repository
    private String type = "";
    private String url = "";
    private String modulename = "";
+   private String tagname = "";
    private String sourcepath = "";
+   
+   private Logger log = Logger.getInstance();
    
    public Repository() {}
    
@@ -26,40 +32,47 @@ public class Repository
       {
          login(basepath);
          
-         String cmd = "cvs -d " + url + " checkout " + modulename + 
-                  File.separator + sourcepath;
-         System.out.println("cmd is: "+cmd);
+         String cmd = "cvs -d " + url + " checkout " + revision() + 
+                  modulename + File.separator + sourcepath;
          
+         log.traceln("cmd is: "+cmd);
          exec(cmd, basepath);
       }
       catch (IOException ex)
       {
-         System.out.println("Checkout Failed.");
-         System.err.println(ex.getMessage());
+         log.error("checkout failed!");
+         log.error("IOException: "+ex.getMessage());
       }
       catch (InterruptedException ex)
       {
-         System.err.println("Checkout Process Interrupted;  exception: "+ex.getMessage());
+         log.error("Checkout process interrupted");
+         log.error("InterrupedException: "+ex.getMessage());
       }
+   }
+   
+   private String revision()
+   {
+      return (StringUtils.isBlank(tagname)) ? "" : " -r " + tagname + " ";
    }
    
    public void update(File basepath)
    {
       try
       {
-         String cmd = "cvs -d " + url + " -q update -d " + modulename + 
-                  File.separator + sourcepath;
-         System.out.println("cmd is: "+cmd);
+         String cmd = "cvs -d " + url + " -q update -d " + revision() + 
+                  modulename + File.separator + sourcepath;
+         log.traceln("cmd is: "+cmd);
          exec(cmd, basepath);
       }
       catch (IOException ex)
       {
-         System.out.println("Update Failed.");
-         System.err.println(ex.getMessage());
+         log.error("Update failed!");
+         log.error("IOException: "+ex.getMessage());
       }
       catch (InterruptedException ex)
       {
-         System.err.println("Update Process Interrupted;  exception: "+ex.getMessage());
+         log.error("Update Process Interrupted");
+         log.error("InterruptedException: "+ex.getMessage());
       }
    }
    
@@ -71,7 +84,7 @@ public class Repository
       String line = reader.readLine();
       while (line != null)
       {
-         System.out.println(line);
+         log.traceln(line);
          line = reader.readLine();
       }
       p.waitFor();
@@ -103,8 +116,9 @@ public class Repository
    }
    
    public String getType() { return type; }
-   public String getModulename() { return modulename; }
    public String getUrl() { return url; }
+   public String getModulename() { return modulename; }
+   public String getTagname() { return tagname; }
    public String getSourcepath() { return sourcepath; }
    
    public String getPath() { return modulename + File.separator + sourcepath; }

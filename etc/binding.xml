@@ -16,6 +16,7 @@
       <value name="type" field="type" />
       <value name="url" field="url" />
       <value name="modulename" field="modulename" />
+      <value name="tagname" field="tagname" usage="optional" />
       <value name="sourcepath" field="sourcepath" />
     </structure>
   </mapping>
