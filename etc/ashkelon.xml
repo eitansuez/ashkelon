@@ -1,0 +1,12 @@
+
+<!-- useful file if want to setup ashkelon for deployment in tomcat without using war file,
+  as an xml file pointing to a webapp in a different path -->
+
+<Context path="/ashkelon" docBase="/Users/eitansuez/devel/ashkelon/htdocs"
+        debug="1">
+
+  <Logger className="org.apache.catalina.logger.FileLogger"
+             prefix="ashkelon" suffix=".log"
+          timestamp="true"/>
+
+</Context>
