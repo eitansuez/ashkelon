@@ -53,6 +53,18 @@ Improvements
  3. A GUI tool for creating api.xml files
 
 UI
+--
+ Stats page:  add class count by api in addition to class count
+ by package
+--
+ API Page:  add listing of classes in a single api, flattening
+  the various packages an api contains.  sort of like a 
+  single package page, but for multiple packages (all
+  belonging to a certain api).
+--
+ Tab selection initialization:  appears to be broken (at least
+  on mozilla), fix it
+--
  1. Improve usability of GUI and continue refactoring JSPs
  2. Port solution to use Struts (Under consideration)
    Current solution is MVC but author's own implementation.
