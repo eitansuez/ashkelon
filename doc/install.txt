@@ -144,10 +144,10 @@ jar files included in $TOMCAT_HOME/common/lib
    so revise the param-value for the param-name "sourcepath" and
    rebuild war file:  $ ant
 
-1. copy war file from build/ashkelon.war to your tomcat 
+1. copy war file from dist/ashkelon.war to your tomcat 
     (or other) webapps folder:
 
-  copy %ASHK_HOME%\ashkelon.war %TOMCAT_HOME%\webapps
+  cp %ASHK_HOME%/dist/ashkelon.war $TOMCAT_HOME/webapps
 
 2. restart tomcat so it can pick up war file (& unpack it etc..)
 
