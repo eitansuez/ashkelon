@@ -172,21 +172,6 @@ public class JPackage implements JDoc, Serializable
    }
    
    
-   public static List getNames(Connection conn) throws SQLException
-   {
-      String sql = "select name from " + TABLENAME + " order by name";
-      Statement stmt = conn.createStatement();
-      ResultSet rset = stmt.executeQuery(sql);
-      List pkgs = new ArrayList();
-      while (rset.next())
-      {
-         pkgs.add(rset.getString(1));
-      }
-      rset.close();
-      stmt.close();
-      return pkgs;
-   }
-   
    /**
     * uses the primary key manager to assign an id to this object for/before
     * insertion into db
@@ -567,5 +552,11 @@ public class JPackage implements JDoc, Serializable
    {
       return getDoc().getReferences();
    }
+
+   public static String getTableName()
+   {
+     return TABLENAME;
+   }
+
  
 }

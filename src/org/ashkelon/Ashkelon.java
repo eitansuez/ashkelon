@@ -229,6 +229,7 @@ public class Ashkelon extends Doclet
             API api = new API().load(new FileReader(elements[0].substring(1)));
             log.debug("api unmarshalled; name is: "+api.getName());
             api.delete(conn);
+            conn.commit();
          }
          catch (Exception ex)
          {
@@ -595,7 +596,7 @@ public class Ashkelon extends Doclet
       
       try
       {
-         List names = JPackage.getNames(ashkelon.conn);
+         List names = Generic.listNames(ashkelon.conn, API.getTableName());
          Iterator i = names.iterator();
          while (i.hasNext())
             log.traceln((String) i.next());

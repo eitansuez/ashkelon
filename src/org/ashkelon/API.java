@@ -261,6 +261,10 @@ public class API implements Serializable
       pstmt.close();
    }
    
-   
+
+   public static String getTableName()
+   {
+     return TABLENAME;
+   }
    
 }
