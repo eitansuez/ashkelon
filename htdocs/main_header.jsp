@@ -106,6 +106,8 @@ document.onkeypress = esc;
 
 <br />
 
+<% if (!("/search.jsp".equals(request.getServletPath()))) { %>
 <jsp:include page="search_form_plug.jsp" flush="true" />
+<% } %>
 
 <br />

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <api>
-<name>hibernate</name>
+<name>Hibernate</name>
 <summarydescription>hibernate</summarydescription>
 <description>hibernate</description>
 <publisher>hibernate.org</publisher>

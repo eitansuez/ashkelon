@@ -10,10 +10,10 @@ Instructions
 A. Preliminary Setup:
 ---------------------
 
-1. Get & install a copy of Jakarta Tomcat (or some other servlet/jsp container) (jakarta.apache.org)
-2. Get & install a copy of mysql (www.mysql.org) or postgresql (http://www.postgresql.org/)
-3. Get & install a copy of Jakarta Ant (v1.5 or higher) (jakarta.apache.org)
-
+0. J2SE v1.4.x
+1. Jakarta Tomcat 5.x (or some other servlet/jsp container) (jakarta.apache.org)
+2. postgresql (http://www.postgresql.org/) or mysql (www.mysql.org)
+3. Jakarta Ant (v1.5 or higher) (jakarta.apache.org)
 
 Note: below, substitute the database type you're using for ${dbtype}
 
@@ -134,12 +134,7 @@ D. Populate Database
 
 E. Run Ashkelon webapp
 ----------------------
-
-NOTE:  some jsp's have started utilising JSTL (standard taglibs).
-since JSTL is becoming pervasive, i am not including the lib's
-with ashkelon.  for the pages to work, you must have the JSTL
-jar files and dependent libs included in $TOMCAT_HOME/common/lib ( or in 
-webapps/ashkelon/WEB-INF/lib )
+(note: jstl 1.1 libs now included with ashkelon)
 
 0. sourcepath info also needs to be set in etc/web.xml
    so revise the param-value for the param-name "sourcepath" and

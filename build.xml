@@ -70,7 +70,7 @@
          <lib dir="${libdir}" excludes="servlet.jar" />
          <lib dir="${dbdir}" includes="*.jar" />
          <lib dir="${builddir}" includes="ashkelon.jar" />
-         <webinf dir="${etcdir}" includes="*.tld" />
+         <webinf dir="${etcdir}/tld" includes="*.tld" />
       </war>
    </target>
 
