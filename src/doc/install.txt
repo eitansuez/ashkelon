@@ -119,15 +119,10 @@ D. Populate Database
    c:\%ASHK_HOME%\> cd apis
    c:\%ASHK_HOME%\apis\> ashkelon add @servlet.xml
 
-   note: DO NOT use the .plist files (they're deprecated) -- use the 
-    .xml files instead.  ashkelon requires api information in 
-    addition to package information.
-   
-
 3. if all succeeds, you should end up with your mysql ashkelon database
    populated with the java api documentation for the servlet api.
 
-   >> you may repeat step 2 for additional api's as long as they're in your
+   >> you may repeat step 2 for additional APIs as long as they're in your
    sourcepath (follows same convention as classpath: semicolon separator
    for windows or colon for unix)
 
@@ -151,3 +146,6 @@ E. Run Ashkelon webapp
    URL: http://localhost:8080/ashkelon/  (adjust if you've configured
    tomcat (or other) to run on another port
 
+(note: if you add other apis to the repository, the web app needs to be reloaded
+  as it caches content it retrieves from the database.  in tomcat you can use the 
+  manager application to do this).

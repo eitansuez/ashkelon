@@ -1,27 +1,23 @@
-5/7/2002
-Last Updated May 2004
-By Eitan Suez
+May 2004
 
-README for ashkelon
-===================
+README
+======
 
-Thanks for downloading ashkelon!
+Project documentation is currently available in two flavors:
 
-1. For an ashkelon users' guide, see guide.html or guide/index.html
+  a. a single html file
+  b. multiple html files
 
-2. To learn how to configure & setup ashkelon and to get
-   it up and running, see the file: install.txt
+The former is located at:  doc/single/guide.html
+The latter is located at:  doc/chunked/index.html
 
-3. For an idea of where this project is going, see todo.txt and roadmap.txt
 
-4. After you have gotten ashkelon configured and working,
-   read apis/readme.txt as a supplement.
+To send eitan feedback or questions, 
+  mailto: eitan-keyword-tech.cede1b@u2d.com
 
-5. Database support:  ashkelon currently supports mysql,
-   postgres, and oracle.  this app was designed to make adding
-   support for other sql dialects relatively painless.
-   contributions on this front are encouraged.
+To send the entire team feedback, email ashkelon-devs@lists.sourceforge.net 
 
-6. To send eitan feedback or questions, mailto: eitan-keyword-tech.cede1b@u2d.com
-   to send the entire team feedback, email ashkelon-devs@lists.sourceforge.net 
 
+Thank you,
+ Eitan Suez
+ Austin, Texas

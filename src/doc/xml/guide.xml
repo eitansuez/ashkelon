@@ -128,6 +128,285 @@ In an internet environment, it is conceivable that a single high-availability si
 
 </chapter>
 
+<chapter>
+<title>Installation</title>
+
+<sect1>
+<title>Download</title>
+
+<para>
+Visit the project page on sourceforge at <ulink url="http://sourceforge.net/projects/ashkelon">http://sourceforge.net/projects/ashkelon</ulink>.  On that page, under "Latest File Releases", select the package "ashkelon", a hyperlink which will lead you to the download page.  After you download ashkelon (a tar.gz or tgz file), unpack it.
+</para>
+
+</sect1>
+
+<sect1>
+<title>Requirements</title>
+
+<orderedlist>
+<listitem>J2SE v1.4.x
+</listitem>
+<listitem>A servlet &amp; JSP container (I use Jakarta tomcat 5.x at the mopment, but have used or received reports from many users and/or vendors that ashkelon works with their servlet container)
+</listitem>
+<listitem>
+postgresql (http://www.postgresql.org/) or mysql (www.mysql.org)
+</listitem>
+<listitem>
+Jakarta Ant (v1.5 or higher) (ant.apache.org)
+</listitem>
+</orderedlist>
+
+<note><para>In the following subsections, substitute the database type you've decided to use for the replaceable item ${dbtype}</para></note>
+
+</sect1>
+
+<sect1>
+<title>Configure database connection and build the distribution</title>
+
+<orderedlist>
+<listitem>
+Download &amp; unpack the ashkelon tarball
+</listitem>
+<listitem>
+<para>
+Edit <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/conn-info.properties</filename> to specify the proper database connection information:
+</para>
+
+<screen>
+      #
+      dbtype=mysql
+      jdbcDriverName=com.mysql.jdbc.Driver
+      connectionURL=jdbc:mysql://localhost/ashkelon
+      user=ashkelon
+      password=ashkelon
+
+      or
+      #
+      dbtype=postgres
+      jdbcDriverName=org.postgresql.Driver
+      connectionURL=jdbc:postgresql://localhost/ashkelon
+      user=postgre
+      password=
+</screen>
+</listitem>
+<listitem>
+<para>Build the code &amp; create jar &amp; make war file:</para>
+
+<example>
+<title>For mysql</title>
+<screen>
+   <prompt>$</prompt> <command>ant</command> -Ddbtype=mysql
+</screen>
+</example>
+
+<example>
+<title>For postgresql</title>
+<screen>
+   <prompt>$</prompt> <command>ant</command> -Ddbtype=postgres
+</screen>
+</example>
+
+</listitem>
+</orderedlist>
+
+<note><para>I have omitted discussion of the necessary steps to set up a user in mysql or
+     postgres for database access;  refer to db documentation for how to do this</para></note>
+      
+</sect1>
+
+<sect1>
+<title>Configure Environment and Prepare Database</title>
+
+<sect2>
+<title>Configure environment</title>
+
+<orderedlist>
+<listitem>
+Make sure you have a <envar>JAVA_HOME</envar> environment variable configured with its value set to the base directory for J2SE (e.g. <filename>c:\j2sdk1.4.2</filename>)
+</listitem>
+<listitem>
+<para>
+Set up <envar>ASHK_HOME</envar> environment variable
+</para>
+<example>
+<title>Windows</title>
+<screen>
+  set ASHK_HOME=c:\ashkelon
+</screen>
+</example>
+<example>
+<title>bash</title>
+<screen>
+  export ASHK_HOME=~/ashkelon
+</screen>
+</example>
+</listitem>
+<listitem>
+Add <filename class="directory">%ASHK_HOME%\bin</filename> (or <filename class="directory">$ASHK_HOME/bin</filename>) to your path
+<screen>
+  <prompt>$</prompt> <command>export</command> PATH=$PATH:$ASHK_HOME/bin
+</screen>
+</listitem>
+</orderedlist>
+   
+</sect2>
+
+<sect2>
+<title>Prepare Database</title>
+
+<orderedlist>
+<listitem>
+In <replaceable>${dbtype}</replaceable>, create database named ashkelon:
+
+<example>
+<title>For mysql</title>
+<screen><![CDATA[
+      c:\> mysql -u username -p
+      mysql> create database ashkelon;
+      mysql> exit
+      ]]>
+</screen>
+</example>
+<example>
+<title>For postgresql</title>
+<screen>
+      ~$ $postgreshome/bin/createdb ashkelon
+</screen>
+</example>
+</listitem>
+
+<listitem>
+Run script: db-scripts\init.sql
+<example>
+<title>Using mysql</title>
+<screen>
+   c:\ashkelon&gt; mysql -u username -p ashkelon
+      &lt; db\mysql\org\ashkelon\db\init.sql
+</screen>
+</example>
+
+<example>
+<title>Using postgresql</title>
+<screen>
+   ~/ashkelon&gt; psql -d ashkelon
+   ashkelon#= \i db/postgre/org/ashkelon/db/init.sql
+   ashkelon#= \q
+</screen>
+</example>
+</listitem>
+</orderedlist>
+
+</sect2>
+
+
+<sect2>
+<title>Verify that ashkelon repository mgr script works</title>
+
+  <screen>
+   <prompt>$</prompt> <command>ashkelon</command>
+  </screen>
+
+  <para>   
+   should produce a help/usage screen
+  </para>
+
+</sect2>
+
+<sect2>
+<title>Finish setting up database schema</title>
+
+  <screen>
+   <prompt>$</prompt> <command>ashkelon</command> reset
+  </screen>
+
+</sect2>
+
+</sect1>
+
+<sect1>
+<title>Populate Database</title>
+
+<orderedlist>
+<listitem>
+<para>
+Set up environment variable SOURCEPATH (analogous to classpath,
+   it is a list of paths where source code may be located by ashkelon)
+   </para>
+   
+ <example>
+ <title>Populating servlet API</title>
+ <orderedlist>
+ <listitem>
+  Download source code for the servlet api from jakarta at: <ulink url="http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src">http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src</ulink>
+  </listitem>
+  <listitem>
+   Unpack the zip or tar.gz file
+  </listitem>
+  <listitem>
+  <screen>
+   set SOURCEPATH=C:\<replaceable>path-to-jakarta-servletapi-4</replaceable>\src\share
+    or
+   export SOURCEPATH=~/<replaceable>path-to..</replaceable>/src/share
+   </screen>
+   </listitem>
+  </orderedlist>
+ </example>
+</listitem>
+
+<listitem>
+Run ashkelon repository manager to add servlet api to repository:
+<screen>
+   c:\%ASHK_HOME%\> cd apis
+   c:\%ASHK_HOME%\apis\> ashkelon add @servlet.xml
+</screen>
+</listitem>
+<listitem>
+<para>
+If all succeeds, you should end up with your mysql ashkelon database
+   populated with the java api documentation for the servlet api.</para>
+
+   <note><para>You may repeat step 2 for additional APIs as long as they're in your
+   sourcepath (follows same convention as classpath: semicolon separator for windows or colon for unix)
+   </para></note>
+</listitem>
+</orderedlist>
+
+</sect1>
+
+<sect1>
+<title>Run Ashkelon Web Application</title>
+
+<note>JSTL 1.1 libs are now included with ashkelon (no longer need to download it separately)</note>
+
+<orderedlist>
+<listitem>
+sourcepath info also needs to be set in <filename>etc/web.xml</filename> so revise the param-value for the param-name "sourcepath" and rebuild war file:
+<screen>
+  <prompt>$</prompt> <command>ant</command>
+</screen>
+</listitem>
+<listitem>
+Copy war file from <filename>dist/ashkelon.war</filename> to your tomcat  (or other) webapps folder:
+<screen>
+  <prompt>$</prompt> <command>cp</command> %ASHK_HOME%/dist/ashkelon.war $TOMCAT_HOME/webapps
+</screen>
+</listitem>
+<listitem>
+Restart tomcat so it can pick up war file (&amp; unpack it etc..)
+</listitem>
+<listitem>
+Open a web browser (preferably Mozilla but it will work in IE) and hit the URL: <ulink url="http://localhost:8080/ashkelon/">http://localhost:8080/ashkelon/</ulink>  (adjust if you've configured tomcat (or other) to run on another port
+</listitem>
+</orderedlist>
+
+<note><para>If you add other APIs to the repository, the web app needs to be reloaded
+  as it caches content it retrieves from the database.  In tomcat you can use the 
+  manager application to do this.</para></note>
+
+</sect1>
+
+</chapter>
+
 
 <chapter>
 <title>
@@ -359,12 +638,16 @@ Traditionally (i.e. with javadoc) one documents a single API.  So the inputs to 
 </para>
 
 <para>
-  You'll notice a simple perl script (wrap.pl) which will take a package-list and wrap each package name in &lt;package&gt; tags for you.  You'll also notice the Java utility (part of the ashkelon source base) org.ashkelon.util.ApiXml which will construct the xml file for you from the package-list.  All you have to do is fill in the api name, description, and version information.  It's wrapped around a shell script for easy invocation:
+  ashkelon comes iwth a utility that will produce the necessary API xml file for you from a package-list file.  Notice $ASHK_HOME/bin./apixml which is a wrapper script around org.ashkelon.util.ApiXml:
 </para>
 
 <screen>
 <prompt>$</prompt> <command>apixml</command> ~/devel/hibernate/doc/api/package-list > hibernate.xml
 </screen>
+
+<para>
+  After you run the utility, all you have to do is fill in the API name, description, and version information.
+</para>
 
 <para>
   Now you're ready to feed the <replaceable>api</replaceable>.xml to ashkelon:
@@ -374,30 +657,24 @@ Traditionally (i.e. with javadoc) one documents a single API.  So the inputs to 
   <prompt>$</prompt> <command>ashkelon</command> add @<replaceable>apiname</replaceable>.xml
 </screen>
 
-<para>
-  Real example:
-</para>
-  
+<example>
+<title>Real example</title>  
 <screen>
   <prompt>$</prompt> <command>ashkelon</command> add @servlet.xml
 </screen>
+</example>
 
 <para>
-  ashkelon will take it from here.  It will invoke the javadoc engine
-  to parse the source code and produce an object model of the
-  information.  ashkelon will proceed to take the information and stuff it
-  into its database.  Depending on the speed of your machine and
-  the size of the api, the whole process might take 5-10 seconds
-  or 2-3 minutes.
+  ashkelon will take it from here.  It will invoke the javadoc engine to parse the source code and produce an object model of the information.  ashkelon will proceed to take the information and stuff it into its database.  Depending on the speed of your machine and the size of the api, the whole process might take 5-10 seconds or 2-3 minutes.
 </para>
 
 <note><para>
-  When populating, you might get a ton of junk warnings from the javadoc engine.  This is normal.  Many people will make typographical mistakes in their doc tags such as <programlisting>@thorws SomeException</programlisting> instead of <programlisting>@throws SomeException</programlisting> which javadoc will warn you about.  If it's your code, you can correct the tag and repeat the add step (actually, make sure to read on about this).
+When populating, you might get a ton of junk warnings from the javadoc engine.  This is normal.  Many people will make typographical mistakes in their doc tags such as <programlisting>@thorws SomeException</programlisting> instead of <programlisting>@throws SomeException</programlisting> which javadoc will warn you about.  If it's your code, you can correct the tag and repeat the add step (actually, make sure to read on about this).
 </para></note>
 </sect1>
 
 <sect1>
-<title>How to update an existing an API</title>
+<title>How to update an existing API</title>
 
 <para>
   Oftentimes you'll want to update an API you've already populated into your database with an updated version.  This can be accomplished in two ways:
@@ -1021,94 +1298,112 @@ Future Versions and Upcoming Features
 <title>What are the things driving the To-Do list right now</title>
 
 <para>
-There are plenty of important tasks to work on that would greatly 
-increase the adoption of ashkelon.  Simpler installation, configuration,
-tools, adding features, documenting the schema, support for other databases,
-integration into tools like eclipse and gforge, more metrics, realizing
-the vision of ashkelon serving as a way to measure [and have insight into]
-your code in various ways.
+Here are what I believe to be important enhancements to ashkelon:
+
+<itemizedlist>
+<listitem>Brainless installation</listitem>
+<listitem>A public repository and web site with support for API owners and maintainers, remote population</listitem>
+<listitem>Eclipse plugin</listitem>
+<listitem>More stats, code metrics</listitem>
+<listitem>javadocs xml representation and xml marshalling</listitem>
+<listitem>a XUL gui</listitem>
+<listitem>GUIs for the repository manager</listitem>
+</itemizedlist>
+
 </para>
 
 </sect1>
 
 <sect1>
-<title>Ashkelon To-Do List</title>
+<title>Ashkelon Task List</title>
+
 
 <sect2>
-<title>XP</title>
+<title>xml</title>
 
 <orderedlist>
 <listitem>
-Write Unit Tests for Application and begin developing using test-first method.
+Add a third dimension (xml) to ashkelon.
+<para>
+   Currently model can exist at runtime (org.ashkelon model objects) or in 
+   database (have a database schema and code to support transfer of doc 
+   info from model to db and back).
+</para>
+
+<para>Here's what I envision:</para>
+<variablelist>
+<varlistentry>
+<term>
+ <command>ashkelon</command> export <replaceable>apiname</replaceable>
+</term>
+<listitem>(Database to XML)
+Exports API information as an xml document
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+ <command>ashkelon</command> import <replaceable>apiinfo.xml</replaceable>
+</term>
+<listitem>(XML to Database)
+Imports an entire API into the db from corresponding info saved in apiinfo.xml (not to confuse with existing api.xml file which contains only info about the api entity; this new xml is deep and contains package and class and member info and more)
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+ New doclet: <command>ashkelon</command> xml <replaceable>@api.xml</replaceable>
+</term>
+<listitem>(Source code to XML)
+Functions similar to <command>ashkelon add</command> but instead of dumping data into db, it would dump it to a target xml file
+</listitem>
+</varlistentry>
+
+</variablelist> 
+
+ <para>
+ Here's a crude diagram of what I envision..
+<ulink url="figures/vision.png">
+<screenshot>
+<screeninfo>Unified marshalling vision</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="figures/vision-thumb.png" format="PNG" /></imageobject>
+<caption>
+<para>Unified marshalling vision</para>
+</caption>
+</mediaobject>
+</screenshot>
+</ulink>
+ </para>
+
+
+</listitem>
+<listitem>
+Build web services on top of this xml infrastructure to allow the transfer of API info to a remote repository
 </listitem>
 </orderedlist>
 
 </sect2>
 
+
 <sect2>
-<title>Refactoring</title>
+<title>Refactoring/Enhancements</title>
 
 <orderedlist>
-<listitem>
- Oracle version uses separate connect-by statements to generate inheritance trees.  Action: revise/refactor to use same solution other databases use
-</listitem>
 <listitem>
 Code that supports multiple GUIs forces data duplication.  Refactor.  Proposed solution:  One set of JSPs generate the content to go on all versions of a page in XML format. Use separate XSLT transform to produce the different look and feel's.
 </listitem>
 <listitem>
-Modularize the build.xml file
+Review how application is configured and try to consolidate config files into a single file (look at Spring?)
 </listitem>
-<listitem>
-Review how application is configured and try to consolidate config files into a single file
-</listitem>
-<listitem>
-Review command line interface for ashkelon manager (populator) for possible improvements
-</listitem>
-<listitem>
-Refactor Model to use EJBs
-</listitem>
-</orderedlist>
 
-</sect2>
-
-<sect2>
-<title>
-Enhancements
-</title>
-
-<orderedlist>
 <listitem>
-Support hypersonicsql (idea to to bundle prepopulated database with ashkelon so that basic APIs are already available out of the box without having to populate)
+Support hypersonicsql (idea is to bundle prepopulated database with ashkelon so that basic APIs are already available out of the box without having to populate)
 </listitem>
 <listitem>
-Support for multiple versions of APIs in a single repository. [hays]
+Improve caching implementation
 </listitem>
-</orderedlist>
 
-</sect2>
-
-<sect2>
-<title>
-Improvements
-</title>
-
-<orderedlist>
-<listitem>
-Replace existing database connection pooling code with 
-    a quality implementation that also handles refreshing stale connections.
-    Use Jakarta's dbcp. -- update:  apparently dbcp has its own host of
-    issues.  not necessarily a win to switch.  existing dbcp code has been
-    improved.  pool reset on error.
-</listitem>
-<listitem>
-Smarter parsing of @author tags to extract email address as a separate
-     field (revise schema for author table to include email field) [done, though
-     might want to revisit method]
-</listitem>
-<listitem>
-A GUI tool for creating api.xml files [note: maven plug-in also assists
-     with this, though i haven't tried it firsthand].
-</listitem>
 </orderedlist>
 
 </sect2>
@@ -1121,7 +1416,9 @@ UI
 <orderedlist>
 <listitem>
 Improve usability of GUI and continue refactoring JSPs
-  - make ui javabeans aware.  separate accessor/mutator pairs
+<orderedlist>
+<listitem>
+  Make ui javabeans aware.  separate accessor/mutator pairs
     as listed properties in the ui.  ones that are read-only
     should display as such (no mutator).  this would really
     clean up the method listing for classes with many methods.
@@ -1129,136 +1426,41 @@ Improve usability of GUI and continue refactoring JSPs
     that coincidentally has getter/setter methods but was never
     intended to be a javabean (example: java.awt.Color)??
     maybe do this only for classes with associated beaninfo classes.
-
-  - scrollable div's in ui should not have hard-coded height.
+</listitem>
+<listitem>
+  Scrollable div's in ui should not have hard-coded height.
     is it possible with html to do something layout-manager-like?
     that is, specify that that div should take up whatever
     vertical space remains on the page? : note: consider doing
     this for the xul-based ui.
 </listitem>
-<listitem>
-Port solution to use Struts (Under consideration)
-   Current solution is MVC but author's own implementation.
-   update:  i don't see a real value to doing this. if
-   anything, try tapestry.
+</orderedlist>
+
 </listitem>
-<listitem>
-GUI Customization:  Make packages page configurable so it
-  can list packages of relevance to a specific business 
-  environment [hays]
-</listitem>
-<listitem>
-Use JSTL in JSPs [begun]
-</listitem>
+
 <listitem>
 A third, XUL-based GUI
 </listitem>
-<listitem>
-Make DHTML look &amp; feel work in Safari
-</listitem>
-</orderedlist>
 
-
-</sect2>
-
-<sect2>
-<title>
-Performance
-</title>
-
-<orderedlist>
-<listitem>
-Improve caching implementation
-</listitem>
-<listitem>
-Profile application
-</listitem>
-</orderedlist>
-
-</sect2>
-
-<sect2>
-<title>
-Major
-</title>
-
-<orderedlist>
 <listitem>
 GUI for Ashkelon Manager (populator)
-  a. Swing
-  b. Web front-end
-  c. Remote proxy (like cvs pserver et al)
+  <orderedlist>
+  <listitem>
+  Swing
+  </listitem>
+  <listitem>
+  Web front-end
+  </listitem>
+  <listitem>
+  Remote proxy (like cvs pserver et al)
+  </listitem>
+  </orderedlist>
+  
 </listitem>
 <listitem>
-Integration with various IDEs
-  a. Eclipse [hays]
-  b. NetBeans
-  c. JBuilder
-  d. IDEA
+Eclipse plugin
 </listitem>
-<listitem>
-Integration with GForge
- (Add GForge support to automatically run ashkelon against a project
-   and display the documentation as a link under the documentation item) [hays]
-</listitem>
-<listitem>
-Integration with Maven.  That is, make ashkelon a maven-enabled project
-   so that code can be built using maven.  Also at some point might want to
-   consider writing a maven plugin to the populator (ben walding intends to work
-   on an ashkelon plugin for maven)..
-</listitem>
-</orderedlist>
 
-</sect2>
-
-<sect2>
-<title>
-Add Value
-</title>
-
-<orderedlist>
-<listitem>
-Integrate with open source measurement tools [hays]
-   - jdepend
-</listitem>
-<listitem>
-Add a referenced-by and references list [hays]
-</listitem>
-</orderedlist>
-
-</sect2>
-
-<sect2>
-<title>
-XML
-</title>
-
-<orderedlist>
-<listitem>
-add a third dimension (xml) to ashkelon.
-
-   currently model can exist at runtime (org.ashkelon model objects) or in 
-   database (have a database schema and code to support transfer of doc 
-   info from model to db and back).
-
-   vision:
-     cvs export apiname
-      exports api information as an xml document
-
-     cvs import apiinfo.xml
-      imports an entire api into the db from corresponding info save
-       into apiinfo.xml (not to confuse with existing api.xml file
-       which contains only info about the api entity; this new xml
-       is deep and contains package and class and member info and more)
-
-      new doclet:  ashkelon xml @api.xml
-        functions similar to ashkelon add but instead of dumping
-        data into db, it would dump it to a target xml file
-
-</listitem>
-<listitem>
-Build web services on top of this xml infrastructure o allow the transfer of API info to a remote repository
-</listitem>
 </orderedlist>
 
 </sect2>
@@ -1280,16 +1482,13 @@ API Page:  add listing of classes in a single api, flattening
   belonging to a certain api).
 </listitem>
 <listitem>
-Tab selection initialization:  appears to be broken (at least
-  on mozilla), fix it
+Tab selection initialization:  appears to be broken (at least on mozilla); fix it
 </listitem>
 <listitem>
-Search:  ability to restrict a search (both 'direct' and 'power')
-  to a single API
+Search:  ability to restrict a search (both 'direct' and 'power') to a single API
 </listitem>
 <listitem>
-member or class listing:  modifier columns:  establish min-width in style
-   to improve look
+Member or class listing:  modifier columns:  establish min-width in style to improve look
 </listitem>
 <listitem>
 Command-line tool:  can sourcepath include jar/zip files?
