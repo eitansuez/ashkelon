@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# a simple wrapper around org.ashkelon.util.ApiXml;
+# a utility that will construct the ashkelon api.xml
+# file for you from a file containing a package list
+#
+
+
+# The install directory root must be defined
+if [ "$ASHK_HOME" = "" ]
+then
+    echo "ASHK_HOME not defined"
+    exit 1
+fi
+
+java -cp $ASHK_HOME/build/ashkelon.jar org.ashkelon.util.ApiXml $1
+

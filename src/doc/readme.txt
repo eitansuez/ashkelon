@@ -7,7 +7,7 @@ README for ashkelon
 
 Thanks for downloading ashkelon!
 
-1. For an ashkelon users' guide, see guide.txt or guide.html
+1. For an ashkelon users' guide, see guide.html or guide/index.html
 
 2. To learn how to configure & setup ashkelon and to get
    it up and running, see the file: install.txt

@@ -74,6 +74,9 @@
       </war>
    </target>
 
+  <!-- ======================== -->
+  <!-- SECTION:  Tomcat Related -->
+
   <taskdef name="tomcat-reload" classname="org.apache.catalina.ant.ReloadTask" />
   <taskdef name="tomcat-install" classname="org.apache.catalina.ant.InstallTask" />
   <taskdef name="tomcat-remove" classname="org.apache.catalina.ant.RemoveTask" />
@@ -103,6 +106,47 @@
 
   <target name="listwebapps" description="list webapps deployed to tomcat">
     <tomcat-list url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" />
+  </target>
+  
+  <!-- ================================== -->
+  <!-- SECTION:  Documentation Production -->
+
+  <property name="doc.srcdir" location="${srcdir}/doc" />
+  <property name="docdir" location="doc" />
+  <property name="ant.docbook.styler.dir" 
+     location="/Users/eitan/devel/docbook/ant-docbook-styler" />
+  <property name="ant.docbook.styler"
+     location="${ant.docbook.styler.dir}/ant-build-docbook.xml" />
+
+  <target name="builddocs">
+    <mkdir dir="${builddir}/doc/${kind}" />
+    <mkdir dir="${docdir}/${kind}" />
+    <ant antfile="${ant.docbook.styler}" inheritall="false" target="html.${kind}">
+       <property name="docbook.xml.dir" location="${doc.srcdir}/xml" />
+       <property name="docbook.resources.dir" location="${doc.srcdir}/resources" />
+       <property name="distribution.dir" location="${docdir}/${kind}" />
+       <property name="build.dir" location="${builddir}/doc/${kind}" />
+       <property name="manual.name" value="guide" />
+    </ant>
+  </target>
+  
+  <target name="makedocs-single" description="produce html documentation (single file)">
+    <antcall target="builddocs" inheritall="false">
+      <param name="kind" value="single" />
+    </antcall>
+  </target>
+  
+  <target name="makedocs-chunked" description="produce html documentation (chunked)">
+    <antcall target="builddocs" inheritall="false">
+      <param name="kind" value="chunked" />
+    </antcall>
+  </target>
+  
+  <target name="makedocs" description="produce documentation" 
+    depends="makedocs-single, makedocs-chunked">
+      <copy todir="${docdir}">
+        <fileset dir="${doc.srcdir}" includes="*.txt,*.rtf" />
+      </copy>
   </target>
 
 </project>

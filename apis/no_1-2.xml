@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <api>
-<name>naked objects 1.2</name>
-<summarydescription>naked objects</summarydescription>
-<description>naked objects</description>
-<publisher>matthews and pawson</publisher>
+<name>Naked Objects 1.2</name>
+<summarydescription>Naked Objects</summarydescription>
+<description>Naked Objects</description>
+<publisher>Matthews and Pawson</publisher>
 <download_url>http://www.nakedobjects.org/</download_url>
 <release_date>2003-12-01T08:00:00.000</release_date>
 <version>1.2</version>
