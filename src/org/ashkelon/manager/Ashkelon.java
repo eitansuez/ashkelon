@@ -7,9 +7,12 @@ import java.sql.*;
 import java.util.*;
 
 import org.ashkelon.API;
+import org.ashkelon.APISet;
 import org.ashkelon.JPackage;
 import org.ashkelon.db.*;
 import org.ashkelon.util.*;
+import org.jibx.runtime.JiBXException;
+
 import com.sun.javadoc.*;
 
 /**
@@ -439,6 +442,11 @@ public class Ashkelon extends Doclet
          names.add(name);
       }
       return names;
+   }
+   
+   public void dumpAPISet() throws SQLException, JiBXException
+   {
+      new APISet().dump(conn);
    }
 
    private void addSequences()

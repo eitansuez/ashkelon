@@ -15,9 +15,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.ashkelon.API;
+import org.ashkelon.APISet;
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.util.Logger;
+import org.jibx.runtime.JiBXException;
 
 /**
  * @author Eitan Suez
@@ -365,6 +367,26 @@ public class AshkelonCmd
       else if (args[0].equals("updaterefs"))
       {
          updateRefsCmd();
+      }
+      else if (args[0].equals("exportapis"))
+      {
+         try
+         {
+            Ashkelon ashkelon = new Ashkelon();
+            ashkelon.init();
+            ashkelon.dumpAPISet();
+            ashkelon.finish();
+         }
+         catch (JiBXException ex)
+         {
+            System.err.println("JiBXException: "+ex.getMessage());
+            ex.printStackTrace();
+         }
+         catch (SQLException ex)
+         {
+            System.err.println("SQLException: "+ex.getMessage());
+            ex.printStackTrace();
+         }
       }
       else
       {

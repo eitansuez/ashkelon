@@ -23,6 +23,7 @@ Usage:
              adds the api back in
     reset    Reset repository (i.e. delete everything, use with care)
     list     List apis currently residing in the repository
+    exportapis dump list of apis to xml (system.out)
 
 When adding, ashkelon will pass any valid javadoc option to the javadoc 
 parsing engine.  For a list of javadoc options, simply type: javadoc
