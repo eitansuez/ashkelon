@@ -627,9 +627,19 @@ public class Ashkelon extends Doclet
          List names = Generic.listNames(ashkelon.conn, API.getTableName());
          Iterator i = names.iterator();
          while (i.hasNext())
-            log.traceln((String) i.next());
+         {
+			log.traceln("API: " + (String) i.next());
+			// TODO: Put the version of this package into the list
+			// TODO: List the packages and classes for this api
+			if (names.isEmpty())
+			{
+			   log.traceln("repository is empty");
+			}
+         }
          if (names.isEmpty())
-            log.traceln("repository is empty");
+         {
+			log.traceln("repository is empty");
+         }
       } catch (SQLException ex)
       {
          DBUtils.logSQLException(ex);
