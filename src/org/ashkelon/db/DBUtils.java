@@ -29,7 +29,6 @@ public class DBUtils
    public static void insert(Connection conn, String tableName, Map fieldInfo) throws SQLException
    {
       String cmd = null;
-      try{
       if (fieldInfo == null || fieldInfo.isEmpty())
       {
          throw new SQLException("Cannot insert a record without field information");
@@ -43,10 +42,6 @@ public class DBUtils
       bind(pstmt, fieldInfo.values().toArray());
       pstmt.executeUpdate();
       pstmt.close();
-      } catch( SQLException e ) {
-         logSQLException( e, "Command to insert: " + cmd + ", values: " + fieldInfo.values() );
-         throw e;
-      }
    }
    
    /**
@@ -60,21 +55,13 @@ public class DBUtils
       {
          if (parms[i] == null)
             parms[i] = "";
-/* AS TODO: This code is added because there was a problem with an import to Hypersonic or PostgreSQL DB
-   AS will remove it soon
-         if( parms[i] instanceof String ) {
-            String text = parms[i] + "";
-               int index = text.indexOf( 0 );
-               while( index >= 0 ) {
-                  text = ( ( index + 1 < text.length() ) ?
-                        text.substring( 0, index ) + " " + text.substring( index + 1 ) :
-                        text.substring( 0, index ) + " "
-                  );
-                  index = text.indexOf( 0 );
-               }
-               parms[ i ] = text;
+         // issue with a number of databases that cannot insert text containing the null character
+         // go figure out why some javadoc comment in j2se actually encodes the null character in
+         // a summary description!
+         if (parms[i] instanceof String)
+         {
+           parms[i] = StringUtils.stripNull((String) parms[i]);
          }
-*/
          pstmt.setObject(i+1, parms[i]);
       }
    }
