@@ -42,7 +42,7 @@ C. Configure environment & prepare database
    
 1. set up DBDOC_HOME environment variable; examples:
     windows: set DBDOC_HOME=c:\ashkelon
-    bash: export $DBDOC_HOME=~/ashkelon
+    bash: export DBDOC_HOME=~/ashkelon
 
 2. add %DBDOC_HOME%\bin ($DBDOC_HOME/bin)
     to your path ( export PATH=$PATH:$DBDOC_HOME/bin )
