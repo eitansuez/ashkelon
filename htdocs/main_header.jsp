@@ -17,16 +17,16 @@
     area = StringUtils.split(cmd,".")[0];
 %>
 
-<STYLE TYPE="text/css">
+<style type="text/css">
 .menuitem
 {
   padding: 0 10 0 10;
   font-weight: bold;
   color: black;
 }
-</STYLE>
+</style>
 
-<SCRIPT>
+<script>
 // sole purpose of this is to enable 'esc' key hiding of legend if visible (convenience)
 // should really be in an htc but i don't believe mozilla supports that
 function esc(evt)
@@ -38,7 +38,7 @@ function esc(evt)
   setVisible("legend", false, "visibility", false);
 }
 document.onkeypress = esc;
-</SCRIPT>
+</script>
 
 
 <table width="100%" cellpadding="3" cellspacing="0">
