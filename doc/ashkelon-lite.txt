@@ -1,0 +1,25 @@
+
+august 20 2004
+
+notes to self (until i automate the production of the ashkelon lite
+ war file):
+
+to build war file:
+ build as usual
+ expand it
+ copy db into WEB-INF/db (db.conf, data, and log)
+ rm META-INF
+ comment out cls_info "Source Code" span block
+ revise web.xml sourcepath (make it blank)
+ re-war file as ashkelon-lite.war
+
+-------
+goals:
+
+  1. automate production of ashkelon-lite war file
+  2. instead of putting war file for upload, wrap it in a zip or tgz
+    so that you can include a readme with it.  also it would fix the
+    download problem i've experienced with the safari browser
+
+
+
