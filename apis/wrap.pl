@@ -1,5 +1,10 @@
 #!/usr/bin/perl
 
+#
+# sample usage:
+#  perl wrap.pl package-list >> tapestry.xml
+#
+
 my $package_list = $ARGV[0]; 
 if (!$package_list)
 {
