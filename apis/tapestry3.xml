@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api>
    <name>Jakarta Tapestry</name>
-   <summarydescription></summarydescription>
-   <description></description>
+   <summarydescription>Tapestry is a powerful, open-source, all-Java framework for creating leading edge web applications in Java.</summarydescription>
+   <description>Tapestry is a powerful, open-source, all-Java framework for creating leading edge web applications in Java.
+
+Tapestry reconceptualizes web application development in terms of objects, methods and properties instead of URLs and query parameters.
+
+Tapestry is an alternative to scripting environments such as JavaServer Pages or Velocity. Tapestry goes far further, providing a complete framework for creating extremely dynamic applications with minimal amounts of coding.
+</description>
    <publisher>Apache Jakarta</publisher>
    <download_url>http://jakarta.apache.org/tapestry/index.html</download_url>
    <release_date>2005-03-21T00:53:15.188</release_date>
