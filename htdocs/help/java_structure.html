@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Structure of a Java API</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../global.css"></LINK>
+<STYLE>
+LI
+{
+  padding-bottom: 10 px;
+}
+A
+{
+  text-decoration: italicized;
+}
+</STYLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="pagebody">
+
+<H2>Structure of a Java API</H2>
+
+<P>
+dbdoc is an online reference system for Java APIs.  Effective use of dbdoc requires
+an understanding of the structure of Java APIs, the programming elements that
+constitute it (classes, interfaces, objects, methods, etc..), and their interrelationships.  Experienced Java developers already have a good understanding of this since it is the foundation of object oriented programming concepts as implemented in the Java programming language.  Feel free to skip over this section if you believe this information to 
+be too basic for your level of expertise.  On the other hand, there may be some specific documentation-related terminology that you may not be familiar with so this section may still be worth a glance.
+</P>
+
+<H3>APIs</H3>
+<P>
+APIs are a collection of Java packages.  The reason these packages are grouped into
+a single API is because they are closely interrelated or serve a common purpose.
+For example, the Java Servlet API consists of two packages (javax.servlet and javax.servlet.http).  The package javax.servlet provides a foundation object
+model upon which the javax.servlet.http package builds a specific implementation
+based on the HTTP protocol.  Many of the classes in the latter package are concrete
+extensions of the abstract classes or implementation of interfaces defined in the
+former package.  Both are bundled as a single API.
+</P>
+
+<P>An API usually addresses a specific domain of programming.  For example, the 
+JavaMail API addresses email-related programming issues such as sending email
+messages and retrieving them from messaging servers accessible via various 
+protocols such as POP3 and IMAP.</P>
+
+<H3>Packages</H3>
+
+<P>
+Just as an API is a collection or related packages, a package is a collection 
+of closely related classes and interfaces.  There exist three distinct 
+types of classes: ordinary classes, exceptions, and errors.  If for example
+you were to lookup the package java.lang in dbdoc, you would notice that
+the package's members are grouped or categorized by the four main types:
+ordirnary classes, interfaces, exceptions, and errors.
+</P>
+
+
+<H3>Classes and Interfaces</H3>
+
+<P>
+Classes and interfaces are the main unit of measure in an object
+oriented system.  They consist of field, method, and constructor
+(for classes) definitions.  They also have modifiers such
+as public or abstract (for classes).  Classes and interfaces can
+in several ways be related to other classes and interfaces.  A
+class can extend another class, implement zero or more interfaces.
+So a descendence hierarchy may exist between classes.
+</P>
+
+<P>A class or interface may be assigned one or more authors and authors
+likewise may have authored a number of classes and interfaces.  These
+interrelationships are documented and can be discovered using dbdoc.</P>
+
+<H3>Members</H3>
+
+<P>Fields, methods, and constructors are commonly known as 
+members.  Methods are the unit of work in a programming system.
+Methods can have a number of modifiers including static, 
+abstract, public, and final.  Methods declare return types
+and also may take zero or more arguments or parameters.  A class's
+field members are objects of a declared type.  It is through
+field types and method (or constructor) parameter types and 
+method return types that numerous relationships
+are created with various classes.  A constructor may require
+a parameter of a specific class type that is returned by calling 
+a method on a different class.  Another way in which methods and 
+constructors are related to classes is in these members' ability to 
+throw specific kinds of exceptions.</P>
+
+<P>
+dbdoc can assist developers in discovering many of these interrelationships
+using cross references.  Given a class type, one can query dbdoc for all
+methods that return an object of that type.  Likewise, one can query what
+field members of other classes are defined to be of that type.  In all, there
+are six (6) distinct types of cross references that one may use to discover
+various class interrelationships.
+</P>
+
+<H3>General</H3>
+
+<P>Classes, interfaces, and members are all known as programming elements.
+Methods and constructors are a specific type of member known
+as executable members.  All elements including packages and APIs can have
+brief and full descriptions, and author-specified references to other elements.
+The documentation will frequently contain a list of 'see also' references
+to these various elements.</P>
+
+<BR><BR>
+
+</DIV>
+
+</BODY>
+</HTML>

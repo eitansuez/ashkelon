@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<api>
+<name>Jakarta Regexp</name>
+<summarydescription>Regexp is a 100% Pure Java Regular Expression package that was graciously donated to the Apache Software Foundation by Jonathan Locke.</summarydescription>
+<description>Regexp is a 100% Pure Java Regular Expression package that was graciously donated to the Apache Software Foundation by Jonathan Locke. He originally wrote this software back in 1996 and it has stood up quite well to the test of time. It includes complete Javadoc documentation as well as a simple Applet for visual debugging and testing suite for compatibility. </description>
+<publisher>Apache</publisher>
+<download_url>http://jakarta.apache.org/regexp/index.html</download_url>
+<release_date>2000-11-27T12:07:00.000</release_date>
+<version>1.2</version>
+<package>org.apache.regexp</package>
+</api>

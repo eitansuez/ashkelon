@@ -1,0 +1,65 @@
+5/7/2002
+By: Eitan Suez
+
+Ashkelon To-Do List
+-------------------
+
+1. Build Ant Scripts to build and deploy ashkelon on multiple platforms
+ [done! - thanks andreas!]
+
+1.5 Set up open source project at sourceforge.net so can leverage
+  development & hosting tools such as mailing lists and cvs.
+  [done!]
+
+2. Build a GUI for the ashkelon manager (populator).  Swing, web-based,
+  other?
+
+3. Integration with Gump project (see jakarta.apache.org)
+
+4. Replace current caching with a solid caching architecture
+
+5. Profile application
+
+6. Plug security holes and invalid requests so they don't crash
+   the app; examples:
+
+     a. disallow building inheritance tree for class java.lang.Object ?
+     b. check if programming element referenced in request is valid before
+       attempting to fetch it from db and construct it
+
+7. Postgresql support (basically, add lines to config\statements.properties)
+  [80%]
+
+8. Remote-enable the ashkelon manager so it can be run from remote machines.
+   Analogous to how cvs clients can do checkins from other machines.
+
+9. Remove all references to PK's (primary keys) from URL's.  Reference 
+  programming elements only by fully qualified names.
+
+10. Replace existing makeshift database connection pooling code with 
+    a quality implementation that also handles refreshing stale connections.
+
+11. Streamline configuration of app so that all config files use xml
+  (no more properties files) using Castor
+
+12. Review command line interface for ashkelon manager (populator) for
+   possible improvements
+
+13. Possibly pool Page classes
+
+14. Possibly port solution to use Struts
+
+15. Build a ashkelon plugin for eclipse or forte
+
+16. Build JUnit Unit Tests
+
+17. Review entire GUI and come up with improvements to the UI,
+    its design, and usability.  Add more GUI widgets: toolbars,
+    context menus, HTC's.
+
+18. Build a Netscape 6 - optimized set of JSPs (GUI) [done!]
+
+19. Inheritance Trees Logic is different for mysql than for Oracle.
+   Oracle version uses separate connect-by statements; unify solution 
+   to use single method that is currently used by mysql
+

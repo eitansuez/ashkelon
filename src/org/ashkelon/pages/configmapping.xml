@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<mapping>
+        <class name="org.ashkelon.pages.ConfigInfo">
+                <map-to xml="configinfo"/>
+        
+                <field name="defaultPkg"
+                       type="java.lang.String">
+                        <bind-xml name="defaultpkg" node="element"/>
+                </field>
+
+                <field name="defaultCmd"
+                       type="java.lang.String">
+                        <bind-xml name="defaultcmd" node="element"/>
+                </field>
+
+                <field name="maxTrailLength"
+                       type="integer">
+                        <bind-xml name="maxtraillength" node="element"/>
+                </field>
+                
+                <field name="commandList"
+                       type="org.ashkelon.pages.CommandInfo" collection="collection">
+                        <bind-xml name="cmdinfo" node="element"/>
+                </field>
+
+                <field name="traceLevel"
+                       type="integer">
+                        <bind-xml name="tracelevel" node="element"/>
+                </field>
+
+                <field name="traceFile"
+                       type="java.lang.String">
+                        <bind-xml name="tracefile" node="element"/>
+                </field>
+        </class>
+
+        <class name="org.ashkelon.pages.CommandInfo">
+                <map-to xml="cmdinfo"/>
+
+                <field name="command"
+                       type="java.lang.String">
+                        <bind-xml name="cmd" node="element"/>
+                </field>
+
+                <field name="pageName"
+                       type="java.lang.String">
+                        <bind-xml name="page" node="element"/>
+                </field>
+
+                <field name="className"
+                       type="java.lang.String">
+                        <bind-xml name="class" node="element"/>
+                </field>
+
+                <field name="caption"
+                       type="java.lang.String">
+                        <bind-xml name="caption" node="element"/>
+                </field>
+
+                <field name="tableName"
+                       type="java.lang.String">
+                        <bind-xml name="tablename" node="element"/>
+                </field>
+
+                <field name="inTrail"
+                       type="boolean">
+                        <bind-xml name="intrail" node="element"/>
+                </field>
+        </class>
+
+</mapping>

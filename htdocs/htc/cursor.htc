@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<PUBLIC:COMPONENT>
+  <PUBLIC:ATTACH EVENT="onload" FOR="window" ONEVENT="setCursor('default');">
+  <PUBLIC:ATTACH EVENT="onunload" FOR="window" ONEVENT="setCursor('wait');">
+</PUBLIC:COMPONENT>
+<SCRIPT>
+function setCursor(name)
+{
+  element.style.cursor=name;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+</BODY>
+</HTML>

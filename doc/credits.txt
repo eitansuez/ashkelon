@@ -1,0 +1,16 @@
+11/20/2002
+
+Credits:
+========
+
+  Conceived, designed, & built by Eitan Suez,
+  Austin, Texas (www.uptodata.com).
+  
+  Sincere thanks goes to Andreas Schaefer for his
+  energy, for writing the ant build files for
+  this project, and for being the first individual
+  to step up to the plate and actively contribute
+  to this project.
+
+
+

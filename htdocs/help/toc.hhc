@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="FrameName" value="right">
+	<param name="Window Styles" value="0x800025">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Introduction">
+		<param name="Local" value="intro.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="What is dbdoc">
+			<param name="Local" value="whatis.html">
+			<param name="URL" value="whatis.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="User Guide">
+		<param name="Local" value="user_guide.html">
+		</OBJECT>
+	<UL>
+    	<LI> <OBJECT type="text/sitemap">
+    		<param name="Name" value="Structure of a Java API">
+        	<param name="Local" value="java_structure.html">
+    		</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Basic Page Layout">
+			<param name="Local" value="page_layout.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="User Interface Components">
+			<param name="Local" value="ui_components.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Pages">
+			<param name="Local" value="pages.html">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<api>
+<name>SOAP</name>
+<summarydescription>Apache SOAP ("Simple Object Access Protocol") is an implementation of the SOAP submission to W3C.</summarydescription>
+<description>Apache SOAP ("Simple Object Access Protocol") is an implementation of the SOAP submission to W3C. It is based on, and supersedes, the IBM SOAP4J implementation.
+
+From the draft W3C specification: SOAP is a lightweight protocol for exchange of information in a decentralized, distributed environment. It is an XML based protocol that consists of three parts: an envelope that defines a framework for describing what is in a message and how to process it, a set of encoding rules for expressing instances of application-defined datatypes, and a convention for representing remote procedure calls and responses. 
+</description>
+<publisher>Apache</publisher>
+<download_url>http://xml.apache.org/soap/index.html</download_url>
+<release_date>2001-05-30T08:00:00.000</release_date>
+<version>2.2</version>
+<package>org.apache.soap</package>
+<package>org.apache.soap.encoding</package>
+<package>org.apache.soap.encoding.literalxml</package>
+<package>org.apache.soap.encoding.soapenc</package>
+<package>org.apache.soap.encoding.xmi</package>
+<package>org.apache.soap.messaging</package>
+<package>org.apache.soap.providers</package>
+<package>org.apache.soap.providers.com</package>
+<package>org.apache.soap.rpc</package>
+<package>org.apache.soap.server</package>
+<package>org.apache.soap.server.http</package>
+<package>org.apache.soap.transport</package>
+<package>org.apache.soap.transport.http</package>
+<package>org.apache.soap.transport.smtp</package>
+<package>org.apache.soap.util</package>
+<package>org.apache.soap.util.mime</package>
+<package>org.apache.soap.util.net</package>
+<package>org.apache.soap.util.xml</package>
+</api>

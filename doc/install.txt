@@ -1,0 +1,122 @@
+5/7/2002
+By Eitan Suez
+
+How to download, configure, setup, install, and run ashkelon
+============================================================
+
+Instructions
+============
+
+A. Preliminary Setup:
+---------------------
+
+1. Get & install a copy of Jakarta Tomcat (or some other servlet/jsp container) (jakarta.apache.org)
+2. Get & install a copy of mysql (www.mysql.org)
+3. Get & install a copy of Jakarta Ant (v1.5 or higher) (jakarta.apache.org)
+
+NOTE:  ashkelon works with either mysql or oracle.  if you perform an oracle 
+ installation, just substitute the word "oracle" for "mysql" below
+
+
+B. Configure database connection and build distribution
+-------------------------------------------------------
+
+1. download & unpack the ashkelon tarball
+
+2. edit the db/mysql/org/ashkelon/db/conn-info.properties to 
+   specify the proper database connection information: 
+  
+      #
+      dbtype=mysql
+      jdbcDriverName=com.mysql.jdbc.Driver
+      connectionURL=jdbc:mysql://localhost/ashkelon
+      user=
+      password=
+      
+3. build the code & create jar & make war file:
+   $ ant
+
+   
+C. Configure environment & prepare database
+-------------------------------------------
+   
+1. set up DBDOC_HOME environment variable; examples:
+    windows: set DBDOC_HOME=c:\ashkelon
+    bash: export $DBDOC_HOME=~/ashkelon
+
+2. add %DBDOC_HOME%\bin ($DBDOC_HOME/bin)
+    to your path ( export PATH=$PATH:$DBDOC_HOME/bin )
+
+3. prepare database:
+  a. in mysql, create database named ashkelon:
+      c:\> mysql -u username -p
+      mysql> create database ashkelon;
+      mysql> exit
+
+  b. run script: db-scripts\init.sql
+      c:\%DBDOC_HOME%> mysql -u username -p ashkelon < db\mysql\org\ashkelon\db\init.sql
+      
+4. verify that ashkelon repository mgr script works:
+
+   $ ashkelon
+   
+   should produce a help/usage screen
+   
+5. setup database schema:
+
+   $ ashkelon reset
+
+
+D. Populate Database
+--------------------
+
+1. set up environment variable SOURCEPATH (analogous to classpath,
+   it is a list of paths where source code may be located by ashkelon)
+
+   example: download source code for the servlet api from jakarta
+    at: 
+
+  http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src
+
+   unpack the zip or tar.gz file
+
+   set SOURCEPATH=C:\<path-to-jakarta-servletapi-4>\src\share
+    or
+   export SOURCEPATH=~/<path-to..>/src/share
+
+
+2. run ashkelon repository manager to add servlet api to repository:
+
+   c:\%DBDOC_HOME%\> cd apis
+   c:\%DBDOC_HOME%\apis\> ashkelon add @servlet.xml
+
+   note: DO NOT use the .plist files (they're deprecated) -- use the 
+    .xml files instead.  ashkelon requires api information in 
+    addition to package information.
+   
+
+3. if all succeeds, you should end up with your mysql ashkelon database
+   populated with the java api documentation for the servlet api.
+   you may repeat step 2 for additional api's as long as they're in your
+   sourcepath (follows same convention as classpath: semicolon separator
+   for windows or colon for unix)
+
+
+E. Run Ashkelon webapp
+----------------------
+
+0. sourcepath info also needs to be set in web.xml
+   so revise the param-value for the param-name "sourcepath" and
+   rebuild war file:  $ ant war
+
+1. copy war file from build/ashkelon.war to your tomcat 
+    (or other) webapps folder:
+
+  copy %DBDOC_HOME%\ashkelon.war %TOMCAT_HOME%\webapps
+
+2. restart tomcat so it can pick up war file (& unpack it etc..)
+
+3. open a web browser (preferably IE or Mozilla) and hit the 
+   URL: http://localhost:8080/ashkelon/  (adjust if you've configured
+   tomcat (or other) to run on another port
+

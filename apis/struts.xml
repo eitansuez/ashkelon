@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<api>
+<name>Struts</name>
+<summarydescription>Struts provides an open source framework useful in building web applications with Java Servlet and JavaServer Pages (JSP) technology</summarydescription>
+<description>Welcome to the Struts Framework! The goal of this project is to provide an open source framework useful in building web applications with Java Servlet and JavaServer Pages (JSP) technology. Struts encourages application architectures based on the Model-View-Controller (MVC) design paradigm, colloquially known as Model 2 in discussions on various servlet and JSP related mailing lists.</description>
+<publisher>Apache</publisher>
+<download_url>http://jakarta.apache.org/struts/</download_url>
+<release_date>2001-03-24T00:00:00.000</release_date>
+<version>1.0.1</version>
+<package>org.apache.struts.action</package>
+<package>org.apache.struts.actions</package>
+<package>org.apache.struts.digester</package>
+<package>org.apache.struts.taglib</package>
+<package>org.apache.struts.taglib.bean</package>
+<package>org.apache.struts.taglib.html</package>
+<package>org.apache.struts.taglib.logic</package>
+<package>org.apache.struts.taglib.template</package>
+<package>org.apache.struts.taglib.template.util</package>
+<package>org.apache.struts.upload</package>
+<package>org.apache.struts.util</package>
+</api>

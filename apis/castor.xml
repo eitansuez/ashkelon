@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<api>
+
+  <name>Castor</name>
+  <summarydescription>Castor is an open source data binding framework for Java[tm].</summarydescription>
+  <description>Castor is an open source data binding framework for Java[tm]. It's basically the shortest path between Java objects, XML documents, SQL tables and LDAP directories. Castor provides Java to XML binding, Java to SQL/LDAP persistence, and then some more.</description>
+
+  <publisher>Exolab</publisher>
+  <download_url>http://castor.exolab.org/</download_url>
+  <release_date>2002-11-04T08:00:00.000</release_date>
+  <version>0.9.4.1</version>
+
+  <package>org.exolab.castor.builder</package>
+  <package>org.exolab.castor.dsml</package>
+  <package>org.exolab.castor.jdo</package>
+  <package>org.exolab.castor.mapping</package>
+  <package>org.exolab.castor.types</package>
+  <package>org.exolab.castor.xml</package>
+
+</api>
+
+

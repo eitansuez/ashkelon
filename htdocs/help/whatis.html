@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>What is dbdoc</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../global.css"></LINK>
+<STYLE>
+LI
+{
+  padding-bottom: 10 px;
+}
+</STYLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="pagebody">
+
+<H2>What is dbdoc?</H2>
+
+<P>
+dbdoc is an online reference documentation system for Java software libraries (also known as APIs, or Application Programming Interfaces).  dbdoc was designed to aid software engineers in their task of writing software using the Java programming language.
+</P>
+
+<P>
+Most Java software developers are familiar with a software tool named JavaDoc from Sun Microsystems.  dbdoc is in many respects very similar to JavaDoc.  Both systems share the same goal of providing an online reference system for Java developers.  Both systems do have much in common.  dbdoc was born out of a Java software developer's need to reference documentation in ways that JavaDoc was unable to provide.
+</P>
+
+<P>
+The remainder of this section assumes that the reader is familiar with JavaDoc.  If you are not familiar with JavaDoc, then you might want to refer to <A HREF="http://java.sun.com/j2se/javadoc/" target="_new">Sun's JavaDoc home page</A> before proceeding.
+</P>
+
+<P>
+Differences between dbdoc and JavaDoc include:
+</P>
+
+<OL>
+
+<LI>
+dbdoc represents a unified documentation repository for multiple Java APIs.  This repository is managed.  That is, it can be augmented or revised over time.  JavaDoc provides a means for generating HTML documentation  for a given API.  Each run generates a new documentation set that is independent of other generated sets.  Although this difference may appear to be minor at first, it is the most important one.  Providing a single repository makes APIs cross-referenceable.  For example, a method in one API may return an object of a type that is part of a different API.  Using dbdoc, that return type will be a hyperlink to the latter API's class or interface definition.
+</LI>
+
+<LI>
+Although both dbdoc and JavaDoc are online systems that run in a web browser, the JavaDoc system is comprised of a set of static HTML pages.  The dbdoc system on the other is comprised of a set of dynamic web pages.  This makes the JavaDoc system faster and more responsive but on the other hand it is less flexible than the dbdoc system.  The dbdoc system dynamically generates requested documentation based on the information in its repository, which is maintained in a relational database management system (RDBMS).  An example of the benefits of a dynamic solution is the ability to perform custom searches on the documentation repository.  This capability can dramatically reduce the total amount of time it might take a user to find or discover a method or other programming element.
+</LI>
+
+
+<LI>
+The Graphical User Interface (GUI) of dbdoc is dramatically different from javadoc.  A GUI can make a major difference in a user's ability to interact with an information system.  dbdoc's GUI takes advantage of the latest DHTML features available in modern browsers.  See <a href="ui_components.html">User Interface Components</a> for documentation of specific features of this user interface.
+</LI>
+
+</OL>
+
+<P>
+One of the main goals of dbdoc is to give Java developers easy and quick access to quality documentation of a very large number of Java libraries.  In turn it is my hope that such a system will foster higher levels of collaboration, information sharing, and code re-use within the Java community.
+</P>
+
+<BR><BR>
+
+</DIV>
+
+</BODY>
+</HTML>

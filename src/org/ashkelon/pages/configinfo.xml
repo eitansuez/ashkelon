@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+
+<configinfo>
+  <defaultpkg>org.ashkelon.pages</defaultpkg>
+  <defaultcmd>apis</defaultcmd>
+  <maxtraillength>10</maxtraillength>
+  <tracelevel>100</tracelevel>
+  <tracefile>trace.log</tracefile>
+
+  <cmdinfo>
+   <cmd>apis</cmd>
+   <page>apis.jsp</page>
+   <class>APIsPage</class>
+   <caption>Java APIs</caption>
+   <tablename>API</tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>api.main</cmd>
+   <page>api.jsp</page>
+   <class>APIPage</class>
+   <caption>$NAME$</caption>
+   <tablename>API</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>pkg</cmd>
+   <page>pkg.jsp</page>
+   <class>PackagesPage</class>
+   <caption>Packages</caption>
+   <tablename>PACKAGE</tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>search</cmd>
+   <page>search.jsp</page>
+   <class>SearchPage</class>
+   <caption>Search</caption>
+   <tablename></tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>pkg.main</cmd>
+   <page>package.jsp</page>
+   <class>PackagePage</class>
+   <caption>$NAME$</caption>
+   <tablename>PACKAGE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls</cmd>
+   <page>cls.jsp</page>
+   <class>ClassesPage</class>
+   <caption>Class Lookup Form</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.main</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.inner</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.member</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.field</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.constructor</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.method</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.tree</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.xref</cmd>
+   <page>class.jsp</page>
+   <class>ClassPage</class>
+   <caption>$NAME$ Xrefs</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.xref.field</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: Field</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.xref.returned by</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: returned by</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.xref.passed to</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: passed to</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.xref.thrown by</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: thrown by</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.xref.implemented by</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: implemented by</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.xref.subclasses</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: subclasses</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.xref.descendents</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: descendents</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>cls.xref.extended by</cmd>
+   <page>xref.jsp</page>
+   <class>XrefsPage</class>
+   <caption>$NAME$ Xref: extended by</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>cls.source</cmd>
+   <page>cls_source.jsp</page>
+   <class>ClassSourcePage</class>
+   <caption>$NAME$ Source</caption>
+   <tablename>CLASSTYPE</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>member</cmd>
+   <page>mmb.jsp</page>
+   <class>MembersPage</class>
+   <caption>Member Lookup Form</caption>
+   <tablename>MEMBER</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>member.main</cmd>
+   <page>member.jsp</page>
+   <class>MemberPage</class>
+   <caption>$NAME$</caption>
+   <tablename>MEMBER</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>idx</cmd>
+   <page>idx.jsp</page>
+   <class>IndexPage</class>
+   <caption>Index</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>idx.package</cmd>
+   <page>idx_package.jsp</page>
+   <class>IndexPage</class>
+   <caption>Package Index</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>idx.class</cmd>
+   <page>idx_class.jsp</page>
+   <class>IndexPage</class>
+   <caption>Class Index</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>idx.member</cmd>
+   <page>idx_member.jsp</page>
+   <class>IndexPage</class>
+   <caption>Member Index</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>idx.author</cmd>
+   <page>idx_author.jsp</page>
+   <class>IndexPage</class>
+   <caption>Author Index</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>author</cmd>
+   <page>author.jsp</page>
+   <class>AuthorPage</class>
+   <caption>$NAME$</caption>
+   <tablename>AUTHOR</tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+
+  <cmdinfo>
+   <cmd>stats.general</cmd>
+   <page>stats.jsp</page>
+   <class>StatsPage</class>
+   <caption>Stats</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>stats.classes</cmd>
+   <page>stats_classes.jsp</page>
+   <class>StatsClasses</class>
+   <caption>Class Stats</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>stats.authors</cmd>
+   <page>stats_authors.jsp</page>
+   <class>StatsAuthors</class>
+   <caption>Author Stats</caption>
+   <tablename></tablename>
+   <intrail>true</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>trail.reset</cmd>
+   <page>reset_trail.jsp</page> <!-- dummy; actual value is whatever page currently on -->
+   <class>Trail</class>
+   <caption></caption>
+   <tablename></tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>admin.db</cmd>
+   <page>admin_db.jsp</page> <!-- dummy; actual value is whatever page currently on -->
+   <class>AdminPage</class>
+   <caption></caption>
+   <tablename></tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>contact</cmd>
+   <page>contact.jsp</page>
+   <class>NoopPage</class>
+   <caption>Contact</caption>
+   <tablename></tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>issues</cmd>
+   <page>issues.jsp</page>
+   <class>NoopPage</class>
+   <caption>Known Issues</caption>
+   <tablename></tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+
+  <cmdinfo>
+   <cmd>config</cmd>
+   <page>config.jsp</page>
+   <class>ConfigPage</class>
+   <caption>Settings</caption>
+   <tablename></tablename>
+   <intrail>false</intrail>
+  </cmdinfo>
+  
+  <cmdinfo>
+   <cmd>help</cmd>
+   <page>help.jsp</page>
+   <class>NoopPage</class>
+   <caption>Help</caption>
+   <intrail>false</intrail>
+  </cmdinfo>
+  
+</configinfo>

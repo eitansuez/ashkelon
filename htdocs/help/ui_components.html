@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>User Interface Components</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../global.css"></LINK>
+<STYLE>
+LI
+{
+  padding-bottom: 10 px;
+}
+A
+{
+  text-decoration: italicized;
+}
+</STYLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="pagebody">
+
+<H2>User Interface Components</H2>
+
+<P>
+The dbdoc user interface re-uses several important user interface components
+that facilitate an end user's ability to view and filter information.
+A handful of such components are used consistently across the entire system.
+Knowledge of how to interpret and interact with these few components is
+fundamental to understanding how to view, use, and interact with the various
+pages that you will encounter in dbdoc.  Some components are very basic 
+(such as tooltips) and very commonly used.  Others are more complex and
+specialized to specific programming elements.
+</P>
+
+<P>
+The following are the main user interface components that dbdoc is comprised
+of:
+</P>
+
+<UL>
+<LI>Tab Sets</LI>
+
+<LI>Collapsible Trees</LI>
+
+<LI>Tool Tips</LI>
+
+<LI>Scrollable Lists</LI>
+
+<LI>Class and Member Listings</LI>
+
+<LI>Overloaded Method and Constructor Selector</LI>
+</UL>
+
+<P>The behavior and usage of each component is further discussed below.</P>
+
+<H3>Tab Sets</H3>
+
+<P>
+Tab Sets are a graphical user interface components that enable
+the display of large amounts of information on a relatively
+small visible area.  Instead of listing information on a single
+long page, the information is categorized into tabs.  At any one
+time, only one tab's information is viewable while the others are
+hidden from view.  Clicking on a tab header will hide the previous
+tab's information from view and instead display the information 
+corresponding to the newly clicked tab.
+</P>
+
+<P>
+The tab headers are usually displayed in a manner that resembles
+a traditional filing cabinet where the manila folder tabs stick 
+out of the top or side.
+</P>
+
+<P><B>Where used</B>:  main index page, main stats page, search page, package pages, class and 
+interface pages.</P>
+
+<P><B>Example</B>: package pages need to display much information.  If you drill down to 
+a specific package such as java.awt, you will see that the package information
+is distributed over a set of six (6) tabs: java.awt, classes, interfaces,
+exceptions, errors, and tree (package tree view).  Click on any of these
+tabs to switch between the various views that make up the java.awt package
+page.</P>
+
+<H3>Collapsible Trees</H3>
+
+<P>
+Collapsible trees are a method of viewing information that is hierarchically
+related.  One interacts with these components by expanding or collapsing
+any of the nodes in the tree to display or hide the children of that
+given node.
+</P>
+
+<P>
+In dbdoc, collapsible trees are used to display the hierarchical inheritance
+interrelationships that exist among classes and interfaces.  These trees are 
+collapsible and
+expandable, allowing an end user to filter out certain branches, allowing
+the end user to focus on specific inheritance relationships and thus gain
+knowledge of class interrelationships.
+</P>
+
+<P><B>Where used</B>:  used to display and interact with package trees
+(package trees combine the inheritance hierarchy of all classes that
+are members of that package into one navigable tree), class inheritance,
+class descendents cross referencing.  See the <I>Tree</I> tabs on package
+and class pages and the cross reference tab for class pages.</P>
+
+<P><B>Example</B>: say you wanted to study the inheritance hierarchy
+in the design of the java.io package.  Specifically, the java.io.InputStream
+hierarchy.  Navigate to the java.io packge, select the <I>Tree</I> tab.  Find
+and click on the InputStream class, click on the <I>Cross Reference</I> tab,
+and select "descendents."  This will display a filtered tree of all
+the descendants of InputStream.  Important discoveries for programmers new
+to this package is that the class FilterInputStream is a common ancestor
+for various specialized inputstreams such as JarInputStream and 
+BufferedInputStream.</P>
+
+
+<H3>Tool Tips</H3>
+
+<P>
+Tool Tips have become a very common user interface component that are very helpful
+in assisting end users discover more information about a specific item displayed
+on a screen where there would otherwise be no room to display the entire information.
+One hovers over an item using the mouse pointing device and useful information
+will appear over the item, usually describing it in more detail.
+</P>
+
+<P>
+In dbdoc, Tool Tips are used in package listings to provide a brief description
+of a package, in class listings (also to provide a brief description for a class
+or interface), and again in member listings to provide a brief description of
+the member in question.
+</P>
+
+<P><B>Example</B>: Select <B>Search</B> from the menu bar and perform a direct
+lookup of the class <I>String</I> by typing "String" in the name field and 
+pressing the "Go" button.  The String class (package java.lang) will appear.
+Select the "Members" tab and hover over the method named "concat".  A tooltip will
+appear displaying the method description:  "Concatenates the specified string
+to the end of this string."
+</P>
+
+<H3>Scrollable Lists</H3>
+
+<P>
+Many of the pages on the dbdoc user interface contain listings.  Package
+pages contain listings of member classes while class pages contain
+member listings of methods, fields, and constructors.  These listings will
+often be very lengthy and extensive.  A good example is the java.awt package
+which contains dozens of classes.  The list of classes can simply be displayed
+on the page.  The end user can use the page's scrollbar to scroll up and
+down the page to view different sections of these lengthy lists.  However,
+while scrolling, the header and footer information will disappear from view,
+forcing the user to scroll back to the top or bottom in order to proceed
+with navigation.  This is tedious and annoying.  Scrolling lists allow only
+the listing to scroll within a limited area on the page.  By using scrolling
+lists, the header and footer never disappear from view and so no penalty
+is incurred.
+</P>
+
+
+<H3>Class and Member Listings</H3>
+
+<P>
+dbdoc uses two custom components for listing classes and members (such as methods).
+These components are essentially tables where different columns are used
+to provide useful modifier information about a class or member.  Common modifiers
+are abstract and static.  The main interactive feature of Class and Member
+listings is that they provide a way for end users to filter the listing
+to display only records that match a specific modifier.  For example, if you
+navigate to the class page for the class java.lang.ClassLoader and click on
+the tab labeled "Methods", you will see a method listing in the page body.
+If you happened to only be interested in static method members of the
+class ClassLoader, you can simply click on the header column for that
+modifier (labeled "static") and all non-static members will be promptly
+filtered out (will disappear from the listing), thus allowing you to
+focus on static members.  This step can be repeated to display only
+final, deprecated, public, or abstract members of ClassLoader.
+</P>
+
+<H3>Overloaded Method and Constructor Selector</H3>
+
+<P>
+When looking up documentation for a Method or a Constructor, one will
+often refer back and forth between several variants of the same method.
+The more common term for these variants is 'overloaded methods.'
+Basically overloaded methods or constructors all have the same names
+but their parameter signatures differ.  Take for example the java.lang.String
+constructor.  It has elevent (11) variants.  Drill down to the String constructor
+by navigating to the String class, selecting the 'members' tab and clicking
+on any of the eleven constructor references in the listing.
+</P>
+
+<P>
+The Selector component is specialized for viewing, comparing and contrasting
+various overloaded variants of the same method.  The method signatures and
+parameter arguments are displayed on the left side of the page.  By selecting
+any of the listed method or constructor variants, the corresponding description
+will appear on the right hand side of the page.  By going back and forth
+between two or three (or more) variants, one can quickly discern the differences
+between each version of the method or constructor and determine which is the
+most appropriate variant to use.
+</P>
+
+<BR><BR>
+
+</DIV>
+
+</BODY>
+</HTML>

@@ -1,0 +1,671 @@
+<html>
+<head>
+<title>
+ashkelon documentation
+</title>
+</head>
+
+<body>
+
+<h1 align="center">
+ashkelon documentation
+</h1>
+<hr/>
+
+<date>
+October 14 2002
+</date>
+
+<by>
+Eitan Suez
+</by>
+
+<hr/>
+
+<h1>
+overview
+</h1>
+
+<p>
+ashkelon is an open source project.  it is a java api documentation
+tool designed for java developers.  its goals are the same as the goals
+of the well-known javadoc tool that comes with j2se, whose gui most
+java developers are quite familiar with (url for javadoc tool from
+sun microsystems is: http://java.sun.com/j2se/javadoc/ if you'd like
+to learn more about javadoc)
+</p>
+
+<p>
+ashkelon addresses the following issues that javadoc does not:
+</p>
+
+<ul>
+<li>
+  - ashkelon is a multi-api documentation system, unlike javadoc
+    which produces single-api documentation
+</li>
+<li>
+  - ashkelon's documentation system leverages sql to provide a 
+    queriable/searchable repository for documentation
+</li>
+<li>
+  - the dhtml gui produced by ashkelon (which works with mozilla 1.x
+     or ie 5.x or ie 6.x browsers) is markedly different from the
+</li>
+<li>
+  - ashkelon's gui is a java web application, not a set of static
+     html pages
+</li>
+</ul>
+     
+<p>
+the javadoc tool is composed of two parts:
+</p>
+
+<ol>
+<li>
+  the documentation generator, used to produce html 
+     (or other) documentation
+</li>
+<li>
+  a graphical user interface used to browse and peruse
+      through the documentation (static html pages)
+</li>
+</ol>
+  
+<p>
+sometimes the same person performs both the generation and
+referencing the documentation.  however, the more common case
+is that of an api publisher producing javadocs for the api
+user who references them.
+</p>
+
+<p>
+ashkelon is also composed of two parts, very similar to
+javadoc:
+</p>
+
+<ol>
+<li>
+  the repository manager, used to populate (and otherwise
+    manage) a database (an rdbms) with documentation 
+    information
+</li>
+<li>
+  the viewer application, a web app that provides access to 
+    the documentation in a variety of ways (search, browse,
+    cross-reference, etc..).  this app is in some ways markedly
+    different from javadoc's gui.
+</li>
+</ol>
+    
+<p>
+in an intranet environment, an administrator might be
+responsible for using the repository manager to populate
+a database with api docs.  the development team would
+probably select a number of api's to populate including
+</p>
+
+<ol>
+<li>
+  internal company code
+</li>
+<li>
+  popular third party api's (from jakarta, 
+     sourceforge, or other)
+</li>
+<li>
+  sun api's (j2se, j2ee, etc..)
+</li>
+</ol>
+
+<p>
+the entire development team would use the viewer application
+as an aid in development.
+</p>
+
+<p>
+an important difference with dbdoc is that as an administrator,
+you will use the repository manager repeatedly to add new api's
+into the repository.  you don't have to (and should not try to)
+add all api's in one step.
+</p>
+
+<p>
+in an internet environment, it is conceivable that a single
+high-availability site be made available to the general
+java developer community.  such a site might provide api
+publishers with online tools to register and populate their 
+api's in this "global" repository.  the end-result would be
+publicly-accessible java api documentation for many api's
+which would be constantly kept up-to-date by the various
+api publishers.
+</p>
+
+<h1>
+Administrator Guide - using the repository manager
+</h1>
+
+<p>
+At present (ashkelon v0.8), the repository manager is
+a command-line tool whose interface was designed to mirror
+the interface of the javadoc command line tool (the java
+documentation generator).
+</p>
+
+<p>
+If you are not familiar with using the javadoc command
+line tool, it is recommended that you take a little
+time to familiarize yourself with it.  Every distribution
+of J2SE comes with javadoc tool documentation, accessible
+from the page in:
+</p>
+
+<pre>
+  $JAVA_HOME/docs/tooldocs/solaris/javadoc.html
+    or 
+  $JAVA_HOME/docs/tooldocs/win32/javadoc.html
+</pre>
+
+
+<p>
+Alternatively this information is available from the javadoc
+site at 
+</p>
+<pre>
+  http://java.sun.com/j2se/1.4/docs/tooldocs/windows/javadoc.html
+ or
+  http://java.sun.com/j2se/1.4/docs/tooldocs/solaris/javadoc.html
+</pre>
+
+<p>
+Aside from this command-line tool, in a future version I plan to 
+provide a web application that will provide a graphical user interface
+to manage the repository content.  Likewise, in a future version
+I plan to provide an ANT task for integrating ashkelon with a continuous
+build process.
+</p>
+
+<p>
+The ashkelon command-line tool is called "dbdoc".  The code is 
+a shell script wrapper around a java program.  On win32, the file
+is dbdoc.bat while on unix it's dbdoc.sh or dbdoc.  This file 
+resides in $DBDOC_HOME/mgr/bin
+</p>
+
+<p>
+After installation of ashkelon (see the file install.txt), you
+should be able to run dbdoc from the command line:
+</p>
+
+<pre>
+&gt; dbdoc
+</pre>
+
+<p>
+which should produce something similar to this output:
+</p>
+
+<pre>
+<![CDATA[
+==============================================================
+DbDoc Manager (ashkelon v0.8+)
+
+Description:
+  Manages a Java Documentation Repository.
+  For more information, visit http://www.dbdoc.org/
+  
+Usage:
+  dbdoc [add [javadoc options] <items> | remove <names> | reset | list]
+
+    add      Add items to repository where items is the names of packages
+             and/or source files to be added to the repository
+    remove   Remove names from repository.  A name is the fully
+             qualified name of a java package, class, or interface
+    reset    Reset repository (i.e. delete everything, use with care)
+    list     List package names currently existing in the repository
+
+Items Reference
+  items = [packagenames] [sourcefiles] [@files]
+    packagenames
+      A series of package names, separated by spaces, such as:
+        java.lang java.lang.reflect java.awt
+      You must separately specify each package you want to document.
+      Like javadoc, dbdoc uses -sourcepath to look for these package
+      names.  Wildcards are not allowed
+    sourcefiles
+      A series of source file names, separated by spaces, each of which
+      can begin with a path and contain a wildcard
+    @files
+      One or more files that contain packagenames and sourcefiles
+      in any order, one name per line
+    
+Supported javadoc options:
+  -overview <file>          Read overview documentation from HTML file
+  -public                   Show only public classes and members
+  -protected                Show protected/public classes and members (default)
+  -package                  Show package/protected/public classes and members
+  -private                  Show all classes and members
+  -sourcepath <pathlist>    Specify where to find source files
+  -classpath <pathlist>     Specify where to find user class files
+  -bootclasspath <pathlist> Override location of class files loaded
+                            by the bootstrap class loader
+  -extdirs <dirlist>        Override location of installed extensions
+  -verbose                  Output messages about what Javadoc is doing
+  -locale <name>            Locale to be used, e.g. en_US or en_US_WIN
+  -encoding <name>          Source file encoding name
+
+Copyright 2001 UptoData, Inc.
+==============================================================
+]]>
+</pre>
+
+<p>
+You will primarily use the dbdoc tool to add content to your
+database.  However, there are four main commands the this tool
+currently supports:
+</p>
+
+<ul>
+<li>
+  dbdoc add - use to add api's to your database
+</li>
+<li>
+  dbdoc reset - use to nuke the contents of the database
+    (start from scratch)
+</li>
+<li>
+  dbdoc list - lists the packages currently documented
+    in the database
+</li>
+<li>
+  dbdoc remove - opposite of dbdoc add, use it to remove
+    api's from the repository
+</li>
+</ul>
+
+<p>
+"dbdoc reset" and "dbdoc list" are really easy to use.  they
+require no other parameters to function.
+</p>
+
+<p>
+"dbdoc add" is richer.  let's talk about "dbdoc add".
+</p>
+
+<h2>
+documenting source code
+</h2>
+
+<p>
+  traditionally (i.e. with javadoc) one documents a single 
+  api.  so the inputs to the javadoc tool are a list of 
+  package names, such as {java.lang, java.io, java.net, ..}
+  etc..
+</p>
+  
+<p>
+  when documenting multiple api's in a single repository,
+  it's important to also keep track of what api each java
+  package belongs to.  that is, org.apache.tools.ant is 
+  part of the ant api whereas org.apache.log4j is part of
+  the log4j api.
+</p>
+  
+<p>
+  the ashkelon project has devised a simple xml structure
+  (no, i haven't written an xml schema for it [yet]) to 
+  describe an api.  here's a sample (more samples are available 
+  in the plists/ folder) for the servlet api (file name is 
+  servlet.xml):
+</p>
+  
+<pre>
+<![CDATA[
+  <?xml version="1.0"?> 
+  <api>
+  <name>Servlet 2.3 & JSP 1.2</name> 
+  <summarydescription>
+   JavaTM Servlet technology provides web developers with a simple, consistent 
+   mechanism for extending the functionality of a web server and for accessing 
+   existing business systems.
+  </summarydescription> 
+  <description>
+   JavaTM Servlet technology provides web developers with a simple, consistent 
+   mechanism for extending the functionality of a web server and for accessing 
+   existing business systems. A servlet can almost be thought of as an applet 
+   that runs on the server side -- without a face. Java servlets have made many 
+   web applications possible.
+  </description> 
+  <publisher>Sun MicroSystems</publisher> 
+  <download_url>http://java.sun.com/products/servlet/</download_url> 
+  <release_date>2001-08-13T08:00:00.000</release_date> 
+  <version>2.3</version>
+  <package>javax.servlet</package> 
+  <package>javax.servlet.http</package> 
+  <package>javax.servlet.jsp</package> 
+  <package>javax.servlet.jsp.tagext</package> 
+  </api>
+ ]]>
+ </pre>
+
+ <p>
+  Notice that:
+  <br/>
+   - api has a one-to-many relationship with java packages.  that is, that
+    an api is usually comprised of one or more java packages.
+</p>
+
+<p>
+  This file is similar to the package.html file that you usually have to
+  write for javadoc package documentation.  except that this file is 
+  xml-based and thus more structured, and easier to interpret by a
+  program.
+</p>
+
+<p>
+  These xml api "descriptors" are the primary input to the dbdoc
+  script (aside from the actual source code that you're trying to 
+  document).  So you'll need to construct them.  The xml file for
+  the api you need may already exist in the plists/ folder.  If it
+  doesn't email the asheklon-devs@lists.sourceforge.net mailing
+  list and someone will build one for you (if it's a public api,
+  not your internal code).
+</p>
+
+<p>
+  TIP: almost every API you'll need to populate into ashkelon has
+   had javadocs created for it before.  when javadoc is run on a list
+   of packages, it leaves a signature in a file called "package-list"
+   (check it out, go to $JAVA_HOME/docs/api and you'll see the file).
+   Use this list of packages is input to building your api xml file.
+</p>
+
+<p>
+  So constructing such an xml file is easy:  provide a description,
+   url, version number, and other such information.  most importantly,
+   provide the names of the java packages that comprise the api.
+   save the file as &lt;apiname&gt;.xml (you might also want to consider
+    contributing the file by cvs add/commit &lt;apiname&gt;.xml to the 
+    ashkelon plists folder).
+</p>
+
+<p>
+  Now you're ready to feed it into dbdoc:
+</p>
+
+<pre>
+  &gt; dbdoc add @&lt;apiname&gt;.xml
+</pre>
+
+<p>
+  real example:
+</p>
+  
+<pre>
+  &gt; dbdoc add @servlet.xml
+</pre>
+
+<p>
+  dbdoc will take it from here.  it will invoke the javadoc engine
+  to parse the source code and produce an object model of the
+  information, and dbdoc will take the information and stuff it
+  into the database.  depending on the speed of your machine and
+  the size of the api, the whole process might take 5-10 seconds
+  or 2-3 minutes.
+</p>
+
+<p>
+  NOTE:  when populating, you might get a ton of junk warnings
+   from the javadoc engine.  this is normal.  a lot of people
+   will make typographical mistakes in their doc tags like
+   write "@thorws SomeException" instead of "@throws SomeException"
+   which javadoc will warn you about.
+   If it's your code, you can correct the tag and repeat the
+   add step (actually, make sure to read on about this).
+</p>
+
+<h2>
+How to replace an api that is already in the database
+</h2>
+
+<p>
+  Well, there's two ways:
+</p>
+
+<pre>
+<![CDATA[
+
+    1. nuke everything and start over
+     > dbdoc reset
+     > dbdoc add @api1.xml
+     > dbdoc add @api2.xml
+     > ...
+     > dbdoc add @apin.xml
+     
+    2. differential:
+     > dbdoc remove @apii.xml
+     > dbdoc add @apii.xml
+     
+  If your environment uses nightly builds, you'll probably
+  do [1] above nightly.
+ ]]>
+</pre>     
+
+<h2>
+J2SDK1.4 caveats
+</h2>
+
+<p>
+  j2sdk1.4 introduces a new keyword "assert" into the java
+  language.  in order to get dbdoc to populate api's that
+  use the assert keyword without failing, you need to pass
+  an extra flag to the dbdoc script, like so:
+</p>
+
+<pre>
+  &gt; dbdoc add -source 1.4 @j2sdk14.xml
+</pre>
+
+<p>
+  jdom is another example api that uses asserts so if you're
+  documenting jdom, do the same:
+</p>
+
+<pre>
+  &gt; dbdoc add -source 1.4 @jdom.xml
+</pre>
+
+
+<p>
+  TIP:  any flag that javadoc accepts will be passed 
+   through to javadoc by dbdoc.  remember, dbdoc uses
+   javadoc under the hood.  dbdoc plugs in to javadoc
+   as a doclet.  dbdoc does not need to explicitly
+   know about the flag (it will pass it through).
+</p>
+
+
+<h2>
+what's this about "sourcepath"?
+</h2>
+
+<p>
+  so, when dbdoc runs, it needs to know where to find
+  your source code.  the environment variable "sourcepath"
+  is analogous to "classpath" which we're all familiar with.
+</p>
+
+<p>
+  it's a colon-delimited (unix) or semicolon-delimited
+  list of paths where you keep the source code for the apis
+  you want to document.
+</p>
+  
+<p>
+  note:  if you don't have source code for what you
+    want to document, you're out of luck.
+</p>
+
+<p>
+  TIP: sun makes available the source code for j2se, j2me,
+   and j2ee (and a bunch of other stuff) at:
+      http://wwws.sun.com/software/communitysource/
+</p>
+
+<p>
+  Even though it's not open source, nothing stops you from
+   being able to document and publish sun java api's within
+   an intranet.
+</p>
+
+
+<h2>
+dealing with very large api's (i.e. j2se)
+</h2>
+
+<p>
+  if you look at dbdoc.bat or dbdoc.sh, you'll notice
+  something a little alarming:
+</p>
+
+<pre>
+    java -Xmx100m
+     or
+    java -Xmx150m
+</pre>
+
+<p>
+  this means that when dbdoc runs, it requests 100 or
+  150 MB of memory to run with.  it probably doesn't need
+  that much memory.  but in some cases, j2se, it may
+  need even more!
+</p>
+
+<p>
+  this has nothing to do with ashkelon.  the javadoc
+  tool requires similar amounts of ram.
+</p>
+
+<p>
+  but since ashkelon allows you to build a repository
+  in incremental steps, you can actually break up an
+  api into multiple package sets and populate an api
+  in small chunks, thus lowering the memory requirements
+  of the application.
+</p>
+
+<p>
+  so, here's a trick for populating j2se in chunks:
+</p>
+
+<p>
+    i assume you've already created a j2se.xml file
+    (actually there already is one in plists/)
+</p>
+
+<p>
+    let's say we want to break up j2se into three
+    sets of packages:  java.* , javax.*, and org.*
+</p>
+
+<p>
+    you can create java.plist, javax.plist, and
+    org.omg.plist files (the names are immaterial).
+    these files are just a list of package names
+    that you want to populate.
+</p>
+
+<p>
+  you can now do this:
+</p>
+
+<pre>
+<![CDATA[
+    > dbdoc add @java.plist
+    > dbdoc add @javax.plist
+    > dbdoc add @org.omg.plist
+    > dbdoc add @j2se.xml
+       (packages already added so won't be 
+         repopulated, only api info (descr, version, etc..)
+         will be added)
+]]>
+</pre>
+
+<h1>
+ashkelon system architecture
+</h1>
+
+<p>
+  two very good references on how ashkelon was architected
+  &amp; designed are:
+</p>
+
+<ol>
+<li>
+    an online article published on java.sun.com in july
+      of 2003:<br/>
+        http://java.sun.com/features/2002/07/dbdoc.html
+</li>
+
+<li>
+    a corresponding ppt presentation which was a javaone
+     alternate talk in 2001 at:<br/>
+        http://www.uptodata.com/1145suez.pdf
+</li>
+</ol>        
+
+<h1>
+database schema description
+</h1>
+
+<p>
+ [ to be written ]
+</p>
+
+<p>
+ [ ddl for $dbtype is in db/$dbtype/scripts/dbdoc_v2.sql if you're
+   curious ]
+</p>
+
+
+<h1>
+future versions / features
+</h1>
+
+<ol>
+<li>
+an ashkelon ant task for nightly builds
+</li>
+<li>
+integration with jakarta gump
+</li>
+<li>
+a repository manager web app
+</li>
+<li>
+more user-friendly installed by pre-bundling
+     a lightweight servlet container and database
+     for people who just want to use the darn thing
+</li>
+</ol>
+
+<p>
+ feedback is encouraged.  write: <br/>
+   eitan@uptodata.com
+</p>
+<p>
+  or better yet:<br/>
+   ashkelon-devs@lists.sourceforge.net
+</p>
+
+<p>
+thanks!
+</p>
+
+
+ps: an improved html version of this guide is coming soon.
+
+</body>
+</html>
+

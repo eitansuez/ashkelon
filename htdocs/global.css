@@ -1,0 +1,192 @@
+<!-- global stylesheet -->
+BODY
+{
+  margin: 0;
+}
+
+BODY, TD, P
+{
+  font-family: Arial,sans-serif;
+  font-size: 10pt;
+}
+
+.PAGEBODY
+{
+  margin: 20px;
+}
+
+.columnar
+{
+  border-width: thin;
+  border-style: solid;
+  border-color: #937353;
+  border-collapse: collapse;
+}
+
+TABLE CAPTION
+{
+}
+
+THEAD.table_header
+{
+  background-color: beige;
+  font-size: small;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+TR.highlight
+{
+  /* background-color: #F5B48B; */
+  background-color: yellow;
+}
+
+.sampleCode
+{
+  font-family: "Courier New", monospace;
+}
+
+.message
+{
+  font-style: italic;
+}
+.message:before
+{
+  content: "<B>&gt; </B>";
+}
+
+FIELDSET
+{
+  padding: 10;
+}
+
+.observable
+{
+  cursor: default;
+}
+
+.collapsible
+{
+  display: '';
+  list-style-image: url("images/minus.gif");
+}
+
+.leafnode
+{
+  display: 'inline';
+}
+
+
+.ordinaryClass
+{
+  color: #0000FF;
+}
+HR.ordinaryClass
+{
+  background-color: #0000ff;
+}
+.interface
+{
+  color: #008000;
+  font-style: italic;
+}
+HR.interface
+{
+  background-color: #008000;
+}
+.exception
+{
+  color: #FF0000;
+}
+HR.exception
+{
+  background-color: #ff0000;
+}
+.errorClass
+{
+  color: #BC2540;
+  font-weight: bold;
+}
+HR.errorClass
+{
+  background-color: #BC2540;
+}
+.method
+{
+  color: #004040;
+}
+HR.method
+{
+  background-color: #004040;
+}
+.constructor
+{
+  color: #800080;
+}
+HR.constructor
+{
+  background-color: #800080;
+}
+.field
+{
+  color: #804040;
+}
+HR.field
+{
+  background-color: #804040;
+}
+.package
+{
+  color: #004080;
+  font-weight: bold;
+}
+HR.package
+{
+  background-color: #004080;
+}
+.superclass
+{
+  color: #477D9E;
+  font-style: italic;
+}
+.api
+{
+  color: #000000;
+  font-weight: bold;
+}
+HR.api
+{
+  background-color: black;
+}
+
+.scroll_column
+{
+  position: relative;
+  height: 330;
+  overflow: auto;
+}
+
+.scroll_table
+{
+  position: relative;
+  height: 350;
+  overflow: auto;
+}
+
+
+.static
+{
+  font-weight: bold;
+}
+
+.abstract
+{
+  font-style: italic;
+}
+
+.deprecated
+{
+  text-decoration: line-through;
+}
+

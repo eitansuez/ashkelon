@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<mapping>
+        <class name="org.ashkelon.API">
+                <map-to xml="api"/>
+        
+                <field name="name"
+                       type="java.lang.String">
+                        <bind-xml name="name" node="element"/>
+                </field>
+
+                <field name="summaryDescription"
+                       type="java.lang.String">
+                        <bind-xml name="summarydescription" node="element"/>
+                </field>
+
+                <field name="description"
+                       type="java.lang.String">
+                        <bind-xml name="description" node="element"/>
+                </field>
+                
+                <field name="publisher"
+                       type="java.lang.String">
+                        <bind-xml name="publisher" node="element"/>
+                </field>
+
+                <field name="downloadURL"
+                       type="java.lang.String">
+                        <bind-xml name="download_url" node="element"/>
+                </field>
+
+                <field name="releaseDate"
+                       type="java.util.Date">
+                        <bind-xml name="release_date" node="element"/>
+                </field>
+
+                <field name="version"
+                       type="java.lang.String">
+                        <bind-xml name="version" node="element"/>
+                </field>
+
+                <field name="packagenames"
+                       type="java.lang.String" collection="collection">
+                        <bind-xml name="package" node="element"/>
+                </field>
+        </class>
+</mapping>

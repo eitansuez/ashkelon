@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Pages</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../global.css"></LINK>
+<STYLE>
+LI
+{
+  padding-bottom: 10 px;
+}
+A
+{
+  text-decoration: italicized;
+}
+</STYLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="pagebody">
+
+<H2>Pages</H2>
+
+<P>
+dbdoc consists of a number of different types of pages.  A dbdoc repository
+may consist of a few thousand classes.  Regardless which class one looks up,
+the basic layout for viewing pages that describe classes is the same.  This
+section discusses the various types of pages that you will encounter, how
+they are presented visually on the page, and how a user interacts with them.
+</P>
+
+<P>
+These are the main page types in dbdoc:
+</P>
+
+<UL>
+<LI>package pages</LI>
+<LI>class or interface pages</LI>
+<LI>member pages</LI>
+<LI>author pages</LI>
+</UL>
+
+<H3>Package Pages</H3>
+
+<P>The page body for a package page consists of up to six (6) tabs.  The
+first always contains the package description and a listing of all of
+the package's members grouped by type (ordinary class, interface, exception
+classes, and error classes).  These are all color coded to distinguish
+them easily from each other.</P>
+
+<P>The next four tabs are slightly more detailed views of each of the
+four types of package members (classes and interfaces).  Each tab
+contains a listing of the members of that type (say interface types)
+along with a brief description of each.  One can easily drill down
+to an individual class or interface by simply clicking on the type
+name (the are all hyperlinks to class or interface pages).</P>
+
+<P>The last tab is called the package tree.  The package tree is
+the assembly of the class inheritance hierarchy for all classes and
+interfaces that are members of the given package.  The tree is dynamically
+expandable and collapsible, allowing a degree of interaction with the
+end user.  Class or interface type color codes are maintained even in
+the tree view.</P>
+
+<H3>Class or Interface Pages</H3>
+
+<P>
+Class information for a given class is divided into up to seven tabs.
+The first contains a description of the class or interface, along with
+peripheral information such as author, version, package membership, 
+implemented interfaces list, superclass information, "since" information,
+and "see also" references.  The second tab contains a brief listing
+of the class's or interface's members (fields, constructors, methods).
+The following three tabs are expanded views for each subset member 
+(field, constructor, method) category.  The Methods tab for example
+lists all methods along with brief descriptions of each.  All elements
+are hyperlinks to more detailed pages for each member.</P>
+
+<P>Next is the inheritance tree (list of all superclasses) for the 
+given class and is self-explanatory.  The last tab is the cross 
+references tab which provides ways for users to discover cross 
+reference interrelationships between the given class and other
+classes.  The list of cross references varies slightly based on 
+whether one is inspecting an ordinary class, an exception class,
+or an interface.  For interfaces, there is the 'implemented by'
+relationship where one can discover all classes in the repository
+that implement the specific interface.  For exceptions, there is
+the 'thrown by' cross reference which can be used to discover all
+the methods and constructors that throw this particular type of
+exception.  In addition, there are the following cross references:
+
+<UL>
+<LI>fields: discover what class fields are defined to be of the 
+given class or interface type</LI>
+<LI>returned by: discover what methods return an object of the
+given type</LI>
+<LI>passed to:  discover what methods require parameters of the
+given type</LI>
+<LI>subclasses: discover all classes that immediately extend
+the given type.</LI>
+<LI>descendents: displays a tree of all classes in the repository
+that are either immediate or indirect subclasses of the given
+type.</LI>
+</UL>
+</P>
+
+<P>What is especially useful about cross references is that they
+span the entire dbdoc repository.  This means that the results
+of cross reference lookups become span all the APIs that exist
+in the repository.  If a new API is added to the repository at
+a later time, these additional cross references will be discovered.
+</P>
+
+<P>Cross references can be a powerful means of discovering important
+relationships that exist between programming elements that otherwise
+would not be obvious.  They're useful for discovering 
+how to instantiate (or obtain a reference to) specific class types
+that use factory methods (and not constructors) that usually exist
+in a different class.</P>
+
+
+<H3>Member Pages</H3>
+
+<P>For field types, field pages display the field's name, type, modifiers,
+documentation (description information), and possible a list of references
+to related items.
+</P>
+
+<P>For method and constructor types, if a method or constructor is overloaded,
+then all overloaded variants will be displayed on the same page for the
+purpose of enabling the end user to quickly compare and contrast different
+versions of the same executable member (method or constructor).</P>
+
+<P>Standard information display for methods or constructors include the 
+member's signature (modifiers, parameters, return types), class membership,
+package membership, description information, parameter description information,
+return (for methods) type information, and if the method or constructor throws
+an exception, a listing and description of the various exceptions thrown.</P>
+
+<P>When mehods are overloaded, multiple signatures are displayed.  Each signature
+can be used to toggle the page view from one variant's detail information to
+another's.  By going back and forth
+between two or three (or more) variants, one can quickly discern the differences
+between each version of the method or constructor and determine which is the
+most appropriate variant to use.</P>
+
+<H3>Author Pages</H3>
+
+<P>
+Author pages (at present) are very simple.  They simply consist
+of the author name (sometimes their email address), and a listing
+of the classes and interfaces that the author has either authored
+or co-authored.
+</P>
+
+<P>I hope that author information will grow to include more information
+in a future version (email address, and perhaps author background description).
+</P>
+
+<BR><BR>
+
+</DIV>
+
+</BODY>
+</HTML>

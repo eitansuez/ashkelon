@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<api>
+
+  <name>J2SE v1.3.1</name>
+  <summarydescription>Java 2 Standard Edition (J2SE) is the name for the set of foundation software libraries for the Java platform</summarydescription>
+  <description>As part of Sun Microsystems' commitment to continued support for JavaTM technology, the JavaTM 2 Platform, Standard Edition version 1.3.1 for SolarisTM, Windows and Linux operating environments is now available to the Java community. The J2SETM 1.3.1 update has been developed by addressing key customer issues and feedback on the 1.3 release.</description>
+  <publisher>Sun MicroSystems</publisher>
+  <download_url>http://java.sun.com/j2se/</download_url>
+  <release_date>2001-05-17T00:00:00.000</release_date>
+  <version>1.3.1</version>
+    
+  <package>java.io</package>
+  <package>java.lang</package>
+  <package>java.net</package>
+  <package>java.sql</package>
+  <package>java.text</package>
+  <package>java.util</package>
+
+</api>
