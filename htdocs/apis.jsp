@@ -27,14 +27,20 @@ Ashkelon is an online reference to Java API documentation (see the help document
  <c:forEach items="${apilist}" var="api">
     <tr>
       <td VALIGN="TOP">
-        <a href="api.main.do?id=<c:out value="${api.id}" />"><span class="api" title="<c:out value="${api.summaryDescription}" />"><c:out value="${api.name}" /></span></a>
+        <a href="api.main.do?id=<c:out value="${api.id}" />">
+          <span class="api" title="<c:out value="${api.summaryDescription}" />">
+            <c:out value="${api.name}" />
+          </span>
+        </a>
+      </td>
+      <td VALIGN="TOP">
+        <c:out value="${api.version}" />
       </td>
       <td VALIGN="TOP">
         <c:out value="${api.summaryDescription}" />
       </td>
     </tr>
   </c:forEach>
-</tr>
 </tbody>
 </table>
 
@@ -43,5 +49,6 @@ Ashkelon is an online reference to Java API documentation (see the help document
 <c:import url="footer.html" />
 
 
-</div>
+</body>
 </html>
+
