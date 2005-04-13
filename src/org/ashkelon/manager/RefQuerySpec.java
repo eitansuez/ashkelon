@@ -67,25 +67,7 @@ public class RefQuerySpec
       this.uniqueByIdField = uniqueByIdField;
    }
    
-   public String findNewRefsSql()
-   {
-      return " select " + table + "." + idfield + ", c.id, c.qualifiedname " + 
-      " from " + table + ", CLASSTYPE c " +
-      " where " + table + "." + classnamefield + " = c.qualifiedname and " +
-                  table + "." + reffield + " is null";
-   }
-   
-   public String updateNewRefsSql()
-   {
-      return
-        "update " + table + " set " + reffield + "=? " +
-        " where " + idfield + "=?" + 
-        ((uniqueByIdField) ? ("") : (" and " + classnamefield + "=?"));
-   }
-   
-
-   
-   public void setInternalRefsV2(Connection conn)
+   public void setTypeRefs(Connection conn)
    {
       log.traceln("\tProcessing " + table + " references..");
 
@@ -151,70 +133,6 @@ public class RefQuerySpec
          }
       }
 
-   }
-   
-   
-   public void setInternalRefs(Connection conn)
-   {
-      log.traceln("\tProcessing " + table + " references..");
-
-      try
-      {
-         Statement stmt = conn.createStatement();
-         
-         // 1. measure query time
-         long start = new Date().getTime();
-         ResultSet rset = stmt.executeQuery(findNewRefsSql());
-         long queryTime = new Date().getTime() - start;
-         log.debug("query time: "+queryTime+" ms");
-
-         // 2. measure total update time (a), number of update calls (b), and
-         //   time per update (c = a/b)
-         PreparedStatement pstmt = conn.prepareStatement(updateNewRefsSql());
-         
-         start = new Date().getTime();
-         int n=0;
-         
-         while (rset.next())
-         {
-            n++;
-            pstmt.clearParameters();
-            pstmt.setInt(1, rset.getInt(2));
-            pstmt.setInt(2, rset.getInt(1));
-            if (!uniqueByIdField)
-               pstmt.setString(3, rset.getString(3));
-            pstmt.executeUpdate();
-         }
-         
-         queryTime = new Date().getTime() - start;
-         
-         log.debug("total update time: "+queryTime+" ms");
-         log.debug("number of times through loop: "+n);
-         if (n > 0)
-            log.debug("avg update time: "+(queryTime/n)+ " ms");
-         
-         pstmt.close();
-         rset.close();
-         
-         stmt.close();
-
-         conn.commit();
-         log.verbose("Updated (committed) " + table + " references");
-      }
-      catch (SQLException ex)
-      {
-         log.error("Internal Reference Update Failed!");
-         DBUtils.logSQLException(ex);
-         log.error("Rolling back..");
-         try
-         {
-            conn.rollback();
-         }
-         catch (SQLException inner_ex)
-         {
-            log.error("rollback failed!");
-         }
-      }
    }
    
 }

@@ -27,11 +27,14 @@ public class RefManager
    public void setInternalReferences()
    {
       
+      // 1. set type refs:
       for (int i=0; i<REFSPECS.length; i++)
       {
-         REFSPECS[i].setInternalRefsV2(conn);
+         REFSPECS[i].setTypeRefs(conn);
       }
 
+      
+      // 2. set see tag refs
       
       String sql, sql2;
 
