@@ -1,23 +1,20 @@
 <?xml version="1.0" ?>
 <api>
-<name>JUnit</name>
-<summarydescription>Unit Testing Framework for Java</summarydescription>
-<description>JUnit is a regression testing framework written by Erich Gamma and Kent Beck. It is used by the developer who implements unit tests in Java. JUnit is Open Source Software, released under the Common Public License Version 1.0 and hosted on SourceForge.</description>
-<publisher>junit.org</publisher>
-<download_url>http://www.junit.org/</download_url>
-<release_date>2002-09-03T19:00:00.000</release_date>
-<version>3.8.1</version>
-<packages>
-  <package>junit.extensions</package>
-  <package>junit.framework</package>
-</packages>
-
-
+  <name>JUnit</name>
+  <summarydescription>Unit Testing Framework for Java</summarydescription>
+  <description>JUnit is a regression testing framework written by Erich Gamma and Kent Beck. It is used by the developer who implements unit tests in Java. JUnit is Open Source Software, released under the Common Public License Version 1.0 and hosted on SourceForge.</description>
+  <publisher>junit.org</publisher>
+  <download_url>http://www.junit.org/</download_url>
+  <release_date>2002-09-03T19:00:00.000</release_date>
+  <version>3.8.1</version>
+  <packages>
+    <package>junit.extensions</package>
+    <package>junit.framework</package>
+  </packages>
   <repository>
     <type>cvs</type>
     <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/junit</url>
     <modulename>junit</modulename>
     <sourcepath></sourcepath>
   </repository>
-
 </api>
