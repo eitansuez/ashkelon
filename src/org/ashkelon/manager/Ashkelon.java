@@ -234,11 +234,12 @@ public class Ashkelon extends Doclet
       }
    }
    
-   private void updateInternalRefs()
+   public void updateInternalRefs()
    {
       log.traceln("Updating Internal References..");
       addIndices();
-      setInternalReferences();
+      
+      new RefManager(conn).setInternalReferences();
       
       try
       {
@@ -252,7 +253,7 @@ public class Ashkelon extends Doclet
    }
 
    
-   public void doRemove(String apiname)
+   public void doRemove(String apiname, boolean withApiRecord)
    {
       try
       {
@@ -263,7 +264,7 @@ public class Ashkelon extends Doclet
             return;
          }
          
-         api.delete(conn);
+         api.delete(conn, withApiRecord);
          conn.commit();
       }
       catch (Exception ex)
@@ -295,144 +296,18 @@ public class Ashkelon extends Doclet
       return 0;
    }
    
-   public void setInternalReferences()
-   {
-      String[][] params = {{"FIELD", "typename", "typeid", "id"},
-                           {"METHOD", "returntypename", "returntypeid", "id"},
-                           {"IMPL_INTERFACE", "name", "interfaceid", "classid"},
-                           {"THROWNEXCEPTION", "name", "exceptionid", "throwerid"},
-                           {"PARAMETER", "typename", "typeid", "execmemberid"},
-                           {"SUPERCLASS", "name", "superclassid", "classid"}
-                          };
 
-      String sql = "";
-      String sql2 = "";
-
-      for (int i=0; i<params.length; i++)
-      {
-         log.traceln("\tProcessing " + params[i][0] + " references..");
-
-         try
-         {
-            sql = " select " + params[i][0] + "." + params[i][3] + ", c.id, c.qualifiedname " + 
-                  " from " + params[i][0] + ", CLASSTYPE c " +
-                  " where " + params[i][0] + "." + params[i][1] + " = c.qualifiedname and " +
-                              params[i][0] + "." + params[i][2] + " is null";
-            
-            Statement stmt = conn.createStatement();
-            ResultSet rset = stmt.executeQuery(sql);
-
-            String supplementary = "";
-            if (i>=2)
-               supplementary = " and " + params[i][1] + "=? ";
-            
-            sql2 = "update " + params[i][0] + " set " + params[i][2] + "=? " + 
-                   " where " + params[i][3] + "=?" + supplementary;
-            
-            PreparedStatement pstmt = conn.prepareStatement(sql2);
-            
-            while (rset.next())
-            {
-               pstmt.clearParameters();
-               pstmt.setInt(1, rset.getInt(2));
-               pstmt.setInt(2, rset.getInt(1));
-               if (!supplementary.equals(""))
-                  pstmt.setString(3, rset.getString(3));
-               pstmt.executeUpdate();
-            }
-            
-            pstmt.close();
-            rset.close();
-            
-            stmt.close();
-
-            conn.commit();
-            log.traceln("Updated (committed) " + params[i][0] + " references", Logger.VERBOSE);
-         
-         }
-         catch (SQLException ex)
-         {
-            log.error("Internal Reference Update Failed!");
-            DBUtils.logSQLException(ex);
-            log.error("Rolling back..");
-            try
-            {
-               conn.rollback();
-            }
-            catch (SQLException inner_ex)
-            {
-               log.error("rollback failed!");
-            }
-         }
-         
-      }  // end for loop
-         
-
-      try
-      {
-         String[][] params2 = {{"PACKAGE", "name"},
-                               {"CLASSTYPE", "qualifiedname"},
-                               {"MEMBER", "qualifiedname"},
-                               {"EXECMEMBER", "fullyqualifiedname"}};
-
-         for (int i=0; i<params2.length; i++)
-         {
-            log.traceln("\tProcessing seetag " + params2[i][0] + " references..");
-
-            sql = "select r.sourcedoc_id, " + params2[i][0] + ".id, " + 
-                     params2[i][0] + "." + params2[i][1] + 
-                     " from REFERENCE r, " + params2[i][0] + 
-                     " where r.refdoc_name = " + params2[i][0] + "." + params2[i][1] + 
-                     " and r.refdoc_id is null";
-
-            Statement stmt = conn.createStatement();
-            ResultSet rset = stmt.executeQuery(sql);
-
-            sql2 = "update REFERENCE set refdoc_id=? where sourcedoc_id=? and refdoc_name=?";
-
-            PreparedStatement pstmt = conn.prepareStatement(sql2);
-
-            while (rset.next())
-            {
-               pstmt.clearParameters();
-               pstmt.setInt(1, rset.getInt(2));
-               pstmt.setInt(2, rset.getInt(1));
-               pstmt.setString(3, rset.getString(3));
-               pstmt.executeUpdate();
-            }
-
-            pstmt.close();
-            rset.close();
-            stmt.close();
-            
-            conn.commit();
-         }
-      }
-      catch (SQLException ex)
-      {
-         log.error("Internal Reference Update Failed!");
-         DBUtils.logSQLException(ex);
-         log.error("Rolling back..");
-         try
-         {
-            conn.rollback();
-         }
-         catch (SQLException inner_ex)
-         {
-            log.error("rollback failed!");
-         }
-      }
-   }
-   
    public void reset() throws SQLException
    {
       proc.doAction(conn, "reset");
    }
    
-   public List listAPINames() throws SQLException
+   public List listAPINames(boolean pending) throws SQLException
    {
-      String sql = "select name from API where populated = 1";
+      int populatedVal = (pending) ? 0 : 1;
+      String sql = "select name from API where populated = ?";
       PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setInt(1, populatedVal);
       ResultSet rset = pstmt.executeQuery();
       List names = new ArrayList();
       String name;

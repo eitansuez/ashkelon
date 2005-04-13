@@ -13,17 +13,19 @@ Examples:
 Usage:
   ashkelon [add <apiref> | remove <apiname> | update <apiname> | reset | list]
 
-    add      Add an api to repository
-             apiref can be either:
-             - an ashkelon api xml file (see documentation for details 
-               on its format)
-             - a maven project.xml file
-    remove   Remove api name from the repository
-    update   Remove specified api name, update the source code and 
-             adds the api back in
-    reset    Reset repository (i.e. delete everything, use with care)
-    list     List apis currently residing in the repository
-    exportapis dump list of apis to xml (system.out)
+    add         Add an api to repository
+                apiref can be either:
+                - an ashkelon api xml file (see documentation for details 
+                  on its format)
+                - a maven project.xml file
+    remove      Remove specified api from the repository
+                 (remove option: -f means remove api record itself as well)
+    update      Remove specified api name, update the source code and 
+                adds the api back in
+    reset       Reset repository (i.e. delete everything, use with care)
+    list        List apis currently residing in the repository
+    exportapis  Dump list of apis to xml (system.out)
+    listpending List "pending" unpopulated api records in db
 
 When adding, ashkelon will pass any valid javadoc option to the javadoc 
 parsing engine.  For a list of javadoc options, simply type: javadoc

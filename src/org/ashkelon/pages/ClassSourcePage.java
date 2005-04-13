@@ -48,6 +48,24 @@ public class ClassSourcePage extends Page
          return null;
       }
       
+      // try maybe inner class..
+      int idx = qualifiedName.lastIndexOf(".");
+      boolean isPossibleInnerClass = (idx > 0) && 
+                     (idx < qualifiedName.length() - 1) && 
+                     (Character.isUpperCase(qualifiedName.charAt(idx+1)));
+      if (isPossibleInnerClass)
+      {
+         String containingClass = qualifiedName.substring(0, idx);
+         String containingFile = containingClass.replace('.', File.separatorChar) + ".java";
+         sourceFile = fetchSourceFile(containingClass, containingFile);
+         
+         if (sourceFile != null)
+         {
+            makeHtmlFile(sourceFile, containingFile);
+            return null;
+         }
+      }
+      
       request.setAttribute("source_file", "");
       return null;
    }
@@ -82,14 +100,10 @@ public class ClassSourcePage extends Page
       return base + File.separator + modulename + File.separator + sourcepath;
    }
    
-   private File fetchSourceFile(String className, String fileName) throws SQLException
+   private File fetchSourceFile(String qualifiedName, String fileName) throws SQLException
    {
-      String repositorypath = fetchSourcePath(className);
-      if (!repositorypath.endsWith(File.separator))
-         repositorypath += File.separator;
-      
-      String sourcepath = repositorypath + fileName;
-      File sourceFile = new File(sourcepath);
+      String repositorypath = fetchSourcePath(qualifiedName);
+      File sourceFile = composeFile(repositorypath, fileName);
       if (sourceFile.exists())
       {
          log.debug("Found sourceFile at: "+sourceFile.getAbsolutePath());
@@ -98,16 +112,15 @@ public class ClassSourcePage extends Page
       
       // fallback to checking source path context parameter..
       List sourcePaths = (List) app.getAttribute("sourcepath");
+      if (sourcePaths == null) return null;  // done.
+      
       Iterator itr = sourcePaths.iterator();
       String candidatePath = null;
       File candidateFile = null;
       while (itr.hasNext())
       {
          candidatePath = (String) itr.next();
-         if (!candidatePath.endsWith(File.separator))
-            candidatePath += File.separator;
-         candidatePath += fileName;
-         candidateFile = new File(candidatePath);
+         candidateFile = composeFile(candidatePath, fileName);
          if (candidateFile.exists())
          {
             log.debug("Found sourceFile at: "+candidateFile.getAbsolutePath());
@@ -116,5 +129,14 @@ public class ClassSourcePage extends Page
       }
       return null;
    }
+   
+   private File composeFile(String path, String fileName)
+   {
+      if (!path.endsWith(File.separator))
+         path += File.separator;
+      path += fileName;
+      return new File(path);
+   }
+
    
 }

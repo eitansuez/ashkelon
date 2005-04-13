@@ -6,6 +6,8 @@ package org.ashkelon.manager;
 import java.io.*;
 
 import org.ashkelon.util.Logger;
+import org.ashkelon.util.StreamConsumer;
+import org.ashkelon.util.StreamInteractor;
 import org.ashkelon.util.StringUtils;
 
 /**
@@ -100,8 +102,6 @@ public class Repository
       new StreamConsumer(is).start();
       new StreamConsumer(er).start();
       int exitValue = p.waitFor();
-      is.close();
-      er.close();
    }
    
    
@@ -109,16 +109,10 @@ public class Repository
    {
       String cmd = "cvs -d " + url + " login";
       Process p = Runtime.getRuntime().exec(cmd, null, basepath);
-      BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-      OutputStream os = new BufferedOutputStream(p.getOutputStream());
       
-      String line = reader.readLine();
-      while ( line!= null )
-         line = reader.readLine();
-      os.write('\n');
+      new StreamConsumer(p.getErrorStream()).start();
+      new StreamInteractor(p.getInputStream(), p.getOutputStream(), "(Logging in to ", "").start();
       int exitValue = p.waitFor();
-      reader.close();
-      os.close();
    }
    
    public String toString()
@@ -161,48 +155,5 @@ public class Repository
       }
    }
 
-   
-   class StreamConsumer extends Thread
-   {
-      InputStream _stream;
-      StreamConsumer(InputStream stream)
-      {
-         _stream = stream;
-      }
-      public void run()
-      {
-         BufferedReader reader = null;
-         try
-         {
-            reader = new BufferedReader(new InputStreamReader(_stream));
-            String line = reader.readLine();
-            while (line != null)
-            {
-               log.traceln(line);
-               line = reader.readLine();
-            }
-         }
-         catch (IOException ex)
-         {
-            System.err.println("IOException: "+ex.getMessage());
-            ex.printStackTrace();
-         }
-         finally
-         {
-            try
-            {
-               if (reader != null) reader.close();
-            }
-            catch (IOException ex)
-            {
-               System.err.println("Exception attempting to closer stream/reader");
-               System.err.println("IOException: "+ex.getMessage());
-               ex.printStackTrace();
-            }
-         }
-      }
-   }
-   
-   
 }
 

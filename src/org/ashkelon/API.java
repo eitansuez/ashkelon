@@ -208,8 +208,23 @@ public class API implements JDoc, Serializable
       }
       return true;
    }
+   public boolean existsPopulated(Connection conn) throws SQLException
+   {
+      String sql = "select count(*) from api where name=? and populated=1";
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, name);
+      ResultSet rset = pstmt.executeQuery();
+      rset.next();
+      int count = rset.getInt(1);
+      return count > 0;
+   }
    
    public boolean delete(Connection conn) throws SQLException
+   {
+      return delete(conn, false); // default - leave api record intact
+   }
+   
+   public boolean delete(Connection conn, boolean withself) throws SQLException
    {
       getPackageInfoByAPIName(conn);
       Iterator itr = packages.iterator();
@@ -222,16 +237,22 @@ public class API implements JDoc, Serializable
          JPackage.delete(conn, pkg.getName());
       }
 
-      // delete self
-//      HashMap constraint = new HashMap();
-//      constraint.put("NAME", name);
-//      DBUtils.delete(conn, TABLENAME, constraint);
-      setPopulated(false);
-      String sql = "update API set populated=0 where name=?";
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setString(1, getName());
-      pstmt.executeUpdate();
-      pstmt.close();
+      if (withself)
+      {
+         //delete self
+         HashMap constraint = new HashMap();
+         constraint.put("NAME", name);
+         DBUtils.delete(conn, TABLENAME, constraint);
+      }
+      else
+      {
+         setPopulated(false);
+         String sql = "update API set populated=0 where name=?";
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, getName());
+         pstmt.executeUpdate();
+         pstmt.close();
+      }
 
       return true;
    }

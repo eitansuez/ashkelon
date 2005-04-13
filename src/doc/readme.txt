@@ -25,5 +25,5 @@ Thank you,
 
 Miscellaneous:
   Recorded time to populate j2se1.4.2 on my Titanium Powerbook G4 (1 GHz): 419 seconds or ~ 7 minutes.
-
+  New Time (same machine, revised ref algorithm):  199 (add) + 29 (ref) seconds = 228 seconds or ~ 4 minutes.
 

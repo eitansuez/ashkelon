@@ -13,9 +13,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.ashkelon.API;
-import org.ashkelon.APISet;
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.util.Logger;
@@ -126,10 +124,10 @@ public class AshkelonCmd
          API api = API.unmarshal(apifilename, sourcepath);
          log.debug("api unmarshalled; name is: "+api.getName());
          
-         if (exists(api))
+         if (existsPopulated(api))
          {
             log.traceln("API " + api.getName() + " is already in repository" +
-                  (" (skipping);  to update, remove first."));
+                  ("and populated (skipping);  to update, remove first."));
             return;
          }
          
@@ -182,13 +180,13 @@ public class AshkelonCmd
       }
    }
    
-   private static boolean exists(API api)
+   private static boolean existsPopulated(API api)
    {
       Connection conn = null;
       try
       {
          conn = DBMgr.getInstance().getConnection();
-         return (api.exists(conn));
+         return (api.existsPopulated(conn));
       }
       catch (SQLException ex)
       {
@@ -257,19 +255,15 @@ public class AshkelonCmd
 	  Logger log = Logger.getInstance();
 	  Ashkelon ashkelon = new Ashkelon();
 	  ashkelon.init();
-	  ashkelon.setInternalReferences();
-	  try
-	  {
-		  new AncestorPopulator(); // populates class ancestor table
-	  }
-	  catch (SQLException ex)
-	  {
-		  log.error("Failed to populate class ancestors table");
-		  DBUtils.logSQLException(ex);
-	  }
+     ashkelon.updateInternalRefs();
 	}
 
    public static void listCmd()
+   {
+      listCmd(false);
+   }
+   
+   public static void listCmd(boolean pending)
    {
       Logger log = Logger.getInstance();
       log.setPrefix("list");
@@ -283,7 +277,7 @@ public class AshkelonCmd
       
       try
       {
-         List names = ashkelon.listAPINames();
+         List names = ashkelon.listAPINames(pending);
          log.traceln(names.size()+" APIs in ashkelon:");
          Iterator i = names.iterator();
          while (i.hasNext())
@@ -310,12 +304,16 @@ public class AshkelonCmd
    
    public static void removeCmd(String apiname)
    {
+      removeCmd(apiname, false);  // default
+   }
+   public static void removeCmd(String apiname, boolean includingApiRecord)
+   {
       Logger log = Logger.getInstance();
       log.setPrefix("remove");
       
       Ashkelon ashkelon = new Ashkelon();
       ashkelon.init();
-      ashkelon.doRemove(apiname);
+      ashkelon.doRemove(apiname, includingApiRecord);
       ashkelon.finish();
    }
 
@@ -343,32 +341,36 @@ public class AshkelonCmd
       }
       
       
-      if (args[0].equals("reset"))
+      if ("reset".equals(args[0]))
       {
          resetCmd();
       }
-      else if (args[0].equals("list"))
+      else if ("list".equals(args[0]))
       {
          listCmd();
       }
-      else if (args[0].equals("remove"))
+      else if ("listpending".equals(args[0]))
       {
-         removeApiCmd(args[args.length - 1]);
+         listCmd(true);
       }
-      else if (args[0].equals("add"))
+      else if ("remove".equals(args[0]))
+      {
+         removeApiCmd(args);
+      }
+      else if ("add".equals(args[0]))
       {
          addApiCmd(args);
       }
-      else if (args[0].equals("update"))
+      else if ("update".equals(args[0]))
       {
-         removeApiCmd(args[args.length - 1]);
+         removeApiCmd(args);
          addApiCmd(args);
       }
-      else if (args[0].equals("updaterefs"))
+      else if ("updaterefs".equals(args[0]))
       {
          updateRefsCmd();
       }
-      else if (args[0].equals("exportapis"))
+      else if ("exportapis".equals(args[0]))
       {
          try
          {
@@ -412,9 +414,18 @@ public class AshkelonCmd
          addApiNameCmd(args);
       }
    }
-   private static void removeApiCmd(String apiname)
+   private static void removeApiCmd(String[] args)
    {
-      removeCmd(apiname);
+      String lastarg = args[args.length - 1];
+      String apiname = lastarg;
+      if ("-f".equals(args[args.length - 2])) // hard remove -f : "full" remove
+      {
+         removeCmd(apiname, true);
+      }
+      else
+      {
+         removeCmd(apiname, false);
+      }
    }
    
 
