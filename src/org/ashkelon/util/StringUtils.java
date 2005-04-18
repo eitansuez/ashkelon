@@ -51,7 +51,7 @@ public class StringUtils
    }
    
    /**
-    * produce text x numtimes, concatenated by concatenator text
+    * produce text x numtimes, concatenated by concatenator text.
     * e.g. "123" x 3 with concat = "," procudes: "123,123,123"
     */
    public static String join(String text, String concatenator, int numtimes)

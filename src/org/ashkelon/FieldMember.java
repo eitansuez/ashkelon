@@ -21,7 +21,6 @@ import com.sun.javadoc.FieldDoc;
  * Analog of com.sun.javadoc.FieldDoc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class FieldMember extends Member
 {

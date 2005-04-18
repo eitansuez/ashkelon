@@ -22,7 +22,6 @@ import com.sun.javadoc.Parameter;
  * Analog of com.sun.javadoc.Parameter & ParamTag
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class ParameterInfo implements Serializable
 {

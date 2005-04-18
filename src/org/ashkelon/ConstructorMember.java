@@ -19,7 +19,6 @@ import com.sun.javadoc.ConstructorDoc;
  * Analog of com.sun.javadoc.ConstructorDoc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class ConstructorMember extends ExecMember
 {

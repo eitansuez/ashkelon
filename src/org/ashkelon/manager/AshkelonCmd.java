@@ -65,7 +65,7 @@ public class AshkelonCmd
       // doclet arguments: api packages to process/parse
       Collection packagenames = api.getPackagenames();
       argslist.addAll(packagenames);
-      log.debug(argslist.toString());
+      log.debug("argslist before calling javadoc: "+argslist);
       
       
       // invoke javadoc..
@@ -163,6 +163,8 @@ public class AshkelonCmd
          argslist.removeLast();
          argslist.addLast(api.getName());
          
+         log.debug("argslist is: "+argslist);
+         
          String[] addlist = new String[argslist.size()];
          args = (String[]) argslist.toArray(addlist);
          
@@ -251,12 +253,12 @@ public class AshkelonCmd
    }
    
 	public static void updateRefsCmd()
-	{
-	  Logger log = Logger.getInstance();
-	  Ashkelon ashkelon = new Ashkelon();
-	  ashkelon.init();
-     ashkelon.updateInternalRefs();
-	}
+   {
+      Logger log = Logger.getInstance();
+      Ashkelon ashkelon = new Ashkelon();
+      ashkelon.init();
+      ashkelon.updateInternalRefs();
+   }
 
    public static void listCmd()
    {

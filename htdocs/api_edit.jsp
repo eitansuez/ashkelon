@@ -47,6 +47,10 @@ label
   cursor: pointer;
   font-size: 0.9em;
 }
+label:hover
+{
+  color: green;
+}
 table
 {
   border: 1px solid #888;

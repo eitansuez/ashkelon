@@ -32,7 +32,6 @@ import com.sun.javadoc.SeeTag;
  * Analog of com.sun.javadoc.Doc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class DocInfo implements Serializable
 {
@@ -49,13 +48,9 @@ public class DocInfo implements Serializable
    private static String SEQUENCE = "DOC_SEQ";
    private static String TABLENAME = "DOC";
 
-   /** constants representing different primary types of doc elements */
    public static final int PACKAGE_TYPE = 1;
-   /** constants representing different types of doc elements */
    public static final int CLASS_TYPE = 2;
-   /** constants representing different types of doc elements */
    public static final int MEMBER_TYPE = 3;
-   /** constants representing different types of doc elements */
    public static final int EXECMEMBER_TYPE = 4;
    
    public static final String[] DOCTYPES = {"pkg", "cls", "member", "member"};

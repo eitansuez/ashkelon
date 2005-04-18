@@ -5,7 +5,7 @@
   </mapping>
 
   <mapping name="api" class="org.ashkelon.API">
-    <value name="name" field="name" />
+    <value name="name" field="name" ident="def" />
     <value name="summarydescription" field="summaryDescription" />
     <value name="description" field="description" />
     <value name="publisher" field="publisher" />
@@ -23,6 +23,41 @@
       <value name="sourcepath" field="sourcepath" />
     </structure>
   </mapping>
+
+  <mapping name="class" class="org.ashkelon.ClassType">
+    <value name="name" field="name" />
+    <value name="qualified-name" field="qualifiedName" ident="def" />
+    <value name="classtype" field="classType" />
+    <value name="version" field="version" />
+    <value name="is-abstract" field="isAbstract" />
+    <value name="is-static" field="isStatic" />
+    <value name="is-final" field="isFinal" />
+    <value name="accessibility" field="accessibility" />
+    <value name="modifiers" field="modifiers" />
+
+    <value name="superclass-name" field="superClassName" />
+<!--
+    <value name="superclass" field="superClass" ident="ref" />
+
+    <value name="containing-class-name" field="containingClassName" />
+    <value name="containing-class" field="containingClass" ident="ref" />
+
+    <value name="api" field="api" ident="ref" />
+
+-->
+
+    <!--  <structure field="doc" /> -->
+
+    <!-- todo:
+      collection: fields
+      collection: methods
+      collection: constructors
+      collection: interfaces
+      collection: innerClasses
+      collection: authors
+    -->
+  </mapping>
+
   
   <mapping name="ashkelon-viewer-config" class="org.ashkelon.pages.ConfigInfo">
     <value name="defaultpkg" field="defaultPkg" />

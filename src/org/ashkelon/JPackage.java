@@ -31,7 +31,6 @@ import com.sun.javadoc.PackageDoc;
  * Analog of com.sun.javadoc.PackageDoc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class JPackage implements JDoc, Serializable
 {

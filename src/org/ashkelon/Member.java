@@ -28,7 +28,6 @@ import com.sun.javadoc.MemberDoc;
  * Analog of com.sun.javadoc.MemberDoc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class Member implements JDoc, Serializable
 {

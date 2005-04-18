@@ -30,7 +30,6 @@ import com.sun.javadoc.ThrowsTag;
  * Analog of com.sun.javadoc.ExecutableMemberDoc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class ExecMember extends Member implements Comparator
 {

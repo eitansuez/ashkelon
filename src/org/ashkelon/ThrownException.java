@@ -19,7 +19,6 @@ import org.ashkelon.util.StringUtils;
  * Analog of com.sun.javadoc.ThrowsTag
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class ThrownException implements Serializable
 {

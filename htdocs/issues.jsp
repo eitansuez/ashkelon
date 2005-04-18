@@ -39,7 +39,7 @@ Known Issues
 
 <ol>
 <li>
-Ashkelon is a beta quality product.  You may encounter bugs and inconsitencies in its behavior (in which case you are encouraged to <a href="mailto:eitan@uptodata.com">contact</a> the author so that the bug or inconsistency may be fixed)
+Ashkelon is a beta quality product.  You may encounter bugs and inconsitencies in its behavior (in which case you are encouraged to <a href="mailto:eitan@u2d.com">contact</a> the author so that the bug or inconsistency may be fixed)
 </li>
 <li>
   inheritance trees currently show only class inheritance.  interface
@@ -61,7 +61,7 @@ Ashkelon is a beta quality product.  You may encounter bugs and inconsitencies i
 </style>
 
 <p>
-I will post new entries to this FAQ for any questions that are submitted.  You may <a href="mailto:eitan@uptodata.com">submit questions</a> directly to the author.
+I will post new entries to this FAQ for any questions that are submitted.  You may <a href="mailto:eitan@u2d.com">submit questions</a> directly to the author.
 </p>
 
 <h3>

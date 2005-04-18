@@ -21,7 +21,6 @@ import com.sun.javadoc.MethodDoc;
  * Analog of com.sun.javadoc.MethodDoc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class MethodMember extends ExecMember
 {

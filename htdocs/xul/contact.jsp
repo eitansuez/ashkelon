@@ -51,7 +51,7 @@ Date: December 2001
 <UL>
 Eitan Suez
 <BR>
-<A HREF="mailto:eitan@uptodata.com">eitan@uptodata.com</A>
+<A HREF="mailto:eitan@u2d.com">eitan@u2d.com</A>
 <BR>
 UptoData, Inc.
 <BR>

@@ -36,7 +36,6 @@ import com.sun.javadoc.MethodDoc;
  * Analog of com.sun.javadoc.ClassDoc
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class ClassType implements Comparator, JDoc, Serializable
 {
@@ -78,18 +77,17 @@ public class ClassType implements Comparator, JDoc, Serializable
    private static String SEQUENCE = "CLASSTYPE_SEQ";
    private static String TABLENAME = "CLASSTYPE";
 
-   /** constants representing the four types of classesdocs */
    public static final int ORDINARY_CLASS = 1;
-   /** constants representing the four types of classesdocs */
    public static final int INTERFACE = 2;
-   /** constants representing the four types of classesdocs */
    public static final int EXCEPTION_CLASS = 3;
-   /** constants representing the four types of classesdocs */
    public static final int ERROR_CLASS = 4;
 
-   public static final String[] CLASSTYPES = {"ordinaryClass", "interface", "exception", "errorClass"};
+   public static final String[] CLASSTYPES = { "ordinaryClass", "interface",
+         "exception", "errorClass" };
 
    private transient Logger log;
+   
+   public ClassType() {} // for jibx
    
    public ClassType(String qualifiedName)
    {

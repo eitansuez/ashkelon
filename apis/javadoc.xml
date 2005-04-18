@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <api>
-<name>JavaDoc API</name>
-<summarydescription>The javadoc API is used to customize the output of javadoc.</summarydescription>
+<name>Doclet</name>
+<summarydescription>The Doclet API is used to customize the output of javadoc.</summarydescription>
 <description>
 Doclets are programs written in the JavaTM programming language that use the doclet API to specify the content and format of the output of the Javadoc tool. By default, the Javadoc tool uses the "standard" doclet provided by SunTM to generate API documentation in HTML form. However, you can supply your own doclets to customize the output of Javadoc as you like. You can write the doclets from scratch using the doclet API, or you can start with the standard doclet and modify it to suit your needs.
 </description>

@@ -7,7 +7,6 @@ package org.ashkelon;
 
 /**
  * @author  Eitan Suez
- * @version 2.0
  */
 public interface JDoc
 {

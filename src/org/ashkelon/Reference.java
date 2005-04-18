@@ -23,7 +23,6 @@ import com.sun.javadoc.SeeTag;
  * Analog of com.sun.javadoc.SeeTag
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class Reference implements Serializable
 {

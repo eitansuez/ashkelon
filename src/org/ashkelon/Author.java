@@ -36,7 +36,6 @@ import org.xml.sax.SAXException;
  * An author represents a java class or interface author
  *
  * @author Eitan Suez
- * @version 2.0
  */
 public class Author implements JDoc, Serializable
 {

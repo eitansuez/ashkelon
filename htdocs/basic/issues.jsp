@@ -37,7 +37,7 @@ Known Issues
 
 <OL>
 <LI>
-dbdoc is a beta quality product.  You may encounter bugs and inconsitencies in its behavior (in which case you are encouraged to <A HREF="mailto:eitan@uptodata.com">contact</A> the author so that the bug or inconsistency may be fixed)
+dbdoc is a beta quality product.  You may encounter bugs and inconsitencies in its behavior (in which case you are encouraged to <A HREF="mailto:eitan@u2d.com">contact</A> the author so that the bug or inconsistency may be fixed)
 </LI>
 <LI>
   inheritance trees currently show only class inheritance.  interface
@@ -59,7 +59,7 @@ dbdoc is a beta quality product.  You may encounter bugs and inconsitencies in i
 </STYLE>
 
 <P>
-Given that dbdoc has only recently been released, I have not yet received enough feedback to develop even a semi-complete FAQ.  I will post new entries to this FAQ for any questions that are submitted.  You may <A HREF="mailto:eitan@uptodata.com">submit questions</A> directly to the author.
+Given that dbdoc has only recently been released, I have not yet received enough feedback to develop even a semi-complete FAQ.  I will post new entries to this FAQ for any questions that are submitted.  You may <A HREF="mailto:eitan@u2d.com">submit questions</A> directly to the author.
 </P>
 
 <H3>
