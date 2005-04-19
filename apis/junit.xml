@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
   <name>JUnit</name>
   <summarydescription>Unit Testing Framework for Java</summarydescription>
@@ -8,8 +8,18 @@
   <release_date>2002-09-03T19:00:00.000</release_date>
   <version>3.8.1</version>
   <packages>
+    <package>junit.awtui</package>
     <package>junit.extensions</package>
     <package>junit.framework</package>
+    <package>junit.runner</package>
+    <package>junit.samples</package>
+    <package>junit.samples.money</package>
+    <package>junit.swingui</package>
+    <package>junit.tests</package>
+    <package>junit.tests.extensions</package>
+    <package>junit.tests.framework</package>
+    <package>junit.tests.runner</package>
+    <package>junit.textui</package>
   </packages>
   <repository>
     <type>cvs</type>
