@@ -136,7 +136,11 @@ function focusFirstField()
 
 <div class="pagebody">
 
-<h3>New API</h3>
+<h3>Request New API</h3>
+
+<p>
+If there's an API that you don't see documentation on openjavadocs.org that you'd like to see added, simply fill out this form and we'll consider adding it to the repository.  Thanks!
+</p>
 
 <div class="message">
   <%=msg%>
@@ -349,7 +353,7 @@ This value is the relative path from your cvs module to your Java source code.  
 </td></tr>
 
 <tr><td colspan="2">
-<input type="submit" name="action" value="Save" />
+<input type="submit" name="action" value="Submit Request" />
 </td></tr>
 </table>
 

@@ -4,7 +4,6 @@ import org.ashkelon.*;
 import org.ashkelon.db.PKManager;
 import org.ashkelon.manager.Repository;
 import org.ashkelon.util.*;
-
 import java.sql.*;
 import java.util.*;
 
@@ -26,7 +25,8 @@ public class APIEditPage extends Page
       API api = null;
       String msg = "";
       
-      if (StringUtils.isBlank(param))
+      //if (StringUtils.isBlank(param))
+      if (true)
       {
          api = new API();
       }

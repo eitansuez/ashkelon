@@ -100,11 +100,13 @@ table#api-pkgs td
 </div>
 
 
+<!--
 <div class="actions">
   <a href="api.edit.do?id=<%=api.getId()%>">Edit API Info</a> | 
   <a href="api.rebuild.do">Rebuild API Docs</a> | 
   <a href="api.remove.do">Remove API Docs from System</a>
 </div>
+-->
 
 
 <c:import url="footer.html" />
