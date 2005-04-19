@@ -1,49 +1,72 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>Hibernate</name>
-<summarydescription>Relational Persistence For Idiomatic Java</summarydescription>
-<description>Hibernate is a powerful, ultra-high performance object/relational persistence and query service for Java. Hibernate lets you develop persistent objects following common Java idiom - including association, inheritance, polymorphism, composition and the Java collections framework. Extremely fine-grained, richly typed object models are possible. The Hibernate Query Language, designed as a "minimal" object-oriented extension to SQL, provides an elegant bridge between the object and relational worlds. Hibernate is now the most popular ORM solution for Java.</description>
-<publisher>hibernate.org</publisher>
-<download_url>http://www.hibernate.org/</download_url>
-<release_date>2003-12-01T08:00:00.000</release_date>
-<version>2.1.3</version>
-<packages>
-<package>net.sf.hibernate</package>
-<package>net.sf.hibernate.cache</package>
-<package>net.sf.hibernate.cfg</package>
-<package>net.sf.hibernate.collection</package>
-<package>net.sf.hibernate.connection</package>
-<package>net.sf.hibernate.dialect</package>
-<package>net.sf.hibernate.engine</package>
-<package>net.sf.hibernate.exception</package>
-<package>net.sf.hibernate.expression</package>
-<package>net.sf.hibernate.hql</package>
-<package>net.sf.hibernate.id</package>
-<package>net.sf.hibernate.impl</package>
-<package>net.sf.hibernate.jca</package>
-<package>net.sf.hibernate.jmx</package>
-<package>net.sf.hibernate.loader</package>
-<package>net.sf.hibernate.lob</package>
-<package>net.sf.hibernate.mapping</package>
-<package>net.sf.hibernate.metadata</package>
-<package>net.sf.hibernate.odmg</package>
-<package>net.sf.hibernate.persister</package>
-<package>net.sf.hibernate.property</package>
-<package>net.sf.hibernate.proxy</package>
-<package>net.sf.hibernate.sql</package>
-<package>net.sf.hibernate.tool.hbm2ddl</package>
-<package>net.sf.hibernate.transaction</package>
-<package>net.sf.hibernate.transform</package>
-<package>net.sf.hibernate.type</package>
-<package>net.sf.hibernate.util</package>
-<package>net.sf.hibernate.xml</package>
-</packages>
+   <name>Hibernate</name>
+   <summarydescription>Relational Persistence For Idiomatic Java</summarydescription>
+   <description>Hibernate is a powerful, ultra-high performance object/relational persistence and query service for Java. Hibernate lets you develop persistent objects following common Java idiom - including association, inheritance, polymorphism, composition and the Java collections framework. Extremely fine-grained, richly typed object models are possible. The Hibernate Query Language, designed as a "minimal" object-oriented extension to SQL, provides an elegant bridge between the object and relational worlds. Hibernate is now the most popular ORM solution for Java.</description>
+   <publisher>hibernate.org</publisher>
+   <download_url>http://www.hibernate.org/</download_url>
+   <release_date>2005-04-18T08:00:00.000</release_date>
+   <version>3.0.1</version>
 
-  <repository>
-    <type>cvs</type>
-    <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/hibernate</url>
-    <modulename>Hibernate2</modulename>
-    <sourcepath>src</sourcepath>
-  </repository>
+   <packages>
+      <package>org.hibernate</package>
+      <package>org.hibernate.action</package>
+      <package>org.hibernate.cache</package>
+      <package>org.hibernate.cache.entry</package>
+      <package>org.hibernate.cfg</package>
+      <package>org.hibernate.classic</package>
+      <package>org.hibernate.collection</package>
+      <package>org.hibernate.connection</package>
+      <package>org.hibernate.criterion</package>
+      <package>org.hibernate.dialect</package>
+      <package>org.hibernate.dialect.function</package>
+      <package>org.hibernate.engine</package>
+      <package>org.hibernate.event</package>
+      <package>org.hibernate.event.def</package>
+      <package>org.hibernate.event.ejb3</package>
+      <package>org.hibernate.exception</package>
+      <package>org.hibernate.hql</package>
+      <package>org.hibernate.hql.antlr</package>
+      <package>org.hibernate.hql.ast</package>
+      <package>org.hibernate.hql.classic</package>
+      <package>org.hibernate.id</package>
+      <package>org.hibernate.impl</package>
+      <package>org.hibernate.intercept</package>
+      <package>org.hibernate.jdbc</package>
+      <package>org.hibernate.jmx</package>
+      <package>org.hibernate.loader</package>
+      <package>org.hibernate.loader.collection</package>
+      <package>org.hibernate.loader.criteria</package>
+      <package>org.hibernate.loader.custom</package>
+      <package>org.hibernate.loader.entity</package>
+      <package>org.hibernate.loader.hql</package>
+      <package>org.hibernate.lob</package>
+      <package>org.hibernate.mapping</package>
+      <package>org.hibernate.metadata</package>
+      <package>org.hibernate.persister</package>
+      <package>org.hibernate.persister.collection</package>
+      <package>org.hibernate.persister.entity</package>
+      <package>org.hibernate.pretty</package>
+      <package>org.hibernate.property</package>
+      <package>org.hibernate.proxy</package>
+      <package>org.hibernate.secure</package>
+      <package>org.hibernate.sql</package>
+      <package>org.hibernate.stat</package>
+      <package>org.hibernate.tool.hbm2ddl</package>
+      <package>org.hibernate.tool.instrument</package>
+      <package>org.hibernate.transaction</package>
+      <package>org.hibernate.transform</package>
+      <package>org.hibernate.tuple</package>
+      <package>org.hibernate.type</package>
+      <package>org.hibernate.usertype</package>
+      <package>org.hibernate.util</package>
+   </packages>
+
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/hibernate</url>
+      <modulename>Hibernate3</modulename>
+      <sourcepath>src</sourcepath>
+   </repository>
 
 </api>
