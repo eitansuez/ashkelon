@@ -1,97 +1,79 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>Tapestry</name>
-<summarydescription>Tapestry is a powerful, open-source, all-Java framework for creating leading edge web applications in Java.</summarydescription>
-<description>Tapestry is an alternative to scripting environments such as JavaServer Pages or Velocity.  Tapestry goes far further, providing a complete framework for creating extremely dynamic applications with minimal amounts of coding.</description>
-<publisher>Jakarta</publisher>
-<download_url>http://www.sf.net/projects/tapestry</download_url>
-<release_date>2002-12-09T21:00:00.000</release_date>
-<version>2.3</version>
-<packages>
-<package>net.sf.tapestry</package>
-<package>net.sf.tapestry.asset</package>
-<package>net.sf.tapestry.bean</package>
-<package>net.sf.tapestry.binding</package>
-<package>net.sf.tapestry.callback</package>
-<package>net.sf.tapestry.components</package>
-<package>net.sf.tapestry.contrib.ejb</package>
-<package>net.sf.tapestry.contrib.form</package>
-<package>net.sf.tapestry.contrib.informal</package>
-<package>net.sf.tapestry.contrib.jdbc</package>
-<package>net.sf.tapestry.contrib.mckoi</package>
-<package>net.sf.tapestry.contrib.palette</package>
-<package>net.sf.tapestry.contrib.popup</package>
-<package>net.sf.tapestry.contrib.table.components</package>
-<package>net.sf.tapestry.contrib.table.components.inserted</package>
-<package>net.sf.tapestry.contrib.table.example.minimal</package>
-<package>net.sf.tapestry.contrib.table.model</package>
-<package>net.sf.tapestry.contrib.table.model.common</package>
-<package>net.sf.tapestry.contrib.table.model.ognl</package>
-<package>net.sf.tapestry.contrib.table.model.simple</package>
-<package>net.sf.tapestry.contrib.table.model.sql</package>
-<package>net.sf.tapestry.contrib.valid</package>
-<package>net.sf.tapestry.engine</package>
-<package>net.sf.tapestry.event</package>
-<package>net.sf.tapestry.form</package>
-<package>net.sf.tapestry.html</package>
-<package>net.sf.tapestry.inspector</package>
-<package>net.sf.tapestry.junit</package>
-<package>net.sf.tapestry.junit.mock</package>
-<package>net.sf.tapestry.junit.mock.app</package>
-<package>net.sf.tapestry.junit.mock.lib</package>
-<package>net.sf.tapestry.junit.mock.simple</package>
-<package>net.sf.tapestry.junit.parse</package>
-<package>net.sf.tapestry.junit.script</package>
-<package>net.sf.tapestry.junit.spec</package>
-<package>net.sf.tapestry.junit.utils</package>
-<package>net.sf.tapestry.junit.valid</package>
-<package>net.sf.tapestry.link</package>
-<package>net.sf.tapestry.listener</package>
-<package>net.sf.tapestry.multipart</package>
-<package>net.sf.tapestry.pageload</package>
-<package>net.sf.tapestry.pages</package>
-<package>net.sf.tapestry.param</package>
-<package>net.sf.tapestry.parse</package>
-<package>net.sf.tapestry.record</package>
-<package>net.sf.tapestry.script</package>
-<package>net.sf.tapestry.spec</package>
-<package>net.sf.tapestry.util</package>
-<package>net.sf.tapestry.util.exception</package>
-<package>net.sf.tapestry.util.io</package>
-<package>net.sf.tapestry.util.pool</package>
-<package>net.sf.tapestry.util.prop</package>
-<package>net.sf.tapestry.util.xml</package>
-<package>net.sf.tapestry.valid</package>
-<package>net.sf.tapestry.vlib</package>
-<package>net.sf.tapestry.vlib.components</package>
-<package>net.sf.tapestry.vlib.ejb</package>
-<package>net.sf.tapestry.vlib.ejb.impl</package>
-<package>net.sf.tapestry.vlib.pages</package>
-<package>net.sf.tapestry.vlib.pages.admin</package>
-<package>net.sf.tapestry.wml</package>
-<!--
-<package>tutorial.border</package>
-<package>tutorial.hangman</package>
-<package>tutorial.portal</package>
-<package>tutorial.simple</package>
-<package>tutorial.workbench</package>
-<package>tutorial.workbench.chart</package>
-<package>tutorial.workbench.components</package>
-<package>tutorial.workbench.fields</package>
-<package>tutorial.workbench.localization</package>
-<package>tutorial.workbench.palette</package>
-<package>tutorial.workbench.table</package>
-<package>tutorial.workbench.upload</package>
--->
-</packages>
+   <name>Jakarta Tapestry</name>
+   <summarydescription>Tapestry is a powerful, open-source, all-Java framework for creating leading edge web applications in Java.</summarydescription>
+   <description>Tapestry is a powerful, open-source, all-Java framework for creating leading edge web applications in Java.
 
+Tapestry reconceptualizes web application development in terms of objects, methods and properties instead of URLs and query parameters.
 
-  <repository>
-    <type>cvs</type>
-    <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
-    <modulename>jakarta-tapestry</modulename>
-    <sourcepath>framework/src</sourcepath>
-  </repository>
-
-
+Tapestry is an alternative to scripting environments such as JavaServer Pages or Velocity. Tapestry goes far further, providing a complete framework for creating extremely dynamic applications with minimal amounts of coding.
+</description>
+   <publisher>Apache Jakarta</publisher>
+   <download_url>http://jakarta.apache.org/tapestry/index.html</download_url>
+   <release_date>2005-03-21T00:53:15.188</release_date>
+   <version>3.0</version>
+   <packages>
+      <package>org.apache.tapestry</package>
+      <package>org.apache.tapestry.asset</package>
+      <package>org.apache.tapestry.bean</package>
+      <package>org.apache.tapestry.binding</package>
+      <package>org.apache.tapestry.callback</package>
+      <package>org.apache.tapestry.components</package>
+      <package>org.apache.tapestry.contrib.components</package>
+      <package>org.apache.tapestry.contrib.ejb</package>
+      <package>org.apache.tapestry.contrib.form</package>
+      <package>org.apache.tapestry.contrib.informal</package>
+      <package>org.apache.tapestry.contrib.inspector</package>
+      <package>org.apache.tapestry.contrib.jdbc</package>
+      <package>org.apache.tapestry.contrib.link</package>
+      <package>org.apache.tapestry.contrib.palette</package>
+      <package>org.apache.tapestry.contrib.popup</package>
+      <package>org.apache.tapestry.contrib.table.components</package>
+      <package>org.apache.tapestry.contrib.table.components.inserted</package>
+      <package>org.apache.tapestry.contrib.table.model</package>
+      <package>org.apache.tapestry.contrib.table.model.common</package>
+      <package>org.apache.tapestry.contrib.table.model.ognl</package>
+      <package>org.apache.tapestry.contrib.table.model.simple</package>
+      <package>org.apache.tapestry.contrib.table.model.sql</package>
+      <package>org.apache.tapestry.contrib.tree.components</package>
+      <package>org.apache.tapestry.contrib.tree.components.table</package>
+      <package>org.apache.tapestry.contrib.tree.model</package>
+      <package>org.apache.tapestry.contrib.tree.simple</package>
+      <package>org.apache.tapestry.contrib.valid</package>
+      <package>org.apache.tapestry.engine</package>
+      <package>org.apache.tapestry.enhance</package>
+      <package>org.apache.tapestry.enhance.javassist</package>
+      <package>org.apache.tapestry.event</package>
+      <package>org.apache.tapestry.form</package>
+      <package>org.apache.tapestry.html</package>
+      <package>org.apache.tapestry.jsp</package>
+      <package>org.apache.tapestry.link</package>
+      <package>org.apache.tapestry.listener</package>
+      <package>org.apache.tapestry.multipart</package>
+      <package>org.apache.tapestry.pageload</package>
+      <package>org.apache.tapestry.pages</package>
+      <package>org.apache.tapestry.param</package>
+      <package>org.apache.tapestry.parse</package>
+      <package>org.apache.tapestry.record</package>
+      <package>org.apache.tapestry.request</package>
+      <package>org.apache.tapestry.resolver</package>
+      <package>org.apache.tapestry.resource</package>
+      <package>org.apache.tapestry.script</package>
+      <package>org.apache.tapestry.spec</package>
+      <package>org.apache.tapestry.util</package>
+      <package>org.apache.tapestry.util.exception</package>
+      <package>org.apache.tapestry.util.io</package>
+      <package>org.apache.tapestry.util.pool</package>
+      <package>org.apache.tapestry.util.prop</package>
+      <package>org.apache.tapestry.util.xml</package>
+      <package>org.apache.tapestry.valid</package>
+      <package>org.apache.tapestry.wml</package>
+      <package>org.apache.tapestry.wml.pages</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
+      <modulename>jakarta-tapestry</modulename>
+      <sourcepath>framework/src/java</sourcepath>
+   </repository>
 </api>
