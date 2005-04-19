@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import org.ashkelon.API;
+import org.ashkelon.manager.Repository;
 import org.jibx.runtime.*;
 
 /**
@@ -33,6 +34,16 @@ public class ApiXml
        api.addPackagename(packagename);
     }
     br.close();
+    
+    // default to a sourceforge cvs repository as it is the most common..
+    String type = "cvs";
+    String url = ":pserver:anonymous@cvs.sourceforge.net:/cvsroot/[projectname]";
+    String modulename = "[projectname]";
+    String tagname = "";
+    String sourcepath = "src/java";
+    
+    Repository repos = new Repository(type, url, modulename, tagname, sourcepath);
+    api.setRepository(repos);
     
     // marshal api:
     IBindingFactory factory = BindingDirectory.getFactory(API.class);
