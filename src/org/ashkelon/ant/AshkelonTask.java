@@ -63,12 +63,12 @@ public class AshkelonTask extends Javadoc
 			_parameterCheck();
 			if (_operation.compareTo(_RESET_OPERATION) == 0)
 			{
-				AshkelonCmd.resetCmd();
+				//AshkelonCmd.resetCmd();
 			}
 			else if (_operation.compareTo(_LIST_OPERATION) == 0)
 			{
 				// TODO: This isn't working right now
-				AshkelonCmd.listCmd();
+				//AshkelonCmd.listCmd();
 			}
 			else if (_operation.compareTo(_REMOVE_OPERATION) == 0)
 			{
@@ -76,11 +76,11 @@ public class AshkelonTask extends Javadoc
 					_includePatterns.getIncludePatterns(getProject());
 				includes =
 					_appendStringPrefixToArray(new String("remove"), includes);
-				AshkelonCmd.removeCmd(includes[0]);
+				//AshkelonCmd.removeCmd(includes[0]);
 			}
 			else if (_operation.compareTo(_UPDATEREFS_OPERATION) == 0)
 			{
-				AshkelonCmd.updateRefsCmd();
+				//AshkelonCmd.updateRefsCmd();
 			}
 			else if (_operation.compareTo(_ADD_OPERATION) == 0)
 			{

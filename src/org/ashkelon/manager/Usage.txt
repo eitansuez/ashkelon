@@ -1,38 +1,31 @@
-Ashkelon Repository Manager                                     Version: 0.9
----
+Ashkelon Repository Manager (v 0.9)
+----------
 Description:
   Manages a Java Documentation Repository.
   For more information, visit http://ashkelon.sourceforge.net/
----
+
 Examples:
   ashkelon reset
   ashkelon add hibernate.xml
   ashkelon list
   ashkelon remove Hibernate
----
+
 Usage:
-  ashkelon [add <apiref> | remove <apiname> | update <apiname> | reset | list]
+  ashkelon {command} [options]
+  
+  Valid commands:
 
     add         Add an api to repository
-                apiref can be either:
-                - an ashkelon api xml file (see documentation for details 
-                  on its format)
-                - a maven project.xml file
     remove      Remove specified api from the repository
-                 (remove option: -f means remove api record itself as well)
-    update      Remove specified api name, update the source code and 
-                adds the api back in
+    update      Update an API
     reset       Reset repository (i.e. delete everything, use with care)
     list        List apis currently residing in the repository
-    exportapis  Dump list of apis to xml (system.out)
-    listpending List "pending" unpopulated api records in db
+    export      Dump list of apis to xml (system.out)
 
-When adding, ashkelon will pass any valid javadoc option to the javadoc 
-parsing engine.  For a list of javadoc options, simply type: javadoc
-at the command line
----
+For command-specific help, type:
+  ashkelon {command} -h
+  
 Caveats:
-  No work done yet to support J2SE 5.  Uncertain about J2SE 5 support
-  at this time.
----
+  No work done yet to support J2SE 5.
+----------
 Copyleft

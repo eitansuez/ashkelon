@@ -4,17 +4,12 @@ package org.ashkelon.util;
  *  March 2001
  */
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.ashkelon.DocInfo;
 import org.ashkelon.pages.ConfigInfo;
-
 import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.ProgramElementDoc;
 import com.sun.javadoc.Tag;

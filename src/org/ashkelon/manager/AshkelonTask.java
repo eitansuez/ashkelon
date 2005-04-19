@@ -34,7 +34,7 @@ public class AshkelonTask extends Task
       {
         String[] args = new String[1];
         args[0] = apifile;
-        org.ashkelon.manager.AshkelonCmd.addApiXmlCmd(args);
+//        org.ashkelon.manager.AshkelonCmd.addApiXmlCmd(args);
       }
     }
     

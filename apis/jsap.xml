@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>JSAP</name>
+   <summarydescription>Java Command Line Parser</summarydescription>
+   <description>JSAP parses your command line and instantiates objects of types you specify based upon that command line.</description>
+   <publisher>Martian Software, Inc.</publisher>
+   <download_url></download_url>
+   <release_date>2004-03-07T08:00:00</release_date>
+   <version>1.03a</version>
+   <packages>
+      <package>com.martiansoftware.jsap</package>
+      <package>com.martiansoftware.jsap.ant</package>
+      <package>com.martiansoftware.jsap.defaultsources</package>
+      <package>com.martiansoftware.jsap.examples</package>
+      <package>com.martiansoftware.jsap.stringparsers</package>
+      <package>com.martiansoftware.util</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jsap</url>
+      <modulename>JSAP</modulename>
+      <tagname></tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
