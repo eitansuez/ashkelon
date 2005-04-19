@@ -14,13 +14,11 @@
    <package>org.jibx.runtime.impl</package>
   </packages>
 
-<!--
   <repository>
     <type>cvs</type>
     <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jibx</url>
     <modulename>core</modulename>
-    <sourcepath>build/src</sourcepath>
+    <sourcepath>build</sourcepath>
   </repository>
--->
 
 </api>
