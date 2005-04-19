@@ -52,9 +52,6 @@ public class AshkelonCmd
       
       JSAPResult result = cmd.parse(cmdlineargs);
       
-      // not that simple..
-      // if -h passed in then overrides any otherwise "required" arguments
-      // TODO: fix.
       if (!result.success())
       {
          cmd.printUsage(result);

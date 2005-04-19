@@ -22,6 +22,16 @@ public class RemoveCmd extends BaseCmd
    {
       return "Remove specified api from the repository";
    }
+   public String getExample()
+   {
+      return "ashkelon remove \"Apache Ant\"";
+   }
+   public String getNote()
+   {
+      return "keeping the api record itself in the db after a remove " +
+       "can be useful when you later want to repopulate the api (all " +
+       "the api information necessary for the add operation was saved)";
+   }
 
    public void registerParameters() throws JSAPException
    {

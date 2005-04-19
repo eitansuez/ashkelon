@@ -25,6 +25,15 @@ public class ListCmd extends BaseCmd
    {
       return "List apis currently residing in the repository";
    }
+   public String getExample()
+   {
+      return "ashkelon list\n\tashkelon list -p";
+   }
+   public String getNote()
+   {
+      return "pending apis are apis whose information was entered via a " +
+       "web interface but have not yet been populated";
+   }
    
    public void registerParameters() throws JSAPException
    {

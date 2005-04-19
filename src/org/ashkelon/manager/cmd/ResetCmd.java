@@ -22,6 +22,15 @@ public class ResetCmd extends BaseCmd
    {
       return "Reset repository (i.e. delete everything, use with care)";
    }
+   public String getExample()
+   {
+      return "ashkelon reset";
+   }
+   public String getNote()
+   {
+      return "not too big a deal if you reset a db, it can all be " +
+            "reconstituted from the source with a series of 'add' cmds";
+   }
    
    public void registerParameters() throws JSAPException
    {

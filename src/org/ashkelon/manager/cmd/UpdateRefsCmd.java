@@ -14,11 +14,18 @@ public class UpdateRefsCmd extends BaseCmd
 {
    public UpdateRefsCmd() {}
 
-   public String getName() { return "update refs"; }
+   public String getName() { return "updaterefs"; }
    public String getDescription()
    {
-      return "Update inter-api references.  You don't need to run this " +
-             "but it's there if you like to tinker";
+      return "Update inter-api references in the db";
+   }
+   public String getExample()
+   {
+      return "ashkelon updaterefs";
+   }
+   public String getNote()
+   {
+      return "you don't need to run this but it's there if you like to tinker";
    }
    
    public void registerParameters() throws JSAPException

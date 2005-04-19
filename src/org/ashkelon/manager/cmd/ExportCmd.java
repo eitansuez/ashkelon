@@ -16,10 +16,18 @@ public class ExportCmd extends BaseCmd
 {
    public ExportCmd() {}
    
-   public String getName() { return "export apis"; }
+   public String getName() { return "export"; }
    public String getDescription()
    {
       return "Dump list of apis to xml (system.out)";
+   }
+   public String getExample()
+   {
+      return "ashkelon export";
+   }
+   public String getNote()
+   {
+      return "Does not drill down to packages, classes, and methods.";
    }
    
    public void registerParameters() throws JSAPException

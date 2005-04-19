@@ -18,8 +18,8 @@ Usage:
     add         Add an api to repository
     remove      Remove specified api from the repository
     update      Update an API
-    reset       Reset repository (i.e. delete everything, use with care)
     list        List apis currently residing in the repository
+    reset       Reset repository (i.e. delete everything, use with care)
     export      Dump list of apis to xml (system.out)
 
 For command-specific help, type:

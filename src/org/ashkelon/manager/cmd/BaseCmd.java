@@ -62,7 +62,7 @@ public abstract class BaseCmd extends JSAP implements CommandLineCommand
    
    public void printUsage(JSAPResult result)
    {
-      if (result!=null && !result.success())
+      if (result!=null && !result.success() && !result.getBoolean("help"))
       {
          Iterator itr = result.getErrorMessageIterator();
          while (itr.hasNext())
@@ -74,6 +74,8 @@ public abstract class BaseCmd extends JSAP implements CommandLineCommand
       System.err.println("Description:\n\t"+getDescription()+"\n");
       System.err.println("Usage:  ashkelon "+getName()+" "+getUsage()+"\n");
       System.err.println(getHelp());
+      System.err.println("Example:\n\t"+getExample()+"\n");
+      System.err.println("Notes:\n\t"+getNote()+"\n");
    }
    
 }

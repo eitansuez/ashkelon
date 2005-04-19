@@ -41,9 +41,13 @@ public class AddCmd extends BaseCmd
    }
    public String getNote()
    {
-      return "ashkelon will pass any valid javadoc option to the javadoc "+ 
-      "parsing engine.  For a list of javadoc options, simply type: javadoc "+
-      "at the command line.";
+      return "after an API is added, any references between it and apis existing " +
+       "in the database will be linked";
+      // no longer true because now i'm forced to explicitly specify
+      // all options that command accepts..
+      //"ashkelon will pass any valid javadoc option to the javadoc "+ 
+      //"parsing engine.  For a list of javadoc options, simply type: javadoc "+
+      //"at the command line.";
    }
 
    public void registerParameters() throws JSAPException
@@ -67,6 +71,13 @@ public class AddCmd extends BaseCmd
       
       classpathOption.setHelp("Class path information;  passed to javadoc (optional).");
       registerParameter(classpathOption);
+      
+      FlaggedOption sourceOption = new FlaggedOption("source")
+                                       .setRequired(false)
+                                       .setShortFlag(JSAP.NO_SHORTFLAG)
+                                       .setLongFlag("source");
+      sourceOption.setHelp("javadoc -source flag: to specify j2se version compatibility");
+      registerParameter(sourceOption);
       
       Option apiOption = new UnflaggedOption("api").setRequired(true);
       
@@ -120,6 +131,13 @@ public class AddCmd extends BaseCmd
       {
          javadocargslist.addLast("-classpath");
          javadocargslist.addLast(classpath);
+      }
+      
+      String source = arguments.getString("source");
+      if (source != null)
+      {
+         javadocargslist.addLast("-source");
+         javadocargslist.addLast(source);
       }
       
       // doclet argument:  which api (id) to populate

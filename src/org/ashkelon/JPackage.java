@@ -94,7 +94,7 @@ public class JPackage implements JDoc, Serializable
       for (int i=0; i<classes.size(); i++)
       {
          ClassType cls = (ClassType) classes.get(i);
-         log.verbose("about to store class: "+cls.getQualifiedName());
+         log.verbose("storing class: "+cls.getQualifiedName());
          (cls).store(conn);
       }
       log.setPrefix(prefix);
