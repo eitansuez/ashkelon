@@ -47,7 +47,7 @@ Date: December 2001
 </p>
 
 <blockquote>
-<a href="mailto:eitan-keywork-tech.cede1b@u2d.com">Eitan Suez</a> <br/>
+<a href="mailto:eitan-keyword-deux.352d02@u2d.com">Eitan Suez</a> <br/>
 UptoData, Inc. <br/>
 Austin, Texas
 </blockquote>
