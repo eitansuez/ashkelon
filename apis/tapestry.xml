@@ -10,8 +10,8 @@ Tapestry is an alternative to scripting environments such as JavaServer Pages or
 </description>
    <publisher>Apache Jakarta</publisher>
    <download_url>http://jakarta.apache.org/tapestry/index.html</download_url>
-   <release_date>2005-03-21T00:53:15.188</release_date>
-   <version>3.0</version>
+   <release_date>2005-03-29T00:53:15.188</release_date>
+   <version>3.0.3</version>
    <packages>
       <package>org.apache.tapestry</package>
       <package>org.apache.tapestry.asset</package>
@@ -74,6 +74,7 @@ Tapestry is an alternative to scripting environments such as JavaServer Pages or
       <type>cvs</type>
       <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
       <modulename>jakarta-tapestry</modulename>
-      <sourcepath>framework/src/java</sourcepath>
+      <tagname>release-3-0-3</tagname>
+      <sourcepath>framework/src</sourcepath>
    </repository>
 </api>
