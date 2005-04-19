@@ -39,7 +39,7 @@
 <h3>Welcome to Ashkelon</h3>
 
 <p>
-Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <b>open source</b> and available for download off sourceforge.net as project <a target="_new" href="http://sourceforge.net/projects/ashkelon/">ashkelon</a>.
+Ashkelon is an online reference to Java API documentation (see the help documentation for more information).  Ashkelon is <b>open source</b> and available for download off sourceforge.net as project <a target="_new" href="http://ashkelon.sourceforge.net/">ashkelon</a>.
 </p>
 
 <table id="apis" align="center" rules="rows" cellspacing="0" width="100%">
