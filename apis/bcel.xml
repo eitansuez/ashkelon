@@ -18,13 +18,11 @@
       <package>org.apache.bcel.verifier.structurals</package>
    </packages>
 
-   <!-- need to add svn support:  bcel now uses svn
    <repository>
-      <type>cvs</type>
-      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/[projectname]</url>
-      <modulename>[projectname]</modulename>
-      <tagname></tagname>
+      <type>svn</type>
+      <url>http://svn.apache.org/repos/asf</url>
+      <modulename>jakarta/bcel</modulename>
+      <tagname>trunk</tagname>
       <sourcepath>src/java</sourcepath>
    </repository>
-    -->
 </api>
