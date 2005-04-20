@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>BCEL</name>
+   <summarydescription>The Byte Code Engineering Library</summarydescription>
+   <description>The Byte Code Engineering Library is intended to give users a convenient possibility to analyze, create, and manipulate (binary) Java class files (those ending with .class). Classes are represented by objects which contain all the symbolic information of the given class: methods, fields and byte code instructions, in particular.</description>
+   <publisher>Apache Software Foundation</publisher>
+   <download_url>http://jakarta.apache.org/bcel</download_url>
+   <release_date>2003-04-25T18:14:12.725</release_date>
+   <version>5.1</version>
+   <packages>
+      <package>org.apache.bcel</package>
+      <package>org.apache.bcel.classfile</package>
+      <package>org.apache.bcel.generic</package>
+      <package>org.apache.bcel.util</package>
+      <package>org.apache.bcel.verifier</package>
+      <package>org.apache.bcel.verifier.exc</package>
+      <package>org.apache.bcel.verifier.statics</package>
+      <package>org.apache.bcel.verifier.structurals</package>
+   </packages>
+
+   <!-- need to add svn support:  bcel now uses svn
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/[projectname]</url>
+      <modulename>[projectname]</modulename>
+      <tagname></tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+    -->
+</api>

@@ -1,18 +1,28 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>JDOM</name>
-<summarydescription>Java-friendly XML parsing</summarydescription>
-<description>Java-friendly XML parsing by Jason Hunter and Brett McLaughlin</description>
-<publisher>Jason Hunter et al</publisher>
-<download_url>http://www.jdom.org/</download_url>
-<release_date>2001-07-03T08:00:00.000</release_date>
-<version>beta 8</version>
-<packages>
-<package>org.jdom</package>
-<package>org.jdom.adapters</package>
-<package>org.jdom.filter</package>
-<package>org.jdom.input</package>
-<package>org.jdom.output</package>
-<package>org.jdom.transform</package>
-</packages>
+   <name>JDOM</name>
+   <summarydescription>Java-friendly XML API</summarydescription>
+   <description>JDOM is, quite simply, a Java representation of an XML document. JDOM provides a way to represent that document for easy and efficient reading, manipulation, and writing. It has a straightforward API, is a lightweight and fast, and is optimized for the Java programmer. It's an alternative to DOM and SAX, although it integrates well with both DOM and SAX.</description>
+   <publisher>jdom.org</publisher>
+   <download_url>http://www.jdom.org/</download_url>
+   <release_date>2004-09-09T18:19:58.469</release_date>
+   <version>1.0</version>
+   <packages>
+      <package>org.jdom</package>
+      <package>org.jdom.adapters</package>
+      <package>org.jdom.filter</package>
+      <package>org.jdom.input</package>
+      <package>org.jdom.output</package>
+      <package>org.jdom.transform</package>
+      <package>org.jdom.xpath</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.jdom.org:/home/cvspublic</url>
+   <!-- password is anonymous -->
+      <modulename>jdom</modulename>
+<!-- getting a permission error when try to checkout using this tagname:
+      <tagname>jdom_1_0</tagname> -->
+      <sourcepath>src/java</sourcepath>
+   </repository>
 </api>
