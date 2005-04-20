@@ -1,12 +1,12 @@
 package org.ashkelon.pages;
 
 import org.ashkelon.db.DBMgr;
+import org.ashkelon.manager.CVSRepository;
 import org.ashkelon.manager.Config;
+import org.ashkelon.manager.SVNRepository;
 import org.ashkelon.util.*;
 import java.io.*;
 import java.sql.*;
-import java.util.Iterator;
-import java.util.List;
 
 
 /**
@@ -86,8 +86,6 @@ public class ClassSourcePage extends Page
    // TODO: this should be encapsulated in API
    private String fetchSourcePath(String className) throws SQLException
    {
-      String base = Config.getInstance().getSourcePathBase();
-      
       String sql = DBMgr.getInstance().getStatement("getsourcepath");
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, className);
@@ -95,19 +93,14 @@ public class ClassSourcePage extends Page
       rset.next();
       String modulename = rset.getString(1);
       String sourcepath = rset.getString(2);
+      String type = rset.getString(3);
       rset.close();
       pstmt.close();
       
-      String[] paths = sourcepath.split(":");
-      String expanded = "";
-      for (int i=0; i<paths.length; i++)
-      {
-         expanded += base + File.separator + modulename + 
-                  File.separator + paths[i];
-         if (i < (paths.length - 1))
-            expanded += ":";
-      }
-      return expanded;
+      if ("cvs".equals(type))
+         return CVSRepository.getInstance().sourcepath(sourcepath, modulename);
+      else
+         return SVNRepository.getInstance().sourcepath(modulename);
    }
    
    private File fetchSourceFile(String qualifiedName, String fileName) throws SQLException

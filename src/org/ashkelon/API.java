@@ -457,27 +457,8 @@ public class API implements JDoc, Serializable
    public String getStyle() { return "api"; }  // maybe getstyle should have a separate interface
    
    
-   public void fetch(File base)
-   {
-      repository.fetch(base);
-   }
-   
-   public String getSourcePath()
-   {
-      String basepath = Config.getInstance().getSourcePathBase();
-      String[] paths = repository.getSourcepath().split(":");
-      String expanded = "";
-      for (int i=0; i<paths.length; i++)
-      {
-         expanded += basepath + File.separator + 
-                     repository.getModulename() + File.separator + 
-                     paths[i];
-         
-         if (i<paths.length-1)
-            expanded += ":";
-      }
-      return expanded;
-   }
+   public void fetch(File base) { repository.fetch(base); }
+   public String sourcepath() { return repository.sourcepath(); }
    
    
    public APIState state = TRANSIENT_STATE;

@@ -120,11 +120,11 @@ public class AddCmd extends BaseCmd
       String sourcepath = arguments.getString("sourcepath");
       if (sourcepath != null)
       {
-         javadocargslist.addLast(api.getSourcePath() + ":" + sourcepath);
+         javadocargslist.addLast(api.sourcepath() + ":" + sourcepath);
       }
       else
       {
-         javadocargslist.addLast(api.getSourcePath());
+         javadocargslist.addLast(api.sourcepath());
       }
       
       String classpath = arguments.getString("classpath");

@@ -6,8 +6,6 @@ package org.ashkelon.manager;
 import java.io.*;
 
 import org.ashkelon.util.Logger;
-import org.ashkelon.util.StreamConsumer;
-import org.ashkelon.util.StreamInteractor;
 import org.ashkelon.util.StringUtils;
 
 /**
@@ -35,118 +33,15 @@ public class Repository
       this.sourcepath = sourcepath;
    }
    
-   public boolean isSpecified()
-   {
-      return !( StringUtils.isBlank(type) || StringUtils.isBlank(url) ||
-               StringUtils.isBlank(modulename) );
-   }
-   
-   // cvs -d :pserver:anonymous@cvs.sourceforge.net:/cvsroot/ashkelon checkout ashkelon/src
-   // cvs -d $url checkout $module/$srcpath
-   
-   public void checkout(File basepath)
-   {
-      try
-      {
-         login(basepath);
-         
-         String[] sourcepaths = StringUtils.split(sourcepath, ":");
-         String basecmd = "cvs -d " + url + " checkout " + revision() + 
-                             modulename + File.separator;
-         String cmd;
-         
-         for (int i=0; i<sourcepaths.length; i++)
-         {
-            cmd = basecmd+sourcepaths[i];
-            log.traceln("cmd is: " + cmd);
-            exec(cmd, basepath);
-         }
-      }
-      catch (IOException ex)
-      {
-         log.error("checkout failed!");
-         log.error("IOException: "+ex.getMessage());
-      }
-      catch (InterruptedException ex)
-      {
-         log.error("Checkout process interrupted");
-         log.error("InterrupedException: "+ex.getMessage());
-      }
-   }
-   
-   private String revision()
-   {
-      return (StringUtils.isBlank(tagname)) ? " -r HEAD " : " -r " + tagname + " ";
-   }
-   
-   public void update(File basepath)
-   {
-      try
-      {
-         String[] sourcepaths = StringUtils.split(sourcepath, ":");
-         String basecmd = "cvs -d " + url + " -q update -d " + revision() + 
-                  modulename + File.separator;
-         
-         String cmd;
-         for (int i=0; i<sourcepaths.length; i++)
-         {
-            cmd = basecmd+sourcepaths[i];
-            log.traceln("cmd is: "+cmd);
-            exec(cmd, basepath);
-         }
-         
-      }
-      catch (IOException ex)
-      {
-         log.error("Update failed!");
-         log.error("IOException: "+ex.getMessage());
-      }
-      catch (InterruptedException ex)
-      {
-         log.error("Update Process Interrupted");
-         log.error("InterruptedException: "+ex.getMessage());
-      }
-   }
-   
-   private void exec(String cmd, File basepath) throws IOException, InterruptedException
-   {
-      Process p = Runtime.getRuntime().exec(cmd, null, basepath);
-      InputStream is = p.getInputStream();
-      InputStream er = p.getErrorStream();
-      new StreamConsumer(is).start();
-      new StreamConsumer(er).start();
-      int exitValue = p.waitFor();
-   }
-   
-   
-   private void login(File basepath) throws IOException, InterruptedException
-   {
-      String cmd = "cvs -d " + url + " login";
-      Process p = Runtime.getRuntime().exec(cmd, null, basepath);
-      
-      new StreamConsumer(p.getErrorStream()).start();
-      new StreamInteractor(p.getInputStream(), p.getOutputStream(), "(Logging in to ", "").start();
-      int exitValue = p.waitFor();
-   }
-   
-   public String toString()
-   {
-      String text = url + " ("+type+")\n";
-      text += "module: "+modulename+"\n";
-      text += "source is in: "+sourcepath+"\n";
-      return text;
-   }
-   
    public String getType() { return type; }
    public String getUrl() { return url; }
    public String getModulename() { return modulename; }
    public String getTagname() { return tagname; }
    public String getSourcepath() { return sourcepath; }
    
-   public boolean checkedOut(File base)
+   public String sourcepath()
    {
-      File apipath = new File(base, modulename);
-      return (apipath.exists());
+      return type().sourcepath(this);
    }
    
    public void fetch(File base)
@@ -157,15 +52,57 @@ public class Repository
          return;
       }
       
-      if (!checkedOut(base))
-      {
+      if (checkedOut(base))
+         update(base);
+      else
          checkout(base);
+   }
+
+   public boolean isSpecified()
+   {
+      return !( StringUtils.isBlank(type) || StringUtils.isBlank(url) ||
+               StringUtils.isBlank(modulename) );
+   }
+   
+   public boolean checkedOut(File base)
+   {
+      File apipath = new File(base, modulename);
+      return (apipath.exists());
+   }
+   
+   public void checkout(File basepath)
+   {
+      type().checkout(basepath, this);
+   }
+   
+   public void update(File basepath)
+   {
+      type().update(basepath, this);
+   }
+   
+   private IRepository type()
+   {
+      if ("cvs".equals(type))
+      {
+         return CVSRepository.getInstance();
+      }
+      else if ("svn".equals(type))
+      {
+         return SVNRepository.getInstance();
       }
       else
       {
-         update(base);
+         throw new IllegalArgumentException("Invalid or unsupported repository type: "+type);
       }
    }
-
+   
+   public String toString()
+   {
+      String text = url + " ("+type+")\n";
+      text += "module: "+modulename+"\n";
+      text += "source is in: "+sourcepath+"\n";
+      return text;
+   }
+   
 }
 
