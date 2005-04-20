@@ -1,27 +1,44 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>JDNC</name>
-<summarydescription>Java Desktop Network Components</summarydescription>
-<description></description>
-<publisher>javadesktop.org</publisher>
-<download_url>http://jdnc.dev.java.net/</download_url>
-<release_date>2004-06-01T08:00:00.000</release_date>
-<version>0.6</version>
-<packages>
-<package>org.jdesktop.jdnc</package>
-<package>org.jdesktop.jdnc.actions</package>
-<package>org.jdesktop.jdnc.runner</package>
-<package>org.jdesktop.swing</package>
-<package>org.jdesktop.swing.actions</package>
-<package>org.jdesktop.swing.binding</package>
-<package>org.jdesktop.swing.calendar</package>
-<package>org.jdesktop.swing.data</package>
-<package>org.jdesktop.swing.decorator</package>
-<package>org.jdesktop.swing.event</package>
-<package>org.jdesktop.swing.form</package>
-<package>org.jdesktop.swing.icon</package>
-<package>org.jdesktop.swing.table</package>
-<package>org.jdesktop.swing.treetable</package>
-<package>org.jdesktop.swing.utils</package>
-</packages>
+
+<!-- note:  jdnc v0.7 uses java 5.  ashkelon does not yet support java 5 -->
+
+   <name>JDNC</name>
+   <summarydescription>JDesktop Network Components</summarydescription>
+   <description>The goal of the JDesktop Network Components (JDNC) project is to significantly reduce the effort and expertise required to build rich, data-centric, Java desktop clients for J2EE-based network services. These clients are representative of what enterprise developers typically build, such as SQL database frontends, forms-based workflow, data visualization applications, and the like.</description>
+   <publisher>javadesktop.org</publisher>
+   <download_url>http://jdnc.dev.java.net/</download_url>
+   <release_date>2005-03-01T15:07:16.944</release_date>
+   <version>0.7</version>
+   <packages>
+      <package>org.jdesktop.dataset</package>
+      <package>org.jdesktop.dataset.adapter</package>
+      <package>org.jdesktop.dataset.event</package>
+      <package>org.jdesktop.dataset.provider</package>
+      <package>org.jdesktop.dataset.provider.sql</package>
+      <package>org.jdesktop.jdnc</package>
+      <package>org.jdesktop.jdnc.actions</package>
+      <package>org.jdesktop.jdnc.runner</package>
+      <package>org.jdesktop.swing</package>
+      <package>org.jdesktop.swing.actions</package>
+      <package>org.jdesktop.swing.auth</package>
+      <package>org.jdesktop.swing.auth.resources</package>
+      <package>org.jdesktop.swing.binding</package>
+      <package>org.jdesktop.swing.calendar</package>
+      <package>org.jdesktop.swing.data</package>
+      <package>org.jdesktop.swing.decorator</package>
+      <package>org.jdesktop.swing.event</package>
+      <package>org.jdesktop.swing.form</package>
+      <package>org.jdesktop.swing.icon</package>
+      <package>org.jdesktop.swing.table</package>
+      <package>org.jdesktop.swing.treetable</package>
+      <package>org.jdesktop.swing.utils</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>jdnc</modulename>
+      <tagname>JDNC_0_7</tagname>
+      <sourcepath>swingx/src/java:jdnc_api/src/java</sourcepath>
+   </repository>
 </api>
