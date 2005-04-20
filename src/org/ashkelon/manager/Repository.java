@@ -50,11 +50,17 @@ public class Repository
       {
          login(basepath);
          
-         String cmd = "cvs -d " + url + " checkout " + revision() + 
-                  modulename + File.separator + sourcepath;
+         String[] sourcepaths = StringUtils.split(sourcepath, ":");
+         String basecmd = "cvs -d " + url + " checkout " + revision() + 
+                             modulename + File.separator;
+         String cmd;
          
-         log.traceln("cmd is: "+cmd);
-         exec(cmd, basepath);
+         for (int i=0; i<sourcepaths.length; i++)
+         {
+            cmd = basecmd+sourcepaths[i];
+            log.traceln("cmd is: " + cmd);
+            exec(cmd, basepath);
+         }
       }
       catch (IOException ex)
       {
@@ -77,10 +83,18 @@ public class Repository
    {
       try
       {
-         String cmd = "cvs -d " + url + " -q update -d " + revision() + 
-                  modulename + File.separator + sourcepath;
-         log.traceln("cmd is: "+cmd);
-         exec(cmd, basepath);
+         String[] sourcepaths = StringUtils.split(sourcepath, ":");
+         String basecmd = "cvs -d " + url + " -q update -d " + revision() + 
+                  modulename + File.separator;
+         
+         String cmd;
+         for (int i=0; i<sourcepaths.length; i++)
+         {
+            cmd = basecmd+sourcepaths[i];
+            log.traceln("cmd is: "+cmd);
+            exec(cmd, basepath);
+         }
+         
       }
       catch (IOException ex)
       {
@@ -128,8 +142,6 @@ public class Repository
    public String getModulename() { return modulename; }
    public String getTagname() { return tagname; }
    public String getSourcepath() { return sourcepath; }
-   
-   public String getPath() { return modulename + File.separator + sourcepath; }
    
    public boolean checkedOut(File base)
    {

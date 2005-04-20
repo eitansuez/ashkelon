@@ -60,8 +60,9 @@ public class AddCmd extends BaseCmd
                                           .setLongFlag("sourcepath");
       
       sourcepathOption.setHelp("Source code path information;  where" +
-            " ashkelon can locate your source code.  Optional, alternatively" +
-            " specify source repository info with API.");
+            " ashkelon can locate your source code.  This is no longer " +
+            " recommended.  Try to specify source repository information " +
+            " for API instead.");
       registerParameter(sourcepathOption);
 
       FlaggedOption classpathOption = new FlaggedOption("classpath")

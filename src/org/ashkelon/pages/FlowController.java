@@ -78,7 +78,7 @@ public class FlowController extends HttpServlet
       
       String sourcepath = getServletContext().getInitParameter("sourcepath");
       log.traceln("retrieving source path: "+sourcepath);
-      getServletContext().setAttribute("sourcepath", getPaths(sourcepath));
+      getServletContext().setAttribute("sourcepath", sourcepath);
 
       perlutil = new Perl5Util();
       classPool = new HashMap(30);
@@ -348,14 +348,6 @@ public class FlowController extends HttpServlet
       return ui;
    }
 
-
-   private List getPaths(String pathstring)
-   {
-      log.debug("path string is: "+pathstring);
-      String[] paths = StringUtils.split(pathstring, File.pathSeparator);
-      return Arrays.asList(paths);
-   }
-   
    public void destroy() {}
    
 }

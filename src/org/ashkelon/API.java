@@ -465,7 +465,18 @@ public class API implements JDoc, Serializable
    public String getSourcePath()
    {
       String basepath = Config.getInstance().getSourcePathBase();
-      return basepath + File.separator + repository.getPath();
+      String[] paths = repository.getSourcepath().split(":");
+      String expanded = "";
+      for (int i=0; i<paths.length; i++)
+      {
+         expanded += basepath + File.separator + 
+                     repository.getModulename() + File.separator + 
+                     paths[i];
+         
+         if (i<paths.length-1)
+            expanded += ":";
+      }
+      return expanded;
    }
    
    

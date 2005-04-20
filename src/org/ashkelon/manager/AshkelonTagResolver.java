@@ -29,7 +29,7 @@ public class AshkelonTagResolver implements InlineTagResolver
       StringBuffer text = new StringBuffer("");
       for (int i=0; i<tags.length; i++)
       {
-         log.debug("tag 'kind': "+tags[i].kind());
+         //log.debug("tag 'kind': "+tags[i].kind());
          
          // thanks Matt for catching this:
          if ("@return".equals(tags[i].kind()) && (tags[i].inlineTags() != null && tags[i].inlineTags().length > 0))

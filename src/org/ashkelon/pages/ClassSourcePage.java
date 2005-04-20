@@ -83,6 +83,7 @@ public class ClassSourcePage extends Page
       }
    }
    
+   // TODO: this should be encapsulated in API
    private String fetchSourcePath(String className) throws SQLException
    {
       String base = Config.getInstance().getSourcePathBase();
@@ -97,39 +98,49 @@ public class ClassSourcePage extends Page
       rset.close();
       pstmt.close();
       
-      return base + File.separator + modulename + File.separator + sourcepath;
+      String[] paths = sourcepath.split(":");
+      String expanded = "";
+      for (int i=0; i<paths.length; i++)
+      {
+         expanded += base + File.separator + modulename + 
+                  File.separator + paths[i];
+         if (i < (paths.length - 1))
+            expanded += ":";
+      }
+      return expanded;
    }
    
    private File fetchSourceFile(String qualifiedName, String fileName) throws SQLException
    {
-      String repositorypath = fetchSourcePath(qualifiedName);
-      File sourceFile = composeFile(repositorypath, fileName);
-      if (sourceFile.exists())
+      // first search in repository path, and fall back to specified sourcepath
+      String[] sourcepaths = {fetchSourcePath(qualifiedName), 
+            (String) app.getAttribute("sourcepath")};
+      
+      File sourceFile = null;
+      for (int i=0; i<sourcepaths.length; i++)
       {
-         log.debug("Found sourceFile at: "+sourceFile.getAbsolutePath());
-         return sourceFile;
+         sourceFile = searchIn(sourcepaths[i], fileName);
+         if (sourceFile != null) return sourceFile;
       }
-      
-      // fallback to checking source path context parameter..
-      List sourcePaths = (List) app.getAttribute("sourcepath");
-      if (sourcePaths == null) return null;  // done.
-      
-      Iterator itr = sourcePaths.iterator();
-      String candidatePath = null;
-      File candidateFile = null;
-      while (itr.hasNext())
+      return sourceFile;
+   }
+   
+   private File searchIn(String sourcepath, String fileName)
+   {
+      String[] paths = StringUtils.split(sourcepath, ":");
+      File sourceFile = null;
+      for (int i=0; i<paths.length; i++)
       {
-         candidatePath = (String) itr.next();
-         candidateFile = composeFile(candidatePath, fileName);
-         if (candidateFile.exists())
+         sourceFile = composeFile(paths[i], fileName);
+         if (sourceFile.exists())
          {
-            log.debug("Found sourceFile at: "+candidateFile.getAbsolutePath());
-            return candidateFile;
+            log.debug("Found sourceFile at: "+sourceFile.getAbsolutePath());
+            return sourceFile;
          }
       }
       return null;
    }
-   
+      
    private File composeFile(String path, String fileName)
    {
       if (!path.endsWith(File.separator))
