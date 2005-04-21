@@ -6,7 +6,6 @@ package org.ashkelon.manager;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.ashkelon.util.Logger;
 import org.ashkelon.util.StreamConsumer;
 import org.ashkelon.util.StreamInteractor;
@@ -26,7 +25,7 @@ public class CVSRepository implements IRepository
       return _instance;
    }
    
-   Logger log = Logger.getInstance();
+   private Logger log = Logger.getInstance();
    
    private CVSRepository() {}
 
@@ -41,12 +40,19 @@ public class CVSRepository implements IRepository
          
          String[] sourcepaths = StringUtils.split(r.getSourcepath(), ":");
          String basecmd = "cvs -d " + r.getUrl() + " checkout " + revision(r) + 
-                             r.getModulename() + File.separator;
+                             r.getModulename();
          String cmd;
+         
+         if (StringUtils.isBlank(r.getSourcepath()))
+         {
+            log.traceln("cmd is: " + basecmd);
+            exec(basecmd, basepath);
+            return;
+         }
          
          for (int i=0; i<sourcepaths.length; i++)
          {
-            cmd = basecmd+sourcepaths[i];
+            cmd = basecmd +  File.separator + sourcepaths[i];
             log.traceln("cmd is: " + cmd);
             exec(cmd, basepath);
          }
@@ -76,6 +82,7 @@ public class CVSRepository implements IRepository
 
    private void exec(String cmd, File basepath) throws IOException, InterruptedException
    {
+      log.debug("exec'ing: "+cmd);
       Process p = Runtime.getRuntime().exec(cmd, null, basepath);
       InputStream is = p.getInputStream();
       InputStream er = p.getErrorStream();
