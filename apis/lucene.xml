@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>Lucene</name>
+   <summarydescription>A text search engine library written entirely in Java</summarydescription>
+   <description>Apache Lucene is a high-performance, full-featured text search engine library written entirely in Java. It is a technology suitable for nearly any application that requires full-text search, especially cross-platform.
+
+    Apache Lucene is an open source project available for free download from Apache Jakarta. Please use the links on the left to access Lucene.</description>
+   <publisher>The Apache Software Foundation</publisher>
+   <download_url>http://lucene.apache.org/</download_url>
+   <release_date>2004-11-29T14:32:41.062</release_date>
+   <version>1.4.3</version>
+   <packages>
+      <package>org.apache.lucene.analysis</package>
+      <package>org.apache.lucene.analysis.de</package>
+      <package>org.apache.lucene.analysis.ru</package>
+      <package>org.apache.lucene.analysis.standard</package>
+      <package>org.apache.lucene.document</package>
+      <package>org.apache.lucene.index</package>
+      <package>org.apache.lucene.queryParser</package>
+      <package>org.apache.lucene.search</package>
+      <package>org.apache.lucene.search.spans</package>
+      <package>org.apache.lucene.store</package>
+      <package>org.apache.lucene.util</package>
+   </packages>
+   <repository>
+      <type>svn</type>
+      <url>http://svn.apache.org/repos/asf</url>
+      <modulename>lucene</modulename>
+      <tagname>java/tags/lucene_1_4_3</tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>

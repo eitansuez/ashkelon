@@ -1,24 +1,48 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>Struts</name>
-<summarydescription>Struts provides an open source framework useful in building web applications with Java Servlet and JavaServer Pages (JSP) technology</summarydescription>
-<description>Welcome to the Struts Framework! The goal of this project is to provide an open source framework useful in building web applications with Java Servlet and JavaServer Pages (JSP) technology. Struts encourages application architectures based on the Model-View-Controller (MVC) design paradigm, colloquially known as Model 2 in discussions on various servlet and JSP related mailing lists.</description>
-<publisher>Apache</publisher>
-<download_url>http://jakarta.apache.org/struts/</download_url>
-<release_date>2001-03-24T00:00:00.000</release_date>
-<version>1.0.1</version>
-<packages>
-<package>org.apache.struts.action</package>
-<package>org.apache.struts.actions</package>
-<package>org.apache.struts.digester</package>
-<package>org.apache.struts.taglib</package>
-<package>org.apache.struts.taglib.bean</package>
-<package>org.apache.struts.taglib.html</package>
-<package>org.apache.struts.taglib.logic</package>
-<package>org.apache.struts.taglib.template</package>
-<package>org.apache.struts.taglib.template.util</package>
-<package>org.apache.struts.upload</package>
-<package>org.apache.struts.util</package>
-</packages>
+   <name>Apache Struts</name>
+   <summarydescription>An open source framework for building Java web applications</summarydescription>
+   <description>The core of the Struts framework is a flexible control layer based on standard technologies like Java Servlets, JavaBeans, ResourceBundles, and XML, as well as various Jakarta Commons packages. Struts encourages application architectures based on the Model 2 approach, a variation of the classic  Model-View-Controller  (MVC) design paradigm.
 
+Struts provides its own Controller component and integrates with other technologies to provide the Model and the View. For the Model, Struts can interact with standard data access technologies, like JDBC and EJB, as well as most any third-party packages, like Hibernate, iBATIS, or Object Relational Bridge. For the View, Struts works well with JavaServer Pages, including JSTL and JSF, as well as Velocity Templates, XSLT, and other presentation systems.
+
+The Struts framework provides the invisible underpinnings every professional web application needs to survive. Struts helps you create an extensible development environment for your application, based on published standards and proven design patterns.</description>
+   <publisher>The Apache Software Foundation</publisher>
+   <download_url>http://struts.apache.org/</download_url>
+   <release_date>2004-12-12T14:24:27.961</release_date>
+   <version>1.2.6</version>
+   <packages>
+      <package>org.apache.struts</package>
+      <package>org.apache.struts.action</package>
+      <package>org.apache.struts.actions</package>
+      <package>org.apache.struts.config</package>
+      <package>org.apache.struts.config.impl</package>
+      <package>org.apache.struts.plugins</package>
+      <package>org.apache.struts.taglib</package>
+      <package>org.apache.struts.taglib.bean</package>
+      <package>org.apache.struts.taglib.html</package>
+      <package>org.apache.struts.taglib.logic</package>
+      <package>org.apache.struts.taglib.nested</package>
+      <package>org.apache.struts.taglib.nested.bean</package>
+      <package>org.apache.struts.taglib.nested.html</package>
+      <package>org.apache.struts.taglib.nested.logic</package>
+      <package>org.apache.struts.taglib.tiles</package>
+      <package>org.apache.struts.taglib.tiles.util</package>
+      <package>org.apache.struts.tiles</package>
+      <package>org.apache.struts.tiles.actions</package>
+      <package>org.apache.struts.tiles.beans</package>
+      <package>org.apache.struts.tiles.definition</package>
+      <package>org.apache.struts.tiles.xmlDefinition</package>
+      <package>org.apache.struts.upload</package>
+      <package>org.apache.struts.util</package>
+      <package>org.apache.struts.validator</package>
+      <package>org.apache.struts.validator.validwhen</package>
+   </packages>
+   <repository>
+      <type>svn</type>
+      <url>http://svn.apache.org/repos/asf</url>
+      <modulename>struts/core</modulename>
+      <tagname>tags/STRUTS_1_2_6</tagname>
+      <sourcepath>src/share</sourcepath>
+   </repository>
 </api>
