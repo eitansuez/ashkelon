@@ -80,6 +80,13 @@ public class AddCmd extends BaseCmd
       sourceOption.setHelp("javadoc -source flag: to specify j2se version compatibility");
       registerParameter(sourceOption);
       
+      FlaggedOption encodingOption = new FlaggedOption("encoding")
+                                       .setRequired(false)
+                                       .setShortFlag(JSAP.NO_SHORTFLAG)
+                                       .setLongFlag("encoding");
+      encodingOption.setHelp("javadoc -encoding flag: to specify source encoding");
+      registerParameter(encodingOption);
+      
       Option apiOption = new UnflaggedOption("api").setRequired(true);
       
       apiOption.setHelp("API to populate.  Can be specified in one of three "+
@@ -139,6 +146,12 @@ public class AddCmd extends BaseCmd
       {
          javadocargslist.addLast("-source");
          javadocargslist.addLast(source);
+      }
+      String encoding = arguments.getString("encoding");
+      if (encoding != null)
+      {
+         javadocargslist.addLast("-encoding");
+         javadocargslist.addLast(encoding);
       }
       
       // doclet argument:  which api (id) to populate
