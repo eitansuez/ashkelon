@@ -289,6 +289,7 @@ Source Repository Information:
 </td><td>
   <select name="repository-type">
     <option name="CVS" value="cvs">CVS</option>
+    <option name="SVN" value="svn">SVN</option>
   </select>
 </td></tr>
 
