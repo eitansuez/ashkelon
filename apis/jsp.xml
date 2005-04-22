@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>JavaServer Pages</name>
+   <summarydescription>Dynamic Web Content</summarydescription>
+   <description>JavaServer Pages (JSP) technology provides a simplified, fast way to create dynamic web content. JSP technology enables rapid development of web-based applications that are server- and platform-independent.</description>
+   <publisher></publisher>
+   <download_url></download_url>
+   <release_date>2005-04-22T15:29:48.985</release_date>
+   <version>2.0</version>
+   <packages>
+      <package>javax.servlet.jsp</package>
+      <package>javax.servlet.jsp.el</package>
+      <package>javax.servlet.jsp.tagext</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
+      <modulename>jakarta-servletapi-5/jsr152</modulename>
+      <tagname></tagname>
+      <sourcepath>src/share</sourcepath>
+   </repository>
+</api>

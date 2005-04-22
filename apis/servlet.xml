@@ -1,17 +1,21 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>Servlet 2.4 &amp; JSP 2.0</name>
-<summarydescription>JavaTM Servlet technology provides web developers with a simple, consistent mechanism for extending the functionality of a web server and for accessing existing business systems.</summarydescription>
-<description>JavaTM Servlet technology provides web developers with a simple, consistent mechanism for extending the functionality of a web server and for accessing existing business systems. A servlet can almost be thought of as an applet that runs on the server side -- without a face. Java servlets have made many web applications possible.</description>
-<publisher>Sun MicroSystems</publisher>
-<download_url>http://java.sun.com/products/servlet/</download_url>
-<release_date>2001-08-13T08:00:00.000</release_date>
-<version>2.4</version>
-<packages>
-<package>javax.servlet</package>
-<package>javax.servlet.http</package>
-<package>javax.servlet.jsp</package>
-<package>javax.servlet.jsp.tagext</package>
-</packages>
+   <name>Servlet</name>
+   <summarydescription>A mechanism for extending the functionality of a web server</summarydescription>
+   <description>Java Servlet technology provides Web developers with a simple, consistent mechanism for extending the functionality of a Web server and for accessing existing business systems. A servlet can almost be thought of as an applet that runs on the server side--without a face. Java servlets make many Web applications possible.</description>
+   <publisher></publisher>
+   <download_url></download_url>
+   <release_date>2005-04-22T15:29:35.141</release_date>
+   <version>2.4</version>
+   <packages>
+      <package>javax.servlet</package>
+      <package>javax.servlet.http</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anoncvs@cvs.apache.org:/home/cvspublic</url>
+      <modulename>jakarta-servletapi-5/jsr154</modulename>
+      <tagname></tagname>
+      <sourcepath>src/share</sourcepath>
+   </repository>
 </api>
-
