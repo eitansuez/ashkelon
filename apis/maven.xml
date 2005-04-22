@@ -1,32 +1,32 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>Maven</name>
-<summarydescription>Java Project Management Tools</summarydescription>
-<description>Maven is a project management and project comprehension tool. Maven is based on the concept of a project object model: builds, documentation creation, site publication, and distribution publication are all controlled from the project object model. Maven also provides tools to create source metrics, change logs based directly on source repository, and source cross-references. You can build a Maven installation from this source tree by running ant -f build-bootstrap.xml</description>
-<publisher>Apache Software Foundation</publisher>
-<download_url>http://maven.apache.org/</download_url>
-<release_date>2001-07-03T08:00:00.000</release_date>
-<version>1.1</version>
-<packages>
-<package>org.apache.maven</package>
-<package>org.apache.maven.ant</package>
-<package>org.apache.maven.cli</package>
-<package>org.apache.maven.jelly</package>
-<package>org.apache.maven.jelly.tags.jeez</package>
-<package>org.apache.maven.jelly.tags.werkz</package>
-<package>org.apache.maven.plugin</package>
-<package>org.apache.maven.project</package>
-<package>org.apache.maven.repository</package>
-<package>org.apache.maven.util</package>
-<package>org.apache.maven.verifier</package>
-</packages>
-
-<!-- need to add svn support -->
-  <repository>
-    <type>svn</type>
-    <url>http://svn.apache.org/viewcvs/maven/maven-1/core/trunk/</url>
-    <modulename>[tbd]</modulename>
-    <sourcepath>[tbd]</sourcepath>
-  </repository>
-
+   <name>Maven</name>
+   <summarydescription>Maven is a software project management and comprehension tool.</summarydescription>
+   <description>Maven is a project management and project comprehension tool. Maven is based on the concept of a project object model: builds, documentation creation, site publication, and distribution publication are all controlled from the project object model. Maven also provides tools to create source metrics, change logs based directly on source repository, and source cross-references. You can build a Maven installation from this source tree by running ant -f build-bootstrap.xml</description>
+   <publisher>Apache Software Foundation</publisher>
+   <download_url>http://maven.apache.org/</download_url>
+   <release_date>2004-12-07T15:20:21.259</release_date>
+   <version>1.0.2</version>
+   <packages>
+      <package>org.apache.maven</package>
+      <package>org.apache.maven.ant</package>
+      <package>org.apache.maven.cli</package>
+      <package>org.apache.maven.jelly</package>
+      <package>org.apache.maven.jelly.tags.jeez</package>
+      <package>org.apache.maven.jelly.tags.werkz</package>
+      <package>org.apache.maven.plugin</package>
+      <package>org.apache.maven.project</package>
+      <package>org.apache.maven.repository</package>
+      <package>org.apache.maven.util</package>
+      <package>org.apache.maven.verifier</package>
+      <package>org.apache.maven.werkz</package>
+      <package>org.apache.maven.werkz.jelly</package>
+   </packages>
+   <repository>
+      <type>svn</type>
+      <url>http://svn.apache.org/repos/asf</url>
+      <modulename>maven/maven-1</modulename>
+      <tagname>core/tags/MAVEN_1_0_2</tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
 </api>
