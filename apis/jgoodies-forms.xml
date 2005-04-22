@@ -1,18 +1,25 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <api>
-<name>JGoodies Forms</name>
-<summarydescription>Build better screens faster</summarydescription>
-<description>The JGoodies Forms framework helps you lay out and implement elegant Swing panels quickly and consistently. It makes simple things easy and the hard stuff possible, the good design easy and the bad difficult.</description>
-<publisher>JGoodies Karsten Lentzsch</publisher>
-<download_url>ihttp://www.jgoodies.com/freeware/forms/index.html</download_url>
-<release_date>2001-07-03T08:00:00.000</release_date>
-<version>1.0.5</version>
-<packages>
-<package>com.jgoodies.forms.builder</package>
-<package>com.jgoodies.forms.debug</package>
-<package>com.jgoodies.forms.extras</package>
-<package>com.jgoodies.forms.factories</package>
-<package>com.jgoodies.forms.layout</package>
-<package>com.jgoodies.forms.util</package>
-</packages>
+   <name>JGoodies Forms</name>
+   <summarydescription>Helps lay out and implement elegant Swing panels quickly and consistently</summarydescription>
+   <description> The JGoodies Forms framework helps you lay out and implement elegant Swing panels quickly and consistently. It makes simple things easy and the hard stuff possible, the good design easy and the bad difficult.</description>
+   <publisher>jgoodies.com</publisher>
+   <download_url>http://jgoodies.com/freeware/forms/index.html</download_url>
+   <release_date>2004-10-18T14:35:45.772</release_date>
+   <version>1.0.5</version>
+   <packages>
+      <package>com.jgoodies.forms.builder</package>
+      <package>com.jgoodies.forms.debug</package>
+      <package>com.jgoodies.forms.extras</package>
+      <package>com.jgoodies.forms.factories</package>
+      <package>com.jgoodies.forms.layout</package>
+      <package>com.jgoodies.forms.util</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>forms</modulename>
+      <tagname></tagname>
+      <sourcepath>src/main</sourcepath>
+   </repository>
 </api>
