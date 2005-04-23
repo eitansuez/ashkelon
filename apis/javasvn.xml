@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>JavaSVN</name>
+   <summarydescription>JavaSVN is a pure java Subversion (SVN) client library.</summarydescription>
+   <description>JavaSVN is a pure java Subversion (SVN) client library. This means that users of the library, i.e. java applications do not have to include svn native binaries or javahl bindings to work with subversion repository. JavaSVN library is not only a 100% java replacement for javahl bindings, but also a library that provides high level of control over subversion repository operations.</description>
+   <publisher>tmate software</publisher>
+   <download_url>http://javasvn.tigris.org/</download_url>
+   <release_date>2005-04-23T21:20:22.581</release_date>
+   <version>0.8.8.1</version>
+   <packages>
+      <package>org.tigris.subversion.javahl</package>
+      <package>org.tmatesoft.svn.cli</package>
+      <package>org.tmatesoft.svn.cli.command</package>
+      <package>org.tmatesoft.svn.core</package>
+      <package>org.tmatesoft.svn.core.diff</package>
+      <package>org.tmatesoft.svn.core.diff.delta</package>
+      <package>org.tmatesoft.svn.core.io</package>
+      <package>org.tmatesoft.svn.core.progress</package>
+      <package>org.tmatesoft.svn.util</package>
+   </packages>
+   <repository>
+      <type>svn</type>
+      <url>http://72.9.228.230/svn</url>
+      <modulename>jsvn</modulename>
+      <tagname>tags/0.8.8.1/javasvn</tagname>
+      <sourcepath>src</sourcepath>
+   </repository>
+</api>
