@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>XWork</name>
+   <summarydescription>A command-pattern framework that is used to power WebWork as well as other applications.</summarydescription>
+   <description>XWork is an command-pattern framework that is used to power WebWork as well as other applications. XWork provides an Inversion of Control container, a powerful expression language, data type conversion, validation, and pluggable configuration.
+
+The documentation for the most recently released version can be found here (PDF). These docs are a snapshot from XWork's wiki at the time of the release. For the most up-to-date documentation, especially if you are using XWork from CVS, please check out the wiki.</description>
+   <publisher>opensymphony.com</publisher>
+   <download_url>http://opensymphony.com/xwork/</download_url>
+   <release_date>2004-12-12T21:51:11.935</release_date>
+   <version>1.0.5</version>
+   <packages>
+      <package>com.opensymphony.xwork</package>
+      <package>com.opensymphony.xwork.config</package>
+      <package>com.opensymphony.xwork.config.entities</package>
+      <package>com.opensymphony.xwork.config.impl</package>
+      <package>com.opensymphony.xwork.config.providers</package>
+      <package>com.opensymphony.xwork.interceptor</package>
+      <package>com.opensymphony.xwork.interceptor.component</package>
+      <package>com.opensymphony.xwork.util</package>
+      <package>com.opensymphony.xwork.validator</package>
+      <package>com.opensymphony.xwork.validator.validators</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>xwork</modulename>
+      <tagname>xwork_1-0-5</tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
