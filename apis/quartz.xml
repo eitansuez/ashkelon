@@ -38,6 +38,6 @@
       <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
       <modulename>quartz</modulename>
       <tagname></tagname>
-      <sourcepath>quartz_1x/src/java/main</sourcepath>
+      <sourcepath>quartz_1x/src/java/main:quartz_1x/src/java/plugins:quartz_1x/src/java/examples</sourcepath>
    </repository>
 </api>
