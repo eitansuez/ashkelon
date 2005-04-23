@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>Quartz</name>
+   <summarydescription>An open source job scheduling system that can be integrated with, or used along side virtually any J2EE or J2SE application</summarydescription>
+   <description>Quartz is an open source job scheduling system that can be integrated with, or used along side virtually any J2EE or J2SE application. Quartz can be used to create simple or complex schedules for executing tens, hundreds, or even tens-of-thousands of jobs; jobs whose tasks are defined as standard Java components or EJBs.</description>
+   <publisher>opensymphony.com</publisher>
+   <download_url>http://opensymphony.com/quartz/</download_url>
+   <release_date>2005-03-13T21:59:20.269</release_date>
+   <version>1.4.5</version>
+   <packages>
+      <package>org.quartz</package>
+      <package>org.quartz.core</package>
+      <package>org.quartz.ee.ejb</package>
+      <package>org.quartz.ee.jmx.jboss</package>
+      <package>org.quartz.ee.jta</package>
+      <package>org.quartz.ee.servlet</package>
+      <package>org.quartz.examples</package>
+      <package>org.quartz.helpers</package>
+      <package>org.quartz.impl</package>
+      <package>org.quartz.impl.calendar</package>
+      <package>org.quartz.impl.jdbcjobstore</package>
+      <package>org.quartz.impl.jdbcjobstore.oracle</package>
+      <package>org.quartz.jobs</package>
+      <package>org.quartz.jobs.ee.ejb</package>
+      <package>org.quartz.jobs.ee.jmx</package>
+      <package>org.quartz.jobs.ee.mail</package>
+      <package>org.quartz.plugins.history</package>
+      <package>org.quartz.plugins.management</package>
+      <package>org.quartz.plugins.xml</package>
+      <package>org.quartz.simpl</package>
+      <package>org.quartz.spi</package>
+      <package>org.quartz.utils</package>
+      <package>org.quartz.utils.weblogic</package>
+      <package>org.quartz.xml</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>quartz</modulename>
+      <tagname></tagname>
+      <sourcepath>quartz_1x/src/java/main</sourcepath>
+   </repository>
+</api>
