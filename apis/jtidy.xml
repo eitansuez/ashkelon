@@ -1,22 +1,20 @@
 <?xml version="1.0" ?>
 <api>
-<name>JTidy</name>
-<summarydescription>Java Version of HTML Tidy to check validity of HTML Documents</summarydescription>
-<description>Java Version of HTML Tidy to check validity of HTML Documents</description>
-<publisher>W3C</publisher>
-<download_url>http://jtidy.sourceforge.net/</download_url>
-<release_date>2001-07-03T08:00:00.000</release_date>
-<version>r7</version>
-<packages>
-<package>org.w3c.dom</package>
-<package>org.w3c.tidy</package>
-</packages>
-
+  <name>JTidy</name>
+  <summarydescription>A Java port of HTML Tidy, a HTML syntax checker and pretty printer</summarydescription>
+  <description>JTidy is a Java port of HTML Tidy, a HTML syntax checker and pretty printer. Like its non-Java cousin, JTidy can be used as a tool for cleaning up malformed and faulty HTML. In addition, JTidy provides a DOM interface to the document that is being processed, which effectively makes you able to use JTidy as a DOM parser for real-world HTML.</description>
+  <publisher>W3C</publisher>
+  <download_url>http://jtidy.sourceforge.net/</download_url>
+  <release_date>2001-07-03T08:00:00.000</release_date>
+  <version>r7</version>
+  <packages>
+    <package>org.w3c.dom</package>
+    <package>org.w3c.tidy</package>
+  </packages>
   <repository>
     <type>cvs</type>
     <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jtidy</url>
     <modulename>jtidy</modulename>
     <sourcepath>src/main</sourcepath>
   </repository>
-
 </api>
