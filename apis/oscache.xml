@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>OSCache</name>
+   <summarydescription>A caching solution that includes a JSP tag library and set of classes to perform fine grained dynamic caching of JSP content, servlet responses or arbitrary objects.</summarydescription>
+   <description>A caching solution that includes a JSP tag library and set of classes to perform fine grained dynamic caching of JSP content, servlet responses or arbitrary objects. It provides both in memory and persistent on disk caches, and can allow your site to have graceful error tolerance (eg if an error occurs like your db goes down, you can serve the cached content so people can still surf the site almost without knowing). The OSCache Homepage is at www.opensymphony.com/oscache</description>
+   <publisher>opensymphony.com</publisher>
+   <download_url>http://opensymphony.com/oscache/</download_url>
+   <release_date>2005-01-22T21:33:35.294</release_date>
+   <version>2.1</version>
+   <packages>
+      <package>com.opensymphony.oscache.base</package>
+      <package>com.opensymphony.oscache.base.algorithm</package>
+      <package>com.opensymphony.oscache.base.events</package>
+      <package>com.opensymphony.oscache.base.persistence</package>
+      <package>com.opensymphony.oscache.extra</package>
+      <package>com.opensymphony.oscache.general</package>
+      <package>com.opensymphony.oscache.util</package>
+      <package>com.opensymphony.oscache.web</package>
+      <package>com.opensymphony.oscache.web.filter</package>
+      <package>com.opensymphony.oscache.web.tag</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>oscache</modulename>
+      <tagname>v2_1</tagname>
+      <sourcepath>src/core/java</sourcepath>
+   </repository>
+</api>

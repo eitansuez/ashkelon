@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>WebWork</name>
+   <summarydescription>A Java web-application development framework.</summarydescription>
+   <description>WebWork is a Java web-application development framework. It is built specifically with developer productivity and code simplicity in mind. WebWork is built on top of XWork, which provides a generic command pattern framework as well as an Inversion of Control container. In addition to these features, WebWork provides robust support for building reusable UI templates, such as form controls, UI themes, internationalization, dynamic form parameter mapping to JavaBeans, robust client and server side validation, and much more.</description>
+   <publisher>opensymphony.com</publisher>
+   <download_url>http://opensymphony.com/webwork/</download_url>
+   <release_date>2004-12-14T21:28:36.495</release_date>
+   <version>2.1.7</version>
+   <packages>
+      <package>com.opensymphony.webwork</package>
+      <package>com.opensymphony.webwork.config</package>
+      <package>com.opensymphony.webwork.dispatcher</package>
+      <package>com.opensymphony.webwork.dispatcher.multipart</package>
+      <package>com.opensymphony.webwork.example.client</package>
+      <package>com.opensymphony.webwork.interceptor</package>
+      <package>com.opensymphony.webwork.lifecycle</package>
+      <package>com.opensymphony.webwork.util</package>
+      <package>com.opensymphony.webwork.validators</package>
+      <package>com.opensymphony.webwork.views.freemarker</package>
+      <package>com.opensymphony.webwork.views.jasperreports</package>
+      <package>com.opensymphony.webwork.views.jsp</package>
+      <package>com.opensymphony.webwork.views.jsp.iterator</package>
+      <package>com.opensymphony.webwork.views.jsp.ui</package>
+      <package>com.opensymphony.webwork.views.jsp.ui.table</package>
+      <package>com.opensymphony.webwork.views.jsp.ui.table.renderer</package>
+      <package>com.opensymphony.webwork.views.jsp.ui.template</package>
+      <package>com.opensymphony.webwork.views.jsp.vui</package>
+      <package>com.opensymphony.webwork.views.util</package>
+      <package>com.opensymphony.webwork.views.velocity</package>
+      <package>com.opensymphony.webwork.views.xslt</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>webwork</modulename>
+      <tagname>webwork_2-1-7</tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
