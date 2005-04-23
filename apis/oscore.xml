@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>OSCore</name>
+   <summarydescription>OSCore is a set of utility-classes that are common to the other components of OpenSymphony.</summarydescription>
+   <description>OSCore is a set of utility-classes that are common to the other components of OpenSymphony. Contains essential functionality for any J2EE application:  Installation, Utility Classes, SequenceGenerator, JavaDocs API, Change Log.</description>
+   <publisher>opensymphony.com</publisher>
+   <download_url>http://opensymphony.com/oscore/</download_url>
+   <release_date>2005-01-05T21:45:47.282</release_date>
+   <version>2.2.4</version>
+   <packages>
+      <package>com.opensymphony.module.random</package>
+      <package>com.opensymphony.module.sequence</package>
+      <package>com.opensymphony.provider</package>
+      <package>com.opensymphony.provider.bean</package>
+      <package>com.opensymphony.provider.log</package>
+      <package>com.opensymphony.provider.xmlprinter</package>
+      <package>com.opensymphony.provider.xpath</package>
+      <package>com.opensymphony.util</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>oscore</modulename>
+      <tagname>oscore_2_2_4</tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
