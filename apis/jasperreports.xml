@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>JasperReports</name>
+   <summarydescription>An open source Java reporting tool</summarydescription>
+   <description>JasperReports is a powerful open source Java reporting tool that has the ability to deliver rich content onto the screen, to the printer or into PDF, HTML, XLS, CSV and XML files.
+  	
+It is entirely written in Java and can be used in a variety of Java enabled applications, including J2EE or Web applications, to generate dynamic content.
+
+Its main purpose is to help creating page oriented, ready to print documents in a simple and flexible manner.</description>
+   <publisher></publisher>
+   <download_url>http://jasperreports.sourceforge.net/index.html</download_url>
+   <release_date>2005-04-06T15:49:36.162</release_date>
+   <version>0.6.6</version>
+   <packages>
+      <package>net.sf.jasperreports.ant</package>
+      <package>net.sf.jasperreports.engine</package>
+      <package>net.sf.jasperreports.engine.base</package>
+      <package>net.sf.jasperreports.engine.data</package>
+      <package>net.sf.jasperreports.engine.design</package>
+      <package>net.sf.jasperreports.engine.export</package>
+      <package>net.sf.jasperreports.engine.fill</package>
+      <package>net.sf.jasperreports.engine.print</package>
+      <package>net.sf.jasperreports.engine.util</package>
+      <package>net.sf.jasperreports.engine.xml</package>
+      <package>net.sf.jasperreports.view</package>
+      <package>net.sf.jasperreports.view.save</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jasperreports</url>
+      <modulename>jasperreports</modulename>
+      <tagname>jr-0-6-6</tagname>
+      <sourcepath>src</sourcepath>
+   </repository>
+</api>
