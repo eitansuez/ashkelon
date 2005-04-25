@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>OSWorkflow</name>
+   <summarydescription>Flexible workflow engine based on finite state machine concept.</summarydescription>
+   <description>OSWorkflow is fairly different from most other workflow systems available, both commercially and in the open source world. What makes OSWorkflow different is that it is extremely flexible. This can be hard to grasp at first, however. For example, OSWorkflow does not mandate a graphical tool for developing workflows, and the recommended approach is to write the xml workflow descriptors 'by hand'. It is up to the application developer to provide this sort of integration, as well as any integration with existing code and databases. These may seem like problems to someone who is looking for a quick "plug-and-play" workflow solution, but we've found that such a solution never provides enough flexibility to properly fulfill all requirements in a full-blown application.
+
+OSWorkflow gives you this flexibility.
+
+OSWorkflow can be considered a "low level" workflow implementation. Situations like "loops" and "conditions" that might be represented by a graphical icon in other workflow systems must be "coded" in OSWorkflow. That's not to say that actual code is needed to implement situations like this, but a scripting language must be employed to specify these conditions. It is not expected that a non-technical user modify workflow. We've found that although some systems provide GUIs that allow for simple editing of workflows, the applications surrounding the workflow usually end up damaged when changes like these are made. We believe it is best for these changes to be made by a developer who is aware of each change. Having said that, the latest version provides a GUI designer that can help with the editing of the workflow. </description>
+   <publisher></publisher>
+   <download_url>http://opensymphony.com/osworkflow/</download_url>
+   <release_date>2004-05-26T15:27:10.43</release_date>
+   <version>2.7</version>
+   <packages>
+      <package>com.opensymphony.workflow</package>
+      <package>com.opensymphony.workflow.basic</package>
+      <package>com.opensymphony.workflow.config</package>
+      <package>com.opensymphony.workflow.ejb</package>
+      <package>com.opensymphony.workflow.loader</package>
+      <package>com.opensymphony.workflow.ofbiz</package>
+      <package>com.opensymphony.workflow.query</package>
+      <package>com.opensymphony.workflow.soap</package>
+      <package>com.opensymphony.workflow.spi</package>
+      <package>com.opensymphony.workflow.spi.ejb</package>
+      <package>com.opensymphony.workflow.spi.hibernate</package>
+      <package>com.opensymphony.workflow.spi.jdbc</package>
+      <package>com.opensymphony.workflow.spi.memory</package>
+      <package>com.opensymphony.workflow.spi.ofbiz</package>
+      <package>com.opensymphony.workflow.spi.ojb</package>
+      <package>com.opensymphony.workflow.spi.prevayler</package>
+      <package>com.opensymphony.workflow.timer</package>
+      <package>com.opensymphony.workflow.util</package>
+      <package>com.opensymphony.workflow.util.beanshell</package>
+      <package>com.opensymphony.workflow.util.bsf</package>
+      <package>com.opensymphony.workflow.util.ejb.local</package>
+      <package>com.opensymphony.workflow.util.ejb.remote</package>
+      <package>com.opensymphony.workflow.util.jndi</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>osworkflow</modulename>
+      <tagname>osworkflow_2-7-0</tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
