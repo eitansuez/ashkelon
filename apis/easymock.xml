@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>EasyMock</name>
+   <summarydescription>EasyMock provides Mock Objects for interfaces in JUnit tests by generating them on the fly using Java's proxy mechanism</summarydescription>
+   <description>EasyMock provides Mock Objects for interfaces in JUnit tests by generating them on the fly using Java's proxy mechanism. Due to EasyMock's unique style of recording expectations, most refactorings will not affect the Mock Objects. So EasyMock is a perfect fit for Test-Driven Development.
+
+EasyMock is open source software available under the terms of the MIT license. Development and downloads are hosted on SourceForge.</description>
+   <publisher>easymock.org</publisher>
+   <download_url>http://www.easymock.org/</download_url>
+   <release_date>2004-05-03T15:04:25.552</release_date>
+   <version>1.1</version>
+   <packages>
+      <package>org.easymock</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/easymock</url>
+      <modulename>easymock</modulename>
+      <tagname>Release1_1</tagname>
+      <sourcepath>src</sourcepath>
+   </repository>
+</api>
