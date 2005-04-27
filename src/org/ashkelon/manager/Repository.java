@@ -41,6 +41,7 @@ public class Repository
    
    public String sourcepath()
    {
+      if (!isSpecified()) return "";
       return type().sourcepath(this);
    }
    
