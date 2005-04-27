@@ -37,7 +37,7 @@ public class APIEditPage extends Page
       }
       
       // check cmd:  if submission, then bindtoui and store
-      String action = ServletUtils.getRequestParam(request, "cmd");
+      String action = ServletUtils.getRequestParam(request, "action");
       if ("Submit Request".equals(action))
       {
          bindFromUI(api);
