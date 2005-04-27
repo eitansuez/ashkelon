@@ -354,7 +354,7 @@ This value is the relative path from your cvs module to your Java source code.  
 </td></tr>
 
 <tr><td colspan="2">
-<input type="submit" name="action" value="Submit Request" />
+<input type="submit" name="cmd" value="Submit Request" />
 </td></tr>
 </table>
 
