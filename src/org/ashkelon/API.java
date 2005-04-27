@@ -485,8 +485,8 @@ public class API implements JDoc, Serializable
       public Set getActions(API api)
       {
          Set actions = new HashSet();
-         Action action = new Action("Test Source Repository", "api.testrepos.do");
-         actions.add(action);
+//         Action action = new Action("Test Source Repository", "api.testrepos.do");
+//         actions.add(action);
 //         action = new Action("Process API Docs", "api.populate.do");
 //         actions.add(action);
          return actions;
