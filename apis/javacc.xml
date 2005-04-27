@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>JavaCC</name>
+   <summarydescription>JavaCC is a parser/scanner generator for java</summarydescription>
+   <description>Java Compiler Compiler [tm] (JavaCC [tm]) is the most popular parser generator for use with Java [tm] applications. A parser generator is a tool that reads a grammar specification and converts it to a Java program that can recognize matches to the grammar. In addition to the parser generator itself, JavaCC provides other standard capabilities related to parser generation such as tree building (via a tool called JJTree included with JavaCC), actions, debugging, etc.
+
+We've had hundreds of thousands of downloads and estimate serious users in the many thousands (and maybe even tens of thousands). Our newsgroup comp.compilers.tools.javacc and our mailing list together have a few thousand participants.
+
+JavaCC works with any Java VM version 1.2 or greater. It has been certified to be 100% Pure Java. JavaCC has been tested on countless different platforms without any special porting requirements. Given that we have seen JavaCC run on only around 5 or 6 platforms, we think this is a great testimonial to the "Write Once Run Anywhere" aspect of the Java programming language. We say this as engineers who have personally experienced the benefits of writing Java applications. </description>
+   <publisher></publisher>
+   <download_url>http://javacc.dev.java.net/</download_url>
+   <release_date>2005-04-27T02:01:40.508</release_date>
+   <version>3.2</version>
+   <packages>
+      <package>org.javacc</package>
+      <package>org.javacc.jjdoc</package>
+      <package>org.javacc.jjtree</package>
+      <package>org.javacc.parser</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>javacc</modulename>
+      <tagname>release_32</tagname>
+      <sourcepath>src</sourcepath>
+   </repository>
+</api>
