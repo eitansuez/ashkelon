@@ -59,8 +59,11 @@ public class APIEditPage extends Page
             }
             app.setAttribute("apilist", null);
          }
+         
+         api = new API();  // clear form
       }
 
+      
       request.setAttribute("api", api);
       request.setAttribute("msg", msg);
       request.setAttribute("actions", api.getActions());
