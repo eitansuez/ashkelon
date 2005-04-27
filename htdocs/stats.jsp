@@ -62,8 +62,8 @@
 
 <p align="center">
 <applet code="bar8.class" codebase="classes" 
- WIDTH="500" HEIGHT="300" name="barchart_pkg"
- STYLE="border: thin solid 1;">
+ width="500" height="300" name="barchart_pkg"
+ style="border: thin solid 1;">
 <param name="title" value="Package Counts by API">
 <param name="x_title" value="API">
 <param name="y_title" value="Package Count">
@@ -89,13 +89,13 @@
 <%
  }
  %>
-</APPLET>
+</applet>
 </p>
 
-<P ALIGN="CENTER">
+<p align="center">
 <applet code="bar8.class" codebase="classes" 
- WIDTH="500" HEIGHT="300" NAME="barchart_cls"
- STYLE="border: thin solid 1;">
+ width="500" height="300" name="barchart_cls"
+ style="border: thin solid 1;">
 <param name="title" value="Class Counts by API">
 <param name="x_title" value="API">
 <param name="y_title" value="Class Count">
@@ -117,13 +117,13 @@
 <%
  }
  %>
-</APPLET>
+</applet>
 </P>
 
-<P ALIGN="CENTER">
+<p align="center">
 <applet code="bar8.class" codebase="classes" 
- WIDTH="500" HEIGHT="300" NAME="barchart_mmb"
- STYLE="border: thin solid 1;">
+ width="500" height="300" name="barchart_mmb"
+ style="border: thin solid 1;">
 <param name="title" value="Member Counts by API">
 <param name="x_title" value="API">
 <param name="y_title" value="Member Count">
