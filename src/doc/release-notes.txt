@@ -145,9 +145,14 @@ What's new in v0.8.1:
   - maven support (step 1: make ashkelon buildable using maven (add pom file)
   - multi-version support
   - gui for populator / manager
-  - plugins for eclipse and netbeans
-  - xul ui
-  - support for hypersonic sql for embedding db with distro
+  - plugins for eclipse, netbeans
   - jsp's utilising jstl more fully
+
+No Longer Pursuing:
+  - xul ui
+Complete
+  - a distribution of ashkelon with an embedded database (ashkelon lite)
+  - a plugin for IntelliJ IDEA
+
 
 
