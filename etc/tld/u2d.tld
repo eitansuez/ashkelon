@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>u2d</short-name>
+  <uri>http://u2d.com/taglib</uri>
+  <display-name>u2d taglib</display-name>
+  <description>u.2d taglib</description>
+
+  <tag>
+    <name>link</name>
+    <tag-class>org.ashkelon.taglibs.LinkTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      A mechanism for varying strategy use to generate
+      a link (a href).
+    </description>
+    <attribute>
+       <name>to</name>
+       <required>true</required>
+       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>elem</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>title</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+     <name>cssref</name>
+     <tag-class>org.ashkelon.taglibs.CSSRefTag</tag-class>
+     <description>a css ref</description>
+     <attribute>
+        <name>ref</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+     </attribute>
+  </tag>
+
+   <tag>
+      <name>jsref</name>
+      <tag-class>org.ashkelon.taglibs.JSRefTag</tag-class>
+      <description>a css ref</description>
+      <attribute>
+         <name>ref</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+   
+   <tag>
+      <name>imgref</name>
+      <tag-class>org.ashkelon.taglibs.ImgRefTag</tag-class>
+      <description>produces an html img tag, but resolves relative path on the way</description>
+      <attribute>
+         <name>ref</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>border</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+
+
+   <tag>
+     <name>include</name>
+     <tag-class>org.ashkelon.taglibs.IncludeTag</tag-class>
+     <body-content>JSP</body-content>
+     <description>
+       Generates proper link for programming elelement elem
+     </description>
+     <attribute>
+       <name>page</name>
+       <required>true</required>
+       <rtexprvalue>true</rtexprvalue>
+     </attribute>
+     <attribute>
+       <name>dynamic</name>
+       <required>false</required>
+       <rtexprvalue>true</rtexprvalue>
+     </attribute>
+   </tag>
+
+</taglib>
