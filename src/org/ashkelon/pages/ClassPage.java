@@ -23,20 +23,38 @@ public class ClassPage extends Page
       int clsId = 0;
       try
       {
-         clsId = Integer.parseInt(ServletUtils.getRequestParam(request, "cls_id"));
+         clsId = Integer.parseInt(ServletUtils.getRequestParam(request, "id"));
       }
       catch (NumberFormatException ex)
       {
-         String clsName = ServletUtils.getRequestParam(request, "cls_name");
+         String clsName = ServletUtils.getRequestParam(request, "name");
          
          String sql = DBMgr.getInstance().getStatement("getclassid");
          PreparedStatement pstmt = conn.prepareStatement(sql);
          pstmt.setString(1, clsName);
          ResultSet rset = pstmt.executeQuery();
-         if (rset.next())
-            clsId = rset.getInt(1);
-         rset.close();
-         pstmt.close();
+         try
+         {
+            if (rset.next())
+            {
+               clsId = rset.getInt(1);
+            }
+            else
+            {
+               // done: no such class..
+               request.setAttribute("title", "Class " + clsName + " Not Found");
+               String description = "ashkelon does not appear to contain the class " + 
+                   "<span class=\"ordinaryClass\">" + clsName + "</span>" + 
+                   " in its repository";
+               request.setAttribute("description", description);
+               return "message";
+            }
+         }
+         finally
+         {
+            rset.close();
+            pstmt.close();
+         }
       }
       
       Integer clsId_obj = new Integer(clsId);
@@ -68,6 +86,7 @@ public class ClassPage extends Page
       classCache.addElement(clsId_obj, cls);
       app.setAttribute("classCache", classCache);
 
+      
       request.setAttribute("cls", cls);
       TreeNode superclasses = cls.getSuperclasses(conn);
       request.setAttribute("tree", superclasses);

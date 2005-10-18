@@ -10,13 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
@@ -37,7 +31,7 @@ import com.sun.javadoc.MethodDoc;
  *
  * @author Eitan Suez
  */
-public class ClassType implements Comparator, JDoc, Serializable
+public class ClassType implements Comparator, JDoc, Serializable, Persistable
 {
    private int classType;
    private String qualifiedName;
@@ -60,6 +54,9 @@ public class ClassType implements Comparator, JDoc, Serializable
    private List fields;
    private List constructors;
    private List methods;
+   // overloaded methods maintained together as a list
+   // in a map, keyed by method's name
+   private Map groupedMethods = new HashMap();
 
    private String containingClassName;
    private ClassType containingClass;
@@ -74,6 +71,8 @@ public class ClassType implements Comparator, JDoc, Serializable
    private int level;  // not kept in database.  
                    //useful for building class hierarchy trees
    
+   public static String KEY = "cls";
+
    private static String SEQUENCE = "CLASSTYPE_SEQ";
    private static String TABLENAME = "CLASSTYPE";
 
@@ -199,16 +198,16 @@ public class ClassType implements Comparator, JDoc, Serializable
       return id;
    }
    
-   public int getId()
-   {
-      return id;
-   }
-   
+   public int getId() { return id; }
+
    public void setId(int id)
    {
       this.id = id;
       idSet = true;
    }
+   
+   public boolean isResolved() { return idSet; }
+   
    
    public void store(Connection conn) throws SQLException
    {
@@ -510,6 +509,8 @@ public class ClassType implements Comparator, JDoc, Serializable
    }
    
    // accessor methods
+   public String key() { return KEY; }
+   
    public String getName() { return name; }
    public void setName(String name)
    {
@@ -651,7 +652,20 @@ public class ClassType implements Comparator, JDoc, Serializable
    public void addMethod(MethodMember method)
    {
       methods.add(method);
+      addGroupedMethod(method);
    }
+
+   private void addGroupedMethod(MethodMember method)
+   {
+      List methods = (List) groupedMethods.get(method.getName());
+      if (groupedMethods.get(method.getName()) == null)
+      {
+         methods = new ArrayList();
+      }
+      methods.add(method);
+      groupedMethods.put(method.getName(), methods);
+   }
+   public Collection getGroupedMethods() { return groupedMethods.values(); }
    
    public List getFields() { return fields; }
    public void setFields(List fields) { this.fields = fields; }
@@ -894,8 +908,7 @@ public class ClassType implements Comparator, JDoc, Serializable
          log.debug(c.getQualifiedName() + " " + c.getLevel());
       }
       
-      TreeNode root = ClassType.makeTree(classes);
-      return root;
+      return ClassType.makeTree(classes);
    }
    
 

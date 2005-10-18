@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import org.ashkelon.API;
-import org.ashkelon.manager.Repository;
+import org.ashkelon.Repository;
 import org.jibx.runtime.*;
 
 /**

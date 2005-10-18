@@ -2,7 +2,7 @@ package org.ashkelon.pages;
 
 import org.ashkelon.*;
 import org.ashkelon.db.PKManager;
-import org.ashkelon.manager.Repository;
+import org.ashkelon.Repository;
 import org.ashkelon.util.*;
 import java.sql.*;
 import java.util.*;

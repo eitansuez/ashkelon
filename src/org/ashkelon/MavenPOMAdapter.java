@@ -1,17 +1,15 @@
 /*
  * Created on Aug 16, 2004
  */
-package org.ashkelon.manager;
+package org.ashkelon;
 
 import java.io.*;
 import org.dom4j.*;
 import org.dom4j.io.*;
-
 import java.text.ParseException;
 import java.util.*;
 import org.apache.tools.ant.*;
 import org.apache.tools.ant.types.*;
-import org.ashkelon.API;
 
 /**
  * @author Eitan Suez
@@ -103,7 +101,8 @@ public class MavenPOMAdapter
       for (int i=0; i<dirs.length; i++)
       {
          if (dirs[i].endsWith("/CVS")) continue;
-          returnList.add(dirs[i].replace('/', '.'));
+         if (dirs[i].indexOf(".svn") != -1) continue;
+         returnList.add(dirs[i].replace('/', '.'));
       }
       return (String[]) returnList.toArray(new String[returnList.size()]);
    }

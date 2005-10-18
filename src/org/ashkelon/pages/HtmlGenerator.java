@@ -8,7 +8,7 @@ import java.io.File;
 /**
  * @author Eitan Suez
  */
-interface HtmlGenerator
+public interface HtmlGenerator
 {
    public void initialize(File srcHtmlDir);
    public void produceHtml(String sourceFile, String realHtmlFile);

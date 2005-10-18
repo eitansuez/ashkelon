@@ -32,7 +32,7 @@ import com.sun.javadoc.PackageDoc;
  *
  * @author Eitan Suez
  */
-public class JPackage implements JDoc, Serializable
+public class JPackage implements JDoc, Serializable, Persistable
 {
    private String name;
    private DocInfo doc;
@@ -42,6 +42,8 @@ public class JPackage implements JDoc, Serializable
    private List exceptionClasses;
    private List errorClasses;
    private List interfaces;
+
+   public static String KEY = "pkg";
 
    private static String SEQUENCE = "PKG_SEQ";
    private static String TABLENAME = "PACKAGE";
@@ -71,6 +73,14 @@ public class JPackage implements JDoc, Serializable
          addClasses(packageDoc.allClasses());
       }
    }
+   
+   public int getId() { return id; }
+   public void setId(int id)
+   {
+      this.id = id;
+      idSet = true;
+   }
+   public boolean isResolved() { return idSet; }
    
    public void store(Connection conn) throws SQLException
    {
@@ -204,40 +214,17 @@ public class JPackage implements JDoc, Serializable
       return id;
    }
    
-   public int getId()
-   {
-      return id;
-   }
-   
-   public void setId(int id)
-   {
-      this.id = id;
-      idSet = true;
-   }
-   
    // accessor methods..
-   public String getName()
-   {
-      return name;
-   }
-   public void setName(String name)
-   {
-      this.name = name;
-   }
-   
-   public DocInfo getDoc()
-   {
-      return doc;
-   }
-   public void setDoc(DocInfo doc)
-   { 
-      this.doc = doc;
-   }
+   public String key() { return KEY; }
+   public String getName() { return name; }
+   public String getQualifiedName() { return name; }
+   public void setName(String name) { this.name = name; }
 
-   public List getClasses()
-   {
-      return classes;
-   }
+   public DocInfo getDoc() { return doc; }
+   public void setDoc(DocInfo doc) { this.doc = doc; }
+
+   public List getClasses() { return classes; }
+
    public void setClasses(List classes)
    {
       this.classes = new ArrayList(35);

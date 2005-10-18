@@ -6,7 +6,6 @@ package org.ashkelon;
 import java.sql.*;
 import java.util.*;
 import org.ashkelon.db.DBMgr;
-import org.ashkelon.manager.Repository;
 import org.ashkelon.util.*;
 import org.jibx.runtime.*;
 

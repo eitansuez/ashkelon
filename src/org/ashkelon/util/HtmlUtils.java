@@ -44,5 +44,9 @@ public class HtmlUtils
       //return util.substitute(pattern, text);
       return text;
    }
-   
+
+   public static String link(String uri, String caption)
+   {
+      return "<a href=" + StringUtils.quote(uri) + ">" + caption + "</a>";
+   }
 }

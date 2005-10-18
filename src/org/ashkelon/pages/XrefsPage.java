@@ -20,7 +20,7 @@ public class XrefsPage extends Page
    
    public String handleRequest() throws SQLException, ClassNotFoundException
    {
-      int clsId = Integer.parseInt(ServletUtils.getRequestParam(request, "cls_id"));
+      int clsId = Integer.parseInt(ServletUtils.getRequestParam(request, "id"));
       String cmd = ServletUtils.getCommand(request);
       
       ClassType cls = ClassType.makeClassFor(conn, clsId, true);

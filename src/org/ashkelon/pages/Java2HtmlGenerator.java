@@ -13,7 +13,7 @@ import de.java2html.options.*;
  * 
  * @author Eitan Suez
  */
-class Java2HtmlGenerator implements HtmlGenerator
+public class Java2HtmlGenerator implements HtmlGenerator
 {
    private Java2HtmlConversionOptions _options = null;
 

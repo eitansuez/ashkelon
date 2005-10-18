@@ -25,6 +25,7 @@ public class AshkelonCmd
       COMMANDS.put("update", new UpdateCmd());
       COMMANDS.put("reset", new ResetCmd());
       COMMANDS.put("export", new ExportCmd());
+      COMMANDS.put("html", new HtmlCmd());
    }
    
    public static void main(String[] args) throws JSAPException

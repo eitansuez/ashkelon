@@ -3,6 +3,8 @@ package org.ashkelon.pages;
 import org.ashkelon.db.*;
 import org.ashkelon.util.*;
 import org.ashkelon.*;
+import org.ashkelon.taglibs.LinkStrategy;
+import org.ashkelon.taglibs.DynamicLinkStrategy;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -52,7 +54,7 @@ public class FlowController extends HttpServlet
       
       dbmgr = DBMgr.getInstance();
       dbmgr.setWebApp(getServletContext());
-         
+
       log.setTraceLevel(cfg.traceLevel);
       String traceFile = "trace.log";
       String configTraceFile = cfg.traceFile;
@@ -75,10 +77,16 @@ public class FlowController extends HttpServlet
          log.setWriter(writer);
       }
       catch (IOException ex) { }
-      
+
+      // setup sourcepath
       String sourcepath = getServletContext().getInitParameter("sourcepath");
       log.traceln("retrieving source path: "+sourcepath);
       getServletContext().setAttribute("sourcepath", sourcepath);
+
+      getServletContext().setAttribute("link-strategy",
+                                       new DynamicLinkStrategy());
+      getServletContext().setAttribute("static-context",
+                                       new Boolean(false));
 
       perlutil = new Perl5Util();
       classPool = new HashMap(30);
@@ -190,7 +198,7 @@ public class FlowController extends HttpServlet
       return;
    }
    
-   private void updateTrail(HttpServletRequest request, CommandInfo cmdInfo) throws SQLException
+   private void updateTrail(HttpServletRequest request, CommandInfo cmdInfo)
    {
       HttpSession session = request.getSession();
       LinkedList trail = (LinkedList) session.getAttribute("trail");
@@ -238,7 +246,7 @@ public class FlowController extends HttpServlet
              *   return class object in question, so that can use reflection
              *   to get class property such as getName (corresponding to a 
              *     $NAME$ dyn string)
-             */
+           */
             Object obj = request.getAttribute(cmdparts[0]);
             if (obj == null)
             {

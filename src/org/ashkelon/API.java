@@ -4,7 +4,6 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 import org.ashkelon.db.*;
-import org.ashkelon.manager.*;
 import org.ashkelon.util.*;
 import org.jibx.runtime.*;
 
@@ -13,7 +12,7 @@ import org.jibx.runtime.*;
  *
  * @author Eitan Suez
  */
-public class API implements JDoc, Serializable
+public class API implements JDoc, Serializable, Persistable
 {
     private String name = "";
     private String summaryDescription = "";
@@ -27,6 +26,8 @@ public class API implements JDoc, Serializable
     private boolean populated = false;
     
     private List packages;
+
+    public static String KEY = "api";
 
     private static String SEQUENCE = "API_SEQ";
     private static String TABLENAME = "API";
@@ -71,11 +72,8 @@ public class API implements JDoc, Serializable
        return (API) umctxt.unmarshalDocument(reader);
     }
     
-    private API readMavenPOM(Reader reader)
-    {
-       return null;
-    }
-    
+    private API readMavenPOM(Reader reader) { return null; }
+
    public int getId(Connection conn) throws SQLException
    {
       if (!idSet)
@@ -95,6 +93,19 @@ public class API implements JDoc, Serializable
       idSet = true;
    }
 
+   public boolean isResolved() { return idSet; }
+
+   public void store(Connection conn) throws SQLException
+   {
+      if (exists(conn))
+         update(conn);
+      else
+         insert(conn);
+      
+      if (!populated)
+         state = SINGLE_STATE;
+   }
+   
    public void update(Connection conn) throws SQLException
    {
       String updateSql = 
@@ -125,17 +136,6 @@ public class API implements JDoc, Serializable
       pstmt.executeUpdate();
       pstmt.close();
       
-   }
-   
-   public void store(Connection conn) throws SQLException
-   {
-      if (exists(conn))
-         update(conn);
-      else
-         insert(conn);
-      
-      if (!populated)
-         state = SINGLE_STATE;
    }
    
    public void insert(Connection conn) throws SQLException
@@ -261,7 +261,10 @@ public class API implements JDoc, Serializable
    
    
     // accessors
+    public String key() { return KEY; }
+   
     public String getName() { return name; }
+    public String getQualifiedName() { return name; }
     public void setName(String name) { this.name = name; }
 
     public String getSummaryDescription() { return summaryDescription; }
@@ -314,7 +317,7 @@ public class API implements JDoc, Serializable
     }
     public void setPopulated(int populatedVal)
     {
-       this.populated = (populatedVal == 0) ? false : true;
+       this.populated = (populatedVal != 0);
        if (populated) state = POPULATED_STATE;
     }
     

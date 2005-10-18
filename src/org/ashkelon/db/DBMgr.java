@@ -252,8 +252,7 @@ public class DBMgr
    private PooledConnection makeNewConnection() throws SQLException
    {
       Connection conn = DriverManager.getConnection(connectionURL, user, password);
-      PooledConnection pc = new PooledConnection(conn);
-      return pc;
+      return new PooledConnection(conn);
    }
    
    

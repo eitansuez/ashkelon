@@ -43,7 +43,7 @@ public class MembersPage extends Page
       {
          Member m = (Member) found.get(0);
          int id = m.getId(null);
-         request.setAttribute("member_id", new Integer(id));
+         request.setAttribute("id", new Integer(id));
          return "member.main";
          /*
          String membertype = "method";

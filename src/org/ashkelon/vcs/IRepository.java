@@ -1,7 +1,9 @@
 /*
  * Created on Apr 20, 2005
  */
-package org.ashkelon.manager;
+package org.ashkelon.vcs;
+
+import org.ashkelon.Repository;
 
 import java.io.File;
 

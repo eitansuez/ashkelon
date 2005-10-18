@@ -3,33 +3,26 @@
  */
 package org.ashkelon.manager.cmd;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.LinkedList;
+import com.martiansoftware.jsap.JSAPException;
+import com.martiansoftware.jsap.Option;
+import com.martiansoftware.jsap.UnflaggedOption;
+import com.martiansoftware.jsap.JSAPResult;
 import org.ashkelon.API;
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
-import org.ashkelon.manager.Config;
-import org.ashkelon.util.Logger;
-import com.martiansoftware.jsap.FlaggedOption;
-import com.martiansoftware.jsap.JSAP;
-import com.martiansoftware.jsap.JSAPException;
-import com.martiansoftware.jsap.JSAPResult;
-import com.martiansoftware.jsap.Option;
-import com.martiansoftware.jsap.UnflaggedOption;
+import java.util.LinkedList;
+import java.util.Collection;
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * @author Eitan Suez
  */
-public class AddCmd extends BaseCmd
+public class AddCmd extends ProcessAPICmd
 {
-   private Logger log = Logger.getInstance();
-   
    public AddCmd() {}
-   
+
    public String getName() { return "add"; }
    public String getDescription()
    {
@@ -37,92 +30,76 @@ public class AddCmd extends BaseCmd
    }
    public String getExample()
    {
-      return "ashkelon add -source 1.4 apis/j2se14.xml";
+      return "ashkelon add --source 1.4 apis/j2se14.xml";
    }
    public String getNote()
    {
       return "after an API is added, any references between it and apis existing " +
        "in the database will be linked";
-      // no longer true because now i'm forced to explicitly specify
-      // all options that command accepts..
+
       //"ashkelon will pass any valid javadoc option to the javadoc "+ 
       //"parsing engine.  For a list of javadoc options, simply type: javadoc "+
       //"at the command line.";
+      // ..no longer true because now i'm forced to explicitly specify
+      // all options that command accepts
    }
 
-   public void registerParameters() throws JSAPException
+   public void registerParameters()
+         throws JSAPException
    {
       super.registerParameters();
-      
-      FlaggedOption sourcepathOption = new FlaggedOption("sourcepath")
-                                          .setRequired(false)
-                                          .setShortFlag(JSAP.NO_SHORTFLAG)
-                                          .setLongFlag("sourcepath");
-      
-      sourcepathOption.setHelp("Source code path information;  where" +
-            " ashkelon can locate your source code.  This is no longer " +
-            " recommended.  Try to specify source repository information " +
-            " for API instead.");
-      registerParameter(sourcepathOption);
 
-      FlaggedOption classpathOption = new FlaggedOption("classpath")
-                                          .setRequired(false)
-                                          .setShortFlag(JSAP.NO_SHORTFLAG)
-                                          .setLongFlag("classpath");
-      
-      classpathOption.setHelp("Class path information;  passed to javadoc (optional).");
-      registerParameter(classpathOption);
-      
-      FlaggedOption sourceOption = new FlaggedOption("source")
-                                       .setRequired(false)
-                                       .setShortFlag(JSAP.NO_SHORTFLAG)
-                                       .setLongFlag("source");
-      sourceOption.setHelp("javadoc -source flag: to specify j2se version compatibility");
-      registerParameter(sourceOption);
-      
-      FlaggedOption encodingOption = new FlaggedOption("encoding")
-                                       .setRequired(false)
-                                       .setShortFlag(JSAP.NO_SHORTFLAG)
-                                       .setLongFlag("encoding");
-      encodingOption.setHelp("javadoc -encoding flag: to specify source encoding");
-      registerParameter(encodingOption);
-      
       Option apiOption = new UnflaggedOption("api").setRequired(true);
-      
+
       apiOption.setHelp("API to populate.  Can be specified in one of three "+
             "ways:  [1] referenced as an api.xml file, [2] specify the name of " +
             "the api (assuming the API record is already in the database; or " +
             "[3] a maven project.xml file (does not work with all maven projects)");
       registerParameter(apiOption);
    }
-   
+
+   public String docletClassName() { return "org.ashkelon.manager.Ashkelon"; }
+
+
    public void invoke(JSAPResult arguments)
    {
       super.invoke(arguments);
-      
+
       String apispec = arguments.getString("api");
       if (apispec.endsWith(".xml"))
          addApiXmlCmd(apispec, arguments);
       else
-         addApiNameCmd(apispec, arguments);
+         addApiNameCmd(docletClassName(), apispec, arguments);
    }
-   
-   public void addApiNameCmd(String apiname, JSAPResult arguments)
+
+   public void addApiNameCmd(String docletClassName,
+                             String apiname,
+                             JSAPResult arguments)
    {
       log.debug("api name: "+apiname);
-      
+
       API api = loadAPIByName(apiname);
-      
+
       if (api == null)
       {
          log.error("Cannot find API " + apiname + " in database");
          return;
       }
-      
+
       fetchSource(api);  // ..from source repository
-      
+
+      String[] javadocargs = constructJavadocArgslist(arguments, api);
+
+      // parms are: programName, docletClassName, javadocargs
+      com.sun.tools.javadoc.Main.execute("ashkelon",
+                                         docletClassName,
+                                         javadocargs);
+   }
+
+   private String[] constructJavadocArgslist(JSAPResult arguments, API api)
+   {
       LinkedList javadocargslist = new LinkedList();
-      
+
       javadocargslist.addLast("-sourcepath");
       String sourcepath = arguments.getString("sourcepath");
       if (sourcepath != null)
@@ -133,14 +110,14 @@ public class AddCmd extends BaseCmd
       {
          javadocargslist.addLast(api.sourcepath());
       }
-      
+
       String classpath = arguments.getString("classpath");
       if (classpath != null)
       {
          javadocargslist.addLast("-classpath");
          javadocargslist.addLast(classpath);
       }
-      
+
       String source = arguments.getString("source");
       if (source != null)
       {
@@ -153,47 +130,29 @@ public class AddCmd extends BaseCmd
          javadocargslist.addLast("-encoding");
          javadocargslist.addLast(encoding);
       }
-      
+
       // doclet argument:  which api (id) to populate
       javadocargslist.addLast("-api");
       javadocargslist.addLast(""+api.getId());
-      
+
       // doclet arguments: api packages to process/parse
       Collection packagenames = api.getPackagenames();
       javadocargslist.addAll(packagenames);
       log.debug("argslist before calling javadoc: "+javadocargslist);
-      
-      
+
+
       // invoke javadoc..
       String[] addlist = new String[javadocargslist.size()];
-      String[] javadocargs = (String[]) javadocargslist.toArray(addlist);
-      
-      // parms are: programName, docletClassName, javadocargs
-      com.sun.tools.javadoc.Main.execute("ashkelon", "org.ashkelon.manager.Ashkelon", 
-            javadocargs);
+      return (String[]) javadocargslist.toArray(addlist);
    }
-   
-   private void fetchSource(API api)
-   {
-      String basepath = Config.getInstance().getSourcePathBase();
-      File base = new File(basepath);
-      if (!base.exists())
-      {
-         log.traceln("Creating directory "+basepath);
-         base.mkdir();
-      }
-      api.fetch(base);  // fetch api source code from source repository
-   }
-   
-   
+
    private API loadAPIByName(String apiName)
    {
       Connection conn = null;
       try
       {
          conn = DBMgr.getInstance().getConnection();
-         API api = API.makeAPIFor(conn, apiName);
-         return api;
+         return API.makeAPIFor(conn, apiName);
       }
       catch (SQLException ex)
       {
@@ -207,25 +166,25 @@ public class AddCmd extends BaseCmd
       }
       return null;
    }
-   
-   
+
+
    public void addApiXmlCmd(String apifilename, JSAPResult arguments)
    {
       log.debug("api file name: "+apifilename);
-      
+
       try
       {
          String sourcepath = arguments.getString("sourcepath");
          API api = API.unmarshal(apifilename, sourcepath);
          log.debug("api unmarshalled; name is: "+api.getName());
-         
+
          if (existsPopulated(api))
          {
             log.traceln("API " + api.getName() + " is already in repository" +
-                  ("and populated (skipping);  to update, remove first."));
+                  (" and populated (skipping);  to update, remove first."));
             return;
          }
-         
+
          Connection conn = null;
          try
          {
@@ -253,8 +212,8 @@ public class AddCmd extends BaseCmd
             if (conn != null)
                DBMgr.getInstance().releaseConnection(conn);
          }
-         
-         addApiNameCmd(api.getName(), arguments);
+
+         addApiNameCmd(docletClassName(), api.getName(), arguments);
       }
       catch (FileNotFoundException ex)
       {
@@ -266,7 +225,7 @@ public class AddCmd extends BaseCmd
          ex.printStackTrace(log.getWriter());
       }
    }
-   
+
    private boolean existsPopulated(API api)
    {
       Connection conn = null;
@@ -286,6 +245,7 @@ public class AddCmd extends BaseCmd
       }
       return false;
    }
-   
+
+
 }
    

@@ -91,55 +91,7 @@ public class StringUtils
       }
    }
 
-   
-   public static boolean getCommandLineOption(String option, String[][] options)
-   {
-      boolean value = false;
-      for (int i = 0; i < options.length; i++)
-      {
-         String[] opt = options[i];
-         if (opt[0].equals(option))
-         {
-            value = true;
-         }
-      }
-      return value;
-   }
-   
-   public static int getCommandLineOption(String option, String[][] options, int defaultValue)
-   {
-      int value = defaultValue;
-      for (int i = 0; i < options.length; i++)
-      {
-         String[] opt = options[i];
-         if (opt[0].equals(option))
-         {
-            try
-            {
-               value = Integer.parseInt(opt[1]);
-            } catch (NumberFormatException ex)
-            {
-               value = defaultValue;
-            }
-         }
-      }
-      return value;
-   }
-   
-   public static String getStringCommandLineOption(String option, String[][] options)
-   {
-      for (int i = 0; i < options.length; i++)
-      {
-         String[] opt = options[i];
-         if (opt[0].equals(option))
-         {
-            return opt[1];
-         }
-      }
-      return "";
-   }
-   
-   
+
    public static String truncate(String text, int length)
    {
       if (text.length() > length)
@@ -186,4 +138,8 @@ public class StringUtils
     return result.toString();
   }
 
+   public static String quote(String text)
+   {
+      return "\"" + text + "\"";
+   }
 }

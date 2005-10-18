@@ -23,24 +23,43 @@ public class PackagePage extends Page
 
       try
       {
-         pkgId = Integer.parseInt(ServletUtils.getRequestParam(request, "pkg_id"));
+         pkgId = Integer.parseInt(ServletUtils.getRequestParam(request, "id"));
       }
       catch (NumberFormatException ex)
       {
-         String pkgName = ServletUtils.getRequestParam(request, "pkg_name");
+         String pkgName = ServletUtils.getRequestParam(request, "name");
          
          String sql = DBMgr.getInstance().getStatement("getpkgid");
          PreparedStatement pstmt = conn.prepareStatement(sql);
          pstmt.setString(1, pkgName);
          ResultSet rset = pstmt.executeQuery();
          log.debug("about to get package id for "+pkgName);
-         if (rset.next())
+
+         try
          {
-            pkgId = rset.getInt(1);
-            log.debug("pkg id is: "+pkgId);
+            if (rset.next())
+            {
+               pkgId = rset.getInt(1);
+               log.debug("pkg id is: "+pkgId);
+            }
+            else
+            {
+               // done: no such package..
+               request.setAttribute("title", "Package " + pkgName + " Not Found");
+               String description = "ashkelon does not appear to contain the package " + 
+                   "<span class=\"package\">" + pkgName + "</span>" + 
+                   " in its repository";
+               request.setAttribute("description", description);
+               return "message";
+            }
          }
-         rset.close();
-         pstmt.close();
+         finally
+         {
+            rset.close();
+            pstmt.close();
+         }
+
+
       }
       
       Integer pkgId_obj = new Integer(pkgId);

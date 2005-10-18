@@ -29,7 +29,7 @@ import com.sun.javadoc.MemberDoc;
  *
  * @author Eitan Suez
  */
-public class Member implements JDoc, Serializable
+public class Member implements JDoc, Serializable, Persistable
 {
    private ClassType containingClass;
    private String name;
@@ -46,6 +46,8 @@ public class Member implements JDoc, Serializable
 
    private int id;
    private boolean idSet = false;
+
+   public static String KEY = "member";
    
    private static String SEQUENCE = "MEMBER_SEQ";
    private static String TABLENAME = "MEMBER";
@@ -98,6 +100,16 @@ public class Member implements JDoc, Serializable
       setContainingClass(containingClass);
    }
    
+   public int getId() { return id; }
+   
+   public void setId(int id)
+   {
+      this.id = id;
+      idSet = true;
+   }
+
+   public boolean isResolved() { return idSet; }
+   
    public void store(Connection conn) throws SQLException
    {
       Map fieldInfo = new HashMap(10);
@@ -134,17 +146,6 @@ public class Member implements JDoc, Serializable
       return id;
    }
    
-   public int getId()
-   {
-      return id;
-   }
-   
-   public void setId(int id)
-   {
-      this.id = id;
-      idSet = true;
-   }
-   
    public static void delete(Connection conn, int memberid, int docid) throws SQLException
    {
       DocInfo.delete(conn, docid);
@@ -169,6 +170,8 @@ public class Member implements JDoc, Serializable
    public DocInfo getDoc() { return doc; }
    public void setDoc(DocInfo doc) { this.doc = doc; }
    
+   public String key() { return KEY; }
+
    public String getName() { return name; }
    public void setName(String name) { this.name = name; }
    

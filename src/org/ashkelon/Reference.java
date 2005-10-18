@@ -30,6 +30,7 @@ public class Reference implements Serializable
    private DocInfo refDoc;
    private String refDocName;
    private int refDocType;
+   private String refDocTypePrefix;
    private DocInfo sourceDoc;
    private String qualifiedSourceName;
    
@@ -61,16 +62,19 @@ public class Reference implements Serializable
             {
                refDocName = seetag.referencedPackage().name();
                refDocType = DocInfo.PACKAGE_TYPE;
+               refDocTypePrefix = "pkg";
             }
          } else
          {
             refDocName = seetag.referencedClass().qualifiedName();
             refDocType = DocInfo.CLASS_TYPE;
+            refDocTypePrefix = "cls";
          }
       } else
       {
          refDocName = seetag.referencedMember().qualifiedName();
          refDocType = DocInfo.MEMBER_TYPE;
+         refDocTypePrefix = "member";
          if (seetag.referencedMember() instanceof ExecutableMemberDoc)
          {
             refDocType = DocInfo.EXECMEMBER_TYPE;
@@ -105,6 +109,8 @@ public class Reference implements Serializable
       
       setRefDocName(refDocName);
       setRefDocType(refDocType);
+
+      setRefDoc(new DocInfo());
    }
    
    public void store(Connection conn) throws SQLException
@@ -133,6 +139,8 @@ public class Reference implements Serializable
    
    public int getRefDocType() { return refDocType; }
    public void setRefDocType(int refDocType) { this.refDocType = refDocType; }
+   
+   public String getRefDocTypePrefix() { return refDocTypePrefix; }
 
    public String toString()
    {

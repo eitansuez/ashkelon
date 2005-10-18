@@ -79,7 +79,7 @@ public abstract class Page
       String name = "";
       String indent = "";
       int level = 0;
-      String cmd = "cls.main.do?cls_id=";
+      String cmd = "cls.main.do?id=";
       String parent = "";
       String typename = "package";
       String modifiers = "";
@@ -90,7 +90,7 @@ public abstract class Page
          JPackage pkg = (JPackage) o;
          name = pkg.getName();
          descr = pkg.getSummaryDescription();
-         cmd = "pkg.main.do?pkg_id="+pkg.getId();
+         cmd = "pkg.main.do?id="+pkg.getId();
       }
       else
       {

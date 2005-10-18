@@ -11,10 +11,7 @@ import java.util.*;
  */
 public class APIsPage extends Page
 {
-   public APIsPage()
-   {
-      super();
-   }
+   public APIsPage() { super(); }
 
    public String handleRequest() throws SQLException
    {

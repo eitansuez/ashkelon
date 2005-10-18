@@ -21,25 +21,45 @@ public class MemberPage extends Page
    
    public String handleRequest() throws SQLException
    {
-      //int memberId = Integer.parseInt(ServletUtils.getRequestParam(request, "member_id"));
       int memberId = 0;
 
       try
       {
-         memberId = Integer.parseInt(ServletUtils.getRequestParam(request, "member_id"));
+         memberId = Integer.parseInt(ServletUtils.getRequestParam(request, "id"));
       }
       catch (NumberFormatException ex)
       {
-         String memberName = ServletUtils.getRequestParam(request, "member_name");
+         String memberName = ServletUtils.getRequestParam(request, "name");
          
          String sql = DBMgr.getInstance().getStatement("getmemberid");
          PreparedStatement pstmt = conn.prepareStatement(sql);
          pstmt.setString(1, memberName);
          ResultSet rset = pstmt.executeQuery();
-         if (rset.next())
-            memberId = rset.getInt(1);
-         rset.close();
-         pstmt.close();
+         
+         try
+         {
+            if (rset.next())
+            {
+               memberId = rset.getInt(1);
+            }
+            else
+            {
+               // done: no such member..
+               request.setAttribute("title", "Member " + memberName + " Not Found");
+               String description = "ashkelon does not appear to contain the member " + 
+                   "<span class=\"method\">" + memberName + "</span>" + 
+                   " in its repository";
+               request.setAttribute("description", description);
+               return "message";
+            }
+         }
+         finally
+         {
+            rset.close();
+            pstmt.close();
+         }
+         
+         
       }
       
       Integer memberId_obj = new Integer(memberId);

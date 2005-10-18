@@ -1,9 +1,8 @@
 package org.ashkelon.pages;
 
 import org.ashkelon.db.DBMgr;
-import org.ashkelon.manager.CVSRepository;
-import org.ashkelon.manager.Config;
-import org.ashkelon.manager.SVNRepository;
+import org.ashkelon.vcs.CVSRepository;
+import org.ashkelon.vcs.SVNRepository;
 import org.ashkelon.util.*;
 import java.io.*;
 import java.sql.*;
@@ -36,10 +35,10 @@ public class ClassSourcePage extends Page
    
    public String handleRequest() throws SQLException
    {
-      String qualifiedName = ServletUtils.getRequestParam(request, "cls_name");
+      String qualifiedName = ServletUtils.getRequestParam(request, "name");
       String fileName = qualifiedName.replace('.', File.separatorChar) + ".java";
       
-      request.setAttribute("cls_name", qualifiedName);
+      request.setAttribute("name", qualifiedName);
       
       File sourceFile = fetchSourceFile(qualifiedName, fileName);
       if (sourceFile != null)

@@ -1,12 +1,13 @@
 /*
  * Created on Apr 20, 2005
  */
-package org.ashkelon.manager;
+package org.ashkelon.vcs;
 
 import java.io.File;
-
 import org.ashkelon.util.Logger;
 import org.ashkelon.util.StringUtils;
+import org.ashkelon.Repository;
+import org.ashkelon.Config;
 import org.tmatesoft.svn.core.ISVNWorkspace;
 import org.tmatesoft.svn.core.SVNWorkspaceManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;

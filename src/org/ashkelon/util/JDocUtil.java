@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.ashkelon.DocInfo;
-import org.ashkelon.pages.ConfigInfo;
+import org.ashkelon.InlineTagResolver;
 import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.ProgramElementDoc;
 import com.sun.javadoc.Tag;
@@ -139,9 +139,11 @@ public class JDocUtil
     */
    public static String resolveDescription(DocInfo sourcedoc, Tag tags[])
    {
-      return ConfigInfo.getInstance().getResolver().resolveDescription(sourcedoc, tags);
+      return TAG_RESOLVER.resolveDescription(sourcedoc, tags);
    }
-   
+   static InlineTagResolver TAG_RESOLVER;
+   static { TAG_RESOLVER = new InlineTagResolver(); }
+
    /**
     * returns a list of tags as an array of text strings
     * (assumes that within one tag's text, there may be > 1 entry
@@ -210,5 +212,13 @@ public class JDocUtil
        }
        return paramInfo;
     }
+   
+   public static String stripParensFromMethodName(String name)
+   {
+      int idx = name.indexOf("(");
+      if (idx > 0)
+         name = name.substring(0, idx);
+      return name;
+   }
     
 }

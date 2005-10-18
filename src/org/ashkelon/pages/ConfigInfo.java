@@ -3,7 +3,6 @@ package org.ashkelon.pages;
 import java.util.*;
 import java.io.*;
 import org.jibx.runtime.*;
-import org.ashkelon.manager.InlineTagResolver;
 
 /**
  * @author Eitan Suez
@@ -17,7 +16,6 @@ public class ConfigInfo
    int traceLevel;
    String traceFile;
    int pageSize;
-   String inlineTagResolver;
    
    private static ConfigInfo instance = null;
    public static ConfigInfo getInstance()
@@ -50,8 +48,6 @@ public class ConfigInfo
       ConfigInfo info = (ConfigInfo) uctxt.unmarshalDocument(reader);
       
       info.loadCmdMap();
-      info.resolveInlineTagResolverClass();
-      
       return info;
    }
    
@@ -67,26 +63,6 @@ public class ConfigInfo
          cmdinfo = (CommandInfo) itr.next();
          commandMap.put(cmdinfo.getCommand(), cmdinfo);
       }
-   }
-   
-   InlineTagResolver resolver = null;
-   public InlineTagResolver getResolver() { return resolver; }
-   
-   private void resolveInlineTagResolverClass()
-   {
-      try
-      {
-         Class resolverClass = Class.forName(inlineTagResolver);
-         resolver = (InlineTagResolver) resolverClass.newInstance(); 
-      }
-      catch (Exception ex)
-      {
-         System.err.println("Failed to create/instantiate inline tag resolver class");
-         System.err.println("Exception: " + ex.getMessage());
-         ex.printStackTrace();
-         throw new RuntimeException(ex.getMessage());
-      }
-      
    }
    
 }

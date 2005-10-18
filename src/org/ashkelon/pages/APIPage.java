@@ -1,6 +1,7 @@
 package org.ashkelon.pages;
 
 import org.ashkelon.*;
+import org.ashkelon.db.DBMgr;
 import org.ashkelon.util.*;
 
 import java.util.*;
@@ -12,14 +13,52 @@ import java.sql.*;
  */
 public class APIPage extends Page
 {
-   public APIPage()
-   {
-      super();
-   }
-   
+   public APIPage() { super(); }
+
    public String handleRequest() throws SQLException
    {
-      int apiId = Integer.parseInt(ServletUtils.getRequestParam(request, "id"));
+      int apiId = 0;
+      
+      try
+      {
+         apiId = Integer.parseInt(ServletUtils.getRequestParam(request, "id"));
+      }
+      catch (NumberFormatException ex)
+      {
+         String apiName = ServletUtils.getRequestParam(request, "name");
+         
+         String sql = DBMgr.getInstance().getStatement("getapiid");
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, apiName);
+         ResultSet rset = pstmt.executeQuery();
+         log.debug("about to get api id for "+apiName);
+
+         try
+         {
+            if (rset.next())
+            {
+               apiId = rset.getInt(1);
+               log.debug("api id is: "+apiId);
+            }
+            else
+            {
+               // done: no such api..
+               request.setAttribute("title", "API " + apiName + " Not Found");
+               String description = "ashkelon does not appear to contain the api " + 
+                   "<span class=\"api\">" + apiName + "</span>" + 
+                   " in its repository";
+               request.setAttribute("description", description);
+               return "apis";
+            }
+         }
+         finally
+         {
+            rset.close();
+            pstmt.close();
+         }
+      }
+      
+      
       Integer apiId_obj = new Integer(apiId);
 
       Object apis_obj = app.getAttribute("apis");

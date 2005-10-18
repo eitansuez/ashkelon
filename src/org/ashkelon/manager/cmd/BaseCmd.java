@@ -17,6 +17,8 @@ import com.martiansoftware.jsap.Switch;
  */
 public abstract class BaseCmd extends JSAP implements CommandLineCommand
 {
+   protected Logger log = Logger.getInstance();
+
    public BaseCmd() { super(); }
    
    public void registerParameters() throws JSAPException
@@ -39,22 +41,16 @@ public abstract class BaseCmd extends JSAP implements CommandLineCommand
    
    public void invoke(JSAPResult arguments)
    {
-      Logger log = Logger.getInstance();
       if (arguments.getBoolean("verbose"))
-      {
          log.setTraceLevel(Logger.VERBOSE);
-      }
-      else if (arguments.getBoolean("debug"))
-      {
+      if (arguments.getBoolean("debug"))
          log.setTraceLevel(Logger.DEBUG);
-      }
       
       if (arguments.getBoolean("help"))
       {
          printUsage(null);
          System.exit(0);
       }
-      
    }
    
    public abstract String getName();

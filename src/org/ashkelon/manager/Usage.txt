@@ -9,6 +9,7 @@ Examples:
   ashkelon add hibernate.xml
   ashkelon list
   ashkelon remove Hibernate
+  ashkelon html -d junit-javadocs apis/junit.xml
 
 Usage:
   ashkelon {command} [options]
@@ -21,6 +22,7 @@ Usage:
     list        List apis currently residing in the repository
     reset       Reset repository (i.e. delete everything, use with care)
     export      Dump list of apis to xml (system.out)
+    html        Produce static html pages (with ashkelon look and feel)
 
 For command-specific help, type:
   ashkelon {command} -h

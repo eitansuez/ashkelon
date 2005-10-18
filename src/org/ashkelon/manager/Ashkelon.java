@@ -31,15 +31,6 @@ public class Ashkelon extends Doclet
    /** required for Doclet inheritance */
    public static boolean start(RootDoc root)
    {
-      boolean verbose = StringUtils.getCommandLineOption("-verbose", root.options());
-      boolean debug = StringUtils.getCommandLineOption("-debug", root.options());
-      Logger log = Logger.getInstance();
-      
-      if (verbose)
-         log.setTraceLevel(Logger.VERBOSE);
-      if (debug)
-         log.setTraceLevel(Logger.DEBUG);
-      
       Ashkelon ashkelonDoclet = new Ashkelon(root);
       if (!ashkelonDoclet.init())
          return false;
@@ -104,12 +95,12 @@ public class Ashkelon extends Doclet
    {
       long start = new java.util.Date().getTime();
       
-      boolean refsonly = StringUtils.getCommandLineOption("-refsonly", root.options());
-      boolean norefs = StringUtils.getCommandLineOption("-norefs", root.options());
+      boolean refsonly = Options.getCommandLineOption("-refsonly", root.options());
+      boolean norefs = Options.getCommandLineOption("-norefs", root.options());
 
       if(!refsonly)
       {
-         int apiId = StringUtils.getCommandLineOption("-api", root.options(), -1);
+         int apiId = Options.getCommandLineOption("-api", root.options(), -1);
          
          if (apiId == -1)
          {
@@ -206,7 +197,7 @@ public class Ashkelon extends Doclet
       {
          log.traceln("Processing package " + packages[i].name() + "..");
          new JPackage(packages[i], true, api).store(conn);
-         log.traceln("Package: " + packages[i].name() + " stored", Logger.VERBOSE);
+         log.verbose("Package: " + packages[i].name() + " stored");
       }
 
    }
@@ -287,10 +278,6 @@ public class Ashkelon extends Doclet
    /** required for Doclet inheritance */
    public static int optionLength(String option)
    {
-      if(option.equals("-norefs") || option.equals("-refsonly"))
-         return 1;
-      if (option.equals("-debug") || option.equals("-verbose"))
-         return 1;
       if (option.equals("-api"))
          return 2;
       return 0;
