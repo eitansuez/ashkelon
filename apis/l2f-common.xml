@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+  <name>L2FProd.com Common Components</name>
+  <summarydescription>Missing Swing Widgets</summarydescription>
+  <description>Swing has lot of components built-in but still some are missing. This project provides the developer community with these missing components, components inspired (copied?!) from modern user interfaces.</description>
+  <publisher>l2fprod.com</publisher>
+  <download_url>http://common.l2fprod.com/</download_url>
+  <release_date>2005-08-26T19:00:00.000</release_date>
+  <version>0.2-dev</version>
+  <packages>
+    <package>com.l2fprod.common.beans.editor</package>
+    <package>com.l2fprod.common.propertysheet</package>
+    <package>com.l2fprod.common.swing</package>
+    <package>com.l2fprod.common.swing.plaf</package>
+    <package>com.l2fprod.common.swing.tips</package>
+    <package>com.l2fprod.common.util</package>
+    <package>com.l2fprod.common.util.converter</package>
+  </packages>
+</api>

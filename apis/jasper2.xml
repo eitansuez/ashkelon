@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<api>
+  <name>jasper2</name>
+  <summarydescription>jasper2</summarydescription>
+  <description>jasper2</description>
+  <publisher>Jakarta Tomcat</publisher>
+  <download_url>http://jakarta.apache.org/tomcat/</download_url>
+  <release_date>2005-01-01T08:00:00.000</release_date>
+  <version>2</version>
+  <packages>
+    <package>org.apache.jasper</package>
+    <package>org.apache.jasper.compiler</package>
+    <package>org.apache.jasper.runtime</package>
+    <package>org.apache.jasper.servlet</package>
+    <package>org.apache.jasper.util</package>
+  </packages>
+</api>
+
