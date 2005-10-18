@@ -75,7 +75,7 @@
             title = pkg.getName(); 
    %>
    <li>
-        <a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><span class="package" title="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></span></a>
+        <a href="pkg.main.do?id=<%=pkg.getId()%>"><span class="package" title="<%=HtmlUtils.cleanAttributeText(title)%>"><%=pkg.getName()%></span></a>
    </li>
    <%   }  // end inner for loop %>
   </ol>

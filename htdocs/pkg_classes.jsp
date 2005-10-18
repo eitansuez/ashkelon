@@ -1,4 +1,4 @@
-<%@ page info="package classes view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="package classes view" import="java.util.*,org.ashkelon.*" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -15,14 +15,11 @@ Date: March 2001
   String caption = "class";
   List classes = pkg.getOrdinaryClasses();
 
-  boolean isinterface = false;
-  
   if ("interface".equals(classtype))
   {
     captions = "interfaces";
     caption = "interface";
     classes = pkg.getInterfaces();
-    isinterface = true;
   }
   else if ("exception".equals(classtype))
   {

@@ -1,4 +1,4 @@
-<%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%
@@ -53,8 +53,7 @@
   tabs.put("cls.xref", "Cross References");
   cmds.add("cls.xref");
   
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
-  String cls_id = ServletUtils.getRequestParam(request, "cls_id");
+  String clsid = ServletUtils.getRequestParam(request, "id");
   
   request.setAttribute("tabs", tabs);
   request.setAttribute("cmds", cmds);
@@ -63,7 +62,7 @@
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 <jsp:include page="l2_hdr_svr.jsp" flush="true">
-  <jsp:param name="args" value="<%=\"cls_id=\"+cls_id%>"/>
+  <jsp:param name="args" value="<%=\"id=\"+clsid%>"/>
 </jsp:include>
 <br/>
 

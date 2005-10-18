@@ -76,7 +76,7 @@
     <c:if test="${cls.deprecated}">
       <image src="images/check_sm.gif" />
     </c:if>
-  <html:a href="index.html?cmd=cls.main&amp;cls_id=<c:out value="${cls.id}" />">
+  <html:a href="index.html?cmd=cls.main&amp;id=<c:out value="${cls.id}" />">
     <description>
       <c:choose>
        <c:when test="${qualify}">

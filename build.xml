@@ -3,8 +3,9 @@
 <project name="ashkelon" default="war">
    <description>open source java documentation management system</description>
    
-   <property name="version" value="0.8.9" />
+   <property name="version" value="0.9.0" />
    <property environment="env" />
+   <property name="tomcat.home" location="${env.CATALINA_HOME}" />
 
    <!-- currently, valid options are: mysql, postgres, mckoidb -->
    <property name="dbtype" value="postgres" />
@@ -13,10 +14,18 @@
    <property name="srcdir" location="src" />
    <property name="builddir" location="build" />
    <property name="buildclassesdir" location="build/classes" />
-   <property name="libdir" location="lib" />
-   <property name="libtoolsdir" location="${libdir}/tools" />
    <property name="etcdir" location="etc" />
    <property name="distdir" location="dist" />
+   
+   <property name="libdir" location="lib" />
+   <property name="libmgrdir" location="${libdir}/manager" />
+   <property name="libtoolsdir" location="${libdir}/tools" />
+   <property name="libwebdir" location="${libdir}/webapp" />
+
+   <!-- for ashkelon static -->
+   <property name="webapp.dir" location="${builddir}/webapp" />
+   <!-- jsp artifacts: -->
+   <property name="gendir" location="${builddir}/src" />
 
    <property name="test.dir" location="test" />
    <property name="test.src.dir" location="${test.dir}" />
@@ -24,11 +33,10 @@
    <property name="test.lib.dir" location="lib/test" />
    <property name="test.reports.dir" location="${builddir}/reports" />
 
-   <property name="webappsdir" location="${env.CATALINA_HOME}/webapps" />
-
    <path id="class.path">
       <pathelement location="${java.home}/lib/tools.jar" />
-      <fileset dir="${libdir}" includes="*.jar" />
+      <fileset dir="${libmgrdir}" includes="*.jar" />
+      <fileset dir="${libwebdir}" includes="*.jar" />
       <fileset dir="${dbdir}" includes="*.jar" />
       <pathelement location="${buildclassesdir}" />
    </path>
@@ -42,8 +50,8 @@
 
    <target name="init">
       <mkdir dir="${buildclassesdir}" />
+      <mkdir dir="${gendir}" />
       <mkdir dir="${distdir}" />
-      <available file="${webappsdir}" type="dir" property="webappsdir.present" />
       <tstamp />
    </target>
    
@@ -53,7 +61,7 @@
    </target>
 
    <taskdef name="build-statements" classname="org.ashkelon.db.StatementsBuilder"
-     classpath="lib/ashkelon-ant.jar" />
+     classpath="lib/tools/ashkelon-ant.jar" />
 
    <target name="compile" depends="init" description="compile">
       <javac debug="on" srcdir="${srcdir}" destdir="${buildclassesdir}" classpathref="class.path" />
@@ -69,12 +77,6 @@
       <build-statements dbtype="${dbtype}" 
          tofile="${buildclassesdir}/org/ashkelon/db/statements.properties" />
 
-      <copy file="${etcdir}/web.xml" tofile="${builddir}/web.xml" filtering="true">
-        <filterset>
-          <filter token="SOURCEPATH" value="${env.SOURCEPATH}" />
-        </filterset>
-      </copy> 
-
       <copy tofile="${builddir}/jdbc-driver.jar">
         <fileset dir="${dbdir}" includes="*.jar" /> <!-- should be a single file -->
       </copy>
@@ -85,12 +87,11 @@
      <classpath>
        <pathelement location="${libtoolsdir}/bcel.jar" />
        <pathelement location="${libtoolsdir}/jibx-bind.jar" />
-       <pathelement location="${libdir}/jibx-run.jar" />
-       <pathelement location="${libdir}/xpp3.jar" />
+       <pathelement location="${libmgrdir}/jibx-run.jar" />
+       <pathelement location="${libmgrdir}/xpp3.jar" />
      </classpath>
    </taskdef>
 
-   <!-- Run JiBX binding compiler -->
    <target name="bind" depends="compile" description="run JiBX binding compiler">
      <bind binding="${etcdir}/binding.xml">
        <classpathset dir="${buildclassesdir}" />
@@ -98,59 +99,105 @@
      </bind>
    </target>
 
-
-   <target name="jar" depends="bind" description="jar">
-      <jar destfile="${builddir}/ashkelon.jar" basedir="${buildclassesdir}" 
-        includes="org/ashkelon/**/*" />
+   <target name="jar-model" description="jar core model" depends="bind">
+      <jar destfile="${builddir}/ashkelon-model.jar" 
+           basedir="${buildclassesdir}"
+           includes="org/ashkelon/*,org/ashkelon/util/*,org/ashkelon/db/*,org/ashkelon/vcs/*" />
    </target>
 
-   <target name="war" depends="jar" description="war">
+   <target name="jar-manager" depends="jar-model" description="jar">
+      <jar destfile="${builddir}/ashkelon-mgr.jar" 
+           basedir="${buildclassesdir}" 
+           includes="org/ashkelon/manager/**/*" />
+   </target>
+
+   <target name="jar-taglib" depends="compile" description="jar custom taglib">
+      <jar destfile="${builddir}/ashkelon-taglib.jar"
+           basedir="${buildclassesdir}"
+           includes="org/ashkelon/taglibs/**/*" />
+   </target>
+   
+   <target name="jar-webapp" description="jar web app code" depends="jar-model,jar-taglib">
+      <jar destfile="${builddir}/ashkelon-webapp.jar"
+           basedir="${buildclassesdir}"
+           includes="org/ashkelon/pages/**/*" />
+      <copy file="${etcdir}/web.xml" tofile="${builddir}/web.xml" filtering="true">
+        <filterset>
+          <filter token="SOURCEPATH" value="${env.SOURCEPATH}" />
+        </filterset>
+      </copy> 
+   </target>
+
+   <target name="war" depends="jar-webapp" description="produce war file for webapp">
       <war destfile="${distdir}/ashkelon.war" webxml="${builddir}/web.xml" basedir="htdocs">
-         <lib dir="${libdir}" excludes="servlet.jar" />
+         <lib dir="${libwebdir}" excludes="servlet.jar" />
          <lib dir="${dbdir}" includes="*.jar" />
-         <lib dir="${builddir}" includes="ashkelon.jar" />
+         <lib dir="${builddir}" includes="ashkelon-model.jar" />
+         <lib dir="${builddir}" includes="ashkelon-taglib.jar" />
+         <lib dir="${builddir}" includes="ashkelon-webapp.jar" />
          <webinf dir="${etcdir}/tld" includes="*.tld" />
       </war>
    </target>
 
 
-  <!-- ======================== -->
-  <!-- SECTION:  Tomcat Related
-
-  <taskdef name="tomcat-reload" classname="org.apache.catalina.ant.ReloadTask" />
-  <taskdef name="tomcat-install" classname="org.apache.catalina.ant.InstallTask" />
-  <taskdef name="tomcat-remove" classname="org.apache.catalina.ant.RemoveTask" />
-  <taskdef name="tomcat-start" classname="org.apache.catalina.ant.StartTask" />
-  <taskdef name="tomcat-stop" classname="org.apache.catalina.ant.StopTask" />
-  <taskdef name="tomcat-list" classname="org.apache.catalina.ant.ListTask" />
-
-  <property name="tomcaturl" value="http://localhost:8080/manager" />
-  <property name="tomcatusr" value="admin" />
-  <property name="tomcatpwd" value="admin" />
-  <property name="contextpath" value="/ashkelon" />
-
-  <target name="install-war" depends="war" description="install war file to catalina">
-    <tomcat-install url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" path="${contextpath}" 
-       war="file://${distdir}/ashkelon.war" />
-  </target>
-
-  <target name="reinstall-war" depends="war" description="reinstall war file to catalina">
-    <tomcat-remove url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" path="${contextpath}" />
-    <tomcat-install url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" path="${contextpath}" 
-       war="file://${distdir}/ashkelon.war" />
-  </target>
-
-  <target name="listwebapps" description="list webapps deployed to tomcat">
-    <tomcat-list url="${tomcaturl}" username="${tomcatusr}" password="${tomcatpwd}" />
-  </target>
-
-  -->
-   
    <target name="ear" depends="war" description="packages ear file">
       <ear destfile="${distdir}/ashkelon.ear" appxml="${etcdir}/application.xml" basedir="${distdir}" includes="ashkelon.war" />
    </target>
 
-  
+
+   
+   <target name="setup-webapp" depends="war"
+           description="setup web application directory structure">
+      <mkdir dir="${webapp.dir}" />
+      <unjar src="${distdir}/ashkelon.war" dest="${webapp.dir}" />
+      <delete dir="${webapp.dir}/basic" />
+      <delete dir="${webapp.dir}/xul" />
+      <delete dir="${webapp.dir}/templates" />
+      <delete dir="${webapp.dir}/htc" />
+   </target>
+   
+   <target name="jspc" description="compile jsp's" depends="setup-webapp">
+      <taskdef classname="org.apache.jasper.JspC" name="jasper2" >
+        <classpath id="jspc.classpath">
+          <pathelement location="${java.home}/../lib/tools.jar"/>
+          <fileset dir="${tomcat.home}/bin">
+            <include name="*.jar"/>
+          </fileset>
+          <fileset dir="${tomcat.home}/server/lib">
+            <include name="*.jar"/>
+          </fileset>
+          <fileset dir="${tomcat.home}/common/lib">
+            <include name="*.jar"/>
+          </fileset>
+          <fileset dir="${webapp.dir}/WEB-INF/lib" includes="*.jar" />
+        </classpath>
+      </taskdef>
+
+      <jasper2 validateXml="false"
+               uriroot="${webapp.dir}"
+               outputDir="${gendir}" />
+   </target>
+   
+  <target name="compile-jsp" description="compile jsp" depends="jspc">
+    <javac destdir="${buildclassesdir}"
+           optimize="off"
+           debug="on" failonerror="false"
+           srcdir="${gendir}" 
+           excludes="**/*.smap">
+      <classpath>
+        <pathelement location="${tomcat.home}/common/classes"/>
+        <fileset dir="${tomcat.home}/common/lib" includes="*.jar" />
+        <pathelement location="${tomcat.home}/shared/classes"/>
+        <fileset dir="${tomcat.home}/shared/lib" includes="*.jar" />
+        <fileset dir="${tomcat.home}/bin" includes="*.jar" /> 
+        <fileset dir="${webapp.dir}/WEB-INF/lib" includes="*.jar" />
+        <pathelement location="${webapp.dir}/WEB-INF/classes" />
+      </classpath>
+      <include name="**" />
+      <exclude name="tags/**" />
+    </javac>
+  </target>
+   
   <!-- ================================== -->
   <!-- SECTION:  Documentation Production -->
 
@@ -158,7 +205,7 @@
   <property name="docdir" location="doc" />
 
   <property name="ant.docbook.styler.dir" 
-            location="/Users/eitan/devel/ant-docbook-styler" />
+            location="/home/eitan/devel/ant-docbook-styler" />
   <property name="ant.docbook.styler"
             location="${ant.docbook.styler.dir}/ant-build-docbook.xml" />
 

@@ -115,9 +115,19 @@ tr.highlight
 {
   font-style: italic;
 }
+.message-box
+{
+   border: thin solid gray;
+   margin: 0.5em 3em;
+   padding: 0.5em;
+   background-color: lavender;
+   font-style: italic;
+}
+
 .message:before
 {
- /* i can't recall why i did this?:  content: <B>&gt;</B>; */
+  /* careful here:  need to ensure message classes are always displayed inline
+  content: "<b>&gt;</b>;" */
 }
 
 fieldset

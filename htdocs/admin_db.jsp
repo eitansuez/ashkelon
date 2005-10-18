@@ -20,7 +20,7 @@ Date: March 2001
 <html>
 <head>
   <title>Admin Page</title>
-  <jsp:include page="includes.html" flush="true" />
+  <jsp:include page="includes.jsp" flush="true" />
 </head>
 
 <body>

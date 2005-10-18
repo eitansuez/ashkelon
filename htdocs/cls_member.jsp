@@ -1,4 +1,5 @@
 <%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
@@ -77,7 +78,9 @@
         mtype = field.getMemberTypeName();
         %>
     	<li>
-        <a href="member.main.do?member_id=<%=field.getId()%>" title="<%=descr%>"><span class="<%=mtype%> <%=field.getModifiers()%> <%=field.isDeprecated() ? "deprecated" : ""%>"><%=field.getName()%></span></a>
+        <u2d:link to="member" elem="<%=field%>" title="<%=descr%>">
+           <span class="<%=mtype%> <%=field.getModifiers()%> <%=field.isDeprecated() ? "deprecated" : ""%>"><%=field.getName()%></span>
+        </u2d:link>
       </li>
   <% } %>
     </ol>
@@ -101,7 +104,9 @@
         descr = HtmlUtils.cleanAttributeText(descr);
         %>
     	<li>
-        <a href="member.main.do?member_id=<%=constructor.getId()%>" title="<%=descr%>"><span class="<%=mtype%>"><%=constructor.getName()%><%=constructor.getSignature()%></span></a>
+        <u2d:link to="member" elem="<%=constructor%>" title="<%=descr%>">
+           <span class="<%=mtype%>"><%=constructor.getName()%><%=constructor.getSignature()%></span>
+        </u2d:link>
       </li>
   <% } %>
     </ol>
@@ -136,11 +141,15 @@
         %>
     	<li>
         <% if (!returnClass.equals("")) { // return type info %>
-          <a href="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><span class="<%=returnClass%>"><%=returninfo%></span></a>
+          <u2d:link to="class" elem="<%=method.getReturnType()%>">
+             <span class="<%=returnClass%>"><%=returninfo%></span>
+          </u2d:link>
         <% } else { %>
           <span class="<%=returnClass%>"><%=returninfo%></span>
         <% } // end if %>
-        <a href="member.main.do?member_id=<%=method.getId()%>" title="<%=descr%>"><span class="<%=mtype%> <%=method.getModifiers()%> <%=(method.isDeprecated()) ? "deprecated" : ""%>"><%=method.getName()%><%=method.getSignature()%></span></a>
+        <u2d:link to="member" elem="<%=method%>" title="<%=descr%>">
+           <span class="<%=mtype%> <%=method.getModifiers()%> <%=(method.isDeprecated()) ? "deprecated" : ""%>"><%=method.getName()%><%=method.getSignature()%></span>
+        </u2d:link>
       </li>
   <% } %>
     </ol>

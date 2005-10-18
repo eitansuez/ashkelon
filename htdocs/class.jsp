@@ -1,5 +1,6 @@
-<%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="main class view" import="org.ashkelon.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 
 <%
@@ -11,13 +12,13 @@
 <html>
 <head>
   <title><%=cls.getName()%> at a glance</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body onLoad="configureExpandCollapse();loadCookies();initTabs('cls_member', '<%=cls.getName()%>');cleanTitles('span');cleanTitles();"
       onUnload="saveCookies();">
       
-  <jsp:include page="main_header.jsp" flush="true"/>
+  <u2d:include page="main_header.jsp" dynamic="true" />
   <jsp:include page="cls_header_clt.jsp" flush="true"/>
   
   <div class="pagebody">
@@ -50,8 +51,8 @@
       <jsp:include page="cls_tree.jsp" flush="true"/>
     </div>
   
-    <div id="cls_xref" style="dislay: none;">
-      <jsp:include page="cls_xref.jsp" flush="true"/>
+    <div id="cls_xref" style="display: none;">
+      <u2d:include page="cls_xref.jsp" dynamic="true"/>
     </div>
     
     <jsp:include page="doc_footer.jsp" flush="true" />

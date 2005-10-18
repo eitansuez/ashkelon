@@ -23,7 +23,7 @@
 
 Package: <A HREF="pkg.main.do?pkg_id=<%=member.getPackage().getId()%>"><%=member.getPackage().getName()%></A>
 |
-Class: <A HREF="cls.main.do?cls_id=<%=member.getContainingClass().getId()%>"><%=member.getContainingClass().getName()%></A>
+Class: <A HREF="cls.main.do?id=<%=member.getContainingClass().getId()%>"><%=member.getContainingClass().getName()%></A>
   
      <% if ("field".equals(membertypename)) { %>
       <jsp:include page="member_field.jsp" flush="true"/>

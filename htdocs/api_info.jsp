@@ -1,4 +1,4 @@
-<%@ page info="component" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="component" import="org.ashkelon.*" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <%

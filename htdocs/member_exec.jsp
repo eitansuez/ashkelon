@@ -135,7 +135,7 @@ Date: March 2001
    <span title="<%=HtmlUtils.cleanAttributeText(method.getReturnDescription())%>">
    <% if (method.getReturnType() != null && method.getReturnType().getId() > 0)
       { %>
-     <a href="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></a><%=dim%>
+     <a href="cls.main.do?id=<%=method.getReturnType().getId()%>"><%=name%></a><%=dim%>
    <% } else 
       { %>
      <%=name%><%=dim%>
@@ -159,7 +159,7 @@ Date: March 2001
    <span title="<%=HtmlUtils.cleanAttributeText(param.getDescription())%>">
    <% if (param.getType()!=null && param.getType().getId()>0)
       { %>
-     <a href="cls.main.do?cls_id=<%=param.getType().getId()%>"><%=typeName%></a><%=dimStr%> <%=param.getName()%>
+     <a href="cls.main.do?id=<%=param.getType().getId()%>"><%=typeName%></a><%=dimStr%> <%=param.getName()%>
    <% } else 
       { %>
      <%=typeName%><%=dimStr%> <%=param.getName()%>
@@ -189,7 +189,7 @@ Date: March 2001
           if (ex.getException()!=null && ex.getException().getId()>0)
           {
           %>
-           <a href="cls.main.do?cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></a>
+           <a href="cls.main.do?id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></a>
           <%
           } else
           {

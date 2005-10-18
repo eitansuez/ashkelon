@@ -20,7 +20,7 @@
 <% if (field.getType()!=null && field.getType().getId()>0)
   {
   %>
-   <%=field.getModifiers()%> <A HREF="cls.main.do?cls_id=<%=field.getType().getId()%>"><%=typeName%></A><%=typeDim%> <%=field.getName()%>
+   <%=field.getModifiers()%> <A HREF="cls.main.do?id=<%=field.getType().getId()%>"><%=typeName%></A><%=typeDim%> <%=field.getName()%>
 <%}
   else
   { %>

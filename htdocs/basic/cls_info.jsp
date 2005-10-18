@@ -68,7 +68,7 @@ Date: March 2001
         if (isself)
           tree += "<B>";
         if (linkable)
-          tree += "<A HREF=\"cls.main.do?cls_id="+clsnode.getId()+"\">";
+          tree += "<A HREF=\"cls.main.do?id="+clsnode.getId()+"\">";
         tree += clsnode.getQualifiedName();
         if (linkable)
           tree += "</A>";
@@ -103,7 +103,7 @@ Date: March 2001
      {
        impl_interface = (ClassType) cls.getInterfaces().get(i); %>
     <% if (impl_interface.getId()>0) { %>
-    <A HREF="cls.main.do?cls_id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
+    <A HREF="cls.main.do?id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
     <% } else { %>
     <%=impl_interface.getName()%>
     <% } %>
@@ -120,7 +120,7 @@ Date: March 2001
 -->
 
 <% if (cls.isInnerClass()) { %>
-<DT><B>Enclosing class:</B> <DD><A HREF="cls.main.do?cls_id=<%=cls.getContainingClass().getId()%>"><%=JDocUtil.unqualify(cls.getContainingClassName())%></A></DD>
+<DT><B>Enclosing class:</B> <DD><A HREF="cls.main.do?id=<%=cls.getContainingClass().getId()%>"><%=JDocUtil.unqualify(cls.getContainingClassName())%></A></DD>
 </DL>
 <% } %>
 
@@ -135,7 +135,7 @@ Date: March 2001
       
       <% if (cls.getClassType() != ClassType.INTERFACE) { %>
         <% if (cls.getSuperClass() != null && cls.getSuperClass().getId()>0) { %>
-	       extends <A HREF="cls.main.do?cls_id=<%=cls.getSuperClass().getId()%>"><%=cls.getSuperClassName()%></A>
+	       extends <A HREF="cls.main.do?id=<%=cls.getSuperClass().getId()%>"><%=cls.getSuperClassName()%></A>
         <% } else { %>
 	       extends <%=cls.getSuperClassName()%>
         <% } %>
@@ -147,7 +147,7 @@ Date: March 2001
          {
            impl_interface = (ClassType) cls.getInterfaces().get(i); %>
         <% if (impl_interface.getId()>0) { %>
-        <A HREF="cls.main.do?cls_id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
+        <A HREF="cls.main.do?id=<%=impl_interface.getId()%>"><%=impl_interface.getName()%></A>
         <% } else { %>
         <%=impl_interface.getName()%>
         <% } %>

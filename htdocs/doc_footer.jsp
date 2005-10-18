@@ -93,7 +93,7 @@ if (request.getAttribute("execmember") != null)
        {
          refdoctypename = DocInfo.DOCTYPES[refdoctype-1];
      %>
-      <a href="<%=refdoctypename%>.main.do?<%=refdoctypename%>_id=<%=refDoc.getId()%>"><%=label%></a>
+      <a href="<%=refdoctypename%>.main.do?id=<%=refDoc.getId()%>"><%=label%></a>
     <% } else { %>
       <%=label%>
     <% } %>

@@ -60,7 +60,7 @@
 
    <% if (method.getReturnType() != null && method.getReturnType().getId() > 0)
       { %>
-     <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
+     <A HREF="cls.main.do?id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
    <% } else 
       { %>
      <%=name%><%=dim%>
@@ -81,7 +81,7 @@
 
    <% if (param.getType()!=null && param.getType().getId()>0)
       { %>
-     <A HREF="cls.main.do?cls_id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
+     <A HREF="cls.main.do?id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
    <% } else 
       { %>
      <%=typeName%><%=dimStr%> <%=param.getName()%>
@@ -110,7 +110,7 @@
           if (ex.getException()!=null && ex.getException().getId()>0)
           {
           %>
-           <A HREF="cls.main.do?cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A>
+           <A HREF="cls.main.do?id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A>
           <%
           } else
           {

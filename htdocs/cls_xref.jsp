@@ -30,18 +30,18 @@ Date: March 2001
 <p style="font-size: larger; font-weight: bold;">Which cross references might you be interested in?</P>
 
 <ul>
-  <li><a href="cls.xref.field.do?cls_id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
-  <LI><a href="cls.xref.returnedby.do?cls_id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
-  <LI><a href="cls.xref.passedto.do?cls_id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
+  <li><a href="cls.xref.field.do?id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
+  <LI><a href="cls.xref.returnedby.do?id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
+  <LI><a href="cls.xref.passedto.do?id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
   <%if (cls.getClassType()==ClassType.EXCEPTION_CLASS) { %>
-  <LI><a href="cls.xref.thrownby.do?cls_id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
+  <LI><a href="cls.xref.thrownby.do?id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
   <%} %>
   <%if (cls.getClassType()!=ClassType.INTERFACE) { %>
-  <LI><a href="cls.xref.subclasses.do?cls_id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
-  <LI><a href="cls.xref.descendents.do?cls_id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
+  <LI><a href="cls.xref.subclasses.do?id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
+  <LI><a href="cls.xref.descendents.do?id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
   <%} else {%>
-  <LI><a href="cls.xref.implementedby.do?cls_id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
-  <LI><a href="cls.xref.extendedby.do?cls_id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
+  <LI><a href="cls.xref.implementedby.do?id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
+  <LI><a href="cls.xref.extendedby.do?id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
   <%} %>
 </ul>
 
@@ -93,7 +93,7 @@ else
 <% if (request.getAttribute("prev-cursor-position") != null) { %>
 <td align="left">
   <form method="get" action="cls.xref.<%=keys[i-1]%>.do">
-   <input type="hidden" name="cls_id" value="<%=cls.getId()%>" />
+   <input type="hidden" name="id" value="<%=cls.getId()%>" />
    <input type="hidden" name="cursor-position" value="<%= request.getAttribute("prev-cursor-position") %>" />
    <button type="submit">Previous</button>
   </form>
@@ -102,7 +102,7 @@ else
 <% if (request.getAttribute("next-cursor-position") != null) { %>
 <td align="right">
   <form method="get" action="cls.xref.<%=keys[i-1]%>.do">
-   <input type="hidden" name="cls_id" value="<%=cls.getId()%>" />
+   <input type="hidden" name="id" value="<%=cls.getId()%>" />
    <input type="hidden" name="cursor-position" value="<%= request.getAttribute("next-cursor-position") %>" />
    <button type="submit">Next</button>
   </form>

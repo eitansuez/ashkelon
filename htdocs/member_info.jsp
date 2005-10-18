@@ -1,12 +1,12 @@
-<%@ page info="member information component" import="org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="member information component" import="org.ashkelon.*" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
-<%-- SECTION: COMMENTS/DOCUMENTATION
+<%--
 Copyright UptoData Inc 2001
 Author: Eitan Suez
 Date: March 2001
 --%>
 
-<%-- SECTION: COMPONENT CODE --%>
 <%
   Member member = (Member) request.getAttribute("member");
   ClassType cls = member.getContainingClass();
@@ -17,9 +17,8 @@ Date: March 2001
 %>
 
 
-<%-- SECTION: COMPONENT TEMPLATE --%> 
 <p style="margin-bottom: 10px;">
-<%= member.getModifiers() %> <a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><span class="package"><%=pkg.getName()%></span></a>.<a href="cls.main.do?cls_id=<%=cls.getId()%>"><span class="<%=cls_type%>"><%=cls.getName()%></span></a>.<span class="<%=member.getMemberTypeName()%>" style="font-size: large; font-weight: bold;"><%=member.getName()%> <% if (!"field".equals(membertypename)) { %> () <% } %> </span>
+<%= member.getModifiers() %> <u2d:link to="package" elem="<%=pkg%>"><span class="package"><%=pkg.getName()%></span></u2d:link>.<u2d:link to="class" elem="<%=cls%>"><span class="<%=cls_type%>"><%=cls.getName()%></span></u2d:link>.<span class="<%=member.getMemberTypeName()%>" style="font-size: large; font-weight: bold;"><%=member.getName()%> <% if (!"field".equals(membertypename)) { %> () <% } %> </span>
 </p>
 
 <!--

@@ -38,18 +38,18 @@ Date: March 2001
 <P STYLE="font-size: larger;"><B>Which cross references might you be interested in?</B></P>
 
 <UL>
-  <LI><A HREF="index.html?cmd=cls.xref.field&cls_id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.returned+by&cls_id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.passed+to&cls_id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
+  <LI><A HREF="index.html?cmd=cls.xref.field&id=<%=cls.getId()%>">fields</A>: Fields of type <%=name%></LI>
+  <LI><A HREF="index.html?cmd=cls.xref.returned+by&id=<%=cls.getId()%>">returned by</A>: Methods whose return type are <%=name%></LI>
+  <LI><A HREF="index.html?cmd=cls.xref.passed+to&id=<%=cls.getId()%>">passed to</A>: Method or constructor parameters of type <%=name%></LI>
   <%if (cls.getClassType()==ClassType.EXCEPTION_CLASS) { %>
-  <LI><A HREF="index.html?cmd=cls.xref.thrown+by&cls_id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
+  <LI><A HREF="index.html?cmd=cls.xref.thrown+by&id=<%=cls.getId()%>">thrown by</A>: Methods or constructors that throw <%=name%>s</LI>
   <%} %>
   <%if (cls.getClassType()!=ClassType.INTERFACE) { %>
-  <LI><A HREF="index.html?cmd=cls.xref.subclasses&cls_id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.descendents&cls_id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
+  <LI><A HREF="index.html?cmd=cls.xref.subclasses&id=<%=cls.getId()%>">subclasses</A>: Classes that extend <%=name%></LI>
+  <LI><A HREF="index.html?cmd=cls.xref.descendents&id=<%=cls.getId()%>">descendents</A>: All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)</LI>
   <%} else {%>
-  <LI><A HREF="index.html?cmd=cls.xref.implemented+by&cls_id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
-  <LI><A HREF="index.html?cmd=cls.xref.extended+by&cls_id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
+  <LI><A HREF="index.html?cmd=cls.xref.implemented+by&id=<%=cls.getId()%>">implemented by</A>: Classes that implement <%=name%></LI>
+  <LI><A HREF="index.html?cmd=cls.xref.extended+by&id=<%=cls.getId()%>">extended by</A>: Interfaces extended by <%=name%></LI>
   <%} %>
 </UL>
 

@@ -75,7 +75,7 @@ Version: <%=version%>
       <TD WIDTH="20"></TD>
       <% if (cls.getClassType() != ClassType.INTERFACE) { %>
         <% if (cls.getSuperClass() != null && cls.getSuperClass().getId()>0) { %>
-	       <TD>Extends <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=cls.getSuperClass().getId()%>"><SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></A></TD>
+	       <TD>Extends <A HREF="index.html?cmd=cls.main&amp;id=<%=cls.getSuperClass().getId()%>"><SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></A></TD>
         <% } else { %>
 	       <TD>Extends <SPAN CLASS="superclass"><%=cls.getSuperClassName()%></SPAN></TD>
         <% } %>
@@ -91,7 +91,7 @@ Version: <%=version%>
              impl_interface = (ClassType) cls.getInterfaces().get(i);
         %>
           <% if (impl_interface.getId()>0) { %>
-	         <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=impl_interface.getId()%>"><SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN></A>
+	         <A HREF="index.html?cmd=cls.main&amp;id=<%=impl_interface.getId()%>"><SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN></A>
           <% } else { %>
 	         <SPAN CLASS="interface"><%=impl_interface.getName()%></SPAN>
           <% } %>

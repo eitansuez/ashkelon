@@ -1,4 +1,5 @@
-<%@ page info="tabbed heading" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="tabbed heading" import="java.util.*" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%
   Map tabs = new HashMap();
@@ -10,11 +11,6 @@
   tabs.put("authors", "Authors");
   
   String[] cmds = {"apis", "pkg", "search", "idx", "stats.general", "authors"};
-
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
-  String area = "";
-  if (cmd != null)
-    area = StringUtils.split(cmd,".")[0];
 %>
 
 <style type="text/css">
@@ -42,49 +38,7 @@
 <div style="clear: both;"></div>
 </div>
 
-
-<%-- SECTION:  NAVIGATION TRAIL --%>
-<% String style = request.getParameter("style"); %>
-<% if (style==null || !style.equals("simple")) { %>
-
-<%
-  LinkedList trail = (LinkedList) session.getAttribute("trail");
- %>
-
-<div style="background-color: beige; padding: 3 3 3 3; border-bottom: 1px solid black;" title="Navigation Trail">
-  <%
-  String[] uriLabelPair = null;
-  String uri, caption, itemtype;
-  for (int i=0; i<trail.size()-1; i++)
-  {
-    if (i==0) out.println("Trail: ");
-    uriLabelPair = (String[]) trail.get(i);
-    uri = uriLabelPair[0];
-    caption = uriLabelPair[1];
-    itemtype = uriLabelPair[2];
-  %>
-  <% if (StringUtils.isBlank(itemtype)) { %>
-    <a href="<%=uri%>"><%=caption%></a>
-  <% } else { %>
-    <a href="<%=uri%>"><span class="<%=itemtype%>"><%=caption%></span></a>
-  <% } // end if %>
-  
-    <% if (i < trail.size() - 2) out.println("<img src=\""+request.getContextPath()+"/images/arrow_rt.gif\">"); %>
-  <% } %>
-
-  <%-- 
-    <form method="GET" action="<%=request.getContextPath()%>/trail.reset.do">
-  <td align="right">
-    <% if (trail.size() > 3) { %>
-      <button type="submit" class="footer" title="Reset navigation trail" STYLE="background-color: #dddddd;">Reset Trail</button>
-    <% } %>
-  </td>
-    </form>
-   --%>
-</div>
-
-<% } %>
-
+<u2d:include page="trail.jsp" dynamic="true" />
 
 <div style="float: left;">
  <img src="images/logo32.gif" style="padding: 0.5em 1.5em; margin-top: 0; vertical-align: top;" />
@@ -93,10 +47,12 @@
 <div style="float: right;">
   <jsp:include page="legend.html" />
 </div>
+
+
 <div style="float: right;">
-  <% if (!("/search.jsp".equals(request.getServletPath()))) { %>
-    <jsp:include page="search_form_plug.jsp" flush="true" />
-  <% } %>
+  <u2d:include page="search_form_plug.jsp" dynamic="true" />
 </div>
+
+
 <div style="clear: both;">&nbsp;</div>
 

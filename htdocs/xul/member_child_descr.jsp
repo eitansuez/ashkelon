@@ -45,7 +45,7 @@ String pkgName = containingClass.getPackage().getName();
    {
 %>
   <P>
-  <B>Returns</B> <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>: <%=descr%>
+  <B>Returns</B> <A HREF="index.html?cmd=cls.main&amp;id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>: <%=descr%>
   </P>
 <%
    } else {
@@ -84,7 +84,7 @@ String pkgName = containingClass.getPackage().getName();
             if (param.getType()!=null && param.getType().getId()>9)
             {
          %>
-                <LI><A HREF="index.html?cmd=cls.main&amp;cls_id=<%=param.getType().getId()%>"><B><%=typeName%></B></A><%=dimStr%> <%=param.getName()%>: <%=param.getDescription()%></LI>
+                <LI><A HREF="index.html?cmd=cls.main&amp;id=<%=param.getType().getId()%>"><B><%=typeName%></B></A><%=dimStr%> <%=param.getName()%>: <%=param.getDescription()%></LI>
          <%
             } else 
             {
@@ -117,7 +117,7 @@ String pkgName = containingClass.getPackage().getName();
     if (ex.getException()!=null && ex.getException().getId()>9)
     {
     %>
-    <LI><A HREF="index.html?cmd=cls.main&cls_id=<%=ex.getException().getId()%>"><B><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></B></A>: <%=ex.getDescription()%></LI>
+    <LI><A HREF="index.html?cmd=cls.main&id=<%=ex.getException().getId()%>"><B><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></B></A>: <%=ex.getDescription()%></LI>
     <%
     } else
     {

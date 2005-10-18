@@ -1,5 +1,6 @@
-<%@ page info="main api view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="main api view" import="java.util.*,org.ashkelon.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 
 <%
@@ -11,9 +12,9 @@
 <html>
 <head>
   <title><%=api.getName()%></title>
-  <jsp:include page="includes.html" flush="true" />
+  <jsp:include page="includes.jsp" flush="true" />
 
-<style>
+<style type="text/css">
 #api-pkglist
 {
   padding: 0;
@@ -43,7 +44,7 @@ table#api-pkgs td
 <body onLoad="loadCookies();cleanTitles();togglePage('api_member', 'Packages');"
    onUnload="saveCookies();">
    
-<jsp:include page="main_header.jsp" flush="true" />
+<u2d:include page="main_header.jsp" dynamic="true" />
 <jsp:include page="api_header.jsp" flush="true" />
 
 <div class="pagebody">
@@ -63,7 +64,7 @@ table#api-pkgs td
     <jsp:include page="api_info.jsp" flush="true" />
 
     <div style="float: right;">
-      <button id="toggleBtn" onClick="toggleHeightMode('api-pkglist', this, '330px');"><img src="images/expand.jpg" /></button>
+      <button id="toggleBtn" onClick="toggleHeightMode('api-pkglist', this, '330px');"><u2d:imgref ref="images/expand.jpg" /></button>
     </div>
 
     <div class="api" id="api-pkglist-caption"><%=api.getName()%> Packages</div>
@@ -80,9 +81,9 @@ table#api-pkgs td
               %>
             <tr <% if (i%2==1) { %> bgcolor="beige" <% } %>>
               <td>
-                <a href="pkg.main.do?pkg_id=<%=pkg.getId()%>">
-                  <span class="package"><%=pkg.getName()%></span>
-                 </a>
+                <u2d:link to="package" elem="<%=pkg%>">
+                   <span class="package"><%=pkg.getName()%></span>
+                </u2d:link>
               </td>
               <td>
                 <%= pkg.getSummaryDescription() %>

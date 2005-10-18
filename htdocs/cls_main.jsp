@@ -10,7 +10,7 @@ Date: March 2001
 %>
 
 <div style="float: right;">
-  <button id="toggleBtn" onClick="toggleHeightMode('class-description', this, '300px');"><img src="images/expand.jpg" /></button>
+  <button id="toggleBtn" onClick="toggleHeightMode('class-description', this, '300px');"><u2d:imgref ref="images/expand.jpg" /></button>
 </div>
     
 <div id="class-description" class="scroll-description" style="clear: right;">

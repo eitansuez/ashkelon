@@ -1,30 +1,25 @@
-<%@ page info="main class view" import="java.util.*,java.io.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*,org.ashkelon.pages.*"%>
+<%@ page info="main class view" import="java.io.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-
-<%
-  String clsName = (String) request.getAttribute("cls_name");
-  File sourceFile = (File) request.getAttribute("source_file");
-  String htmlFile = (String) request.getAttribute("html_file");
- %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
 <html>
 <head>
-  <title>Source file: <%=clsName%></title>
-  <jsp:include page="includes.html" flush="true"/>
+  <title>Source file: <c:out value="${name}" /></title>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body>
-  <jsp:include page="main_header.jsp" flush="true"/>
+  <u2d:include page="main_header.jsp" dynamic="true" />
   
   <div class="pagebody">
 
+  <% File sourceFile = (File) request.getAttribute("source_file"); %>
   <% if (sourceFile == null || !sourceFile.exists()) { %>
-    <p class="error-msg">Unable to locate source file for class <%=clsName%></p>
+    <p class="error-msg">Unable to locate source file for class <c:out value="${name}" /></p>
   <% } else { %>
-    <iframe class="source-box" src="<%=htmlFile%>" />
- <% } %>
+    <iframe class="source-box" src="<c:out value="${html_file}" />" />
+  <% } %>
   
   </div> <!-- end page body -->
   

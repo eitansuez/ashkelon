@@ -128,7 +128,7 @@ Date: March 2001
     <TR>
     	<TD>
         <% if (!returnClass.equals("")) { // return type info %>
-          <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=method.getReturnType().getId()%>"><SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN></A>
+          <A HREF="index.html?cmd=cls.main&amp;id=<%=method.getReturnType().getId()%>"><SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN></A>
         <% } else { %>
           <SPAN CLASS="<%=returnClass%>"><%=returninfo%></SPAN>
         <% } // end if %>

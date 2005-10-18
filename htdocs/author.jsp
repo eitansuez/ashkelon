@@ -13,7 +13,7 @@
 <html>
 <head>
   <title>Author: <%=author.getName()%></title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
    {
      cls = (ClassType) classes.get(i);
 %>
-<a href="cls.main.do?cls_id=<%=cls.getId()%>" class="<%=cls.getClassTypeName()%> %>"><%=cls.getQualifiedName()%></a><% if (i + 1 < classes.size()) { %>, <% } %>
+<a href="cls.main.do?id=<%=cls.getId()%>" class="<%=cls.getClassTypeName()%> %>"><%=cls.getQualifiedName()%></a><% if (i + 1 < classes.size()) { %>, <% } %>
 <% } %>
 </div>
 

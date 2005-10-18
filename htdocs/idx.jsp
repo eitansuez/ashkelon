@@ -6,7 +6,7 @@
 <html>
 <head>
   <title>Ashkelon Index</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body onLoad="loadCookies();" onUnload="saveCookies();">

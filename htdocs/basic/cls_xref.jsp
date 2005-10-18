@@ -36,7 +36,7 @@ Date: March 2001
 
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.field.do?cls_id=<%=cls.getId()%>#cls_xref">fields</A></B>
+        <B><A HREF="cls.xref.field.do?id=<%=cls.getId()%>#cls_xref">fields</A></B>
       </TD>
       <TD>
         Fields of type <%=name%>
@@ -45,7 +45,7 @@ Date: March 2001
   
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.returnedby.do?cls_id=<%=cls.getId()%>#cls_xref">returned by</A></B>
+        <B><A HREF="cls.xref.returnedby.do?id=<%=cls.getId()%>#cls_xref">returned by</A></B>
       </TD>
       <TD>
         Methods whose return type are <%=name%>
@@ -54,7 +54,7 @@ Date: March 2001
     
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.passedto.do?cls_id=<%=cls.getId()%>#cls_xref">passed to</A></B>
+        <B><A HREF="cls.xref.passedto.do?id=<%=cls.getId()%>#cls_xref">passed to</A></B>
       </TD>
       <TD>
         Method or constructor parameters of type <%=name%>
@@ -65,7 +65,7 @@ Date: March 2001
 
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.thrownby.do?cls_id=<%=cls.getId()%>#cls_xref">thrown by</A></B>
+        <B><A HREF="cls.xref.thrownby.do?id=<%=cls.getId()%>#cls_xref">thrown by</A></B>
       </TD>
       <TD>
         Methods or constructors that throw <%=name%>s
@@ -78,7 +78,7 @@ Date: March 2001
 
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.subclasses.do?cls_id=<%=cls.getId()%>#cls_xref">subclasses</A></B>
+        <B><A HREF="cls.xref.subclasses.do?id=<%=cls.getId()%>#cls_xref">subclasses</A></B>
       </TD>
       <TD>
         Classes that extend <%=name%>
@@ -87,7 +87,7 @@ Date: March 2001
 
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.descendents.do?cls_id=<%=cls.getId()%>#cls_xref">descendents</A></B>
+        <B><A HREF="cls.xref.descendents.do?id=<%=cls.getId()%>#cls_xref">descendents</A></B>
       </TD>
       <TD>
         All subclasses that extend <%=name%> (i.e. both direct & indicrect subclasses)
@@ -98,7 +98,7 @@ Date: March 2001
 
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.implementedby.do?cls_id=<%=cls.getId()%>#cls_xref">implemented by</A></B>
+        <B><A HREF="cls.xref.implementedby.do?id=<%=cls.getId()%>#cls_xref">implemented by</A></B>
       </TD>
       <TD>
         Classes that implement <%=name%>        
@@ -107,7 +107,7 @@ Date: March 2001
 
     <TR BGCOLOR="white" CLASS="TableRowColor">
     	<TD ALIGN="RIGHT">
-        <B><A HREF="cls.xref.extendedby.do?cls_id=<%=cls.getId()%>#cls_xref">extended by</A></B>
+        <B><A HREF="cls.xref.extendedby.do?id=<%=cls.getId()%>#cls_xref">extended by</A></B>
       </TD>
       <TD>
         Interfaces extended by <%=name%>        

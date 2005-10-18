@@ -1,4 +1,5 @@
-<%@ page info="main package view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="main package view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.*"%>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%
   JPackage pkg = (JPackage) request.getAttribute("pkg");
@@ -52,7 +53,7 @@
           %>
         <tr>
         	<td>
-            <a href="cls.main.do?cls_id=<%=c.getId()%>"><span class="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>" title="<%=title%>"><%=c.getName()%></span></a>
+            <u2d:link to="class" elem="<%=c%>"><span class="<%=cls_type%> <%=c.getModifiers()%> <%=c.isDeprecated() ? "deprecated" : ""%>" title="<%=title%>"><%=c.getName()%></span></u2d:link>
           </td>
         </tr>
     <%

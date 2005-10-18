@@ -12,7 +12,7 @@
     <value name="download_url" field="downloadURL" />
     <value name="release_date" field="releaseDate" />
     <value name="version" field="version" />
-    <collection name="packages" field="packagenames">
+    <collection name="packages" field="packagenames" item-type="java.lang.String">
       <value name="package" />
     </collection>
     <structure name="repository" field="repository" usage="optional">
@@ -65,7 +65,6 @@
     <value name="maxtraillength" field="maxTrailLength" />
     <value name="tracelevel" field="traceLevel" />
     <value name="tracefile" field="traceFile" />
-    <value name="inline-tag-resolver" field="inlineTagResolver" />
     <value name="pagesize" field="pageSize" />
     <collection name="command-list" field="commandList" />
   </mapping>

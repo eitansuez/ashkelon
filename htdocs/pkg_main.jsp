@@ -1,4 +1,5 @@
-<%@ page info="main package view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="main package view" import="java.util.*,org.ashkelon.*"%>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%
   JPackage pkg = (JPackage) request.getAttribute("pkg");
@@ -16,7 +17,7 @@
 <jsp:include page="pkg_info.jsp" flush="true" />
 
 <div style="float: right;">
-  <button id="toggleBtn" onClick="toggleHeightMode('pkg-description', this, '300px');"><img src="images/expand.jpg" /></button>
+  <button id="toggleBtn" onClick="toggleHeightMode('pkg-description', this, '300px');"><u2d:imgref ref="images/expand.jpg" /></button>
 </div>
 
 <div id="pkg-description" class="scroll-description" style="clear: right;">

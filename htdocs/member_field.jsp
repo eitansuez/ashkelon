@@ -26,7 +26,7 @@ Date: March 2001
   {
   %>
 
-   <a href="cls.main.do?cls_id=<%=field.getType().getId()%>"><%=typeName%></a><%=typeDim%> <span class="<%=membertype%>"><%=field.getName()%></span>
+   <a href="cls.main.do?id=<%=field.getType().getId()%>"><%=typeName%></a><%=typeDim%> <span class="<%=membertype%>"><%=field.getName()%></span>
 <%}
   else
   { %>

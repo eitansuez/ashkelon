@@ -10,7 +10,7 @@
 <html>
 
 <head>
-  <c:import url="includes.html" />
+  <c:import url="includes.jsp" />
 <style>
 textarea
 {

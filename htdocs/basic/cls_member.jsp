@@ -117,7 +117,7 @@
         <FONT SIZE="-1">
           <CODE>
         <% if (!returnClass.equals("")) { // return type info %>
-          <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=returninfo%></A>
+          <A HREF="cls.main.do?id=<%=method.getReturnType().getId()%>"><%=returninfo%></A>
         <% } else { %>
           <%=returninfo%>
         <% } // end if %>

@@ -11,7 +11,7 @@
 <html>
 <head>
   <title>Class Stats</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body onLoad="loadCookies();" onUnload="saveCookies();">
@@ -59,7 +59,7 @@
     <% } else { %>
   <tr>
     <% } %>
-    <td><a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><%=pkg.getName()%></a></td>
+    <td><a href="pkg.main.do?id=<%=pkg.getId()%>"><%=pkg.getName()%></a></td>
     <td align="right"><%=numPkgClasses%></td>
   </tr>
 <% } %>

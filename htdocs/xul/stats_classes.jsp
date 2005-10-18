@@ -1,4 +1,4 @@
-<%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="page" import="java.util.*,org.ashkelon.util.*,org.ashkelon.*"%>
 
 <%-- SECTION: PAGE COMMENTS & DOCUMENTATION
 Copyright UptoData Inc 2001

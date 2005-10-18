@@ -1,4 +1,5 @@
 <%@ page info="class members view (component)" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -184,7 +185,7 @@ as follows:
 <% if (member instanceof MethodMember) { %>
   <td>
     <% if (method.isAbstract()) { %>
-    <img src="images/check_sm.gif" border="0">
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
 <% } else if ("all".equals(memberstype)) { %>
@@ -194,49 +195,53 @@ as follows:
 <% } %>
   <td>
     <% if (member.getAccessibility() == JDocUtil.PUBLIC) { %>
-    <img src="images/check_sm.gif" border="0">
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
   <td>
     <% if (member.isStatic()) { %>
-    <img src="images/check_sm.gif" border="0">
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
   <td>
     <% if (member.isFinal()) { %>
-    <img src="images/check_sm.gif" border="0">
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
   <td><%=member.getDoc().getCleanSince()%></td>
   <td>
     <% if (member.isDeprecated()) { %>
-    <img src="images/check_sm.gif" border="0">
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
   <% if (member instanceof MethodMember) { %>
       <TD ALIGN="RIGHT">
       <% if (method.getReturnType()!=null && method.getReturnType().getId()>0) { %>
-        <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=returnstuff%></A>
+        <u2d:link to="class" elem="<%=method.getReturnType()%>"><%=returnstuff%></u2d:link>
       <% } else { %>
         <%=returnstuff%>
       <% } // end if linkable %>
       </td>
   <% } else if ("all".equals(memberstype)) { %>
-      <TD ALIGN="RIGHT">
+      <td align="right">
        n/a
       </td>
   <% } // end if ismethod %>
   <% if (member instanceof FieldMember && !"all".equals(memberstype)) { %>
       <TD ALIGN="RIGHT">
       <% if (field.getType()!=null && field.getType().getId()>0) { %>
-        <A HREF="cls.main.do?cls_id=<%=field.getType().getId()%>"><%=field.getTypeName()%></A> 
+        <u2d:link to="class" elem="<%=field.getType()%>"><%=field.getTypeName()%></u2d:link>
       <% } else { %>
         <%=field.getTypeName()%> 
       <% } // end if linkable %>
       </td>
   <% } %>
 
-  <td><A HREF="member.main.do?member_id=<%=member.getId()%>"><SPAN CLASS="<%=membertype%>" title="<%=HtmlUtils.cleanAttributeText(memberDescr)%>"><%=(qualify) ? member.getQualifiedName() : member.getName()%></SPAN></A></td>
+  <td>
+     <u2d:link to="member" elem="<%=member%>">
+        <span class="<%=membertype%>" title="<%=HtmlUtils.cleanAttributeText(memberDescr)%>"><%=(qualify) ? member.getQualifiedName() : member.getName()%></span>
+     </u2d:link>
+  </td>
   <td><%=memberDescr%></td>
 </tr>
 <% } // end for %>
@@ -248,6 +253,3 @@ as follows:
 
  
 <% } // end if members is empty %>
-
-
-

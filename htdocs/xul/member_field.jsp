@@ -34,7 +34,7 @@ Date: March 2001
   {
   %>
 
-   <A HREF="index.html?cmd=cls.main&cls_id=<%=field.getType().getId()%>"><%=typeName%></A><%=typeDim%> <SPAN CLASS="<%=membertype%>"><%=field.getName()%></SPAN>
+   <A HREF="index.html?cmd=cls.main&id=<%=field.getType().getId()%>"><%=typeName%></A><%=typeDim%> <SPAN CLASS="<%=membertype%>"><%=field.getName()%></SPAN>
 <%}
   else
   { %>

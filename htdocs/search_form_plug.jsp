@@ -1,3 +1,4 @@
+<% if (!("/search.jsp".equals(request.getServletPath()))) { %>
 
 <div id="search-callout">
   <form id="search-form" name="search_form" method="post" action="search.do">
@@ -11,3 +12,4 @@
   </form>
 </div>
 
+<% } %>

@@ -6,7 +6,7 @@
 <html>
 <head>
   <title>Ashkelon - Error: <%=exception%></title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 
   <style type="text/css">
     #errorDetail

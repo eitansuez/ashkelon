@@ -1,4 +1,4 @@
-<%@ page info="main class view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*"%>
+<%@ page info="main class view" import="org.ashkelon.*"%>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -20,13 +20,13 @@ Template page for Class or Interface types.
   <!-- Todo: title should include api name -->
 	<TITLE><%=cls.getName()%></TITLE>
   <LINK REL="stylesheet" TYPE="text/css" HREF="/<%=request.getContextPath()%>/basic/stylesheet.css" TITLE="Style">
-  <SCRIPT>
+  <script>
   function dialog(url)
   {
     var dlg = window.open(url, "member", "scrollbars=1,width=500,height=350,resizable=1");
     dlg.focus();
   }
-  </SCRIPT>
+  </script>
 
 </HEAD>
 

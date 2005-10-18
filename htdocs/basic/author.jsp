@@ -35,7 +35,7 @@
    {
      cls = (ClassType) classes.get(i);
 %>
-<LI><A HREF="cls.main.do?cls_id=<%=cls.getId()%>"><%=cls.getQualifiedName()%></A></LI>
+<LI><A HREF="cls.main.do?id=<%=cls.getId()%>"><%=cls.getQualifiedName()%></A></LI>
 <% } %>
 </OL>
 

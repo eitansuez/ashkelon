@@ -10,7 +10,7 @@
 <html>
 <head>
   <title>Ashkelon - Class Search Results</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body onLoad="cleanTitles();">

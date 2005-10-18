@@ -1,4 +1,4 @@
-<%@ page info="component" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="component" import="java.util.*,org.ashkelon.util.*" %>
 
 <%
   String cmd = ServletUtils.getRequestParam(request, "cmd");

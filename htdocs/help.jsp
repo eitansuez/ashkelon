@@ -14,7 +14,7 @@ Date: May 2001
 <head>
   <title>Ashkelon Help</title>
   <link rel="stylesheet" type="text/css" href="global.css" />
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body>

@@ -17,7 +17,7 @@ Date: December 2001
 <html>
 <head>
 	<title>Ashkelon - Contact Information</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 
   <!-- SECTION: PAGE STYLES -->
   <style type="text/css">

@@ -15,7 +15,7 @@
 <html>
 <head>
   <title>Ashkelon Package Index</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
   <style>
   ol#pkg-list
   {
@@ -48,7 +48,7 @@
  <% for (int i=0; i<results.size(); i++) { %>
  <%  pkg = (JPackage) results.get(i); %>
    <li> 
-     <a href="pkg.main.do?pkg_id=<%=pkg.getId()%>">
+     <a href="pkg.main.do?id=<%=pkg.getId()%>">
       <span class="package"><%=pkg.getName()%></span>
      </a>
    </li>

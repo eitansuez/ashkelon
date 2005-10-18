@@ -1,4 +1,5 @@
-<%@ page info="package classes view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="package classes view" import="java.util.*,org.ashkelon.util.*,org.ashkelon.*" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%-- SECTION: COMMENTS/DOCUMENTATION
 Copyright UptoData Inc 2001
@@ -75,11 +76,11 @@ as follows:
    int colsadjust = (isinterface) ? (0) : (2);
    String divid = containerDiv;
    String colname_heading = (classestype.equals("all")) ? "Class Names" : classestype + " Names";
-   boolean qualify = ("true".equals(displayQualified)) ? true : false;
+   boolean qualify = ("true".equals(displayQualified));
    String classtype = "";
 %>
 
-<style>
+<style type="text/css">
 #class-listing thead td
 {     
   background-color: beige;
@@ -114,7 +115,7 @@ as follows:
 <table id="class-listing" border="1" class="columnar" width="100%" align="center">
 <caption><%=caption%></caption>
 <colgroup span="<%=colsadjust+5%>">
-  <col width="15" align="center"
+  <col width="15" align="center">
 </colgroup>
 <colgroup span="2">
   <col width="100">
@@ -149,34 +150,36 @@ as follows:
   <% if (!isinterface) { %>
   <td>
     <% if (cls.isAbstract()) { %>
-    <img src="images/check_sm.gif" border="0" />
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
 <% } %>
   <td>
     <% if (cls.getAccessibility() == JDocUtil.PUBLIC) { %>
-    <img src="images/check_sm.gif" border="0" />
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
   <td>
     <% if (cls.isStatic()) { %>
-    <img src="images/check_sm.gif" border="0" />
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
 <% if (!isinterface) { %>
   <td>
     <% if (cls.isFinal()) { %>
-    <img src="images/check_sm.gif" border="0" />
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
 <% } %>
   <td><%=cls.getDoc().getCleanSince()%></td>
   <td>
     <% if (cls.isDeprecated()) { %>
-    <img src="images/check_sm.gif" border="0" />
+    <u2d:imgref ref="images/check_sm.gif" border="0" />
     <% } %>
   </td>
-  <td><a href="cls.main.do?cls_id=<%=cls.getId()%>"><span class="<%=classtype%>" title="<%=HtmlUtils.cleanAttributeText(clsDescr)%>"><%=(qualify) ? cls.getQualifiedName() : cls.getName()%></span></a></td>
+  <td>
+     <u2d:link to="class" elem="<%=cls%>"><span class="<%=classtype%>" title="<%=HtmlUtils.cleanAttributeText(clsDescr)%>"><%=(qualify) ? cls.getQualifiedName() : cls.getName()%></span></u2d:link>
+  </td>
   <td><%=clsDescr%></td>
 </tr>
 <% } // end for %>

@@ -17,7 +17,7 @@ Date: December 2001
 <html>
 <head>
   <title>Ashkelon - Known Issues</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 
   <style type="text/css">
   li

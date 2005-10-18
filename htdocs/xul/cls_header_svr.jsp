@@ -75,6 +75,6 @@ outstanding tasks:
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 <jsp:include page="l2_hdr_svr.jsp" flush="true">
-  <jsp:param name="args" value="<%=\"cls_id=\"+cls_id%>"/>
+  <jsp:param name="args" value="<%=\"id=\"+cls_id%>"/>
 </jsp:include>
 <BR>

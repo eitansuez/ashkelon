@@ -1,17 +1,16 @@
-<%@ page info="component" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="component" import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
   Map tabs = (HashMap) request.getAttribute("tabs");
   List cmds = (List) request.getAttribute("cmds");
   String titlePrefix = request.getParameter("title_prefix");
 %>
 
-<link rel="stylesheet" TYPE="text/css" HREF="l2_hdr.css" />
-
-<script src="page.js"></script>
-<script>
+<u2d:cssref ref="l2_hdr.css" />
+<u2d:jsref ref="page.js" />
+<script type="text/javascript">
   var cmds = new Array();
   <% for (int i=0; i<cmds.size(); i++) { %>
   cmds[<%=i%>] = "<%=cmds.get(i)%>";

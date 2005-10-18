@@ -30,7 +30,7 @@ String pkgName = containingClass.getPackage().getName();
      {
 %>
   <P>
-  <B>Returns</B> <A HREF="cls.main.do?cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>: <%=descr%>
+  <B>Returns</B> <A HREF="cls.main.do?id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>: <%=descr%>
   </P>
 <%
      } else {
@@ -110,7 +110,7 @@ String pkgName = containingClass.getPackage().getName();
     if (ex.getException()!=null && ex.getException().getId()>9)
     {
     %>
-    <CODE><A HREF="cls.main.do?cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A></CODE> - <%=ex.getDescription()%>
+    <CODE><A HREF="cls.main.do?id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A></CODE> - <%=ex.getDescription()%>
     <%
     } else
     {

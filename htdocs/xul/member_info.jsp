@@ -27,7 +27,7 @@ Date: March 2001
 
 <%-- SECTION: COMPONENT TEMPLATE --%> 
 <P>
-<%= member.getModifiers() %> <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"><%=pkg.getName()%></SPAN></A>.<A HREF="index.html?cmd=cls.main&amp;cls_id=<%=cls.getId()%>"><SPAN CLASS="<%=cls_type%>"><%=cls.getName()%></SPAN></A>.<SPAN CLASS="<%=member.getMemberTypeName()%>" STYLE="font-size: large; font-weight: bold;"><%=member.getName()%>
+<%= member.getModifiers() %> <A HREF="index.html?cmd=pkg.main&pkg_id=<%=pkg.getId()%>"><SPAN CLASS="package"><%=pkg.getName()%></SPAN></A>.<A HREF="index.html?cmd=cls.main&amp;id=<%=cls.getId()%>"><SPAN CLASS="<%=cls_type%>"><%=cls.getName()%></SPAN></A>.<SPAN CLASS="<%=member.getMemberTypeName()%>" STYLE="font-size: large; font-weight: bold;"><%=member.getName()%>
 
 <% if (!"field".equals(membertypename)) { %>
   ()

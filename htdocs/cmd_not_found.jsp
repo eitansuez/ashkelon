@@ -1,4 +1,4 @@
-<%@ page info="command not found page" import="java.io.*,org.ashkelon.util.*"%>
+<%@ page info="command not found page" import="org.ashkelon.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <%
@@ -10,7 +10,7 @@
 <html>
 <head>
   <title>Ashkelon - Command Not Found</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 
   <style type="text/css">
     #errorDetail

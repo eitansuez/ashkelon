@@ -54,7 +54,7 @@
           title = HtmlUtils.cleanAttributeText(c.getDoc().getSummaryDescription());
           %>
           <listitem>
-           <listcell label="<%=c.getName()%>" onclick="location.href='index.html?cmd=cls.main&amp;cls_id=<%=c.getId()%>';"
+           <listcell label="<%=c.getName()%>" onclick="location.href='index.html?cmd=cls.main&amp;id=<%=c.getId()%>';"
            />
           </listitem>
     <% } %>

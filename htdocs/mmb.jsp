@@ -6,11 +6,10 @@
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
 <html>
 <head>
   <title>Ashkelon - Member Search Results</title>
-  <jsp:include page="includes.html" flush="true"/>
+  <jsp:include page="includes.jsp" flush="true"/>
 </head>
 
 <body onLoad="cleanTitles();">

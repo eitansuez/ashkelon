@@ -6,7 +6,7 @@
 <html>
 <head>
   <title>Ashkelon Author Index</title>
-  <c:import url="includes.html" />
+  <c:import url="includes.jsp" />
 </head>
 
 <body>

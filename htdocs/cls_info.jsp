@@ -1,13 +1,11 @@
-<%@ page info="component" import="java.util.*,org.ashkelon.util.*,org.ashkelon.db.*,org.ashkelon.*" %>
+<%@ page info="component" import="java.util.*,org.ashkelon.*" %>
+<%@ taglib prefix="u2d" uri="http://u2d.com/taglib" %>
 
 <%
   ClassType cls = (ClassType) request.getAttribute("cls");
   JPackage pkg = cls.getPackage();
   String cls_type = cls.getClassTypeName();
   
-  String cmd = ServletUtils.getRequestParam(request, "cmd");
-  String descr_type = request.getParameter("descr_type");
-
   ClassType impl_interface;
   List authors = cls.getAuthors();
   Author author;
@@ -22,13 +20,15 @@
 
 <div>
 
-<a href="pkg.main.do?pkg_id=<%=pkg.getId()%>"><span class="package"><%=pkg.getName()%></span></a>
+<u2d:link to="package" elem="<%=pkg%>"><span class="package"><%=pkg.getName()%></span></u2d:link>
 
 <span class="api" style="font-size: 8pt; padding-left: 1em;">
-(<a href="api.main.do?id=<%=cls.getAPI().getId()%>"><%=cls.getAPI().getName()%></a> API)
+(<u2d:link to="api" elem="<%=cls.getAPI()%>"><%=cls.getAPI().getName()%></u2d:link> API)
 </span>
 
-<span style="padding-left: 5em;"><a href="cls.source.do?cls_name=<%=cls.getQualifiedName()%>" style="font-size: 8pt;">Source Code</a></span>
+<span style="padding-left: 5em; font-size: 8pt;">
+   <u2d:link to="source" elem="<%=cls%>">Source Code</u2d:link>
+</span>
 
 </div>
 
@@ -39,7 +39,7 @@
 
       <% if (cls.getClassType() != ClassType.INTERFACE) { %>
         <% if (cls.getSuperClass() != null && cls.getSuperClass().getId()>0) { %>
-	       <span style="padding-left: 5em;">Extends <a href="cls.main.do?cls_id=<%=cls.getSuperClass().getId()%>"><span class="superclass"><%=cls.getSuperClassName()%></span></a></span>
+	       <span style="padding-left: 5em;">Extends <a href="cls.main.do?id=<%=cls.getSuperClass().getId()%>"><span class="superclass"><%=cls.getSuperClassName()%></span></a></span>
         <% } else { %>
 	       <span style="padding-left: 5em;">Extends <span class="superclass"><%=cls.getSuperClassName()%></span></span>
         <% } %>
@@ -52,7 +52,7 @@
              impl_interface = (ClassType) cls.getInterfaces().get(i);
         %>
           <% if (impl_interface.getId()>0) { %>
-	         <a href="cls.main.do?cls_id=<%=impl_interface.getId()%>"><span class="interface"><%=impl_interface.getName()%></span></a>
+	         <a href="cls.main.do?id=<%=impl_interface.getId()%>"><span class="interface"><%=impl_interface.getName()%></span></a>
           <% } else { %>
 	         <span class="interface"><%=impl_interface.getName()%></span>
           <% } %>
@@ -82,5 +82,3 @@
 <% } %>
 
 </div>
-
-

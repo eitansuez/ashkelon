@@ -123,7 +123,7 @@ Description:
    <SPAN TITLE="<%=HtmlUtils.cleanAttributeText(method.getReturnDescription())%>">
    <% if (method.getReturnType() != null && method.getReturnType().getId() > 0)
       { %>
-     <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
+     <A HREF="index.html?cmd=cls.main&amp;id=<%=method.getReturnType().getId()%>"><%=name%></A><%=dim%>
    <% } else 
       { %>
      <%=name%><%=dim%>
@@ -147,7 +147,7 @@ Description:
    <SPAN TITLE="<%=HtmlUtils.cleanAttributeText(param.getDescription())%>">
    <% if (param.getType()!=null && param.getType().getId()>0)
       { %>
-     <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
+     <A HREF="index.html?cmd=cls.main&amp;id=<%=param.getType().getId()%>"><%=typeName%></A><%=dimStr%> <%=param.getName()%>
    <% } else 
       { %>
      <%=typeName%><%=dimStr%> <%=param.getName()%>
@@ -177,7 +177,7 @@ Description:
           if (ex.getException()!=null && ex.getException().getId()>0)
           {
           %>
-           <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A>
+           <A HREF="index.html?cmd=cls.main&amp;id=<%=ex.getException().getId()%>"><%=JDocUtil.conditionalQualify(ex.getName(), pkgName)%></A>
           <%
           } else
           {

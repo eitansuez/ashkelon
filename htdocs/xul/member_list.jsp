@@ -192,7 +192,7 @@ as follows:
   <% if (member instanceof MethodMember) { %>
       <TD ALIGN="RIGHT">
       <% if (method.getReturnType()!=null && method.getReturnType().getId()>0) { %>
-        <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=method.getReturnType().getId()%>"><%=returnstuff%></A>
+        <A HREF="index.html?cmd=cls.main&amp;id=<%=method.getReturnType().getId()%>"><%=returnstuff%></A>
       <% } else { %>
         <%=returnstuff%>
       <% } // end if linkable %>
@@ -205,7 +205,7 @@ as follows:
   <% if (member instanceof FieldMember && !"all".equals(memberstype)) { %>
       <TD ALIGN="RIGHT">
       <% if (field.getType()!=null && field.getType().getId()>0) { %>
-        <A HREF="index.html?cmd=cls.main&amp;cls_id=<%=field.getType().getId()%>"><%=field.getTypeName()%></A> 
+        <A HREF="index.html?cmd=cls.main&amp;id=<%=field.getType().getId()%>"><%=field.getTypeName()%></A> 
       <% } else { %>
         <%=field.getTypeName()%> 
       <% } // end if linkable %>
