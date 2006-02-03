@@ -5,9 +5,6 @@ package org.ashkelon;
  *  March 2001
  */
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,18 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.db.PKManager;
 import org.ashkelon.util.StringUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.xml.sax.SAXException;
 
 /**
  * Part of Persistable javadoc object model known as 'ashkelon'
@@ -48,52 +37,61 @@ public class Author implements JDoc, Serializable
 
    private int id;
    private boolean idSet = false;
-   
+
    public Author(String name)
    {
-      parseName(name);
+      parseAuthor(name);
       setClasses(new ArrayList());
    }
 
-   /**
-    * add logic to properly parse out an <a href..> author tag into a name and an email
-    * address
+   /*
+    * @author eitan
+    * or
+    * @author <a href="mailto:eitan@u2d.com">eitan</a>
     */
-   private void parseName(String data)
+   private void parseAuthor(String text)
    {
-     String name = data;
-     String email = "";
-     try
-     {
-       DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-       InputStream is = new ByteArrayInputStream(data.getBytes());
-       Document d = builder.parse(is);
-       Element root = d.getDocumentElement();
-       NamedNodeMap attr = root.getAttributes();
-       for (int i=0; i<attr.getLength(); i++)
-       {
-         email = attr.item(i).getNodeValue();
-         int idx = email.indexOf("mailto:");
-         email = email.substring(idx+7);
-       }
-       name = root.getFirstChild().getNodeValue();
-     }
-     catch (ParserConfigurationException pconfex) { }
-     catch (SAXException saxex) { }
-     catch (IOException ioex) { }
+      if (text == null)
+      {
+         setName("");
+         setEmail("");
+         return;
+      }
+      
+      String key = "mailto:";
+      int idx = text.indexOf(key);
+      if (idx < 0)
+      {
+         noEmailInAuthorTag(text); return;
+      }
+      
+      String subtext = text.substring(idx+key.length());
+      int idx2 = subtext.indexOf("\"");
+      if (idx2 < 0)
+      {
+         noEmailInAuthorTag(text); return;
+      }
+      String email = subtext.substring(0, idx2);
+      setEmail(email);
 
-    setName(name);
-    setEmail(email);
+      int idx3 = subtext.indexOf(">");
+      int idx4 = subtext.indexOf("<");
+      
+      if (idx3 < 0 || idx4 < 0)
+      {
+         setName(text.trim());
+         return;
+      }
+      
+      setName(subtext.substring(idx3 + 1, idx4));
    }
    
-   private void parseNameAlternative()
+   private void noEmailInAuthorTag(String text)
    {
-    // regular expression:
-    // to match email address: (\w+\@\w+\.\w+)
-    // to match caption: >((\w+\s*)+)<
-    // tbd.
+      setName(text.trim());
+      setEmail("");
    }
-   
+
    public void store(Connection conn) throws SQLException
    {
       if (exists(conn))
@@ -121,14 +119,14 @@ public class Author implements JDoc, Serializable
    {
       return id;
    }
-   
+
    public void setId(int id)
    {
       this.id = id;
       idSet = true;
    }
-   
-   
+
+
    private boolean exists(Connection conn) throws SQLException
    {
       Map constraints = new HashMap();
@@ -136,7 +134,7 @@ public class Author implements JDoc, Serializable
       Object obj = DBUtils.getObject(conn, TABLENAME, "ID", constraints);
       if (obj == null)
          return false;
-      
+
       if (!idSet)
       {
          id = ((Number) obj).intValue();
@@ -144,34 +142,34 @@ public class Author implements JDoc, Serializable
       }
       return true;
    }
-   
+
    // accessors
    public String getName() { return name; }
    public void setName(String name) { this.name = name; }
-   
+
    public String getEmail() { return email; }
    public void setEmail(String email) { this.email = email; }
 
    public void setClasses(List classes) { this.classes = classes; }
    public List getClasses() { return classes; }
-   
+
    public void addClass(ClassType classtype) { classes.add(classtype); }
-   
-   
+
+
    public String toString()
    {
       return getName();
    }
-   
-   
+
+
    public void fetchClasses(Connection conn) throws SQLException
    {
       String sql =  DBMgr.getInstance().getStatement("fetch_authorclasses");
-      
+
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, getId());
       ResultSet rset = pstmt.executeQuery();
-      
+
       ClassType ct;
       while (rset.next())
       {
@@ -179,34 +177,34 @@ public class Author implements JDoc, Serializable
          ct.setId(rset.getInt(1));
          addClass(ct);
       }
-      
+
       rset.close();
       pstmt.close();
    }
-   
+
    public static Author fetchAuthor(Connection conn, int id) throws SQLException
    {
       String sql = DBMgr.getInstance().getStatement("fetchauthor");
-      
+
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, id);
       ResultSet rset = pstmt.executeQuery();
-      
+
       ClassType ct;
       Author author = null;
-      
+
       if (rset.next())
       {
          author = new Author(rset.getString(1));
          author.setId(id);
          author.setEmail(rset.getString(5));
-         
+
          ct = new ClassType(rset.getString(3));
          ct.setId(rset.getInt(2));
          ct.setClassType(rset.getInt(4));
          author.addClass(ct);
       }
-      
+
       while (rset.next())
       {
          ct = new ClassType(rset.getString(3));
@@ -214,15 +212,15 @@ public class Author implements JDoc, Serializable
          ct.setClassType(rset.getInt(4));
          author.addClass(ct);
       }
-      
+
       rset.close();
       pstmt.close();
-      
+
       return author;
    }
-   
+
    public DocInfo getDoc() { return null; }  // this is crummy.  TODO: fix
    public String getStyle() { return "author"; }  // maybe getstyle should have a separate interface
 
-   
+
 }

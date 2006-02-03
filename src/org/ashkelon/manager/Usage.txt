@@ -16,13 +16,13 @@ Usage:
   
   Valid commands:
 
-    add         Add an api to repository
-    remove      Remove specified api from the repository
+    add         Add an API to repository
+    remove      Remove specified API from the repository
     update      Update an API
-    list        List apis currently residing in the repository
+    list        List APIs currently residing in the repository
     reset       Reset repository (i.e. delete everything, use with care)
-    export      Dump list of apis to xml (system.out)
-    html        Produce static html pages (with ashkelon look and feel)
+    export      Dump list of APIs as XML to System.out
+    html        Produce static HTML pages (with ashkelon look and feel)
 
 For command-specific help, type:
   ashkelon {command} -h

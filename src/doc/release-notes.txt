@@ -1,5 +1,52 @@
 Release Notes
 
+What's new in v0.9 (February 2006):
+-----------------------------------
+
+1. Expansion of API XML file definition to optionally include
+   cvs or subversion repository information.  Ashkelon will
+   auto-download source code now instead of requiring you to
+   and setting up the SOURCEPATH.  The old mechanism still works
+   and is still supported.  That is ashkelon will fallback to looking
+   for the source code in your SOURCEPATH
+
+2. Re-implementation of "ashkelon" repository manager command to use
+   the JSAP API for parsing command line arguments.  Now have very 
+   consistent support for subcommand flags, along with text descriptions
+   / help text on each subcommand.
+
+3. Added new "ashkelon update" subcommand for updating an API
+
+4. Added new "ashkelon export" subcommand which simply dumps to stdout
+   an XML document describing all APIs in the repository, including
+   the nested package lists.
+
+5. Experimental new command "ashkelon html" for non-database processing
+   of API docs to produce static html pages, but using the ashkelon
+   look and feel.  Not complete.
+
+6. Replaced castor xml with JiBX for whatever xml data binding tasks
+   ashkelon performs under the hood
+
+7. Although not complete, much work has gone towards structuring the code
+   to allow ashkelon to run in a self-service mode.  That is, for the web
+   site to support the submission of requests for new APIs and the automatic
+   processing of the submitted API information for addition to the repository.
+   That is, web-based API management.  The goal here is to allow API 
+   administrators to manage their APIs in a public/global repository.
+
+8. Although not complete, effort has begun to modularize ashkelon better.
+   You'll notice the lib directory has been further structured into multiple
+   subdirectories per ashkelon module (manager, webapp, tools, etc..).  
+   You'll notice a similar modularization in the new java package structure
+   for ashkelon's source code.
+
+9. Dropped the javadoc convention to prefix the api xml file with an 
+   at-sign (@).  Now we're simply doing to do ashkelon add dom4j.xml.
+   The presence of the at-sign used to prevent command completion from
+   working.
+
+
 What's new in v0.8.9 (September 10 2004):
 -----------------------------------------
 

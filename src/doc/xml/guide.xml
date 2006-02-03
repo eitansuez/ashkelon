@@ -1,1849 +1,1817 @@
 <?xml version='1.0'?>
 <!DOCTYPE book
-  PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
-  
+      PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+      "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+
 <book>
-<title>Ashkelon User Guide</title>
-<titleabbrev>Ashkelon</titleabbrev>
+   <title>Ashkelon Users Guide</title>
+   <titleabbrev>Ashkelon</titleabbrev>
 
-<bookinfo>
-  <title>
-   <inlinegraphic fileref="figures/ashkelon-logo.gif" format="GIF" />
-   ashkelon
-  </title>
-  <author>Eitan Suez</author>
-  <date>October 14 2002 (updated May 2003)</date>
-</bookinfo>
-
-
-<chapter>
-<title>Overview</title>
-
-<para>
-ashkelon is an open source project.  It is a Java API documentation
-tool designed for Java developers.  Its goals are the same as the goals
-of the well-known javadoc tool that comes with J2SE, whose user interface most
-java developers are quite familiar with (see: <ulink url="http://java.sun.com/j2se/javadoc/">http://java.sun.com/j2se/javadoc/</ulink> if you'd like to learn more about javadoc)
-</para>
-
-<para>
-ashkelon addresses the following issues that javadoc does not:
-</para>
-
-<itemizedlist>
-<listitem><para>
-  ashkelon is a multi-api documentation system, unlike javadoc which produces single-api documentation</para>
-</listitem>
-<listitem><para>
-  ashkelon's documentation system leverages <acronym>SQL</acronym> to provide a queriable/searchable repository for documentation</para>
-</listitem>
-<listitem><para>
-  The <acronym>DHTML</acronym> <acronym>GUI</acronym> produced by ashkelon (which works with Mozilla 1.x or IE 5.x or IE 6.x browsers) is markedly different from the defacto html 3.2 user interface produced by javadoc, which i call "classic."</para>
-</listitem>
-<listitem><para>
-  ashkelon's user interface is a Java web application, not a set of static html pages</para>
-</listitem>
-</itemizedlist>
-
-<para>
-The javadoc tool is composed of two parts:
-</para>
-
-<orderedlist>
-<listitem><para>
-  The documentation generator, used to produce html (or other) documentation
-</para></listitem>
-<listitem><para>
-  a graphical user interface used to browse and peruse through the documentation (static html pages)
-</para></listitem>
-</orderedlist>
-  
-<para>
-Sometimes the same person performs both the generation and referencing the documentation.  however, the more common case is that of an api publisher producing javadocs for the api user who references them.
-</para>
-
-<para>
-Similarly, ashkelon is also composed of two parts:
-</para>
-
-<orderedlist>
-<listitem><para>
-  the <emphasis>repository manager</emphasis>, used to populate (and otherwise manage) a database with documentation information
-</para></listitem>
-<listitem><para>
-  The <emphasis>viewer application</emphasis>, a web application that provides access to the documentation in a variety of ways (search, browse, cross-reference, etc..).  this app is in some ways markedly different from javadoc's user interface.
-</para></listitem>
-</orderedlist>
-    
-<para>
-In an intranet environment, a development team needs to reference a number of APIs from a number of sources, including:
-</para>
-
-<orderedlist>
-<listitem><para>
-  Internal company code
-</para></listitem>
-<listitem><para>
-  Sun APIs (J2SE, J2EE, etc..)
-</para></listitem>
-<listitem><para>
-  Popular third party APIs (from Apache, Sourceforge, or other)
-</para></listitem>
-</orderedlist>
-
-<para>
-A developer may be appointed to the task of administrator.  This individual would be in charge of using the repository manager to populate the ashkelon database with the API documentation.  Alternatively, this person may choose to automate the task entirely and enhance the nightly build process to automatically rebuild the ashkelon repository with the latest docs.
-</para>
-
-<para>
-The entire development team would use the viewer application as its window into the documentation.  One of the strengths of ashkelon is the various ways in which someone can access information about a Programming Element:
-</para>
-
-<itemizedlist>
-<listitem><para>
-Hierarchical navigation to a target class or method
-</para></listitem>
-<listitem><para>
-Search by name
-</para></listitem>
-<listitem><para>
-Search by wildcard
-</para></listitem>
-<listitem><para>
-Navigating programmatic relationships
-</para></listitem>
-<listitem><para>
-Cross referencing classes or interfaces
-</para></listitem>
-<listitem><para>
-Power search feature (search by meta information such as author, modifier (et al) or a combination thereof
-</para></listitem>
-</itemizedlist>
-
-<para>
-An important difference with ashkelon is that as an administrator,
-you will use the repository manager repeatedly to add new APIs
-into the repository.  You don't have to (and should not try to)
-add all APIs in one step.
-</para>
-
-<para>
-In an internet environment, it is conceivable that a single high-availability site be made available to the general Java developer community.  Such a site might provide API publishers with online tools to register and populate their APIs in this "global" repository.  The end-result would be publicly-accessible Java API documentation for many APIs which would be constantly kept up-to-date by the various API publishers.
-</para>
-
-</chapter>
-
-<chapter>
-<title>Download</title>
-
-<para>
-Visit the project page on sourceforge at <ulink url="http://sourceforge.net/projects/ashkelon">http://sourceforge.net/projects/ashkelon</ulink>.  On that page, under "Latest File Releases", select the package "ashkelon", a hyperlink which will lead you to the download page.  After you download ashkelon (a tar.gz or tgz file), unpack it.
-</para>
-
-</chapter>
+   <bookinfo>
+      <title>
+         <inlinegraphic fileref="figures/ashkelon-logo.gif" format="GIF"/>
+         ashkelon
+      </title>
+      <author>
+         <personname>
+            <firstname>Eitan</firstname>
+            <surname>Suez</surname>
+         </personname>
+         <email>eitan-keyword-deux.352d02@u2d.com</email>
+      </author>
+      <date>October 14 2002 (last updated Februrary 2006)</date>
+   </bookinfo>
 
 
-<chapter>
-<title>Installation</title>
+   <chapter>
+      <title>Overview</title>
 
-<sect1>
-<title>Requirements</title>
+      <para>
+         ashkelon is an open source project. It is a Java API documentation
+         tool designed for Java developers. Its goals are the same as the goals
+         of the well-known javadoc tool that comes with J2SE, whose user interface most
+         java developers are quite familiar with (see:
+         <ulink url="http://java.sun.com/j2se/javadoc/">http://java.sun.com/j2se/javadoc/</ulink>
+         if you'd like to learn more about javadoc)
+      </para>
 
-<orderedlist>
-<listitem><para>
-J2SE v1.4.x
-</para></listitem>
-<listitem><para>
-A servlet &amp; JSP container (I use Jakarta tomcat 5.x at the moment, but have used or received reports from many users and/or vendors that ashkelon works with their servlet container)
-</para></listitem>
-<listitem><para>
-postgresql (<ulink url="http://www.postgresql.org/">http://www.postgresql.org/</ulink>) or mysql (<ulink url="http://www.mysql.org">http://www.mysql.org</ulink>)
-</para></listitem>
-<listitem><para>
-Jakarta Ant (v1.5 or higher) (<ulink url="http://ant.apache.org">http://ant.apache.org</ulink>)
-</para></listitem>
-</orderedlist>
+      <para>
+         ashkelon addresses the following issues that javadoc does not:
+      </para>
 
-<note><para>In the following subsections, substitute the database type you've decided to use for the replaceable item ${dbtype}</para></note>
+      <itemizedlist>
+         <listitem>
+            <para>
+               ashkelon is a multi-API documentation system, unlike javadoc which produces single-API
+               documentation</para>
+         </listitem>
+         <listitem>
+            <para>
+               ashkelon's documentation system leverages
+               <acronym>SQL</acronym>
+               to provide a queriable/searchable repository for documentation
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               The <acronym>DHTML</acronym> <acronym>GUI</acronym> produced by 
+               ashkelon (works with all major browsers) is markedly different
+               from the defacto html 3.2 user interface produced by javadoc, 
+               which I termed "classic."
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               ashkelon's user interface is a Java web application, not a set of static html pages</para>
+         </listitem>
+      </itemizedlist>
 
-</sect1>
+      <para>
+         The javadoc tool is composed of two parts:
+      </para>
 
-<sect1>
-<title>Configure database connection and build the distribution</title>
+      <orderedlist>
+         <listitem>
+            <para>
+               The documentation generator, used to produce html (or other) documentation
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               a graphical user interface used to browse and peruse through the documentation (static html pages)
+            </para>
+         </listitem>
+      </orderedlist>
 
-<orderedlist>
-<listitem><para>
-Download &amp; unpack the ashkelon tarball
-</para></listitem>
-<listitem>
-<para>
-Edit <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/conn-info.properties</filename> to specify the proper database connection information:
-</para>
+      <para>
+         Sometimes the same person performs both the generation and referencing the documentation. however, the more
+         common case is that of an API publisher producing javadocs for the API user who references them.
+      </para>
 
-<screen>
+      <para>
+         Similarly, ashkelon is also composed of two parts:
+      </para>
+
+      <orderedlist>
+         <listitem>
+            <para>
+               the
+               <emphasis>repository manager</emphasis>, used to populate 
+               and otherwise manage a database with documentation information
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               The
+               <emphasis>viewer application</emphasis>
+               , a web application that provides access to the documentation 
+               in a variety of ways (search, browse,
+               cross-reference, etc..). this application is 
+               markedly different from javadoc's user interface in a number
+               of ways.
+            </para>
+         </listitem>
+      </orderedlist>
+      
+      <sect1>
+         <title>Usage Scenarios</title>
+
+      <para>
+         In a workgroup environment, a development team needs to reference 
+         a number of APIs from a number of sources, including:
+      </para>
+
+      <orderedlist>
+         <listitem>
+            <para>
+               Internal company code
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               Sun APIs (J2SE, J2EE, etc..)
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               Popular third party APIs (from Apache, Sourceforge, or other)
+            </para>
+         </listitem>
+      </orderedlist>
+
+      <para>
+         A developer may be appointed to the task of administrator. This individual would be in charge of using the
+         repository manager to populate the ashkelon database with the API documentation. Alternatively, this person may
+         choose to automate the task entirely and enhance the nightly build process to automatically rebuild the
+         ashkelon repository with the latest docs.
+      </para>
+
+      <para>
+         The entire development team would use the viewer application as its window into the documentation. One of the
+         strengths of ashkelon is the various ways in which someone can access information about a Programming Element:
+      </para>
+
+      <itemizedlist>
+         <listitem>
+            <para>
+               Hierarchical navigation to a target class or method
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               Search by name
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               Search by wildcard
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               Navigating programmatic relationships
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               Cross referencing classes or interfaces
+            </para>
+         </listitem>
+         <listitem>
+            <para>
+               Power search feature (search by meta information such as author, modifier (et al) or a combination
+               thereof
+            </para>
+         </listitem>
+      </itemizedlist>
+
+      <para>
+         An important difference with ashkelon is that as an administrator,
+         you will use the repository manager repeatedly to add new APIs
+         into the repository. You don't have to (and should not try to)
+         add all APIs in one step.
+      </para>
+
+      <para>
+         In a large community environment, it is conceivable that a single high-availability site be made available to the
+         general Java developer community. Such a site might provide API publishers with online tools to register and
+         populate their APIs in this "global" repository. The end-result would be publicly-accessible Java API
+         documentation for many APIs which would be constantly kept up-to-date by the various API publishers.
+      </para>
+      
+      </sect1>
+
+   </chapter>
+
+   <chapter>
+      <title>Download</title>
+
+      <para>
+         Here are the relevant project and download URLs:
+      </para>
+
+      <variablelist>
+      <varlistentry>
+         <term>
+            askhelon Project Home Page
+         </term>
+         <listitem>
+            <para>
+               <ulink url="http://ashkelon.sourceforge.net/">http://ashkelon.sourceforge.net/</ulink>
+            </para>
+         </listitem>
+      </varlistentry>
+
+      <varlistentry>
+         <term>
+            askhelon's SourceForge project page
+         </term>
+         <listitem>
+            <para>
+               <ulink url="http://sourceforge.net/projects/ashkelon/">http://sourceforge.net/projects/ashkelon/</ulink>
+            </para>
+         </listitem>
+      </varlistentry>
+
+      <varlistentry>
+         <term>
+            Download URL
+         </term>
+         <listitem>
+            <para>
+               <ulink url="http://sourceforge.net/project/showfiles.php?group_id=54364">http://sourceforge.net/project/showfiles.php?group_id=54364</ulink>
+            </para>
+         </listitem>
+      </varlistentry>
+      </variablelist>
+
+      
+      <para>
+         Visit the project download page.  Select to download ashkelon in 
+         whichever compression format you prefer (.zip or .tgz).  After
+         the download is complete, unpack the compressed file.  You should
+         now have an ashkelon working directory.
+      </para>
+
+      <para>
+         We are more than happy to assist you with getting ashkelon 
+         properly configured and installed in your environment.
+         Feel free to email Eitan directly at
+         <email>eitan-keyword-deux.352d02@u2d.com</email> or the
+         appropriate mailing list.
+      </para>
+
+      <variablelist>
+         <varlistentry>
+            <term>
+               ashkelon Users mailing list
+            </term>
+            <listitem>
+               <para>
+                  <email>ashkelon-users@lists.sourceforge.net</email>
+               </para>
+            </listitem>
+         </varlistentry>
+         <varlistentry>
+            <term>
+               ashkelon Developers mailing list
+            </term>
+            <listitem>
+               <para>
+                  <email>ashkelon-devs@lists.sourceforge.net</email>
+               </para>
+            </listitem>
+         </varlistentry>
+      </variablelist>
+
+
+   </chapter>
+
+
+   <chapter>
+      <title>Installation</title>
+
+      <sect1>
+         <title>Requirements</title>
+
+         <orderedlist>
+            <listitem>
+               <para>
+                  J2SE v1.4.x or higher
+               </para>
+            </listitem>
+            <listitem>
+               <para>
+                  A servlet &amp; JSP container (I use Jakarta Tomcat 5.5 at the moment, but have used or received
+                  reports from many users and/or vendors that ashkelon works with their servlet container)
+               </para>
+            </listitem>
+            <listitem>
+               <para>
+                  postgresql (
+                  <ulink url="http://www.postgresql.org/">http://www.postgresql.org/</ulink>
+                  ) or mysql (
+                  <ulink url="http://www.mysql.org">http://www.mysql.org</ulink>
+                  )
+               </para>
+            </listitem>
+            <listitem>
+               <para>
+                  Jakarta Ant (v1.5 or higher) (
+                  <ulink url="http://ant.apache.org">http://ant.apache.org</ulink>
+                  )
+               </para>
+            </listitem>
+         </orderedlist>
+
+      </sect1>
+
+      <sect1>
+         <title>Configuration</title>
+
+         <note>
+            <para>As you read this section, substitute the database type you'll 
+               be using (mysql or postgres) wherever you see the "placeholder"
+               text <replaceable>${dbtype}</replaceable></para>
+         </note>
+
+         <orderedlist>
+            <listitem>
+               <para>
+                  Download &amp; unpack the ashkelon tarball
+               </para>
+            </listitem>
+            <listitem>
+               <para>
+                  Edit
+                  <filename>db/
+                     <replaceable>${dbtype}</replaceable>
+                     /org/ashkelon/db/conn-info.properties
+                  </filename>
+                  to specify the proper database connection information:
+               </para>
+
+               <screen>
       #
       dbtype=mysql
       jdbcDriverName=com.mysql.jdbc.Driver
       connectionURL=jdbc:mysql://localhost/ashkelon
       user=ashkelon
       password=ashkelon
+               </screen>
 
-      or
+               <para>or</para>
+               
+               <screen>
       #
       dbtype=postgres
       jdbcDriverName=org.postgresql.Driver
       connectionURL=jdbc:postgresql://localhost/ashkelon
-      user=postgre
-      password=
-</screen>
-</listitem>
-<listitem>
-<para>Build the code &amp; create jar &amp; make war file:</para>
+      user=ashkelon
+      password=ashkelon
+               </screen>
+            </listitem>
+            <listitem>
+               <para>Build and create the ashkelon jar file:</para>
 
-<example>
-<title>For mysql</title>
-<screen>
-   <prompt>$</prompt> <command>ant</command> -Ddbtype=mysql
-</screen>
-</example>
+               <example>
+                  <title>For mysql</title>
+                  <screen>
+      <prompt>$</prompt> <command>ant</command> -Ddbtype=mysql jar-manager
+                  </screen>
+               </example>
 
-<example>
-<title>For postgresql</title>
-<screen>
-   <prompt>$</prompt> <command>ant</command> -Ddbtype=postgres
-</screen>
-</example>
+               <example>
+                  <title>For postgresql</title>
+                  <screen>
+      <prompt>$</prompt> <command>ant</command> -Ddbtype=postgres jar-manager
+                  </screen>
+               </example>
 
-</listitem>
-</orderedlist>
+            </listitem>
+         </orderedlist>
+         
+         <para>Rather than specify dbtype from the command line, feel
+         free to edit the build.xml file directly.  This way you won't
+         have to remember how to construct your ant command line each
+         time.</para>
 
-<note><para>I have omitted discussion of the necessary steps to set up a user in mysql or
-     postgres for database access;  refer to db documentation for how to do this</para></note>
-      
-</sect1>
 
-<sect1>
-<title>Configure Environment and Prepare Database</title>
+         <sect2>
+            <title>Configure environment</title>
 
-<sect2>
-<title>Configure environment</title>
+            <orderedlist>
+               <listitem>
+                  <para>
+                     Make sure your <envar>$JAVA_HOME</envar>
+                     environment variable is set
+                  </para>
+               </listitem>
+               <listitem>
+                  <para>
+                     Set up <envar>ASHK_HOME</envar> environment variable
+                  </para>
+                  <example>
+                     <title>Windows</title>
+                     <screen>
+      set ASHK_HOME=c:\ashkelon
+                     </screen>
+                  </example>
+                  <example>
+                     <title>bash</title>
+                     <screen>
+      export ASHK_HOME=~/ashkelon
+                     </screen>
+                  </example>
+               </listitem>
+               <listitem>
+                  <para>
+                     Add <filename class="directory">$ASHK_HOME/bin</filename>
+                     to your path:
+                  </para>
+                  <screen>
+      <prompt>$</prompt> <command>export</command> PATH=$PATH:$ASHK_HOME/bin
+                  </screen>
+               </listitem>
+            </orderedlist>
 
-<orderedlist>
-<listitem><para>
-Make sure you have a <envar>JAVA_HOME</envar> environment variable configured with its value set to the base directory for J2SE (e.g. <filename>c:\j2sdk1.4.2</filename>)
-</para></listitem>
-<listitem>
-<para>
-Set up <envar>ASHK_HOME</envar> environment variable
-</para>
-<example>
-<title>Windows</title>
-<screen>
-  set ASHK_HOME=c:\ashkelon
-</screen>
-</example>
-<example>
-<title>bash</title>
-<screen>
-  export ASHK_HOME=~/ashkelon
-</screen>
-</example>
-</listitem>
-<listitem>
-<para>
-Add <filename class="directory">%ASHK_HOME%\bin</filename> (or <filename class="directory">$ASHK_HOME/bin</filename>) to your path
-</para>
-<screen>
-  <prompt>$</prompt> <command>export</command> PATH=$PATH:$ASHK_HOME/bin
-</screen>
-</listitem>
-</orderedlist>
-   
-</sect2>
+         </sect2>
 
-<sect2>
-<title>Prepare Database</title>
+         <sect2>
+            <title>Prepare Database</title>
 
-<orderedlist>
-<listitem>
-<para>
-In <replaceable>${dbtype}</replaceable>, create database named ashkelon:
-</para>
+            <orderedlist>
+               <listitem>
+                  <para>
+                     Create the ashkelon database:
+                  </para>
 
-<example>
-<title>For mysql</title>
-<screen><![CDATA[
-      c:\> mysql -u username -p
+                  <example>
+                     <title>For mysql</title>
+                     <screen><![CDATA[
+      c:\> mysql -u root -p
       mysql> create database ashkelon;
       mysql> exit
       ]]>
-</screen>
-</example>
-<example>
-<title>For postgresql</title>
-<screen>
-      ~$ $postgreshome/bin/createdb ashkelon
-</screen>
-</example>
-</listitem>
+                     </screen>
+                  </example>
+                  <example>
+                     <title>For postgresql</title>
+                     <screen>
+      ~$ createdb -U postgres ashkelon
+                     </screen>
+                  </example>
+               </listitem>
 
-<listitem>
-<para>
-Run script: <filename>db/<replaceable>${dbtype}</replaceable>/org/ashkelon/db/init.sql</filename>
-</para>
-<example>
-<title>Using mysql</title>
-<screen>
-   c:\ashkelon&gt; mysql -u username -p ashkelon
-      &lt; db\mysql\org\ashkelon\db\init.sql
-</screen>
-</example>
+               <listitem>
+                  <para>Generate the schema. Run script:
+                     <filename>db/<replaceable>${dbtype}</replaceable>
+                        /org/ashkelon/db/init.sql
+                     </filename>
+                  </para>
+                  <example>
+                     <title>Using mysql</title>
+                     <screen>
+   c:\ashkelon&gt; mysql -u root -p ashkelon 
+                         &lt; db\mysql\org\ashkelon\db\init.sql
+                     </screen>
+                  </example>
 
-<example>
-<title>Using postgresql</title>
-<screen>
-   ~/ashkelon&gt; psql -d ashkelon
-   ashkelon#= \i db/postgres/org/ashkelon/db/init.sql
-   ashkelon#= \q
-</screen>
-</example>
-</listitem>
-</orderedlist>
+                  <example>
+                     <title>Using postgresql</title>
+                     <screen>
+      ~/ashkelon&gt; psql -U postgres ashkelon
+      ashkelon#= \i db/postgres/org/ashkelon/db/init.sql
+      ashkelon#= \q
+                     </screen>
+                  </example>
+               </listitem>
+            </orderedlist>
 
-<para>
-Fyi, this is the output postgres produces in response to executing the commands in init.sql:
-</para>
-
-<screen>
-psql:db/init.sql:16: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "doc_pkey" for table "doc"
-CREATE TABLE
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-psql:db/init.sql:45: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "api_pkey" for table "api"
-CREATE TABLE
-CREATE INDEX
-psql:db/init.sql:57: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "package_pkey" for table "package"
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-psql:db/init.sql:81: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "classtype_pkey" for table "classtype"
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-psql:db/init.sql:133: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "author_pkey" for table "author"
-CREATE TABLE
-CREATE INDEX
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-psql:db/init.sql:161: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "member_pkey" for table "member"
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-CREATE INDEX
-psql:db/init.sql:177: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "field_pkey" for table "field"
-CREATE TABLE
-CREATE INDEX
-psql:db/init.sql:191: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "execmember_pkey" for table "execmember"
-CREATE TABLE
-psql:db/init.sql:203: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "method_pkey" for table "method"
-CREATE TABLE
-CREATE INDEX
-psql:db/init.sql:212: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "constructor_pkey" for table "constructor"
-CREATE TABLE
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-CREATE TABLE
-CREATE INDEX
-CREATE INDEX
-CREATE TABLE
-psql:db/init.sql:272: NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "seqs_pkey" for table "seqs"
-CREATE TABLE
-INSERT 1693065 1
-INSERT 1693066 1
-INSERT 1693067 1
-INSERT 1693068 1
-INSERT 1693069 1
-INSERT 1693070 1
-</screen>
+         </sect2>
 
 
-</sect2>
+         <sect2>
+            <title>Verify "ashkelon" cmd works</title>
 
-
-<sect2>
-<title>Verify that ashkelon repository mgr script works</title>
-
-  <screen>
+            <para>Verify that the "ashkelon" command works.  Invoke it with no 
+            parameters from the command line.</para>
+            
+            <screen>
    <prompt>$</prompt> <command>ashkelon</command>
-  </screen>
+            </screen>
 
-  <para>   
-   should produce a help/usage screen
-  </para>
-
-</sect2>
-
-<sect2>
-<title>Finish setting up database schema</title>
-
-  <screen>
-   <prompt>$</prompt> <command>ashkelon</command> reset
-  </screen>
-
-</sect2>
-
-</sect1>
-
-<sect1>
-<title>Populate Database</title>
-
-<orderedlist>
-<listitem>
- <para>
-   Set up environment variable SOURCEPATH (analogous to classpath, it is a list of paths where source code may be located by ashkelon)
- </para>
+            <para>
+               should produce this help/usage screen
+            </para>
+            
+            <screen>
+      Ashkelon Repository Manager (v 0.9)
+      ----------
+      Description:
+        Manages a Java Documentation Repository.
+        For more information, visit http://ashkelon.sourceforge.net/
    
- <example>
- <title>Populating servlet API</title>
- <orderedlist>
- <listitem>
-  <para>
-   Download source code for the servlet api from jakarta at: <ulink url="http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src">http://jakarta.apache.org/builds/jakarta-servletapi-4/nightly/src</ulink>
-  </para>
-  </listitem>
-  <listitem>
-   <para>
-    Unpack the zip or tar.gz file
-   </para>
-  </listitem>
-  <listitem>
-  <screen>
-   set SOURCEPATH=C:\<replaceable>path-to-jakarta-servletapi-4</replaceable>\src\share
-    or
-   export SOURCEPATH=~/<replaceable>path-to..</replaceable>/src/share
-   </screen>
-   </listitem>
-  </orderedlist>
- </example>
-</listitem>
+      Examples:
+        ashkelon reset
+        ashkelon add hibernate.xml
+        ashkelon list
+        ashkelon remove Hibernate
+        ashkelon html -d junit-javadocs apis/junit.xml
+   
+      Usage:
+        ashkelon {command} [options]
+   
+        Valid commands:
+   
+          add         Add an API to repository
+          remove      Remove specified API from the repository
+          update      Update an API
+          list        List APIs currently residing in the repository
+          reset       Reset repository (i.e. delete everything, use with care)
+          export      Dump list of APIs as XML to System.out
+          html        Produce static HTML pages (with ashkelon look and feel)
+   
+      For command-specific help, type:
+        ashkelon {command} -h
+   
+      Caveats:
+        No work done yet to support J2SE 5.
+      ----------
+      Copyleft
+            </screen>
 
-<listitem>
-<para>
-Run ashkelon repository manager to add servlet api to repository:
-</para>
-<screen>
-   c:\%ASHK_HOME%\> cd apis
-   c:\%ASHK_HOME%\apis\> ashkelon add @servlet.xml
-</screen>
-</listitem>
-<listitem>
-<para>
-If all succeeds, you should end up with your mysql ashkelon database
-   populated with the java api documentation for the servlet api.
-</para>
+         </sect2>
 
-<note><para>You may repeat step 2 for additional APIs as long as they're in your sourcepath (follows same convention as classpath: semicolon separator for windows or colon for unix)
-</para></note>
-</listitem>
-</orderedlist>
+         <sect2>
+            <title>Finish setting up database schema</title>
 
-<sect2>
-<title>Using Maven POM Files As Input</title>
+            <screen>
+   <prompt>$</prompt> <command>ashkelon</command> reset
+            </screen>
 
-<para>
-As of version 0.8.7, ashkelon now supports the use of maven project.xml files in lieu of ashkelon's own api xml format.  That is, you can now populate an api for a maven-enabled project with ease, as the following example demonstrates.
-</para>
+         </sect2>
 
-<example>
-<title>Populating dom4j, using its maven project.xml file as input.</title>
-<screen>
-~ $ cd dom4j
-~/dom4j $ ashkelon add @project.xml
-</screen>
-</example>
+      </sect1>
 
-<note>
-You still need to set up your sourcepath as described at the beginning of this section.
-</note>
+      <sect1>
+         <title>Populate Database</title>
 
-</sect2>
+         <example>
+            <title>Populating DOM4J API</title>
+            
+         <screen>
+   ~ashkelon$ cd apis
+   ~ashkelon/apis$ ashkelon add dom4j.xml
+         </screen>
 
-</sect1>
+         <para>
+            If everything goes well, you should end up with your 
+            database populated with the Java API documentation for 
+            DOM4J.
+            
+            Ashkelon basically downloads the source code for the
+            project (per the cvs or subversion repository information
+            specific in the xml file) and places a copy in its 
+            "source cache" area on disk.  Ashkelon the proceeds to
+            invoke javadoc with itself as the doclet, in order to
+            parse and populate the database with the API information.
+         </para>
+            
+         <para>
+            You can list the APIs in the ashkelon database like this:
+            
+            <screen>
+      eitan@ubuntu:~/projects/ashkelon/apis$ ashkelon list
+      Ashkelon: 9 APIs in ashkelon:
+      Ashkelon:    Hibernate
+      Ashkelon:    jEdit
+      Ashkelon:    FlexDock
+      Ashkelon:    Servlet
+      Ashkelon:    L2FProd.com Common Components
+      Ashkelon:    log4j
+      Ashkelon:    JiBX
+      Ashkelon:    JUnit
+      Ashkelon:    J2SE
+            </screen>
+         </para>
 
-<sect1>
-<title>Run Ashkelon Web Application</title>
+         <para>Continue to add as many APIs as you desire.  They all
+            get added to the same database and cross-references between
+            APIs are resolved.
+         </para>
+         </example>
 
-<note><para>JSTL 1.0 libs are now included with ashkelon (no longer need to download it separately)</para></note>
+      </sect1>
 
-<orderedlist>
-<listitem>
-<para>
-sourcepath info also needs to be set in <filename>etc/web.xml</filename> so revise the param-value for the param-name "sourcepath" and rebuild war file:
-</para>
-<screen>
-  <prompt>$</prompt> <command>ant</command>
-</screen>
-</listitem>
-<listitem>
-<para>
-Copy war file from <filename>dist/ashkelon.war</filename> to your tomcat  (or other) webapps folder:
-</para>
-<screen>
-  <prompt>$</prompt> <command>cp</command> %ASHK_HOME%/dist/ashkelon.war $TOMCAT_HOME/webapps
-</screen>
-</listitem>
-<listitem>
-<para>
-Restart tomcat so it can pick up war file (&amp; unpack it etc..)
-</para>
-</listitem>
-<listitem>
-<para>
-Open a web browser (preferably Mozilla but it will work in IE) and hit the URL: <ulink url="http://localhost:8080/ashkelon/">http://localhost:8080/ashkelon/</ulink>  (adjust if you've configured tomcat (or other) to run on another port
-</para>
-</listitem>
-</orderedlist>
+      <sect1>
+         <title>Setup the Ashkelon Web Application</title>
+         
+         <screen>
+      eitan@ubuntu:~/projects/ashkelon$ ant war
+      [output]
+      Buildfile: build.xml
+      init:
+      compile:
+      bind:
+      jar-model:
+            [jar] Building jar: /home/eitan/projects/ashkelon/build/ashkelon-model.jar
+      jar-taglib:
+            [jar] Building jar: /home/eitan/projects/ashkelon/build/ashkelon-taglib.jar
+      jar-webapp:
+            [jar] Building jar: /home/eitan/projects/ashkelon/build/ashkelon-webapp.jar
+           [copy] Copying 1 file to /home/eitan/projects/ashkelon/build
+      war:
+            [war] Building war: /home/eitan/projects/ashkelon/dist/ashkelon.war
+   
+      BUILD SUCCESSFUL
+      Total time: 3 seconds
+      [end output]
+      eitan@ubuntu:~/projects/ashkelon$ ls dist/
+      ashkelon.war
+      eitan@ubuntu:~/projects/ashkelon$ cp dist/ashkelon.war ~/devel/tomcat/webapps
+         </screen>
+         
+         <para>
+            If necessary, restart tomcat or load the new web application and
+            explore 
+            <ulink url="http://localhost:8080/ashkelon/">http://localhost:8080/ashkelon/</ulink>
+         </para>
 
-<note><para>If you add other APIs to the repository, the web app needs to be reloaded
-  as it caches content it retrieves from the database.  In tomcat you can use the 
-  manager application to do this.</para></note>
+      </sect1>
 
-</sect1>
-
-</chapter>
-
-
-<chapter>
-<title>
-Administrator Guide:  Using the Repository Manager
-</title>
-
-<para>
-At present (ashkelon v0.8.3), the repository manager is a command-line tool whose interface was designed to mirror the interface of the javadoc command line tool (the java documentation generator).  So if you're familiar with the javadoc tool, you have very little to learn to come up to speed with the ashkelon repository manager.
-</para>
-
-<note><para>Future plans include the addition of a web-based gui and a swing-based gui</para></note>
-
-<para>
-If you are not familiar with using the javadoc command line tool, I recommend that you take a little time to familiarize yourself with it.  Every distribution of J2SE comes with javadoc tool documentation, accessible from the page in:
-</para>
-
-<screen>
-  $JAVA_HOME/docs/tooldocs/solaris/javadoc.html
-    or 
-  $JAVA_HOME/docs/tooldocs/win32/javadoc.html
-</screen>
-
-
-<para>
-Alternatively this information is available online from the javadoc site at:
-</para>
-<screen>
-  <ulink url="http://java.sun.com/j2se/1.4/docs/tooldocs/windows/javadoc.html">http://java.sun.com/j2se/1.4/docs/tooldocs/windows/javadoc.html</ulink>
- or
-  <ulink url="http://java.sun.com/j2se/1.4/docs/tooldocs/solaris/javadoc.html">http://java.sun.com/j2se/1.4/docs/tooldocs/solaris/javadoc.html</ulink>
-</screen>
+   </chapter>
 
 
-<note>
-<para>
-Bob Hays has already built an Ant task for ashkelon that can be used to integrate ashkelon with a continuous build process.
-</para>
-</note>
+   <chapter>
+      <title>
+         Administrator Guide: Using the Repository Manager
+      </title>
 
-<para>
-The ashkelon command-line tool is called "ashkelon".  It is 
-a wrapper shell script for a Java program.  On win32, the file
-is "ashkelon.bat" while on unix it's "ashkelon."  These files reside in $ASHK_HOME/bin
-</para>
+      <para>
+         The ashkelon command-line tool is called "ashkelon". It is
+         a wrapper shell script for a Java program. On win32, the file
+         is "ashkelon.bat" while on unix it's "ashkelon." These files reside in $ASHK_HOME/bin
+      </para>
 
-<para>
-After installation of ashkelon, you should be able to run ashkelon from the command line:
-</para>
+      <para>
+         You will primarily use the ashkelon tool to add content to your database. Here is
+         a listing of some of the subcommands:
+      </para>
 
-<screen>
-<prompt>$</prompt> <command>ashkelon</command>
-</screen>
+      <variablelist>
+         <varlistentry>
+            <term>
+               <command>ashkelon add</command>
+            </term>
+            <listitem>
+               <para>use to add APIs to your database</para>
+            </listitem>
+         </varlistentry>
+         <varlistentry>
+            <term>
+               <command>ashkelon reset</command>
+            </term>
+            <listitem>
+               <para>use to "nuke" the contents of the database (start from scratch)</para>
+            </listitem>
+         </varlistentry>
+         <varlistentry>
+            <term>
+               <command>ashkelon list</command>
+            </term>
+            <listitem>
+               <para>lists the APIs currently documented in the database</para>
+            </listitem>
+         </varlistentry>
+         <varlistentry>
+            <term>
+               <command>ashkelon remove</command>
+            </term>
+            <listitem>
+               <para>opposite of ashkelon add, use it to remove APIs from the repository</para>
+            </listitem>
+         </varlistentry>
+      </variablelist>
 
-<para>
-which should produce something similar to this output:
-</para>
+      
+      <para>You can obtain a listing of all the subcommands by invoking 
+       ashkelon with no arguments.  For help per subcommand, invoke ashkelon
+      like this:</para>
+      
+      <screen>
+  ashkelon <replaceable>subcommandname</replaceable> -h
+      </screen>
+      
+      <para>
+         <command>ashkelon reset</command> and <command>ashkelon list</command>
+         require no parameters and likewise require no explanation.
+      </para>
 
-<screen>
-==============================================================
-ashkelon Repository Manager (ashkelon v0.8+)
+      <para>
+         <command>ashkelon add</command>
+         is richer. Let's talk about "ashkelon add".
+      </para>
 
-Description:
-  Manages a Java Documentation Repository.
-  For more information, visit <ulink url="http://ashkelon.sourceforge.net/">http://ashkelon.sourceforge.net/</ulink>
-  
-Usage:
-  ashkelon [add [javadoc options] &lt;items&gt; | remove &lt;names&gt; | reset | list]
+      <sect1>
+         <title>Documenting Source Code</title>
 
-    add      Add items to repository where items is the names of packages
-             and/or source files to be added to the repository
-    remove   Remove names from repository.  A name is the fully
-             qualified name of a java package, class, or interface
-    reset    Reset repository (i.e. delete everything, use with care)
-    list     List api names currently existing in the repository
+         <para>
+            Traditionally (i.e. with javadoc) one documents a single API. So the inputs to the javadoc tool are a list
+            of package names, such as {java.lang, java.io, java.net, ..}
+         </para>
 
-Items Reference
-  items = [packagenames] [sourcefiles] [@files]
-    packagenames
-      A series of package names, separated by spaces, such as:
-        java.lang java.lang.reflect java.awt
-      You must separately specify each package you want to document.
-      Like javadoc, ashkelon uses -sourcepath to look for these package
-      names.  Wildcards are not allowed
-    sourcefiles
-      A series of source file names, separated by spaces, each of which
-      can begin with a path and contain a wildcard
-    @files
-      One or more files that contain packagenames and sourcefiles
-      in any order, one name per line
-    
-Supported javadoc options:
-  -overview &lt;file&gt;          Read overview documentation from HTML file
-  -public                   Show only public classes and members
-  -protected                Show protected/public classes and members (default)
-  -package                  Show package/protected/public classes and members
-  -private                  Show all classes and members
-  -sourcepath &lt;pathlist&gt;    Specify where to find source files
-  -classpath &lt;pathlist&gt;     Specify where to find user class files
-  -bootclasspath &lt;pathlist&gt; Override location of class files loaded
-                            by the bootstrap class loader
-  -extdirs &lt;dirlist&gt;        Override location of installed extensions
-  -verbose                  Output messages about what Javadoc is doing
-  -locale &lt;name&gt;            Locale to be used, e.g. en_US or en_US_WIN
-  -encoding &lt;name&gt;          Source file encoding name
+         <para>
+            When documenting multiple APIs in a single repository, it's important to also keep track of 
+            what API each java package belongs to. That is, <envar>org.apache.tools.ant</envar> is part of 
+            the ant API whereas <envar>org.apache.log4j</envar> is part of the log4j API.
+         </para>
 
-Copyright 2001 UptoData, Inc.
-==============================================================
-</screen>
+         <para>
+            The ashkelon project has devised a simple XML structure to describe an API. Here's an example 
+            API XML file for DOM4J (see apis/dom4j.xml):
+         </para>
 
-<para>
-You will primarily use the ashkelon tool to add content to your database.  This tool currently supports four main subcommands:
-</para>
-
-<variablelist>
- <varlistentry>
-  <term><command>ashkelon add</command></term>
-  <listitem><para>use to add APIs to your database</para></listitem>
- </varlistentry>
- <varlistentry>
-  <term><command>ashkelon reset</command></term>
-  <listitem>
-   <para>use to "nuke" the contents of the database (start from scratch)</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term><command>ashkelon list</command></term>
-  <listitem>
-   <para>lists the APIs currently documented in the database</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term><command>ashkelon remove</command></term>
-  <listitem>
-   <para>opposite of ashkelon add, use it to remove APIs from the repository</para>
-  </listitem>
- </varlistentry>
-</variablelist>
-
-<para>
-<command>ashkelon reset</command> and <command>ashkelon list</command> require no parameters and likewise require no explanation.
-</para>
-
-<para>
-<command>ashkelon add</command> is richer.  Let's talk about "ashkelon add".
-</para>
-
-<sect1>
-<title>Documenting Source Code</title>
-
-<para>
-Traditionally (i.e. with javadoc) one documents a single API.  So the inputs to the javadoc tool are a list of package names, such as {java.lang, java.io, java.net, ..}
-</para>
-
-<para>
-  When documenting multiple APIs in a single repository, it's important to also keep track of what api each java package belongs to.  That is, org.apache.tools.ant is part of the ant API whereas org.apache.log4j is part of the log4j API.
-</para>
-  
-<para>
-  The ashkelon project has devised a simple xml structure to describe an api.  Here's a sample (more samples are available in the apis/ folder) for the servlet api (file name is servlet.xml):
-</para>
-  
-<example>
-<title>Servlet API xml file (descriptor) for ashkelon</title>
-<programlisting>
- <![CDATA[
-  <?xml version="1.0"?> 
-  <api>
-  <name>Servlet 2.3 &amp; JSP 1.2</name> 
-  <summarydescription>
-   JavaTM Servlet technology provides web developers with a simple, consistent 
-   mechanism for extending the functionality of a web server and for accessing 
-   existing business systems.
-  </summarydescription> 
-  <description>
-   JavaTM Servlet technology provides web developers with a simple, consistent 
-   mechanism for extending the functionality of a web server and for accessing 
-   existing business systems. A servlet can almost be thought of as an applet 
-   that runs on the server side -- without a face. Java servlets have made many 
-   web applications possible.
-  </description> 
-  <publisher>Sun MicroSystems</publisher> 
-  <download_url>http://java.sun.com/products/servlet/</download_url> 
-  <release_date>2001-08-13T08:00:00.000</release_date> 
-  <version>2.3</version>
-  <package>javax.servlet</package> 
-  <package>javax.servlet.http</package> 
-  <package>javax.servlet.jsp</package> 
-  <package>javax.servlet.jsp.tagext</package> 
-  </api>
+         <example>
+            <title>DOM4J API XML file descriptor for ashkelon</title>
+            <programlisting>
+               <![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>dom4j</name>
+   <summarydescription>The flexible XML framework for Java</summarydescription>
+   <description>dom4j is an easy to use, open source library...</description>
+   <publisher>SourceForge</publisher>
+   <download_url>http://www.dom4j.org/</download_url>
+   <release_date>2005-04-15T08:00:00</release_date>
+   <version>1.6</version>
+   <packages>
+      <package>org.dom4j</package>
+      <package>org.dom4j.bean</package>
+      <package>org.dom4j.datatype</package>
+      <package>org.dom4j.dom</package>
+      <package>org.dom4j.dtd</package>
+      <package>org.dom4j.io</package>
+      <package>org.dom4j.jaxb</package>
+      <package>org.dom4j.rule</package>
+      <package>org.dom4j.rule.pattern</package>
+      <package>org.dom4j.swing</package>
+      <package>org.dom4j.tree</package>
+      <package>org.dom4j.util</package>
+      <package>org.dom4j.xpath</package>
+      <package>org.dom4j.xpp</package>
+   </packages>
+   <repository>
+     <type>cvs</type>
+     <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/dom4j</url>
+     <modulename>dom4j</modulename>
+     <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
   ]]>
-</programlisting>
-</example>
+            </programlisting>
+         </example>
 
- <note>
-  <para>
-    API has a one-to-many relationship with java packages.  That is, an api is usually comprised of one or more java packages.
-  </para>
- </note>
- 
+         <para>
+            This file is similar to the
+            <filename>package.html</filename>
+            file that you usually have to write for javadoc package documentation. Except that this file is xml-based
+            and thus more structured, and easier to interpret by a program.
+         </para>
+
+         <para>
+            These xml api descriptors are the primary input to the ashkelon command (aside from the actual source code
+            that you're trying to document).  Many descriptors already exist in 
+            in ashkelon's <filename class="directory">apis</filename> directory.
+         </para>
+         
+      </sect1>
+      
+      <sect1>
+         <title>The apixml Tool</title>
+         
+      <para>
+         ashkelon provides a tool called "apixml" that assists you in producing
+         ashkelon API descriptors.
+      </para>
+      
+      <para>
+         For a given API, search its javadocs 
+         directory for a file named <filename>package-list</filename>.  This file is a sort
+         of signature that javadoc leaves behind after processing an API.
+      </para>
+      
+      <para>
+        Feed apixml this file and it will produce an almost completed
+        xml descriptor file for you.  In the example session below,
+        I process junit's package-list through <command>apixml</command>.
+        The xml output is produced by apixml.  Now simply specify the 
+        missing pieces:  API name, description, publisher, url, and 
+        version control system information.
+      </para>
+        
+      <screen>
+eitan@ubuntu:~/devel/junit/javadoc$ apixml package-list
+               <![CDATA[
+
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name/>
+   <summarydescription/>
+   <description/>
+   <publisher/>
+   <download_url/>
+   <release_date>2006-02-03T20:21:45.151</release_date>
+   <version/>
+   <packages>
+      <package>junit.extensions</package>
+      <package>junit.framework</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/[projectname]</url>
+      <modulename>[projectname]</modulename>
+      <tagname/>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
+eitan@ubuntu:~/devel/junit/javadoc$
+</screen>
+]]>
+</screen>
+
+</sect1>
+
+<sect1>
+<title>Example: Populating DOM4J</title>
+            
+         <para>
+         Let's run through a quick example.  We first produce
+         dom4j.xml:
+         </para>
+
+         <screen>
+eitan@ubuntu:~/devel/dom4j/docs/apidocs$ apixml package-list > dom4j.xml
+         </screen>
+
+         <para>
+           Check out <filename>apis/dom4j.xml</filename> to see how the base
+           XML descriptor produced by apixml was completed.
+           We're now ready to ask ashkelon to put DOM4J
+           into our database.  Let's first see what we have already..
+         </para>
+
+<screen>
+eitan@ubuntu:~/projects/ashkelon/apis$ ashkelon list
+Ashkelon: 9 APIs in ashkelon:
+Ashkelon:    Hibernate
+Ashkelon:    jEdit
+Ashkelon:    FlexDock
+Ashkelon:    Servlet
+Ashkelon:    L2FProd.com Common Components
+Ashkelon:    log4j
+Ashkelon:    JiBX
+Ashkelon:    JUnit
+Ashkelon:    J2SE
+eitan@ubuntu:~/projects/ashkelon/apis$
+</screen>
+      
 <para>
-  This file is similar to the <filename>package.html</filename> file that you usually have to write for javadoc package documentation.  Except that this file is xml-based and thus more structured, and easier to interpret by a program.
-</para>
-
- <note>
- <para>
- I devised this xml back in 2001 before discovering Maven.  I realize there now exists an overlap between this xml and maven's.  I believe that a formal xml schema should be developed to describe javadocs in general.
- </para>
- </note>
- 
-<para>
-  These xml api "descriptors" are the primary input to the ashkelon script (aside from the actual source code that you're trying to document).  So you'll need to construct them.  The xml file for your API may already exist in the <filename class="directory">apis</filename> folder.  They're really easy to construct otherwise.</para>
-
-<tip><para>
-  Almost every API you'll need to populate into ashkelon has
-   had javadocs created for it before.  When javadoc is run on a list
-   of packages, it leaves a signature in a file called "package-list"
-   (check it out, go to <filename class="directory">$JAVA_HOME/docs/api</filename> or <filename class="directory">hibernate/doc/api</filename>
-    and you'll see the file).
-   Use this list of packages is input to building your api xml file.
-</para></tip>
-
-<para>
-  So constructing such an xml file is easy:  provide a description,
-   url, version number, and other such information.  Most importantly,
-   provide the names of the java packages that comprise the API.
-   Save the file as <replaceable>apiname</replaceable>.xml (you might also want to consider
-    contributing the file back to ashkelon (a list of api.xml files in maintained in the
-    ashkelon "apis" folder).
-</para>
-
-<para>
-  ashkelon comes iwth a utility that will produce the necessary API xml file for you from a package-list file.  Notice $ASHK_HOME/bin./apixml which is a wrapper script around org.ashkelon.util.ApiXml:
+Ok, let's add dom4j:
 </para>
 
 <screen>
-<prompt>$</prompt> <command>apixml</command> ~/devel/hibernate/doc/api/package-list > hibernate.xml
+eitan@ubuntu:~/projects/ashkelon/apis$ ashkelon add dom4j.xml
 </screen>
 
-<para>
-  After you run the utility, all you have to do is fill in the API name, description, and version information.
-</para>
-
-<para>
-  Now you're ready to feed the <replaceable>api</replaceable>.xml to ashkelon:
-</para>
+<para>And here's the output (less the javadoc warnings)</para>
 
 <screen>
-  <prompt>$</prompt> <command>ashkelon</command> add @<replaceable>apiname</replaceable>.xml
+add: cmd is: cvs -d :pserver:anonymous@cvs.sourceforge.net:/cvsroot/dom4j -q update -d  -r HEAD dom4j/src/java
+Loading source files for package org.dom4j...
+Loading source files for package org.dom4j.bean...
+Loading source files for package org.dom4j.datatype...
+Loading source files for package org.dom4j.dom...
+Loading source files for package org.dom4j.dtd...
+Loading source files for package org.dom4j.io...
+Loading source files for package org.dom4j.jaxb...
+Loading source files for package org.dom4j.rule...
+Loading source files for package org.dom4j.rule.pattern...
+Loading source files for package org.dom4j.swing...
+Loading source files for package org.dom4j.tree...
+Loading source files for package org.dom4j.util...
+Loading source files for package org.dom4j.xpath...
+Loading source files for package org.dom4j.xpp...
+Constructing Javadoc information...
+[a bunch of javadoc side-effect warnings suppressed]
+Ashkelon: 14 packages to process..
+Ashkelon: Processing package org.dom4j..
+Ashkelon: Processing package org.dom4j.bean..
+Ashkelon: Processing package org.dom4j.datatype..
+Ashkelon: Processing package org.dom4j.dom..
+Ashkelon: Processing package org.dom4j.dtd..
+Ashkelon: Processing package org.dom4j.io..
+/home/eitan/projects/sourcecache/dom4j/src/java/org/dom4j/io/HTMLWriter.java:181:
+warning - Tag @link: missing '#': "OutputFormat.isXHTML() OutputFormat.isXHTML()"
+/home/eitan/projects/sourcecache/dom4j/src/java/org/dom4j/io/HTMLWriter.java:181: 
+warning - Tag @link: can't find OutputFormat.isXHTML() in org.dom4j.io.HTMLWriter
+Ashkelon: Processing package org.dom4j.jaxb..
+Ashkelon: Processing package org.dom4j.rule..
+Ashkelon: Processing package org.dom4j.rule.pattern..
+Ashkelon: Processing package org.dom4j.swing..
+Ashkelon: Processing package org.dom4j.tree..
+Ashkelon: Processing package org.dom4j.util..
+Ashkelon: Processing package org.dom4j.xpath..
+Ashkelon: Processing package org.dom4j.xpp..
+Ashkelon: Add Time: 7 seconds
+Ashkelon: Updating Internal References..
+Ashkelon:       Processing FIELD references..
+Ashkelon:       Processing METHOD references..
+Ashkelon:       Processing IMPL_INTERFACE references..
+Ashkelon:       Processing THROWNEXCEPTION references..
+Ashkelon:       Processing PARAMETER references..
+Ashkelon:       Processing SUPERCLASS references..
+Ashkelon:       Processing seetag PACKAGE references..
+Ashkelon:       Processing seetag CLASSTYPE references..
+Ashkelon:       Processing seetag MEMBER references..
+Ashkelon:       Processing seetag EXECMEMBER references..
+Ashkelon: Ref. Time: 8 seconds
+Ashkelon: done
+102 warnings
+eitan@ubuntu:~/projects/ashkelon/apis$
 </screen>
 
-<example>
-<title>Real example</title>  
-<screen>
-  <prompt>$</prompt> <command>ashkelon</command> add @servlet.xml
-</screen>
-</example>
-
-<para>
-  ashkelon will take it from here.  It will invoke the javadoc engine to parse the source code and produce an object model of the information.  ashkelon will proceed to take the information and stuff it into its database.  Depending on the speed of your machine and the size of the api, the whole process might take 5-10 seconds or 2-3 minutes.
+<para>The warnings are harmless.  They're a side effect of the javadoc parser attempting to resolve referenced libraries from the DOM4J classes.  We see there were a couple of javadoc syntax warnings that we might want to fix.  Otherwise, ashkelon ensured that its source cache was up to date by doing a CVS update.  It then proceeded to process the 14 packages that comprise the dom4j javadocs.  This took seven seconds.  Eight more seconds were spent resolving inter-api references between existing APIs in the database and the newly added one.
 </para>
 
-<note><para>
-When populating, you might get a ton of junk warnings from the javadoc engine.  This is normal.  Many people will make typographical mistakes in their doc tags such as <programlisting>@thorws SomeException</programlisting> instead of <programlisting>@throws SomeException</programlisting> which javadoc will warn you about.  If it's your code, you can correct the tag and repeat the add step (actually, make sure to read on about this).
-</para></note>
-</sect1>
-
-<sect1>
-<title>How to update an existing API</title>
-
-<para>
-  Oftentimes you'll want to update an API you've already populated into your database with an updated version.  This can be accomplished in two ways:
-</para>
-
-<orderedlist>
-
-  <listitem id="drastic-update">Drastic: nuke everything and start over
-    <screen>
-     <prompt>$</prompt> <command>ashkelon</command> reset
-     <prompt>$</prompt> <command>ashkelon</command> add @<replaceable>api1</replaceable>.xml
-     <prompt>$</prompt> <command>ashkelon</command> add @<replaceable>api2</replaceable>.xml
-     <prompt>$</prompt> ...
-     <prompt>$</prompt> <command>ashkelon</command> add @<replaceable>apin</replaceable>.xml
-    </screen>
-  </listitem>
-     
-  <listitem>Differential:  remove the API from the database and repopulate it
-    <screen>
-     <prompt>$</prompt> <command>ashkelon</command> remove @<replaceable>api</replaceable>.xml
-     <prompt>$</prompt> <command>ashkelon</command> add @<replaceable>api</replaceable>.xml
-    </screen>
-  </listitem>
-     
-</orderedlist>
-
-<para>
-  If your environment uses nightly builds, you'll probably do <link linkend="drastic-update">[1] above</link> nightly.
-</para>
-</sect1>
-
-<sect1>
-<title>J2SE v1.4 Caveats</title>
-
-<para>
-  J2SE v1.4 introduces a new keyword "assert" into the java language.  Sun's javadoc tool accomodates this change with the "-source" flag.  In order to get ashkelon to populate APIs that use the assert keyword, you'll need to pass that to the ashkelon script, like so:
-</para>
-
-<screen>
-  <prompt>$</prompt> <command>ashkelon</command> add -source 1.4 @j2sdk14.xml
-</screen>
-
-<tip><para>
-  Any flag that javadoc accepts will be passed through to javadoc by ashkelon.  remember, ashkelon uses javadoc under the hood.  ashkelon plugs in to javadoc as a doclet.  ashkelon does not need to explicitly know about the flag (it will pass it through).
-</para></tip>
-
-</sect1>
-
-
-<sect1>
-<title>What's This About "sourcepath"?</title>
-
-<para>
-  So, when ashkelon runs, it needs to know where to find your source code.  The environment variable <envar>sourcepath</envar> is analogous to <envar>classpath</envar> which we're all familiar with.
-</para>
-
-<para>
-  It's a colon-delimited (unix) or semicolon-delimited (m$) list of paths where you keep the source code for the APIs you want to document.
-</para>
-  
-<note><para>
-  If you don't have source code for what you want to document, you're out of luck.  ashkelon is no different from javadoc in this case.
-</para></note>
-
-<tip><para>
-  Sun makes available the source code for J2SE, J2ME, and J2EE (and a bunch of other stuff) at:
-      <ulink url="http://wwws.sun.com/software/communitysource/">http://wwws.sun.com/software/communitysource/</ulink>
-</para></tip>
-
-<para>
-  Even though it's not exactly open source, nothing stops you from being able to document and publish sun java APIs within an intranet.  On the other hand, my understanding of Sun's licensing terms is such that you may not publish these javadocs on the internet without express permission.
-</para>
-</sect1>
-
-
-<sect1>
-<title>Dealing with Very Large APIs (e.g. J2SE)</title>
-
-<para>
-  If you look at ashkelon.bat or ashkelon.sh, you'll notice something a little alarming:
-</para>
-
-<screen>
-    java -Xmx100m
-     or
-    java -Xmx150m
-</screen>
-
-<para>
-  This means that when ashkelon runs, it requests 100 or 150 MB of memory to run with.  It probably doesn't need that much memory.  But in some cases (J2SE) it may need even more!
-</para>
-
-<para>
-  This has nothing to do with ashkelon.  The javadoc tool requires similar amounts of RAM.
-</para>
-
-<para>
-  But since ashkelon allows you to build a repository in incremental steps, you can actually break up an API into multiple package sets and populate an api in small chunks, thus lowering the memory requirements of the application.
-</para>
-
-<para>
-  So, here's a trick for populating J2SE in chunks:
-</para>
-
-<para>
-    Assume we're starting out with <filename>apis/j2se.xml</filename>.
-    Break up the xml file into multiple parts, say: java.xml , javax.xml, and org.xml.  Each file should be a copy of j2se.xml but should list only a fraction of the packages that comprise the J2SE api.  Together, they should list all package in J2SE.
-</para>
-
-<para>
-  You can now start populating j2se in parts, like so:
-</para>
-
-<screen>
-    $ ashkelon add -source 1.4 @java.xml
-    $ ashkelon add -source 1.4 @javax.xml
-    $ ashkelon add -source 1.4 @org.xml
-</screen>
-
-<para>
-The API information will be recorded in the ashkelon repository upon adding the first set of packages that belong to that API.  Subsequent additions will proceed by adding packages without duplicating the API information.  You'll actually notice the following in the output:
-
-<screen>
-   ..
-   Ashkelon: Storing api
-   API: Skipping API J2SE (already in repository)
-   ..
-</screen>
-</para>
-
-<note><para>Although I have just demonstrated how a large API can be added in parts, the issue of javadoc's memory requirements is no longer much of a concern as most machines todoay come with a minimum of 0.5 GB or memory.</para></note>
-</sect1>
-
-</chapter>
-
-
-<chapter>
-<title>System Architecture</title>
-
-<para>
-  Two thorough and complemtentary sources on ashkelon's architecture are:
-</para>
-
-<variablelist>
-<varlistentry>
-<term>July 2002 java.sun.com main story/article</term>
-<listitem>
- <para>
-  <ulink url="http://java.sun.com/features/2002/07/dbdoc.html">http://java.sun.com/features/2002/07/dbdoc.html</ulink> 
- </para>
-</listitem></varlistentry>
-<varlistentry>
-<term>JavaOne (2002) alternate presentation (ppt)</term>
-<listitem> <para>  <ulink url="http://www.u2d.com/1145suez.pdf">http://www.u2d.com/1145suez.pdf</ulink>
- </para>
-</listitem>
-</varlistentry>
-</variablelist>
-
-</chapter>
-
-<chapter>
-<title>
-Database Schema Description
-</title>
-
-<para>
- I have created an entity relationship diagram or sorts (pdf) representing the database schema used by ashkelon.  Click on the thumbnail for a full-size png:
- </para>
- 
- <para>
-<ulink url="figures/ERD.png">
-<screenshot>
-<screeninfo>ERD</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/ERD-thumb.png" format="PNG" /></imageobject>
-<caption>
-<para>ERD</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
- </para>
-
-<para>
-If you prefer PDF, See <ulink url="figures/ERD.pdf">doc/ERD.pdf</ulink>.
-</para>
- 
-<para>
- The script that constructs the schema for a given database is located in <filename>$ASHK_HOME/db/<replaceable>$dbtype</replaceable>/org/ashkelon/db/ashkelon.sql</filename>
-</para>
-
-</chapter>
-
-<chapter>
-<title>Viewer Application Screen Shots</title>
-
-<para>
-Here are a bunch of screenshots of the DHTML GUI viewer application for ashkelon.  If you haven't yet installed ashkelon, this is what the UI will look like after you've populated a few APIs.  Notice how search results contain programming elements from multiple APIs.
-</para>
-
-<table>
-<title>APIs and Package Listings</title>
-<tgroup cols="3">
-<tbody>
-<row>
-
-<entry>
-<ulink url="figures/screenshots/apis.png">
-<screenshot>
-<screeninfo>API Listing</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/apis.png" format="PNG" /></imageobject>
-<caption>
-<para>API Listing</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/pkglist.png">
-<screenshot>
-<screeninfo>J2SE Package Listing</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/pkglist.png" format="PNG" /></imageobject>
-<caption>
-<para>J2SE Package Listing</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/packages.png">
-<screenshot>
-<screeninfo>Packages View</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/packages.png" format="PNG" /></imageobject>
-<caption>
-<para>Packages View</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-</tbody>
-</tgroup>
-</table>
-
-<table>
-<title>Sample Package: java.awt</title>
-<tgroup cols="3">
-<tbody>
-<row>
-
-<entry>
-<ulink url="figures/screenshots/java-awt-brief.png">
-<screenshot>
-<screeninfo>java.awt at a glance</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/java-awt-brief.png" format="PNG" /></imageobject>
-<caption>
-<para>java.awt at a glance</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/java-awt-classes.png">
-<screenshot>
-<screeninfo>java.awt Class Listing</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/java-awt-classes.png" format="PNG" /></imageobject>
-<caption>
-<para>java.awt Class Listing</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/java-awt-interfaces.png">
-<screenshot>
-<screeninfo>java.awt Interfaces Listing</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/java-awt-interfaces.png" format="PNG" /></imageobject>
-<caption>
-<para>java.awt Interfaces Listing</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-
-<row>
-
-<entry>
-<ulink url="figures/screenshots/java-awt-main.png">
-<screenshot>
-<screeninfo>java.awt Main View</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/java-awt-main.png" format="PNG" /></imageobject>
-<caption>
-<para>java.awt Main View</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/java-awt-tree.png">
-<screenshot>
-<screeninfo>java.awt Inheritance Hierarchy</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/java-awt-tree.png" format="PNG" /></imageobject>
-<caption>
-<para>java.awt Inheritance Hierarchy (dynamically collapsible)</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-</tbody>
-</tgroup>
-</table>
-
-
-<table>
-<title>Sample Class: java.lang.String</title>
-<tgroup cols="3">
-<tbody>
-<row>
-
-<entry>
-<ulink url="figures/screenshots/string-brief.png">
-<screenshot>
-<screeninfo>String class at a glance</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/string-brief.png" format="PNG" /></imageobject>
-<caption>
-<para>String class at a glance</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/string-constructor.png">
-<screenshot>
-<screeninfo>String constructor variants</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/string-constructor.png" format="PNG" /></imageobject>
-<caption>
-<para>String constructor variants</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/string-main.png">
-<screenshot>
-<screeninfo>String Class Main View</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/string-main.png" format="PNG" /></imageobject>
-<caption>
-<para>String Class Main View</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-
-<row>
-
-<entry>
-<ulink url="figures/screenshots/string-methods.png">
-<screenshot>
-<screeninfo>String Method Listing</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/string-methods.png" format="PNG" /></imageobject>
-<caption>
-<para>String Method Listing</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/string-methods-static.png">
-<screenshot>
-<screeninfo>String Static Methods Listing</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/string-methods-static.png" format="PNG" /></imageobject>
-<caption>
-<para>String Static Method Listing</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-</tbody>
-</tgroup>
-</table>
-
-
-<table>
-<title>Search</title>
-<tgroup cols="3">
-<tbody>
-<row>
-
-<entry>
-<ulink url="figures/screenshots/search-method-simple.png">
-<screenshot>
-<screeninfo>Simple Search</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/search-method-simple.png" format="PNG" /></imageobject>
-<caption>
-<para>Simple Search</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/search-results-method-simple.png">
-<screenshot>
-<screeninfo>Simple Search Results</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/search-results-method-simple.png" format="PNG" /></imageobject>
-<caption>
-<para>Simple Search Results</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/search-power.png">
-<screenshot>
-<screeninfo>Power Search</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/search-power.png" format="PNG" /></imageobject>
-<caption>
-<para>Power Search</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-
-<row>
-
-<entry>
-<ulink url="figures/screenshots/search-results-bloch.png">
-<screenshot>
-<screeninfo>Power Search Results</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/search-results-bloch.png" format="PNG" /></imageobject>
-<caption>
-<para>Power Search Results</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/search-wildcard.png">
-<screenshot>
-<screeninfo>Wildcard Search</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/search-wildcard.png" format="PNG" /></imageobject>
-<caption>
-<para>Wildcard Search</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-</tbody>
-</tgroup>
-</table>
-
-<table>
-<title>Method Detail &amp; Cross Reference Lookup</title>
-<tgroup cols="3">
-<tbody>
-<row>
-
-<entry>
-<ulink url="figures/screenshots/session-find-method.png">
-<screenshot>
-<screeninfo>Method Detail</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/session-find-method.png" format="PNG" /></imageobject>
-<caption>
-<para>Method Detail</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/hbm-session-crossref.png">
-<screenshot>
-<screeninfo>Cross Reference Lookup</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/hbm-session-crossref.png" format="PNG" /></imageobject>
-<caption>
-<para>Cross Reference Lookup</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-</tbody>
-</tgroup>
-</table>
-
-<table>
-<title>Stats</title>
-<tgroup cols="3">
-<tbody>
-<row>
-
-<entry>
-<ulink url="figures/screenshots/stats-authors.png">
-<screenshot>
-<screeninfo>Author Stats</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/stats-authors.png" format="PNG" /></imageobject>
-<caption>
-<para>Author Stats</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-
-<entry>
-<ulink url="figures/screenshots/stats-classcount.png">
-<screenshot>
-<screeninfo>Package Stats</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/stats-classcount.png" format="PNG" /></imageobject>
-<caption>
-<para>Package Stats</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/stats-main.png">
-<screenshot>
-<screeninfo>Stats</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/stats-main.png" format="PNG" /></imageobject>
-<caption>
-<para>Stats</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-</row>
-</tbody>
-</tgroup>
-</table>
-
-<table>
-<title>Miscellaneous</title>
-<tgroup cols="3">
-<tbody>
-<row>
-
-<entry>
-<ulink url="figures/screenshots/author-sample.png">
-<screenshot>
-<screeninfo>Author View</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/author-sample.png" format="PNG" /></imageobject>
-<caption>
-<para>Author View</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-
-<entry>
-<ulink url="figures/screenshots/settings.png">
-<screenshot>
-<screeninfo>Settings</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/settings.png" format="PNG" /></imageobject>
-<caption>
-<para>Settings</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-<entry>
-<ulink url="figures/screenshots/legend.png">
-<screenshot>
-<screeninfo>Legend</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/screenshots/thumbs/legend.png" format="PNG" /></imageobject>
-<caption>
-<para>Legend:  Color coding and Styles</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
-</entry>
-
-
-</row>
-
-</tbody>
-</tgroup>
-</table> 
-
-</chapter>
-
-<chapter>
-<title>
-Future Versions and Upcoming Features
-</title>
-
-<sect1>
-<title>What are the things driving the To-Do list right now</title>
-
-<para>
-Here are what I believe to be important enhancements to ashkelon:
-</para>
-
-<itemizedlist>
-<listitem><para>Brainless installation</para></listitem>
-<listitem><para>A public repository and web site with support for API owners and maintainers, remote population</para></listitem>
-<listitem><para>Eclipse plugin</para></listitem>
-<listitem><para>More stats, code metrics</para></listitem>
-<listitem><para>javadocs xml representation and xml marshalling</para></listitem>
-<listitem><para>a XUL gui</para></listitem>
-<listitem><para>GUIs for the repository manager</para></listitem>
-</itemizedlist>
-
-</sect1>
-
-<sect1>
-<title>Ashkelon Task List</title>
-
-
-<sect2>
-<title>xml</title>
-
-<orderedlist>
-<listitem>
-<para>
-Add a third dimension (xml) to ashkelon.
-</para>
-<para>
-   Currently model can exist at runtime (org.ashkelon model objects) or in 
-   database (have a database schema and code to support transfer of doc 
-   info from model to db and back).
-</para>
-
-<para>Here's what I envision:</para>
-<variablelist>
-<varlistentry>
-<term>
- <command>ashkelon</command> export <replaceable>apiname</replaceable>
-</term>
-<listitem>
-<para>
-(Database to XML)
-Exports API information as an xml document
-</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
- <command>ashkelon</command> import <replaceable>apiinfo.xml</replaceable>
-</term>
-<listitem>
-<para>
-(XML to Database)
-Imports an entire API into the db from corresponding info saved in apiinfo.xml (not to confuse with existing api.xml file which contains only info about the api entity; this new xml is deep and contains package and class and member info and more)
-</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
- New doclet: <command>ashkelon</command> xml <replaceable>@api.xml</replaceable>
-</term>
-<listitem>
-<para>
-(Source code to XML)
-Functions similar to <command>ashkelon add</command> but instead of dumping data into db, it would dump it to a target xml file
-</para>
-</listitem>
-</varlistentry>
-
-</variablelist> 
-
- <para>
- Here's a crude diagram of what I envision..
-<ulink url="figures/vision.png">
-<screenshot>
-<screeninfo>Unified marshalling vision</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="figures/vision-thumb.png" format="PNG" /></imageobject>
-<caption>
-<para>Unified marshalling vision</para>
-</caption>
-</mediaobject>
-</screenshot>
-</ulink>
- </para>
-
-
-</listitem>
-<listitem>
-<para>
-Build web services on top of this xml infrastructure to allow the transfer of API info to a remote repository
-</para>
-</listitem>
-</orderedlist>
-
-</sect2>
-
-
-<sect2>
-<title>Refactoring/Enhancements</title>
-
-<orderedlist>
-<listitem>
-<para>
-Code that supports multiple GUIs forces data duplication.  Refactor.  Proposed solution:  One set of JSPs generate the content to go on all versions of a page in XML format. Use separate XSLT transform to produce the different look and feel's.
-</para>
-</listitem>
-<listitem>
-<para>
-Review how application is configured and try to consolidate config files into a single file (look at Spring?)
-</para>
-</listitem>
-
-<listitem>
-<para>
-Support hypersonicsql (idea is to bundle prepopulated database with ashkelon so that basic APIs are already available out of the box without having to populate)
-</para>
-</listitem>
-<listitem>
-<para>
-Improve caching implementation
-</para>
-</listitem>
-
-</orderedlist>
-
-</sect2>
-
-<sect2>
-<title>
-UI
-</title>
-
-<orderedlist>
-<listitem>
-<para>
-Improve usability of GUI and continue refactoring JSPs
-</para>
-<orderedlist>
-<listitem>
-<para>
-  Make ui javabeans aware.  separate accessor/mutator pairs
-    as listed properties in the ui.  ones that are read-only
-    should display as such (no mutator).  this would really
-    clean up the method listing for classes with many methods.
-    on the other hand, how does one distinguish between a class
-    that coincidentally has getter/setter methods but was never
-    intended to be a javabean (example: java.awt.Color)??
-    maybe do this only for classes with associated beaninfo classes.
-</para>
-</listitem>
-</orderedlist>
-
-</listitem>
-
-<listitem> <para>
-A third, XUL-based GUI
-</para> </listitem>
-
-<listitem>
-<para>
-GUI for Ashkelon Manager (populator)
-</para>
-
-  <orderedlist>
-  <listitem>
-   <para>Swing</para>
-  </listitem>
-  <listitem>
-   <para>Web front-end</para>
-  </listitem>
-  <listitem>
-   <para>Remote proxy (like cvs pserver et al)</para>
-  </listitem>
-  </orderedlist>
-  
-</listitem>
-<listitem>
- <para>Eclipse plugin</para>
-</listitem>
-
-</orderedlist>
-
-</sect2>
-
-<sect2>
-<title>
-Specific Tasks / Bugs, Small Features
-</title>
-
-<orderedlist>
-<listitem>
- <para>Tab selection initialization:  appears to be broken (at least on mozilla)</para>
-</listitem>
-<listitem>
- <para>API Page:  add listing of classes in a single api, flattening the various packages an api contains.  sort of like a single package page, but for multiple packages (all belonging to a certain api).</para>
-</listitem>
-<listitem>
- <para>Enhance search feature:  allow scope restrict to a single API (e.g. find all static methods in API x)</para>
-</listitem>
-<listitem>
- <para>Stats:  add 'Class count by API' (in addition to existing 'Class count by package')</para>
-</listitem>
-</orderedlist>
-</sect2>
-
-</sect1>
-
-<para>
- Feedback is encouraged.  Write eitan directly at <email>eitan-keyword-tech.cede1b@u2d.com</email> or better yet, write the ashkelon devs mailing list: <email>ashkelon-devs@lists.sourceforge.net</email>
-</para>
-
-</chapter>
-
-<chapter>
- <title> Resources </title>
-
- <para>
- For project updates, see:
-</para>
-
-  <itemizedlist>
-   <listitem>
-    <para>
-     <ulink url="http://sourceforge.net/projects/ashkelon/">http://sourceforge.net/projects/ashkelon/</ulink>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     <ulink url="http://ashkelon.sourceforge.net/">http://ashkelon.sourceforge.net/</ulink>
-    </para>
-   </listitem>
-  </itemizedlist>
-
-</chapter>
-
-
-<chapter>
-<title>Credits</title>
-
-<para>
-Conceived, designed, &amp; built by Eitan Suez, Austin, Texas (www.u2d.com).
-</para>
-  
-<para>
-<emphasis>Sincere</emphasis> thanks goes to the following individuals:
-</para>
-
-<variablelist>
- <varlistentry>
-  <term>
-Andreas Schaefer
-  </term>
-  <listitem><para>
-  For writing the initial ant build file for
-  this project, and for being the first individual
-  to step up to the plate and actively contribute
-  to this project.
-  </para></listitem>
- </varlistentry>
-
- <varlistentry>
-  <term>
-  Bob Hays (alephnaught.com)
-  </term>
-  <listitem><para>
-  For actively helping on the project, contributing
-  a number of patches and features, including an ashkelon
-  ant task
-  </para></listitem>
- </varlistentry>
-
- <varlistentry>
-  <term>
-  Ben Walding
-  </term>
-  <listitem><para>
-  Who wrote a maven plugin for ashkelon
-  and who planted the idea in my mind to write a maven
-  POM file for ashkelon (forthcoming)
-  </para></listitem>
- </varlistentry>
-
-</variablelist>
-
-</chapter>
-
-<chapter>
-<title>Miscellaneous</title>
-
-<sect1>
-<title>Project History</title>
-
-<para>
-I had the idea that javadocs should be a web application relying on a backend database around 1998.  It took me a couple of years to actually act on this.  On a short vacation trip to hawaii in 2000, I wrote my first stab at a doclet to populate a db.  It worked beautifully.  The results were promising but with only a few days' work invested in this project, there wasn't much to show for:  only a populator doclet.
-</para>
-
-<para>
-The idea simmered a little longer and a year later I decided that I could no longer sit idle with this idea in my head without doing anything about it.  So I took a 2-week vacation around March 2001 and shut myself in a small hotel room in houston and coded ~ 19 hour days for 14 days straight.  The result was 90% of what ashkelon is today.  This is what I accomplished:
-</para>
-
-<itemizedlist>
-<listitem>
- <para>developed my own MVC framework to support the web application (a la struts)</para>
-</listitem>
-<listitem>
- <para>redesigned and implemented the database schema from scratch</para>
-</listitem>
-<listitem>
- <para>refactored the javadoc html doclet into jsp pages</para>
-</listitem>
-<listitem>
- <para>learned css</para>
-</listitem>
-<listitem>
- <para>wrote an entirely new gui for javadocs, employing dhtml and css vigorously</para>
-</listitem>
-<listitem>
- <para>wrote the viewer application in jsp</para>
-</listitem>
-<listitem>
- <para>wrote my own crappy database connection pool</para>
-</listitem>
-<listitem>
- <para>Added entirely new sections to the viewer app, going beyond the scope of just javadocs (stats section, authors section)</para>
-</listitem>
-</itemizedlist>
-
-<para>Over the next three years, I added these:
-</para>
-
-<itemizedlist>
-<listitem>
- <para>A second GUI, in the style of javadoc (html 3.2)</para>
-</listitem>
-<listitem>
- <para>postgres and mysql support besides the original oracle version</para>
-</listitem>
-<listitem>
- <para>mozilla support for the DHTML GUI</para>
-</listitem>
-<listitem>
- <para>Added a "power search" feature to complement the simple search feature that had originally been built into the viewer app</para>
-</listitem>
-</itemizedlist>
-
-<para>
-One deduction from this story is that much more can be accomplished in two weeks of immersion compared to three years of trying to squeeze in an hour here or there in the middle of the night.</para>
-
-</sect1>
-
-<sect1>
-<title>Origin of Project Name</title>
-
-<para>
-The project name "ashkelon" is definitely influenced by names of other open source projects, especially jakarta projects.  There are two main reasons for selecting "ashkelon" as the name for this project.  One is selfish, the other is subtle.
-</para>
-
-<para>
-I became aware of a Jakarta project called "Alexandria" (now defunct).  As I read about Alexandria, I realized that my project had many goals similar to Alexandria's:  making many api docs available in a single place.  One cannot find a more aptly named project, as the city of Alexandria was the host of the largest known library in antiquity.
-</para>
-
-<para>It turns out that Ashkelon is also a city, an ancient city, not 250 miles from Alexandria on the mediterranean coast of Israel.  The thought that two projects so close to each other conceptually were also named after two cities close to each other geographically amused me.  Furthermore, the Alexandria project was hosted on what I considered to be a high profile and high visibilitly open source site:  The Apache Jakarta project.  My project came from relative obscurity (ashkelon likewise is not known for being the source of great libraries or documentation projects).  I thought to myself.. "maybe a great project can emerge from relative obscurity.."
-</para>
-
-<para>What tipped the scales in favor of naming the project 'ashkelon' is the additional fact that the city of Ashkelon was my home for a number of years in my youth.
-</para>
-
-</sect1>
-
-</chapter>
+         <para>
+            Oftentimes you'll want to update an API you've already populated into your database with 
+            an updated version.  You do this with the <command>ashkelon update</command> command.
+            This command first deletes the api from the repository, and then proceeds to fetch, 
+            parse, and populate the updated version.
+         </para>
+         
+         <para>Say, for example, that dom4j released a new version.  You'd
+         update the xml descriptor, maybe the tag name in cvs to fetch the code from.  Then  you'd invoke:
+         </para>
+         
+         <screen>
+         ashkelon update dom4j
+         </screen>
+         
+      </sect1>
+         
+      <sect1>
+         <title>Working with J2SE</title>
+
+         <para>
+            With J2SE v1.4, javadoc introduced the -source flag for
+            processing APIs that used J2SE v1.4 specific features,
+            such as the assert keyword.  So, if you're going to
+            populate such an API, or J2SE itself, you must specify
+            ashkelon's corresponding flag:  --source, like this:
+         </para>
+
+         <screen>
+   <prompt>$</prompt> <command>ashkelon</command> add --source 1.4 j2sdk14.xml
+         </screen>
+         
+         <para>Another concern is that although it's very convenient to 
+         have ashkelon fetch the source code on our behalf directly from
+         version control, this is not always possible or practical.  For
+         example, you'll more likely manually download J2SE source code
+         for processing.  ashkelon has a provision for this.  You can
+         define a SOURCEPATH environment variable containing however many 
+         paths you need where source code resides that you want to process
+         through ashkelon.
+         </para>
+         
+         <para>So, assume you download J2SE to ~/devel/j2se/sources.
+         Simply add that path to your SOURCEPATH environment variable
+         (in a completely analogous fashion to the way we work with
+         CLASSPATH).  Then, simply omit the &lt;repository&gt; section
+         from the api descriptor file (it's optional).  ashkelon will
+         simply fall back to looking for the j2se source code in your
+         source path.
+         </para>
+         
+      </sect1>
+      
+   </chapter>
+
+
+   <chapter>
+      <title>System Architecture</title>
+
+      <para>
+         Here are two complemtentary sources on ashkelon's architecture are:
+      </para>
+
+      <variablelist>
+         <varlistentry>
+            <term>July 2002 java.sun.com main story/article</term>
+            <listitem>
+               <para>
+                  <ulink url="http://java.sun.com/features/2002/07/dbdoc.html">
+                     http://java.sun.com/features/2002/07/dbdoc.html</ulink>
+               </para>
+            </listitem>
+         </varlistentry>
+         <varlistentry>
+            <term>JavaOne (2002) alternate presentation (ppt)</term>
+            <listitem>
+               <para>
+                  <ulink url="http://ashkelon.sourceforge.net/files/1145suez.pdf">http://ashkelon.sourceforge.net/files/1145suez.pdf</ulink>
+               </para>
+            </listitem>
+         </varlistentry>
+      </variablelist>
+
+   <sect1>
+      <title>
+         Database Schema Description
+      </title>
+
+      <para>
+         I have created an entity relationship diagram or sorts (pdf) representing 
+         the database schema used by ashkelon.
+         Click on the thumbnail for a full-size png:
+      </para>
+
+      <para>
+         <ulink url="figures/ERD.png">
+            <screenshot>
+               <screeninfo>ERD</screeninfo>
+               <mediaobject>
+                  <imageobject>
+                     <imagedata fileref="figures/ERD-thumb.png" format="PNG"/>
+                  </imageobject>
+                  <caption>
+                     <para>ERD</para>
+                  </caption>
+               </mediaobject>
+            </screenshot>
+         </ulink>
+      </para>
+
+      <para>
+         The script that constructs the schema for a given database is located in
+         <filename>$ASHK_HOME/db/
+            <replaceable>$dbtype</replaceable>
+            /org/ashkelon/db/ashkelon.sql
+         </filename>
+      </para>
+
+   </sect1>
+   
+   </chapter>
+
+   <chapter>
+      <title>Viewer Application Screen Shots</title>
+
+      <para>
+         Here is a collection of screenshots of the ashkelon web application.  This particular 
+         instance shows only a half dozen APIs.  You should be able to notice how the
+         search results include items from a variety of APIs.  Again, inter-API cross referencing
+         is complete.  For example:  the documentation page for a method in API A that returns a type
+         defined in API B will show the return type hyperlinked. 
+      </para>
+
+      <table>
+         <title>APIs and Package Listings</title>
+         <tgroup cols="3">
+            <tbody>
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/apis.png">
+                        <screenshot>
+                           <screeninfo>API Listing</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/apis.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>API Listing</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/pkglist.png">
+                        <screenshot>
+                           <screeninfo>J2SE Package Listing</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/pkglist.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>J2SE Package Listing</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/packages.png">
+                        <screenshot>
+                           <screeninfo>Packages View</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/packages.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Packages View</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+            </tbody>
+         </tgroup>
+      </table>
+
+      <table>
+         <title>Sample Package: java.awt</title>
+         <tgroup cols="3">
+            <tbody>
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/java-awt-brief.png">
+                        <screenshot>
+                           <screeninfo>java.awt at a glance</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/java-awt-brief.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>java.awt at a glance</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/java-awt-classes.png">
+                        <screenshot>
+                           <screeninfo>java.awt Class Listing</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/java-awt-classes.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>java.awt Class Listing</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/java-awt-interfaces.png">
+                        <screenshot>
+                           <screeninfo>java.awt Interfaces Listing</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/java-awt-interfaces.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>java.awt Interfaces Listing</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/java-awt-main.png">
+                        <screenshot>
+                           <screeninfo>java.awt Main View</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/java-awt-main.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>java.awt Main View</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/java-awt-tree.png">
+                        <screenshot>
+                           <screeninfo>java.awt Inheritance Hierarchy</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/java-awt-tree.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>java.awt Inheritance Hierarchy</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+            </tbody>
+         </tgroup>
+      </table>
+
+
+      <table>
+         <title>Sample Class: java.lang.String</title>
+         <tgroup cols="3">
+            <tbody>
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/string-brief.png">
+                        <screenshot>
+                           <screeninfo>String class at a glance</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/string-brief.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>String class at a glance</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/string-constructor.png">
+                        <screenshot>
+                           <screeninfo>String constructor variants</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/string-constructor.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>String constructor variants</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/string-main.png">
+                        <screenshot>
+                           <screeninfo>String Class Main View</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/string-main.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>String Class Main View</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/string-methods.png">
+                        <screenshot>
+                           <screeninfo>String Method Listing</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/string-methods.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>String Method Listing</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/string-methods-static.png">
+                        <screenshot>
+                           <screeninfo>String Static Methods Listing</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/string-methods-static.png"
+                                            format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>String Static Method Listing</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+            </tbody>
+         </tgroup>
+      </table>
+
+
+      <table>
+         <title>Search</title>
+         <tgroup cols="3">
+            <tbody>
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/search-method-simple.png">
+                        <screenshot>
+                           <screeninfo>Simple Search</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/search-method-simple.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Simple Search</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/search-results-method-simple.png">
+                        <screenshot>
+                           <screeninfo>Simple Search Results</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/search-results-method-simple.png"
+                                            format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Simple Search Results</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/search-power.png">
+                        <screenshot>
+                           <screeninfo>Power Search</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/search-power.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Power Search</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/search-results-bloch.png">
+                        <screenshot>
+                           <screeninfo>Power Search Results</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/search-results-bloch.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Power Search Results</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/search-wildcard.png">
+                        <screenshot>
+                           <screeninfo>Wildcard Search</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/search-wildcard.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Wildcard Search</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+            </tbody>
+         </tgroup>
+      </table>
+
+      <table>
+         <title>Method Detail &amp; Cross Reference Lookup</title>
+         <tgroup cols="3">
+            <tbody>
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/session-find-method.png">
+                        <screenshot>
+                           <screeninfo>Method Detail</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/session-find-method.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Method Detail</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/hbm-session-crossref.png">
+                        <screenshot>
+                           <screeninfo>Cross Reference Lookup</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/hbm-session-crossref.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Cross Reference Lookup</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+            </tbody>
+         </tgroup>
+      </table>
+
+      <table>
+         <title>Stats</title>
+         <tgroup cols="3">
+            <tbody>
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/stats-authors.png">
+                        <screenshot>
+                           <screeninfo>Author Stats</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/stats-authors.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Author Stats</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+
+                  <entry>
+                     <ulink url="figures/screenshots/stats-classcount.png">
+                        <screenshot>
+                           <screeninfo>Package Stats</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/stats-classcount.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Package Stats</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/stats-main.png">
+                        <screenshot>
+                           <screeninfo>Stats</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/stats-main.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Stats</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+               </row>
+            </tbody>
+         </tgroup>
+      </table>
+
+      <table>
+         <title>Miscellaneous</title>
+         <tgroup cols="3">
+            <tbody>
+               <row>
+
+                  <entry>
+                     <ulink url="figures/screenshots/author-sample.png">
+                        <screenshot>
+                           <screeninfo>Author View</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/author-sample.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Author View</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+
+                  <entry>
+                     <ulink url="figures/screenshots/settings.png">
+                        <screenshot>
+                           <screeninfo>Settings</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/settings.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Settings</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+                  <entry>
+                     <ulink url="figures/screenshots/legend.png">
+                        <screenshot>
+                           <screeninfo>Legend</screeninfo>
+                           <mediaobject>
+                              <imageobject>
+                                 <imagedata fileref="figures/screenshots/thumbs/legend.png" format="PNG"/>
+                              </imageobject>
+                              <caption>
+                                 <para>Legend: Color coding and Styles</para>
+                              </caption>
+                           </mediaobject>
+                        </screenshot>
+                     </ulink>
+                  </entry>
+
+
+               </row>
+
+            </tbody>
+         </tgroup>
+      </table>
+
+   </chapter>
+   
+   <chapter>
+      <title>FAQ</title>
+
+      <qandaset defaultlabel="qanda">
+
+         <qandaentry>
+            <question>
+               <para>Is ashkelon Java 5 Compatible?</para>
+            </question>
+            <answer>
+               <para>You can build and run ashkelon with Java 5.</para>
+            </answer>
+         </qandaentry>
+
+         <qandaentry>
+            <question>
+               <para>Does ashkelon support Java 5?</para>
+            </question>
+            <answer>
+               <para>At this time, no.  ashkelon has not been retrofitted to be 
+               aware of and document the new Java 5 constructs (enums, generics,
+               et al)</para>
+            </answer>
+         </qandaentry>
+
+         <qandaentry>
+            <question>
+               <para>Does ashkelon support multiple versions of the same 
+               API in a single database?</para>
+            </question>
+            <answer>
+               <para>Not at this time.</para>
+            </answer>
+         </qandaentry>
+
+         <qandaentry>
+            <question>
+               <para>Is there an Eclipse Plugin for ashkelon?</para>
+            </question>
+            <answer>
+               <para>No.  We would welcome your contribution of one.  
+                  Eitan has written a primitive IDEA plugin for ashkelon
+                  though at this time it has not been published.</para>
+            </answer>
+         </qandaentry>
+
+
+         <qandaentry>
+            <question>
+               <para>Does javadoc require source code to produce documentation?</para>
+            </question>
+            <answer>
+               <para>Yes.</para>
+            </answer>
+         </qandaentry>
+
+      </qandaset>
+
+   </chapter>
+
+   <chapter>
+      <title>Credits</title>
+
+      <para>
+         Conceived, designed, &amp; built by Eitan Suez, Austin, Texas ( <ulink url="http://u2d.com/">http://u2d.com/</ulink> ).
+      </para>
+
+      <para>
+         <emphasis>Sincere</emphasis> thanks goes to the following individuals:
+      </para>
+
+      <variablelist>
+         <varlistentry>
+            <term>
+               Andreas Schaefer
+            </term>
+            <listitem>
+               <para>
+                  For writing the initial ant build file for
+                  this project, and for being the first individual
+                  to step up to the plate and actively contribute
+                  to this project.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term>
+               Bob Hays (alephnaught.com)
+            </term>
+            <listitem>
+               <para>
+                  For actively helping on the project, contributing
+                  a number of patches and features, including an ashkelon
+                  ant task
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term>
+               Ben Walding
+            </term>
+            <listitem>
+               <para>
+                  Who wrote a maven plugin for ashkelon
+                  and who planted the idea in my mind to write a maven
+                  POM file for ashkelon (forthcoming)
+               </para>
+            </listitem>
+         </varlistentry>
+
+      </variablelist>
+
+   </chapter>
+
+   <chapter>
+      <title>Miscellaneous</title>
+
+      <sect1>
+         <title>Project History</title>
+
+         <para>
+            I had the idea that javadocs should be a web application relying on a backend database around 1998. It took
+            me a couple of years to actually act on this. On a short vacation trip to hawaii in 2000, I wrote my first
+            stab at a doclet to populate a db. It worked beautifully. The results were promising but with only a few
+            days' work invested in this project, there wasn't much to show for: only a populator doclet.
+         </para>
+
+         <para>
+            The idea simmered a little longer and a year later I decided that I could no longer sit idle with this idea
+            in my head without doing anything about it. So I took a 2-week vacation around March 2001 and shut myself in
+            a small hotel room in houston and coded ~ 19 hour days for 14 days straight. The result was 90% of what
+            ashkelon is today. This is what I accomplished:
+         </para>
+
+         <itemizedlist>
+            <listitem>
+               <para>developed my own MVC framework to support the web application (a la struts)</para>
+            </listitem>
+            <listitem>
+               <para>redesigned and implemented the database schema from scratch</para>
+            </listitem>
+            <listitem>
+               <para>refactored the javadoc html doclet into jsp pages</para>
+            </listitem>
+            <listitem>
+               <para>learned css</para>
+            </listitem>
+            <listitem>
+               <para>wrote an entirely new gui for javadocs, employing dhtml and css vigorously</para>
+            </listitem>
+            <listitem>
+               <para>wrote the viewer application in jsp</para>
+            </listitem>
+            <listitem>
+               <para>wrote my own crappy database connection pool</para>
+            </listitem>
+            <listitem>
+               <para>Added entirely new sections to the viewer app, going beyond the scope of just javadocs (stats
+                  section, authors section)</para>
+            </listitem>
+         </itemizedlist>
+
+         <para>Over the next three years, I added these:
+         </para>
+
+         <itemizedlist>
+            <listitem>
+               <para>A second GUI, in the style of javadoc (html 3.2)</para>
+            </listitem>
+            <listitem>
+               <para>postgres and mysql support besides the original oracle version</para>
+            </listitem>
+            <listitem>
+               <para>mozilla support for the DHTML GUI</para>
+            </listitem>
+            <listitem>
+               <para>Added a "power search" feature to complement the simple search feature that had originally been
+                  built into the viewer app</para>
+            </listitem>
+         </itemizedlist>
+
+         <para>
+            One deduction from this story is that much more can be accomplished in two weeks of immersion compared to
+            three years of trying to squeeze in an hour here or there in the middle of the night.</para>
+
+      </sect1>
+
+      <sect1>
+         <title>Origin of Project Name</title>
+
+         <para>
+            The project name "ashkelon" is definitely influenced by names of other open source projects, especially
+            jakarta projects. There are two main reasons for selecting "ashkelon" as the name for this project. One is
+            selfish, the other is subtle.
+         </para>
+
+         <para>
+            I became aware of a Jakarta project called "Alexandria" (now defunct). As I read about Alexandria, I
+            realized that my project had many goals similar to Alexandria's: making many api docs available in a single
+            place. One cannot find a more aptly named project, as the city of Alexandria was the host of the largest
+            known library in antiquity.
+         </para>
+
+         <para>It turns out that Ashkelon is also a city, an ancient city, not 250 miles from Alexandria on the
+            mediterranean coast of Israel. The thought that two projects so close to each other conceptually were also
+            named after two cities close to each other geographically amused me. Furthermore, the Alexandria project was
+            hosted on what I considered to be a high profile and high visibilitly open source site: The Apache Jakarta
+            project. My project came from relative obscurity (ashkelon likewise is not known for being the source of
+            great libraries or documentation projects). I thought to myself.. "maybe a great project can emerge from
+            relative obscurity.."
+         </para>
+
+         <para>What tipped the scales in favor of naming the project 'ashkelon' is the additional fact that the city of
+            Ashkelon was my home for a number of years in my youth.
+         </para>
+
+      </sect1>
+
+   </chapter>
 
 </book>
