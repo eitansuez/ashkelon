@@ -3,8 +3,6 @@
  */
 package org.ashkelon;
 
-import org.ashkelon.DocInfo;
-import org.ashkelon.Reference;
 import org.ashkelon.util.StringUtils;
 import org.ashkelon.util.JDocUtil;
 import org.ashkelon.util.HtmlUtils;
@@ -34,7 +32,7 @@ public class InlineTagResolver
              return resolveDescription(sourcedoc, tags[i].inlineTags());
          }
 
-         if ("@see".equals(tags[i].kind()))  // javadoc docs say 'link' - liars
+         if ("@see".equals(tags[i].kind()))  // name is @link, kind is @see
          {
             Reference ref = new Reference(sourcedoc, (SeeTag) tags[i]);
             String cmd = ref.getRefDocTypePrefix();
