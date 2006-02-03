@@ -433,11 +433,6 @@
             </listitem>
          </orderedlist>
          
-         <para>Rather than specify dbtype from the command line, feel
-         free to edit the build.xml file directly.  This way you won't
-         have to remember how to construct your ant command line each
-         time.</para>
-         
          </sect3>
          
          </sect2>
@@ -485,7 +480,7 @@
                   <example>
                      <title>Using postgresql</title>
                      <screen>
-      ~/ashkelon&gt; psql -U postgres ashkelon
+      ~/ashkelon&gt; psql -U ashkelon ashkelon
       ashkelon#= \i db/postgres/org/ashkelon/db/init.sql
       ashkelon#= \q
                      </screen>
@@ -514,6 +509,11 @@
                   </screen>
                </example>
 
+         <para>Rather than specify dbtype from the command line, feel
+         free to edit the build.xml file directly.  This way you won't
+         have to remember how to construct your ant command line each
+         time.</para>
+         
          
          </sect2>
 
@@ -590,6 +590,7 @@
          <screen>
    ~ashkelon$ cd apis
    ~ashkelon/apis$ ashkelon add dom4j.xml
+   [press enter]
          </screen>
 
          <para>
@@ -611,17 +612,10 @@
             You can list the APIs in the ashkelon database like this:
             
             <screen>
-      eitan@ubuntu:~/projects/ashkelon/apis$ ashkelon list
-      Ashkelon: 9 APIs in ashkelon:
-      Ashkelon:    Hibernate
-      Ashkelon:    jEdit
-      Ashkelon:    FlexDock
-      Ashkelon:    Servlet
-      Ashkelon:    L2FProd.com Common Components
-      Ashkelon:    log4j
-      Ashkelon:    JiBX
-      Ashkelon:    JUnit
-      Ashkelon:    J2SE
+   eitan@ubuntu:~/projects/ashkelon/apis$ ashkelon list
+   ashkelon@ubuntu:~/projects/ashkelon/apis$ ashkelon list
+   Ashkelon: 1 APIs in ashkelon:
+   Ashkelon:    dom4j
             </screen>
          </para>
 
@@ -643,7 +637,7 @@
             </para>
             <para>Then this means that the invoked cvs command is waiting for
             a password before proceeding.  Since almost all open source projects
-            use a blank password for anonymous cvs login, simply press enter.  I apologize for the inconvenience</para>
+            use a blank password for anonymous cvs login, simply press enter.  I apologize for the inconvenience.</para>
             </note>
             
       </sect1>
