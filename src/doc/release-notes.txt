@@ -46,6 +46,9 @@ What's new in v0.9 (February 2006):
    The presence of the at-sign used to prevent command completion from
    working.
 
+0. Updated documentation (guide.xml, used to produce html and pdf docs)
+   accordingly.
+
 
 What's new in v0.8.9 (September 10 2004):
 -----------------------------------------
