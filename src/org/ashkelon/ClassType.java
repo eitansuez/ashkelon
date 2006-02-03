@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-
 import org.ashkelon.db.DBMgr;
 import org.ashkelon.db.DBUtils;
 import org.ashkelon.db.PKManager;
@@ -19,7 +18,6 @@ import org.ashkelon.util.JDocUtil;
 import org.ashkelon.util.Logger;
 import org.ashkelon.util.StringUtils;
 import org.ashkelon.util.TreeNode;
-
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.ConstructorDoc;
 import com.sun.javadoc.FieldDoc;
@@ -1468,5 +1466,5 @@ public class ClassType implements Comparator, JDoc, Serializable, Persistable
    public API getAPI() { return getPackage().getAPI(); }
    
    public String getStyle() { return getClassTypeName(); }
-
+   
 }
