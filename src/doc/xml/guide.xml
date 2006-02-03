@@ -329,78 +329,16 @@
       <sect1>
          <title>Configuration</title>
 
-         <note>
-            <para>As you read this section, substitute the database type you'll 
-               be using (mysql or postgres) wherever you see the "placeholder"
-               text <replaceable>${dbtype}</replaceable></para>
-         </note>
-
-         <orderedlist>
-            <listitem>
-               <para>
-                  Download &amp; unpack the ashkelon tarball
-               </para>
-            </listitem>
-            <listitem>
-               <para>
-                  Edit
-                  <filename>db/
-                     <replaceable>${dbtype}</replaceable>
-                     /org/ashkelon/db/conn-info.properties
-                  </filename>
-                  to specify the proper database connection information:
-               </para>
-
-               <screen>
-      #
-      dbtype=mysql
-      jdbcDriverName=com.mysql.jdbc.Driver
-      connectionURL=jdbc:mysql://localhost/ashkelon
-      user=ashkelon
-      password=ashkelon
-               </screen>
-
-               <para>or</para>
-               
-               <screen>
-      #
-      dbtype=postgres
-      jdbcDriverName=org.postgresql.Driver
-      connectionURL=jdbc:postgresql://localhost/ashkelon
-      user=ashkelon
-      password=ashkelon
-               </screen>
-            </listitem>
-            <listitem>
-               <para>Build and create the ashkelon jar file:</para>
-
-               <example>
-                  <title>For mysql</title>
-                  <screen>
-      <prompt>$</prompt> <command>ant</command> -Ddbtype=mysql jar-manager
-                  </screen>
-               </example>
-
-               <example>
-                  <title>For postgresql</title>
-                  <screen>
-      <prompt>$</prompt> <command>ant</command> -Ddbtype=postgres jar-manager
-                  </screen>
-               </example>
-
-            </listitem>
-         </orderedlist>
-         
-         <para>Rather than specify dbtype from the command line, feel
-         free to edit the build.xml file directly.  This way you won't
-         have to remember how to construct your ant command line each
-         time.</para>
-
 
          <sect2>
-            <title>Configure environment</title>
+            <title>Environment</title>
 
             <orderedlist>
+               <listitem>
+                  <para>
+                     Download &amp; unpack the ashkelon tarball
+                  </para>
+               </listitem>
                <listitem>
                   <para>
                      Make sure your <envar>$JAVA_HOME</envar>
@@ -437,6 +375,73 @@
 
          </sect2>
 
+         
+         <sect2>
+         <title>Configuration Files</title>
+         
+         <sect3>
+         <title>SourceCache Base Path</title>
+         
+         <para>
+         In version 0.9 ashkelon now has the capability to auto-fetch API source code from either subversion or cvs version control systems.  ashkelon therefore will use a temporary directory as the base path for keeping a cache of source code.
+         </para>
+         
+         <para>In the file <filename>src/org/ashkelon/ashkelon-config.xml</filename>, specify the base path that ashkelon will use for its source cache.  If the path does not exist, ashkelon will attempt to create the specified directory.
+         </para>
+         
+         </sect3>
+         
+         <sect3>
+         <title>Database Connection Information</title>
+         
+         <note>
+            <para>As you read this section, substitute the database type you'll 
+               be using (mysql or postgres) wherever you see the "placeholder"
+               text <replaceable>${dbtype}</replaceable></para>
+         </note>
+
+         <orderedlist>
+            <listitem>
+               <para>
+                  Edit
+                  <filename>db/
+                     <replaceable>${dbtype}</replaceable>
+                     /org/ashkelon/db/conn-info.properties
+                  </filename>
+                  to specify the proper database connection information:
+               </para>
+
+               <screen>
+      #
+      dbtype=mysql
+      jdbcDriverName=com.mysql.jdbc.Driver
+      connectionURL=jdbc:mysql://localhost/ashkelon
+      user=ashkelon
+      password=ashkelon
+               </screen>
+
+               <para>or</para>
+               
+               <screen>
+      #
+      dbtype=postgres
+      jdbcDriverName=org.postgresql.Driver
+      connectionURL=jdbc:postgresql://localhost/ashkelon
+      user=ashkelon
+      password=ashkelon
+               </screen>
+            </listitem>
+         </orderedlist>
+         
+         <para>Rather than specify dbtype from the command line, feel
+         free to edit the build.xml file directly.  This way you won't
+         have to remember how to construct your ant command line each
+         time.</para>
+         
+         </sect3>
+         
+         </sect2>
+         
          <sect2>
             <title>Prepare Database</title>
 
@@ -488,6 +493,28 @@
                </listitem>
             </orderedlist>
 
+         </sect2>
+
+         <sect2>
+         <title>Build ashkelon manager codebase</title>
+         
+               <para>Build and create the ashkelon jar file:</para>
+
+               <example>
+                  <title>For mysql</title>
+                  <screen>
+      <prompt>$</prompt> <command>ant</command> -Ddbtype=mysql jar-manager
+                  </screen>
+               </example>
+
+               <example>
+                  <title>For postgresql</title>
+                  <screen>
+      <prompt>$</prompt> <command>ant</command> -Ddbtype=postgres jar-manager
+                  </screen>
+               </example>
+
+         
          </sect2>
 
 
@@ -569,7 +596,9 @@
             If everything goes well, you should end up with your 
             database populated with the Java API documentation for 
             DOM4J.
+            </para>
             
+            <para>
             Ashkelon basically downloads the source code for the
             project (per the cvs or subversion repository information
             specific in the xml file) and places a copy in its 
@@ -602,6 +631,21 @@
          </para>
          </example>
 
+            <note>
+            <para>
+            There's a bug at the moment with v0.9 regarding inability
+            to autodetect and supply a cvs password.  If for some reason
+            ashkelon appears to have "hanged", usually after a line that
+            resemples this: 
+            </para>
+            <para>
+              CVS password: add: Logging in to :pserver:guest@cvs.dev.java.net:2401/cvs
+            </para>
+            <para>Then this means that the invoked cvs command is waiting for
+            a password before proceeding.  Since almost all open source projects
+            use a blank password for anonymous cvs login, simply press enter.  I apologize for the inconvenience</para>
+            </note>
+            
       </sect1>
 
       <sect1>
