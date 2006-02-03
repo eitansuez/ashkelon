@@ -238,6 +238,13 @@
     </antcall>
   </target>
 
+  <!-- note there's a small bug in the ant docbook styler where the base directory
+    for resolving relative paths is not passed to the fop ant task.  patch the
+    ant docbook styler's ant build file as follows:
+     filename is ant-build-docbook.xml
+     in the target "pdf.fop.internal", look for the task "fop" and add this
+     xml attribute:  basedir="${build.dir}"
+    that should do it -->
   <target name="makedocs-fo" description="transform documentation to fo">
     <antcall target="builddocs" inheritall="false">
       <param name="kind" value="pdf.fop" />
