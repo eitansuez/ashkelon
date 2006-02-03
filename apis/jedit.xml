@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>jEdit</name>
+   <summarydescription>Java Text Editor</summarydescription>
+   <description>Java Text Editor</description>
+   <publisher>jedit.org</publisher>
+   <download_url>http://jedit.org/</download_url>
+   <release_date>2006-01-03T21:55:08.487</release_date>
+   <version>4.2</version>
+   <packages>
+      <package>bsh</package>
+      <package>bsh.collection</package>
+      <package>bsh.commands</package>
+      <package>bsh.reflect</package>
+      <package>com.microstar.xml</package>
+      <package>gnu.regexp</package>
+      <package>org.gjt.sp.jedit</package>
+      <package>org.gjt.sp.jedit.browser</package>
+      <package>org.gjt.sp.jedit.buffer</package>
+      <package>org.gjt.sp.jedit.gui</package>
+      <package>org.gjt.sp.jedit.help</package>
+      <package>org.gjt.sp.jedit.io</package>
+      <package>org.gjt.sp.jedit.menu</package>
+      <package>org.gjt.sp.jedit.msg</package>
+      <package>org.gjt.sp.jedit.options</package>
+      <package>org.gjt.sp.jedit.pluginmgr</package>
+      <package>org.gjt.sp.jedit.print</package>
+      <package>org.gjt.sp.jedit.proto.jeditresource</package>
+      <package>org.gjt.sp.jedit.search</package>
+      <package>org.gjt.sp.jedit.syntax</package>
+      <package>org.gjt.sp.jedit.textarea</package>
+      <package>org.gjt.sp.util</package>
+      <package>org.objectweb.asm</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jedit</url>
+      <modulename>jEdit</modulename>
+      <tagname>jedit-4-2-final</tagname>
+      <sourcepath></sourcepath>
+   </repository>
+</api>

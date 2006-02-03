@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>FlexDock</name>
+   <summarydescription>Java Docking Framework for use in cross-platform Swing applications.</summarydescription>
+   <description>FlexDock is a Java docking framework for use in cross-platform Swing applications. It offers features you'd expect in any desktop docking framework such as: 
+     Tabbed and Split Layouts
+     Drag-n-Drop capability (with native drag rubber band painting on some platforms)
+     Floating windows
+     Collapsible Containers to Save Real Estate
+     Layout Persistence
+ It is released using the MIT license.</description>
+   <publisher>java.net</publisher>
+   <download_url>http://flexdock.dev.java.net</download_url>
+   <release_date>2005-01-01T21:51:11.935</release_date>
+   <version>0.4</version>
+   <packages>
+     <package>org.flexdock.dockbar</package>
+     <package>org.flexdock.dockbar.activation</package>
+     <package>org.flexdock.dockbar.event</package>
+     <package>org.flexdock.dockbar.layout</package>
+     <package>org.flexdock.dockbar.util</package>
+     <package>org.flexdock.docking</package>
+     <package>org.flexdock.docking.activation</package>
+     <package>org.flexdock.docking.adapter</package>
+     <package>org.flexdock.docking.defaults</package>
+     <package>org.flexdock.docking.drag</package>
+     <package>org.flexdock.docking.drag.effects</package>
+     <package>org.flexdock.docking.drag.outline.win32</package>
+     <package>org.flexdock.docking.drag.outline.x11</package>
+     <package>org.flexdock.docking.drag.outline.xlib</package>
+     <package>org.flexdock.docking.drag.preview</package>
+     <package>org.flexdock.docking.event</package>
+     <package>org.flexdock.docking.event.hierarchy</package>
+     <package>org.flexdock.docking.floating.frames</package>
+     <package>org.flexdock.docking.floating.policy</package>
+     <package>org.flexdock.docking.props</package>
+     <package>org.flexdock.docking.state</package>
+     <package>org.flexdock.docking.state.tree</package>
+     <package>org.flexdock.event</package>
+     <package>org.flexdock.logging</package>
+     <package>org.flexdock.perspective</package>
+     <package>org.flexdock.perspective.actions</package>
+     <package>org.flexdock.perspective.event</package>
+     <package>org.flexdock.perspective.persist</package>
+     <package>org.flexdock.perspective.persist.xml</package>
+     <package>org.flexdock.perspective.restore.handlers</package>
+     <package>org.flexdock.util</package>
+     <package>org.flexdock.view</package>
+     <package>org.flexdock.view.actions</package>
+     <package>org.flexdock.view.model</package>
+   </packages>
+   <repository>
+      <type>cvs</type>
+      <url>:pserver:guest@cvs.dev.java.net:/cvs</url>
+      <modulename>flexdock</modulename>
+      <tagname>flexdock_0_4_0</tagname>
+      <sourcepath>src/java/core:src/java/dockbar:src/java/perspective:src/java/view</sourcepath>
+   </repository>
+</api>
+
