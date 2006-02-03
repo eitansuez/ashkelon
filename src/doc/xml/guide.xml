@@ -669,7 +669,12 @@
       ashkelon.war
       eitan@ubuntu:~/projects/ashkelon$ cp dist/ashkelon.war ~/devel/tomcat/webapps
          </screen>
-         
+
+     <para>You need to do two things to deploy the ashkelon war file:
+    [1] copy the war file to the tomcat webapps directory, as shown above, and
+    [2] copy $JAVA_HOME/lib/tools.jar to $CATALINA_HOME/common/lib
+   </para>
+
          <para>
             If necessary, restart tomcat or load the new web application and
             explore 
