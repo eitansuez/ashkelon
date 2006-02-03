@@ -4,6 +4,15 @@ By Eitan Suez
 How to download, configure, setup, install, and run ashkelon
 ============================================================
 
+IMPORTANT: (Feb 2006)
+----------
+These instructions are no longer up to date.
+The master document for installing and configuring ashkelon
+is the users' guide, which you'll find in mulitple flavors
+in the doc/ directory, or online at http://ashkelon.sf.net/
+----------
+
+
 Instructions
 ============
 
@@ -46,10 +55,10 @@ B. Configure database connection and build distribution
 3. build the code & create jar & make war file:
 
   example for mysql:
-   $ ant -Ddbtype=mysql
+   $ ant -Ddbtype=mysql jar-manager
 
   example for postgres:
-   $ ant -Ddbtype=postgres
+   $ ant -Ddbtype=postgres jar-manager
 
    
 C. Configure environment & prepare database
