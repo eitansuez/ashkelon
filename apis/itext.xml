@@ -10,7 +10,7 @@ iText requires JDK 1.2. It's available for free under a multiple license: MPL an
    <publisher></publisher>
    <download_url>http://www.lowagie.com/iText/</download_url>
    <release_date>2005-04-06T15:38:19.363</release_date>
-   <version>1.3</version>
+   <version>1.4</version>
    <packages>
       <package>com.lowagie.bc.asn1</package>
       <package>com.lowagie.text</package>
@@ -21,6 +21,7 @@ iText requires JDK 1.2. It's available for free under a multiple license: MPL an
       <package>com.lowagie.text.pdf.codec</package>
       <package>com.lowagie.text.pdf.codec.postscript</package>
       <package>com.lowagie.text.pdf.codec.wmf</package>
+      <package>com.lowagie.text.pdf.events</package>
       <package>com.lowagie.text.pdf.fonts</package>
       <package>com.lowagie.text.pdf.hyphenation</package>
       <package>com.lowagie.text.rtf</package>
@@ -34,14 +35,18 @@ iText requires JDK 1.2. It's available for free under a multiple license: MPL an
       <package>com.lowagie.text.rtf.table</package>
       <package>com.lowagie.text.rtf.text</package>
       <package>com.lowagie.text.xml</package>
+      <package>com.lowagie.text.xml.xmp</package>
       <package>com.lowagie.tools</package>
       <package>com.lowagie.tools.arguments</package>
       <package>com.lowagie.tools.plugins</package>
+      <package>com.lowagie.tools.plugins.treeview</package>
    </packages>
    <repository>
       <type>cvs</type>
       <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/itext</url>
       <modulename>src</modulename>
+      <tagname>iText_1_4</tagname>
       <sourcepath></sourcepath>
    </repository>
 </api>
+
