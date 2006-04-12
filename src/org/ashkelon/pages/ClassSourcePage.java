@@ -85,6 +85,7 @@ public class ClassSourcePage extends Page
    // TODO: this should be encapsulated in API
    private String fetchSourcePath(String className) throws SQLException
    {
+      log.debug("about to lookup sourcepath information in db for className: "+className);
       String sql = DBMgr.getInstance().getStatement("getsourcepath");
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, className);
@@ -98,8 +99,10 @@ public class ClassSourcePage extends Page
       
       if ("cvs".equals(type))
          return CVSRepository.getInstance().sourcepath(sourcepath, modulename);
-      else
+      else if ("svn".equals(type))
          return SVNRepository.getInstance().sourcepath(modulename);
+      else
+	 return "";
    }
    
    private File fetchSourceFile(String qualifiedName, String fileName) throws SQLException
