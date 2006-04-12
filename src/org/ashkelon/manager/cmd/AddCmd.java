@@ -13,6 +13,7 @@ import org.ashkelon.db.DBUtils;
 import java.util.LinkedList;
 import java.util.Collection;
 import java.io.FileNotFoundException;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -104,9 +105,12 @@ public class AddCmd extends ProcessAPICmd
       String sourcepath = arguments.getString("sourcepath");
       if (sourcepath != null)
       {
-         javadocargslist.addLast(api.sourcepath() + ":" + sourcepath);
+         if (api.sourcepath().length() > 0)
+            javadocargslist.addLast(api.sourcepath() + File.pathSeparator + sourcepath);
+         else
+            javadocargslist.addLast(sourcepath);
       }
-      else
+      else if(api.sourcepath() != null && api.sourcepath().length() > 0)
       {
          javadocargslist.addLast(api.sourcepath());
       }
