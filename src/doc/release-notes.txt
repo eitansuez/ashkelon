@@ -1,5 +1,26 @@
 Release Notes
 
+What's new in v0.9.1 (April 2006):
+----------------------------------
+
+This release is a patch for v0.9.0 addressing primarily an omission
+in applying a change for mysql.
+
+Summary of changes:
+
+1. Updated bundled mysql (v4) jdbc driver jar file
+2. Updated bundled postgres (v8) jdbc driver jar file
+3. mysql schema fix (thanks & credit goes to brandon goodin and sebastian mittelstadt)
+4. apixml.bat file for windows (thanks & credit goes to sebastian mittelstadt)
+5. ashkelon.bat file for windows (thanks & credit goes to both brandon and sebastian)
+6. bug fix
+  description:
+    in ashkelon add command (AddCmd.java)
+     a. assuming ":" instead of file.pathSeparator
+     b. assuming api.sourcepath() is never null
+   thanks to sebastian mittelstadt
+
+
 What's new in v0.9 (February 2006):
 -----------------------------------
 
