@@ -3,6 +3,19 @@ Release Notes
 What's new in v0.9 (February 2006):
 -----------------------------------
 
+[IMPORTANT NOTE:
+   In version 0.9, I have not verified whether bin/ashkelon.bat
+   is up to date or working.  bin/ashkelon (shell script) works.
+
+   All this means is that if you use a mac or unix machine, then you
+   can completely ignore this message.
+
+   I apologize for this oversight.  It's just that I don't really
+   own a windows machine anymore and it's been years since I've
+   used the .bat version.  If someone in the community can 
+   test it and (if necessary) fix it, I promise to merge the changes
+   and release an update (v0.9.1).  ]
+
 1. Expansion of API XML file definition to optionally include
    cvs or subversion repository information.  Ashkelon will
    auto-download source code now instead of requiring you to
