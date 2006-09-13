@@ -65,13 +65,11 @@
       <package>org.hibernate.usertype</package>
       <package>org.hibernate.util</package>
    </packages>
-
    <repository>
-      <type>cvs</type>
-      <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/hibernate</url>
+      <type>svn</type>
+      <url>http://anonhibernate.labs.jboss.com/tags/v313</url>
       <modulename>Hibernate3</modulename>
-      <tagname>v313</tagname>
+      <tagname></tagname>
       <sourcepath>src</sourcepath>
    </repository>
-
 </api>
