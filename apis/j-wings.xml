@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>wingS</name>
+   <summarydescription>wingS is net generation Swing</summarydescription>
+   <description>wingS is a web application framework based on Java Servlets, resembling the Swing API with its MVC paradigm and event oriented design principles</description>
+   <publisher>j-wings.org</publisher>
+   <download_url>http://www.j-wings.org/</download_url>
+   <release_date>2006-10-11T18:11:19.347</release_date>
+   <version>2.0</version>
+   <packages>
+      <package>org.wings</package>
+      <package>org.wings.border</package>
+      <package>org.wings.dnd</package>
+      <package>org.wings.event</package>
+      <package>org.wings.externalizer</package>
+      <package>org.wings.frames</package>
+      <package>org.wings.header</package>
+      <package>org.wings.io</package>
+      <package>org.wings.jsp</package>
+      <package>org.wings.plaf</package>
+      <package>org.wings.recorder</package>
+      <package>org.wings.resource</package>
+      <package>org.wings.script</package>
+      <package>org.wings.session</package>
+      <package>org.wings.style</package>
+      <package>org.wings.table</package>
+      <package>org.wings.template</package>
+      <package>org.wings.template.parser</package>
+      <package>org.wings.template.propertymanagers</package>
+      <package>org.wings.text</package>
+      <package>org.wings.tree</package>
+      <package>org.wings.util</package>
+   </packages>
+   <repository>
+      <type>svn</type>
+      <url>https://svn.sourceforge.net/svnroot</url>
+      <modulename>j-wings</modulename>
+      <tagname>tags/wings2/wings2</tagname>
+      <sourcepath>src/java</sourcepath>
+   </repository>
+</api>
