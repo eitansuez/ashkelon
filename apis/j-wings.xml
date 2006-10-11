@@ -35,7 +35,7 @@
       <type>svn</type>
       <url>https://svn.sourceforge.net/svnroot</url>
       <modulename>j-wings</modulename>
-      <tagname>tags/wings2/wings2</tagname>
+      <tagname>tags/release-2_0-prev2/wings2</tagname>
       <sourcepath>src/java</sourcepath>
    </repository>
 </api>
