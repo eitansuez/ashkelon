@@ -59,7 +59,6 @@ public class Ashkelon extends Doclet
       try
       {
          conn = dbmgr.getConnection();
-         conn.setAutoCommit(false);
       }
       catch (SQLException ex)
       {

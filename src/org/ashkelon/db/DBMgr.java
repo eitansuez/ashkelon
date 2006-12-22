@@ -252,6 +252,7 @@ public class DBMgr
    private PooledConnection makeNewConnection() throws SQLException
    {
       Connection conn = DriverManager.getConnection(connectionURL, user, password);
+      conn.setAutoCommit(false);
       return new PooledConnection(conn);
    }
    
