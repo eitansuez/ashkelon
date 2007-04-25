@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>Echo2 App</name>
+   <summarydescription>The Echo2 Web Framework</summarydescription>
+   <description>Echo2 is the next-generation of the Echo Web Framework, a platform for developing web-based applications that approach the capabilities of rich clients.</description>
+   <publisher>NextApp</publisher>
+   <download_url>http://nextapp.com/platform/echo2/echo</download_url>
+   <release_date>2006-08-09T19:50:44.281</release_date>
+   <version>2.1 Beta5</version>
+   <packages>
+      <package>nextapp.echo2.app</package>
+      <package>nextapp.echo2.app.button</package>
+      <package>nextapp.echo2.app.componentxml</package>
+      <package>nextapp.echo2.app.componentxml.propertypeer</package>
+      <package>nextapp.echo2.app.event</package>
+      <package>nextapp.echo2.app.layout</package>
+      <package>nextapp.echo2.app.list</package>
+      <package>nextapp.echo2.app.table</package>
+      <package>nextapp.echo2.app.text</package>
+      <package>nextapp.echo2.app.update</package>
+      <package>nextapp.echo2.app.util</package>
+      <package>nextapp.echo2.extras.app</package>
+      <package>nextapp.echo2.extras.app.event</package>
+      <package>nextapp.echo2.extras.app.layout</package>
+      <package>nextapp.echo2.extras.app.menu</package>
+   </packages>
+</api>

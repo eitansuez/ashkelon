@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name>SwingX</name>
+   <summarydescription>SwingX</summarydescription>
+   <description>New, supplementary classes for Swing, for rich client development</description>
+   <publisher>Sun</publisher>
+   <download_url>http://swinglabs.org/</download_url>
+   <release_date>2006-12-12T23:14:40.326</release_date>
+   <version>10/27/2006 Build</version>
+   <packages>
+      <package>org.jdesktop.beans</package>
+      <package>org.jdesktop.swingx</package>
+      <package>org.jdesktop.swingx.action</package>
+      <package>org.jdesktop.swingx.auth</package>
+      <package>org.jdesktop.swingx.autocomplete</package>
+      <package>org.jdesktop.swingx.autocomplete.workarounds</package>
+      <package>org.jdesktop.swingx.border</package>
+      <package>org.jdesktop.swingx.calendar</package>
+      <package>org.jdesktop.swingx.color</package>
+      <package>org.jdesktop.swingx.combobox</package>
+      <package>org.jdesktop.swingx.decorator</package>
+      <package>org.jdesktop.swingx.editors</package>
+      <package>org.jdesktop.swingx.error</package>
+      <package>org.jdesktop.swingx.event</package>
+      <package>org.jdesktop.swingx.geom</package>
+      <package>org.jdesktop.swingx.graphics</package>
+      <package>org.jdesktop.swingx.icon</package>
+      <package>org.jdesktop.swingx.image</package>
+      <package>org.jdesktop.swingx.multislider</package>
+      <package>org.jdesktop.swingx.painter</package>
+      <package>org.jdesktop.swingx.painter.gradient</package>
+      <package>org.jdesktop.swingx.plaf</package>
+      <package>org.jdesktop.swingx.plaf.basic</package>
+      <package>org.jdesktop.swingx.plaf.macosx</package>
+      <package>org.jdesktop.swingx.plaf.metal</package>
+      <package>org.jdesktop.swingx.plaf.misc</package>
+      <package>org.jdesktop.swingx.plaf.motif</package>
+      <package>org.jdesktop.swingx.plaf.windows</package>
+      <package>org.jdesktop.swingx.table</package>
+      <package>org.jdesktop.swingx.tips</package>
+      <package>org.jdesktop.swingx.tree</package>
+      <package>org.jdesktop.swingx.treetable</package>
+      <package>org.jdesktop.swingx.util</package>
+   </packages>
+</api>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+   <name/>
+   <summarydescription/>
+   <description/>
+   <publisher/>
+   <download_url/>
+   <release_date>2006-12-29T19:51:02.511</release_date>
+   <version/>
+   <packages>
+      <package>nextapp.echo2.webrender</package>
+      <package>nextapp.echo2.webrender.output</package>
+      <package>nextapp.echo2.webrender.servermessage</package>
+      <package>nextapp.echo2.webrender.service</package>
+      <package>nextapp.echo2.webrender.util</package>
+   </packages>
+</api>

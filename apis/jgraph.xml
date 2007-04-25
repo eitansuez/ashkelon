@@ -19,8 +19,8 @@
    <repository>
       <type>cvs</type>
       <url>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/jgraph</url>
-      <modulename></modulename>
+      <modulename>jgraphpad3</modulename>
       <tagname></tagname>
-      <sourcepath>src/java</sourcepath>
+      <sourcepath>src</sourcepath>
    </repository>
 </api>
